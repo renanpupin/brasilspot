@@ -11,6 +11,23 @@
 |
 */
 
+
+Route::resource('Empresa','EmpresaController');
+Route::resource('Cartao','CartaoController');
+Route::resource('Categoria','CategoriaController');
+Route::resource('Endereco','EnderecoController');
+Route::resource('Foto','FotoController');
+Route::resource('Meta','MetaController');
+Route::resource('Plano','PlanoController');
+Route::resource('Servico','ServicoController');
+Route::resource('Tag','TagController');
+Route::resource('Telefone','TelefoneController');
+Route::resource('Usuario','UsuarioController');
+Route::resource('Vendedor','VendedorController');
+Route::resource('PerfilUsuario','PerfilUsuarioController');
+Route::resource('TipoVendedor','TipoVendedorController');
+Route::resource('TipoEmpresa','TipoEmpresaController');
+
 Route::get('/', function () {
     return view('welcome');
 });
