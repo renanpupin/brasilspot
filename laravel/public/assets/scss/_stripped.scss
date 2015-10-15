@@ -1,0 +1,50 @@
+.separator{
+  display: inline-block;
+  height: 5px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  background-image: linear-gradient(to right, #DB0465, #E66D1C, #E6BD35, #AECC1A, #11939C, #266CAD, #A32995, #BA2879);
+  @include blur(2px);
+}
+.stripped{
+  background-image: linear-gradient(to right, #DB0465, #E66D1C, #E6BD35, #AECC1A, #11939C, #266CAD, #A32995, #BA2879);
+  @include blur(100px);
+  
+}
+@media only screen and (max-width: 992px) {
+  .stripped{
+    @include blur(80px);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .stripped{
+    @include blur(70px);
+  }
+}
+
+@media only screen and (max-width: 468px) {
+  .stripped{
+    @include blur(55px);
+  }
+}
+
+@mixin generateStrips() {
+  $logo-colors: ("#DB0465", "#E66D1C", "#E6BD35", "#AECC1A", "#11939C", "#266CAD", "#A32995", "#BA2879");
+  @for $i from 1 through 8{
+     .span-#{$i}{
+      background-color: unquote(nth($logo-colors, $i));
+    }
+  }
+}
+//@include generateStrips();
+
+// <span class="span-1"></span>
+// <span class="span-2"></span>
+// <span class="span-3"></span>
+// <span class="span-4"></span>
+// <span class="span-5"></span>
+// <span class="span-6"></span>
+// <span class="span-7"></span>
+// <span class="span-8"></span>
