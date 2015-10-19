@@ -1,4 +1,48 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+.alert {
+    min-width: 150px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 3px; }
+.alert-success {
+    background-color: #91cf91;
+    border-color: #80c780;
+    color: #3d8b3d; }
+.alert-warning {
+    background-color: #ebc063;
+    border-color: #e8b64c;
+    color: #a07415; }
+.alert-danger {
+    background-color: #e27c79;
+    border-color: #dd6864;
+    color: #9f2723; }
+.alert p {
+    padding: 0;
+    margin: 0; }
+.alert i {
+    padding-right: 5px;
+    vertical-align: middle;
+    font-size: 24px; }
+.alert .close-alert {
+    -webkit-appearance: none;
+    position: relative;
+    float: right;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    color: inherit;
+    background: 0 0;
+    font-size: 21px;
+    line-height: 1;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+    filter: alpha(opacity=40);
+    opacity: .4; }
+.alert .close-alert:hover {
+    filter: alpha(opacity=70);
+    opacity: .7; }
+
 .separator {
     display: inline-block;
     height: 5px;
@@ -44,7 +88,7 @@
         -ms-filter: blur(55px);
         filter: blur(55px); } }
 
-form label {
+label {
     font-weight: bold;
     padding: 7px 0px;
     display: block;
@@ -217,6 +261,13 @@ table .col-actions i {
 :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
     color: #e1e1e1; }
+
+.field-disabled {
+    background-color: #e7e7e7;
+    border: 1px solid #C5C5C5;
+    padding: 5px;
+    border-radius: 3px;
+    line-height: 2; }
 
 .pricing-table {
     text-align: center; }
@@ -1514,10 +1565,10 @@ p {
     clear: both; }
 
 /* shadows */
-.shadow-1, .table-responsive:hover, #sidebar, #content .content-empresas .empresa-item, #breadcrumbs .breadcrumbs-content, #cadastro #galeria-empresa .galeria-feature img, #cadastro #galeria-empresa .galeria-thumb .thumb-item img {
+.shadow-1, .alert, .table-responsive:hover, #sidebar, #content .content-empresas .empresa-item, #breadcrumbs .breadcrumbs-content, #cadastro #galeria-empresa .galeria-feature img, #cadastro #galeria-empresa .galeria-thumb .thumb-item img {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
-.shadow-2, .btn:hover, #sidebar .sidebar-menu nav#sideMenu ul li a:not(.active):hover, #sidebar .sidebar-menu nav#sideMenu ul li.submenu.openSub > a, #sidebar .sidebar-links ul li a:hover, #sidebar .sidebar-links ul li a.active, #content .content-empresas .empresa-item:hover, #tags a span:hover, #cadastro #galeria-empresa .galeria-feature img:hover, #cadastro #galeria-empresa .galeria-thumb .thumb-item img:hover, #listagem .col-actions a i:hover {
+.shadow-2, .alert:hover, .btn:hover, #sidebar .sidebar-menu nav#sideMenu ul li a:not(.active):hover, #sidebar .sidebar-menu nav#sideMenu ul li.submenu.openSub > a, #sidebar .sidebar-links ul li a:hover, #sidebar .sidebar-links ul li a.active, #content .content-empresas .empresa-item:hover, #tags a span:hover, #cadastro #galeria-empresa .galeria-feature img:hover, #cadastro #galeria-empresa .galeria-thumb .thumb-item img:hover, #listagem .col-actions a i:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 .shadow-3 {

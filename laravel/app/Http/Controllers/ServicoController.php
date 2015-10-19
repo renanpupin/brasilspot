@@ -41,7 +41,7 @@ class ServicoController extends Controller
             'descricao' => $request['descricao']
         ]);
 
-        Session::flash('flash_message', 'Servico adicionado com sucesso!');
+        Session::flash('flash_message', 'Serviço adicionado com sucesso!');
 
         return redirect()->back();
     }
@@ -80,7 +80,7 @@ class ServicoController extends Controller
 
         $servico->save();
 
-        Session::flash('flash_message', 'Servico alterado com sucesso!');
+        Session::flash('flash_message', 'Serviço alterado com sucesso!');
 
         return redirect()->back();
     }
@@ -95,6 +95,6 @@ class ServicoController extends Controller
             return redirect()->back();
         }
 
-        return 'Servico n�o foi encontrado';
+        return 'Servico não foi encontrado';
     }
 }

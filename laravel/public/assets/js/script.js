@@ -44,4 +44,11 @@
     //init dropdown
     $("#sideMenu").dropdown();
 
+    //init alert globally
+    $(".close-alert").click(function(e){
+        $(this).parent().remove();
+        e.preventDefault();
+    });
+
+
 })(jQuery, undefined);
