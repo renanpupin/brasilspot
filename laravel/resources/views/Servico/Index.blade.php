@@ -13,7 +13,18 @@
         <h2>Listar Serviços</h2>
     </div>
 
-    @include('layouts.breadcrumbs')
+    <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
+        <div class="breadcrumbs-content container">
+            <div class="row">
+                <i class="material-icons">home</i>
+                Você está em:
+                <ul>
+                    <li><a href="{{ route('Servico.index') }}">Serviço</a></li>
+                    <li>Listar</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 
     <div class="grid-m-3 grid-s-3 grid-xs-12">
@@ -38,14 +49,14 @@
                         <td>{{ $servico->id }}</td>
                         <td>{{ $servico->descricao }}</td>
                         <td class="col-actions">
-                            <a href="{{ action('ServicoController@destroy', $servico->id)}}" title="Remover"><i class="material-icons">delete</i></a>
-{{--                            {!! link_to_action('ServicoController@destroy', $title = 'Remover', $parameters = $servico->id, $attributes = array('class' => 'btn btn-primary')) !!}--}}
+                            <a href="{{ route('Servico.show', array('id' => $servico->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>
                         <td class="col-actions">
                             <a href="{{ route('Servico.edit', array('id' => $servico->id))}}" title="Editar"><i class="material-icons">mode_edit</i></a>
                         </td>
                         <td class="col-actions">
-                            <a href="{{ route('Servico.show', array('id' => $servico->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
+                            <a href="{{ action('ServicoController@destroy', $servico->id)}}" title="Remover"><i class="material-icons">delete</i></a>
+                            {{--                            {!! link_to_action('ServicoController@destroy', $title = 'Remover', $parameters = $servico->id, $attributes = array('class' => 'btn btn-primary')) !!}--}}
                         </td>
                     </tr>
                 @endforeach

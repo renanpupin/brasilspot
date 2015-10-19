@@ -21,7 +21,7 @@
                 Você está em:
                 <ul>
                     <li><a href="{{ route('Servico.index') }}">Serviço</a></li>
-                    <li>Novo</li>
+                    <li>Cadastrar</li>
                 </ul>
             </div>
         </div>
