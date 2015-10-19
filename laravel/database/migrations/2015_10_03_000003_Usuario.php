@@ -10,17 +10,17 @@ class Usuario extends Migration
     {
         Schema::create('Usuarios', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->string('Nome', 100);
-            $table->string('Email', 60);
-            $table->integer('IdPerfil')->unsigned();
-            $table->boolean('IsVendedor')->default(false);
+            $table->increments('id')->unsigned();
+            $table->string('nome', 100);
+            $table->string('email', 60);
+            $table->integer('idPerfil')->unsigned();
+            $table->boolean('isVendedor')->default(false);
             $table->timestamps();
         });
 
         Schema::table('Usuarios', function($table)
         {
-            $table->foreign('IdPerfil')->references('Id')->on('PerfisUsuarios');
+            $table->foreign('idPerfil')->references('id')->on('PerfisUsuarios');
         });
     }
 

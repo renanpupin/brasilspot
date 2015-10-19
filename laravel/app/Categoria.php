@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
-    //
+    protected $table = "Categorias";
+
+    protected $fillable = array(
+      'nome',
+      'idCategoriaPai'
+    );
 }

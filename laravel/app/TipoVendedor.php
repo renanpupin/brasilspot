@@ -8,5 +8,7 @@ class TipoVendedor extends Model
 {
     protected $table = "TiposVendedores";
 
-    protected $fillable = array('Tipo');
+    protected $fillable = array(
+        'tipo'
+    );
 }

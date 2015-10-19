@@ -10,11 +10,15 @@ class TagEmpresa extends Migration
     {
         Schema::create('TagsEmpresas', function(Blueprint $table)
         {
-            $table->integer('IdEmpresa')->unsigned();
-            $table->integer('IdTag')->unsigned();
-            $table->foreign('IdEmpresa')->references('Id')->on('Empresas');
-            $table->foreign('IdTag')->references('Id')->on('Tags');
+            $table->integer('idEmpresa')->unsigned();
+            $table->integer('idTag')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('TagsEmpresas', function($table)
+        {
+            $table->foreign('idEmpresa')->references('id')->on('Empresas');
+            $table->foreign('idTag')->references('id')->on('Tags');
         });
     }
 

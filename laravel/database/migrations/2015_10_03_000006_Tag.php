@@ -9,8 +9,8 @@ class Tag extends Migration
     {
         Schema::create('Tags', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->string('Nome', 50);
+            $table->increments('id')->unsigned();
+            $table->string('nome', 50);
             $table->timestamps();
         });
     }

@@ -10,9 +10,9 @@ class Categoria extends Migration
     {
         Schema::create('Categorias', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->string('Nome', 100);
-            $table->integer('IdCategoriaPai')->unsigned();
+            $table->increments('id')->unsigned();
+            $table->string('nome', 100);
+            $table->integer('idCategoriaPai')->unsigned();
             $table->timestamps();
         });
     }

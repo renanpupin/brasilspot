@@ -10,10 +10,10 @@ class Plano extends Migration
     {
         Schema::create('Planos', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->string('Nome', 100);
-            $table->decimal('Valor',4,2);
-            $table->string('Descricao', 100);
+            $table->increments('id')->unsigned();
+            $table->string('nome', 100);
+            $table->decimal('valor',4,2);
+            $table->string('descricao', 100);
             $table->timestamps();
         });
     }

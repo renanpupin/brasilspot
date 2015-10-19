@@ -4,83 +4,97 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Servico;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 
 class ServicoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $servicos = Servico::all();
+
+        return view('Servico.Index')->with('servicos',$servicos);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return view('Servico.Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $regras = array(
+            'descricao' => 'required|string'
+        );
+
+        $mensagens = array(
+            'required' => 'O campo :attribute deve ser preenchido.',
+            'string' => 'O campo :attribute deve ser texto.'
+        );
+
+        $this->validate($request, $regras, $mensagens);
+
+        Servico::Create([
+            'descricao' => $request['descricao']
+        ]);
+
+        Session::flash('flash_message', 'Servico adicionado com sucesso!');
+
+        return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        $servico = Servico::find($id);
+        return view('Servico.Detail')->with('servico',$servico);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        $servico = Servico::findOrNew($id);
+        return view('Servico.Edit')->with('servico',$servico);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $servico = Servico::find($id);
+
+        $regras = array(
+            'descricao' => 'required|string'
+        );
+
+        $mensagens = array(
+            'required' => 'O campo :attribute deve ser preenchido.',
+            'string' => 'O campo :attribute deve ser texto.'
+        );
+
+        $this->validate($request, $regras, $mensagens);
+
+        $servico->descricao = $request['descricao'];
+
+        $servico->save();
+
+        Session::flash('flash_message', 'Servico alterado com sucesso!');
+
+        return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $servico = Servico::find($id);
+
+        if(!empty($servico))
+        {
+            $servico->delete();
+            return redirect()->back();
+        }
+
+        return 'Servico não foi encontrado';
     }
 }

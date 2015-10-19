@@ -14,14 +14,14 @@ class ErroReportado extends Migration
     {
         Schema::create('ErrosReportados', function(Blueprint $table)
         {
-           $table->increments('Id');
-           $table->string('Descricao');
-           $table->integer('IdUsuario')->unsigned();
+           $table->increments('id');
+           $table->string('descricao');
+           $table->integer('idUsuario')->unsigned();
         });
 
         Schema::table('ErrosReportados', function($table)
         {
-            $table->foreign('IdUsuario')->references('Id')->on('Usuarios');
+            $table->foreign('idUsuario')->references('id')->on('Usuarios');
         });
     }
 

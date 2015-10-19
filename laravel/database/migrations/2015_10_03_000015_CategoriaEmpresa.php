@@ -10,11 +10,15 @@ class CategoriaEmpresa extends Migration
     {
         Schema::create('CategoriasEmpresas', function(Blueprint $table)
         {
-            $table->integer('IdEmpresa')->unsigned();
-            $table->integer('IdCategoria')->unsigned();
-            $table->foreign('IdEmpresa')->references('Id')->on('Empresas');
-            $table->foreign('IdCategoria')->references('Id')->on('Categorias');
+            $table->integer('idEmpresa')->unsigned();
+            $table->integer('idCategoria')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('CategoriasEmpresas', function($table)
+        {
+            $table->foreign('idEmpresa')->references('id')->on('Empresas');
+            $table->foreign('idCategoria')->references('id')->on('Categorias');
         });
     }
 

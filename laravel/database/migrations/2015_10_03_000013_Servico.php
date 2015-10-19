@@ -10,8 +10,8 @@ class Servico extends Migration
     {
         Schema::create('Servicos', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->string('Descricao');
+            $table->increments('id')->unsigned();
+            $table->string('descricao');
             $table->timestamps();
         });
     }

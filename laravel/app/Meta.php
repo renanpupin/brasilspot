@@ -8,5 +8,7 @@ class Meta extends Model
 {
     protected $table = "Metas";
 
-    protected $fillable = Array('NumeroEmpresas');
+    protected $fillable = Array(
+        'numeroEmpresas'
+    );
 }

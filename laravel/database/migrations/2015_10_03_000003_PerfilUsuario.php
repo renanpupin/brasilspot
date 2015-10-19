@@ -9,8 +9,8 @@ class PerfilUsuario extends Migration
     {
         Schema::create('PerfisUsuarios', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->string('Tipo', 50);
+            $table->increments('id')->unsigned();
+            $table->string('tipo', 50);
             $table->timestamps();
         });
     }

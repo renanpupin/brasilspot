@@ -9,15 +9,15 @@ class CartaoAceito extends Migration
     {
         Schema::create('CartoesAceitos', function(Blueprint $table)
         {
-            $table->integer('IdEmpresa')->unsigned();
-            $table->integer('IdCartao')->unsigned();
+            $table->integer('idEmpresa')->unsigned();
+            $table->integer('idCartao')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('CartoesAceitos', function($table)
         {
-            $table->foreign('IdEmpresa')->references('Id')->on('Empresas');
-            $table->foreign('IdCartao')->references('Id')->on('Cartoes');
+            $table->foreign('idEmpresa')->references('id')->on('Empresas');
+            $table->foreign('idCartao')->references('id')->on('Cartoes');
         });
     }
 

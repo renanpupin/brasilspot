@@ -10,9 +10,9 @@ class Cartao extends Migration
     {
         Schema::create('Cartoes', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->string('Bandeira', 100);
-            $table->string('Tipo', 100);
+            $table->increments('id')->unsigned();
+            $table->string('bandeira', 100);
+            $table->string('tipo', 100);
             $table->timestamps();
         });
     }

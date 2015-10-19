@@ -10,11 +10,15 @@ class TelefoneEmpresa extends Migration
     {
         Schema::create('TelefonesEmpresas', function(Blueprint $table)
         {
-            $table->integer('IdEmpresa')->unsigned();
-            $table->integer('IdTelefone')->unsigned();
-            $table->foreign('IdEmpresa')->references('Id')->on('Empresas');
-            $table->foreign('IdTelefone')->references('Id')->on('Telefones');
+            $table->integer('idEmpresa')->unsigned();
+            $table->integer('idTelefone')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('TelefonesEmpresas', function($table)
+        {
+            $table->foreign('idEmpresa')->references('id')->on('Empresas');
+            $table->foreign('idTelefone')->references('id')->on('Telefones');
         });
     }
 

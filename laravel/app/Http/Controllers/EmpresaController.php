@@ -4,141 +4,123 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Empresa;
+use App\Usuario;
+use App\TipoEmpresa;
+use App\Plano;
+use App\Vendedor;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 
 class EmpresaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $empresas = \App\Empresa::all();
-        //dd($empresas);
-        return view('Empresa.index')->with('empresas',$empresas);
+        $empresas = Empresa::all();
+
+        return view('Empresa.Index')->with('empresas',$empresas);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        $usuarios = \App\Usuario::all();
-        $usuariosSelect = array();
-        //Transforma lista retorna do banco em um selectList
-        foreach($usuarios as $usuario)
-        {
-            $usuariosSelect[$usuario->Id] = $usuario->Nome;
-        }
+        $usuarios = Usuario::lists('nome','id');
 
-        $tiposEmpresas = \App\TipoEmpresa::all();
-        $tiposEmpresasSelect = array();
-        foreach($tiposEmpresas as $tipoEmpresa)
-        {
-            $tiposEmpresasSelect[$tipoEmpresa->Id] = $tipoEmpresa->Tipo;
-        }
+        $tiposEmpresas = TipoEmpresa::lists('tipo','id');
 
-        $planos = \App\Plano::all();
-        $planosSelect = array();
-        foreach($planos as $plano)
-        {
-            $planosSelect[$plano->Id] = $plano->Nome;
-        }
+        $planos = Plano::lists('nome','id');
 
-        $vendedores  = \App\Vendedor::all();
+        $vendedores  = Vendedor::all();
         $vendedoresSelect = array();
         //TODO: Refatorar isso depois
         foreach($vendedores as $vendedor)
         {
-            $vendedoresSelect[$vendedor->Id] = \App\Usuario::find($vendedor->IdUsuario)->Nome;
+            $vendedoresSelect[$vendedor->id] = Usuario::find($vendedor->idUsuario)->nome;
         }
 
         return view('Empresa.Create')
-            ->with('usuarios',$usuariosSelect)
-            ->with('tiposEmpresas',$tiposEmpresasSelect)
-            ->with('planos',$planosSelect)
+            ->with('usuarios',$usuarios)
+            ->with('tiposEmpresas',$tiposEmpresas)
+            ->with('planos',$planos)
             ->with('vendedores',$vendedoresSelect);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        \App\Empresa::create([
-         'NomeEmpreendedor' => $request['nomeEmpreendedor'],
-         'RazaoSocial' => $request['razaoSocial'],
-         'NomeFantasia' => $request['nomeFantasia'],
-         'Slogan' => $request['slogan'],
-         'CpfCnpj' => $request['cpfCnpj'],
-         'Email' => $request['email'],
-         'Descricao' => $request['descricao'],
-         'HorarioFuncionamento' => $request['horarioFuncionamento'],
-         'AtendeCasa' => $request['atendeCasa'],
-         'LinkFacebook' => $request['facebook'],
-         'NumeroWhatsapp' => $request['whatsapp'],
-         'IdPlano' => $request['planos'],
-         'IdUsuario' => $request['usuarios'],
-         'IdTipoEmpresa' => $request['tiposEmpresas'],
-         'IdVendedor' => $request['vendedores'],
-         'IdPlano' => $request['planos'],
-         'DataCadastro' => '2015-10-11',
-         'DataVencimentoPlano' => '2016-10-11']);
+        $regras = array(
+            'nomeEmpreendedor' => 'required|string',
+            'razaoSocial' => 'string',
+            'nomeFantasia' => 'required|string',
+            'slogan' => 'string',
+            'cpfCnpj' => 'required|string',
+            'email' => 'required|string',
+            'descricao' => 'required|string',
+            'horarioFuncionamento' => 'required|string',
+            'linkFacebook' => 'string',
+            'numeroWhatsapp' => 'string',
+            'idPlano' => 'required',
+            'idUsuario' => 'required',
+            'idTipoEmpresa' => 'required',
+            'idVendedor' => 'required',
+            'idPlano' => 'required'
+        );
 
-        return "Empresa Registrada!!";
+        $mensagens = array(
+            'required' => 'O campo :attribute deve ser preenchido.',
+            'string' => 'O campo :attribute deve ser texto.'
+        );
+
+        $this->validate($request,$regras,$mensagens);
+
+        Empresa::create([
+         'nomeEmpreendedor' => $request['nomeEmpreendedor'],
+         'razaoSocial' => $request['razaoSocial'],
+         'nomeFantasia' => $request['nomeFantasia'],
+         'slogan' => $request['slogan'],
+         'cpfCnpj' => $request['cpfCnpj'],
+         'email' => $request['email'],
+         'descricao' => $request['descricao'],
+         'horarioFuncionamento' => $request['horarioFuncionamento'],
+         'atendeCasa' => $request['atendeCasa'],
+         'linkFacebook' => $request['facebook'],
+         'numeroWhatsapp' => $request['whatsapp'],
+         'idUsuario' => $request['usuarios'],
+         'idTipoEmpresa' => $request['tiposEmpresas'],
+         'idVendedor' => $request['vendedores'],
+         'idPlano' => $request['planos'],
+         'dataCadastro' => '2015-10-11',
+         'dataVencimentoPlano' => '2016-10-11']);
+
+         Session::flash('flash_message', 'Empresa adicionada com sucesso!');
+
+         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        $empresa = \App\Empresa::find($id);
+        $empresa = Empresa::find($id);
 
-        return view('Empresa.index',compact('empresa'));
+        return view('Empresa.Detail')->with('empresa',$empresa);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
+        $empresa = Empresa::find($id);
 
+        return view('Empresa.Edit')->with('empresa',$empresa);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+
     }
 }

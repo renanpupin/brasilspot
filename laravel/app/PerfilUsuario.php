@@ -8,5 +8,7 @@ class PerfilUsuario extends Model
 {
     protected $table = "PerfisUsuarios";
 
-    protected $fillable = array('Tipo');
+    protected $fillable = array(
+        'tipo'
+    );
 }

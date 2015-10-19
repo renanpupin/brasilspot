@@ -12,11 +12,11 @@
     </div>
 @endif
 
-{!! Form::Open(['route' => 'Servico.store', 'method' => 'POST']) !!}
+{!! Form::model($servico,['route' => ['Servico.update',$servico->id], 'method' => 'PUT']) !!}
 
-    {!! Form::label('descricao', 'DescriÃ§Ã£o *',null,['for' => 'descricao']) !!}
-    {!! Form::text('descricao',null,['id' => 'descricao']) !!}
+{!! Form::label('descricao', 'Descrição *',null,['for' => 'descricao']) !!}
+{!! Form::text('descricao',$servico->descricao,['id' => 'descricao']) !!}
 
-    {!! Form::submit('Registrar',['class' => 'btn btn-primary']) !!}
+{!! Form::submit('Alterar',['class' => 'btn btn-primary']) !!}
 
 {!! Form::Close() !!}

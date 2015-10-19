@@ -10,8 +10,8 @@ class Foto extends Migration
     {
         Schema::create('Fotos', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->string('Foto',400);
+            $table->increments('id')->unsigned();
+            $table->string('foto',400);
             $table->timestamps();
         });
     }

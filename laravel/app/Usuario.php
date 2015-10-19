@@ -10,5 +10,10 @@ class Usuario extends Model
 {
     protected $table = "Usuarios";
 
-    protected $fillable = array('Nome','Email','IdPerfil','IsVendedor');
+    protected $fillable = array(
+        'nome',
+        'email',
+        'idPerfil',
+        'isVendedor'
+    );
 }

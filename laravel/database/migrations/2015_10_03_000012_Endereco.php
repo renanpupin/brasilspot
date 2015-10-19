@@ -10,12 +10,12 @@ class Endereco extends Migration
     {
         Schema::create('Enderecos', function(Blueprint $table)
         {
-            $table->increments('Id');
-            $table->string('Endereco', 40);
-            $table->string('Bairro', 25);
-            $table->string('Cidade', 50);
-            $table->string('Estado', 50);
-            $table->string('CordenadasLatlon', 100);
+            $table->increments('id');
+            $table->string('endereco', 40);
+            $table->string('bairro', 25);
+            $table->string('cidade', 50);
+            $table->string('estado', 50);
+            $table->string('cordenadasLatlon', 100);
             $table->timestamps();
         });
     }

@@ -75,7 +75,7 @@
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                     <label for="inputTelefone">Telefone *</label>
-                    <input type="email" name="inputTelefone" id="inputTelefone">
+                    <input type="text" name="inputTelefone" id="inputTelefone">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                     <label for="inputServicos">Serviços</label>

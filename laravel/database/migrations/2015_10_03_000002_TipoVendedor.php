@@ -10,8 +10,8 @@ class TipoVendedor extends Migration
     {
         Schema::create('TiposVendedores', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->string('Tipo', 100);
+            $table->increments('id')->unsigned();
+            $table->string('tipo', 100);
             $table->timestamps();
         });
     }

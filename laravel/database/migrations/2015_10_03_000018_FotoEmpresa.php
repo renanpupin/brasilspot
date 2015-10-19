@@ -10,15 +10,15 @@ class FotoEmpresa extends Migration
     {
         Schema::create('FotosEmpresas', function(Blueprint $table)
         {
-            $table->integer('IdEmpresa')->unsigned();
-            $table->integer('IdFoto')->unsigned();
-            $table->boolean('Destaque')->default(false);
+            $table->integer('idEmpresa')->unsigned();
+            $table->integer('idFoto')->unsigned();
+            $table->boolean('destaque')->default(false);
             $table->timestamps();
         });
 
         Schema::table('FotosEmpresas', function($table){
-            $table->foreign('IdEmpresa')->references('Id')->on('Empresas');
-            $table->foreign('IdFoto')->references('Id')->on('Fotos');
+            $table->foreign('idEmpresa')->references('id')->on('Empresas');
+            $table->foreign('idFoto')->references('id')->on('Fotos');
         });
     }
 

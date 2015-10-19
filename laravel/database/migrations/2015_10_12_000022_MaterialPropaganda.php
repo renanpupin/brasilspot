@@ -13,14 +13,14 @@ class MaterialPropaganda extends Migration
     public function up()
     {
         Schema::create('MateriaisPropagandas', function(Blueprint $table){
-           $table->increments('Id');
-           $table->string('Descricao',100);
-           $table->string('Motivo', 100);
-           $table->integer('IdUsuario')->unsigned();
+           $table->increments('id');
+           $table->string('descricao',100);
+           $table->string('motivo', 100);
+           $table->integer('idUsuario')->unsigned();
         });
 
         Schema::table('MateriaisPropagandas', function($table){
-           $table->foreign('IdUsuario')->references('Id')->on('Usuarios');
+           $table->foreign('idUsuario')->references('id')->on('Usuarios');
         });
     }
 

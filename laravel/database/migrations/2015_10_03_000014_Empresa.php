@@ -11,34 +11,34 @@ class Empresa extends Migration
 
         Schema::create('Empresas', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->string('NomeEmpreendedor', 50);
-            $table->string('RazaoSocial', 100);
-            $table->string('CpfCnpj', 20);
-            $table->string('Email', 40);
-            $table->string('NomeFantasia', 50);
-            $table->string('Slogan', 100);
-            $table->string('Descricao', 200);
-            $table->string('HorarioFuncionamento', 30);
-            $table->boolean('AtendeCasa')->default(false);;
-            $table->string('LinkFacebook', 100);
-            $table->string('NumeroWhatsApp', 20);
-            $table->string('InformacoesAdicionais', 100);
-            $table->integer('IdTipoEmpresa')->unsigned();
-            $table->integer('IdUsuario')->unsigned();
-            $table->integer('IdVendedor')->unsigned();
-            $table->integer('IdPlano')->unsigned();
-            $table->dateTime('DataCadastro');
-            $table->dateTime('DataVencimentoPlano');
+            $table->increments('id')->unsigned();
+            $table->string('nomeEmpreendedor', 50);
+            $table->string('razaoSocial', 100);
+            $table->string('cpfCnpj', 20);
+            $table->string('email', 40);
+            $table->string('nomeFantasia', 50);
+            $table->string('slogan', 100);
+            $table->string('descricao', 200);
+            $table->string('horarioFuncionamento', 30);
+            $table->boolean('atendeCasa')->default(false);;
+            $table->string('linkFacebook', 100);
+            $table->string('numeroWhatsApp', 20);
+            $table->string('informacoesAdicionais', 100);
+            $table->integer('idTipoEmpresa')->unsigned();
+            $table->integer('idUsuario')->unsigned();
+            $table->integer('idVendedor')->unsigned();
+            $table->integer('idPlano')->unsigned();
+            $table->dateTime('dataCadastro');
+            $table->dateTime('dataVencimentoPlano');
             $table->timestamps();
         });
 
         Schema::table('Empresas', function($table)
         {
-            $table->foreign('IdTipoEmpresa')->references('Id')->on('TiposEmpresas');
-            $table->foreign('IdUsuario')->references('Id')->on('Usuarios');
-            $table->foreign('IdVendedor')->references('Id')->on('Vendedores');
-            $table->foreign('IdPlano')->references('Id')->on('Planos');
+            $table->foreign('idTipoEmpresa')->references('id')->on('TiposEmpresas');
+            $table->foreign('idUsuario')->references('id')->on('Usuarios');
+            $table->foreign('idVendedor')->references('id')->on('Vendedores');
+            $table->foreign('idPlano')->references('id')->on('Planos');
         });
     }
 

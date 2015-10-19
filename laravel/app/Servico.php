@@ -9,6 +9,6 @@ class Servico extends Model
     protected $table = "Servicos";
 
     protected $fillable = array(
-        'Descricao'
+        'descricao'
     );
 }

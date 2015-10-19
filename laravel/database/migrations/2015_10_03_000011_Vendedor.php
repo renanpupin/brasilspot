@@ -10,20 +10,20 @@ class Vendedor extends Migration
     {
         Schema::create('Vendedores', function(Blueprint $table)
         {
-            $table->increments('Id');
-            $table->boolean('IsCoordenador')->default(false);;
-            $table->integer('IdUsuario')->unsigned();
-            $table->integer('IdTipo')->unsigned();
-            $table->integer('IdMeta')->unsigned();
-            $table->integer('IdVendedorPai');
+            $table->increments('id');
+            $table->boolean('isCoordenador')->default(false);;
+            $table->integer('idUsuario')->unsigned();
+            $table->integer('idTipo')->unsigned();
+            $table->integer('idMeta')->unsigned();
+            $table->integer('idVendedorPai');
             $table->timestamps();
         });
 
         Schema::table('Vendedores', function($table)
         {
-            $table->foreign('IdUsuario')->references('Id')->on('Usuarios');
-            $table->foreign('IdTipo')->references('Id')->on('TiposVendedores');
-            $table->foreign('IdMeta')->references('Id')->on('Metas');
+            $table->foreign('idUsuario')->references('id')->on('Usuarios');
+            $table->foreign('idTipo')->references('id')->on('TiposVendedores');
+            $table->foreign('idMeta')->references('id')->on('Metas');
 
         });
     }

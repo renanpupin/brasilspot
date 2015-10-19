@@ -8,5 +8,9 @@ class Plano extends Model
 {
     protected $table = "Planos";
 
-    protected $fillable = array('Nome','Valor','Descricao');
+    protected $fillable = array(
+        'nome',
+        'valor',
+        'descricao'
+    );
 }

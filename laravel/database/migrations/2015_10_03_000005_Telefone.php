@@ -10,8 +10,8 @@ class Telefone extends Migration
     {
         Schema::create('Telefones', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->string('Numero', 50);
+            $table->increments('id')->unsigned();
+            $table->string('numero', 50);
             $table->timestamps();
         });
     }

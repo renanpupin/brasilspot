@@ -10,8 +10,8 @@ class TipoEmpresa extends Migration
     {
         Schema::create('TiposEmpresas', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->string('Tipo', 50);
+            $table->increments('id')->unsigned();
+            $table->string('tipo', 50);
             $table->timestamps();
         });
     }

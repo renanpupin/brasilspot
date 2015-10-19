@@ -10,11 +10,15 @@ class ServicoEmpresa extends Migration
     {
         Schema::create('ServicosEmpresas', function(Blueprint $table)
         {
-            $table->integer('IdEmpresa')->unsigned();
-            $table->integer('IdServico')->unsigned();
-            $table->foreign('IdEmpresa')->references('Id')->on('Empresas');
-            $table->foreign('IdServico')->references('Id')->on('Servicos');
+            $table->integer('idEmpresa')->unsigned();
+            $table->integer('idServico')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('ServicosEmpresas', function($table)
+        {
+            $table->foreign('idEmpresa')->references('id')->on('Empresas');
+            $table->foreign('idServico')->references('id')->on('Servicos');
         });
     }
 

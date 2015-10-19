@@ -9,10 +9,10 @@ class Vendedor extends Model
     protected $table = "Vendedores";
 
     protected $fillable = Array(
-      'IsCoordenador',
-      'IdUsuario',
-      'IdTipo',
-      'IdMeta',
-      'IdVendedorPai'
+      'isCoordenador',
+      'idUsuario',
+      'idTipo',
+      'idMeta',
+      'idVendedorPai'
     );
 }
