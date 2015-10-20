@@ -51,27 +51,26 @@
 
         {!! Form::Open(['route' => 'Servico.store', 'method' => 'POST']) !!}
             <div class="row">
-
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('descricao', 'Descrição *',null,['for' => 'descricao']) !!}
                 {!! Form::text('descricao',null,['id' => 'descricao']) !!}
                 </div>
-
-                <div class="row">
-                    <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                        <a href="{{ route('Servico.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
-                            <span class="text-content">Voltar</span>
-                        </a>
-                    </div>
-                    <div class="form-group grid-m-3 grid-s-3 button-field">
-                        {!! Form::button('<span class="text-content">Cadastrar</span>',[
-                            'id' => 'btnCadastrar',
-                            'type' => 'submit',
-                            'class' => 'btn btn-primary ripple'
-                            ])!!}
-                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
+                    <a href="{{ route('Servico.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                        <span class="text-content">Voltar</span>
+                    </a>
+                </div>
+                <div class="form-group grid-m-3 grid-s-3 button-field">
+                    {!! Form::button('<span class="text-content">Cadastrar</span>',[
+                        'id' => 'btnCadastrar',
+                        'type' => 'submit',
+                        'class' => 'btn btn-primary ripple'
+                        ])!!}
                 </div>
             </div>
+
 
         {!! Form::Close() !!}
 

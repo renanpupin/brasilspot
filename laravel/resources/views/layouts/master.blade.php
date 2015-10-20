@@ -15,6 +15,7 @@
         <!--STYLES-->
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
         <!-- <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"> -->
 
         <link href="{!! asset('assets/css/style.css') !!}" media="all" rel="stylesheet" type="text/css" />
