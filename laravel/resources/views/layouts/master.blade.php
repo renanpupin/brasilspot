@@ -58,13 +58,33 @@
                 <i class="material-icons">keyboard_arrow_up</i>
             </div> -->
 
+        <div id="modal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button id="modalClose" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id=""></h4>
+                    </div>
+
+                    <div class="modal-body"></div>
+
+                    <div class="modal-footer"></div>
+
+                </div>
+            </div>
+        </div>
+
         <!-- SCRIPTS SECTION -->
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://www.mattboldt.com/demos/typed-js/js/typed.custom.js"></script>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js"></script>
         {{--<script type="text/javascript" src="assets/js/dropdown.js"></script>--}}
         {{--<script type="text/javascript" src="assets/js/script.js"></script>--}}
+        <script type="text/javascript" src="{!! asset('assets/js/modal.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('assets/js/dropdown.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('assets/js/script.js') !!}"></script>
+        @yield('scripts')
+        {{--yield scripts here--}}
     </body>
 </html>

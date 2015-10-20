@@ -26,31 +26,12 @@
         </div>
     </div>
 
+
     <div class="grid-m-3 grid-s-3 grid-xs-12">
         <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ route('Servico.create') }}">
             <span class="text-content">Novo</span>
         </a>
     </div>
-
-    @if(Session::has('flash_message'))
-        <div class="grid-m-12 grid-s-12 grid-xs-12">
-            <div class="alert alert-success" role="alert">
-                <button type="button" class="close-alert">×</button>
-                <i class="material-icons">done</i>
-                {{ Session::get('flash_message') }}
-            </div>
-        </div>
-    @endif
-    @if($errors->any())
-        <div class="grid-m-12 grid-s-12 grid-xs-12">
-            <div class="alert alert-danger" role="alert">
-                <button type="button" class="close-alert">×</button>
-                @foreach($errors->all() as $error)
-                    <p><i class="material-icons">error_outline</i>{{ $error }}</p>
-                @endforeach
-            </div>
-        </div>
-    @endif
 
     <div id="listagem" class="grid-m-12 grid-s-12">
         <div class="table-responsive">
@@ -78,7 +59,7 @@
                                 'method' => 'DELETE',
                                 'route' => ['Servico.destroy', $servico->id]
                             ]) !!}
-                            {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
+                            {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
@@ -88,9 +69,4 @@
 
         </div>
     </div>
-
-@stop
-
-@section('scripts')
-    <script type="text/javascript" src="{!! asset('assets/js/servico/servico.js') !!}"></script>
 @stop

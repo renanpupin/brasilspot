@@ -1,4 +1,98 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    outline: 0;
+    z-index: 100;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-transition: visibility 0.5s, opacity 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+    -o-transition: visibility 0.5s, opacity 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+    transition: visibility 0.5s, opacity 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+    visibility: hidden;
+    opacity: 0; }
+.modal.open {
+    visibility: visible;
+    opacity: 1; }
+.modal .modal-dialog {
+    position: relative;
+    width: auto;
+    min-width: 300px; }
+.modal .modal-dialog .modal-content {
+    margin: 30px;
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border-radius: 2px;
+    outline: 0;
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: all 1s cubic-bezier(0.55, 0, 0.1, 1);
+    transition-delay: 0.7s; }
+.modal .modal-dialog .modal-header {
+    min-height: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5; }
+.modal .modal-dialog .modal-header .modal-title {
+    margin: 0;
+    line-height: 1;
+    font-size: 22px; }
+.modal .modal-dialog .modal-header button.close {
+    margin-top: -2px;
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    outline: 0;
+    float: right;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2; }
+.modal .modal-dialog .modal-header button.close:hover {
+    opacity: .7; }
+.modal .modal-dialog .modal-body {
+    position: relative;
+    padding: 15px 30px; }
+.modal .modal-dialog .modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5; }
+
+@media (min-width: 768px) {
+    .modal-small .modal-dialog .modal-content {
+        width: 350px;
+        margin: 30px auto; }
+    .modal-large .modal-dialog .modal-content {
+        width: 700px;
+        margin: 30px auto; } }
+
+@media (min-width: 992px) {
+    .modal-large .modal-dialog .modal-content {
+        width: 900px;
+        margin: 30px auto; } }
+
+/*vertical align*/
+#modal {
+    vertical-align: middle;
+    display: table;
+    position: fixed;
+    width: 100%;
+    height: 100%; }
+#modal .modal-dialog {
+    display: table-cell;
+    vertical-align: middle; }
+
 .alert {
     min-width: 150px;
     padding: 15px;
@@ -143,6 +237,15 @@ table th, td {
     font-weight: initial; }
 
 /* buttons */
+button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+
 .button-field {
     text-align: right; }
 
@@ -1568,7 +1671,7 @@ p {
 .shadow-1, .alert, .table-responsive:hover, #sidebar, #content .content-empresas .empresa-item, #breadcrumbs .breadcrumbs-content, #cadastro #galeria-empresa .galeria-feature img, #cadastro #galeria-empresa .galeria-thumb .thumb-item img {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
-.shadow-2, .alert:hover, .btn:hover, #sidebar .sidebar-menu nav#sideMenu ul li a:not(.active):hover, #sidebar .sidebar-menu nav#sideMenu ul li.submenu.openSub > a, #sidebar .sidebar-links ul li a:hover, #sidebar .sidebar-links ul li a.active, #content .content-empresas .empresa-item:hover, #tags a span:hover, #cadastro #galeria-empresa .galeria-feature img:hover, #cadastro #galeria-empresa .galeria-thumb .thumb-item img:hover, #listagem .col-actions a i:hover {
+.shadow-2, .alert:hover, .btn:hover, #sidebar .sidebar-menu nav#sideMenu ul li a:not(.active):hover, #sidebar .sidebar-menu nav#sideMenu ul li.submenu.openSub > a, #sidebar .sidebar-links ul li a:hover, #sidebar .sidebar-links ul li a.active, #content .content-empresas .empresa-item:hover, #tags a span:hover, #cadastro #galeria-empresa .galeria-feature img:hover, #cadastro #galeria-empresa .galeria-thumb .thumb-item img:hover, #listagem .col-actions i:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 .shadow-3 {
@@ -2097,7 +2200,7 @@ footer .footer-bottom {
     width: 100%;
     height: auto; }
 
-#listagem .col-actions a i {
+#listagem .col-actions i {
     border-radius: 50%;
     padding: 4px;
     font-size: 20px !important;
@@ -2106,6 +2209,6 @@ footer .footer-bottom {
     -o-transition: all 0.2s ease-in-out;
     -ms-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out; }
-#listagem .col-actions a i:hover {
+#listagem .col-actions i:hover {
     background-color: #404040;
     color: rgba(255, 255, 255, 0.9); }

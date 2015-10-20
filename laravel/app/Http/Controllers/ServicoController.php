@@ -92,6 +92,7 @@ class ServicoController extends Controller
         if(!empty($servico))
         {
             $servico->delete();
+            Session::flash('flash_message', 'Serviço removido com sucesso!');
             return redirect()->back();
         }
 
