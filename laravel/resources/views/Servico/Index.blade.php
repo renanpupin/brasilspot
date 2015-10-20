@@ -27,7 +27,7 @@
     </div>
 
     <div class="grid-m-3 grid-s-3 grid-xs-12">
-        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ route('Servico.create') }}">
+        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px; margin-bottom: 25px;" href="{{ url('Servico/cadastrar') }}">
             <span class="text-content">Novo</span>
         </a>
     </div>
@@ -52,7 +52,7 @@
         </div>
     @endif
 
-    <div id="listagem" class="grid-m-12 grid-s-12">
+    <div id="listagem" class="grid-m-12 grid-s-12 grid-xs-12">
         <div class="table-responsive">
             <table id="listarServicos" class="table">
                 <thead>
@@ -71,7 +71,7 @@
                             <a href="{{ route('Servico.show', array('id' => $servico->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>
                         <td class="col-actions">
-                            <a href="{{ route('Servico.edit', array('id' => $servico->id))}}" title="Editar"><i class="material-icons">mode_edit</i></a>
+                            <a href="{{ url('Servico/editar', [$servico->id]) }}" title="Editar"><i class="material-icons">mode_edit</i></a>
                         </td>
                         <td class="col-actions">
                             {!! Form::open([

@@ -26,9 +26,15 @@ Route::resource('Vendedor','VendedorController');
 Route::resource('PerfilUsuario','PerfilUsuarioController');
 Route::resource('TipoVendedor','TipoVendedorController');
 Route::resource('TipoEmpresa','TipoEmpresaController');
+
+
+//routes for "Servicos"
+Route::post('Servico/editar/{id}', 'ServicoController@update');
+Route::get('Servico/editar/{id}', 'ServicoController@edit');
+Route::get('Servico/cadastrar', 'ServicoController@create');
 Route::resource('Servico','ServicoController');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
