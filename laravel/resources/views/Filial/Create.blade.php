@@ -20,7 +20,7 @@
                 Você está em:
                 <ul>
                     <li><a href="{{ route('Filial.index') }}">Filial</a></li>
-                    <li>Listar</li>
+                    <li>Cadastrar</li>
                 </ul>
             </div>
         </div>
@@ -47,7 +47,7 @@
     @endif
 
     <div id="cadastro" class="grid-m-12 grid-s-12 grid-xs-12">
-        {!! Form::Open(['route' => 'Empresa.store', 'method' => 'POST']) !!}
+        {!! Form::Open(['route' => 'Filial.store', 'method' => 'POST']) !!}
 
             <div class="row">
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
@@ -138,19 +138,20 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                    <button id="btnVoltar" class="btn btn-secundary ripple" type="button">
-                        <span class="text-content">Voltar</span>
-                    </button>
-                </div>
-                <div class="form-group grid-m-3 grid-s-3 button-field">
-                    <button id="btnCadastrar" class="btn btn-primary ripple" type="submit">
-                        <span class="text-content">Cadastrar</span>
-                    </button>
-{{--                    {!! Form::submit('Registrar',['class' => 'btn btn-primary']) !!}--}}
-                </div>
+        <div class="row">
+            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
+                <a href="{{ route('Filial.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                    <span class="text-content">Voltar</span>
+                </a>
             </div>
+            <div class="form-group grid-m-3 grid-s-3 button-field">
+                {!! Form::button('<span class="text-content">Cadastrar</span>',[
+                    'id' => 'btnCadastrar',
+                    'type' => 'submit',
+                    'class' => 'btn btn-primary ripple'
+                    ])!!}
+            </div>
+        </div>
 
         {!! Form::Close() !!}
     </div>

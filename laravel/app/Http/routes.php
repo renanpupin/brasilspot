@@ -12,9 +12,7 @@
 */
 
 
-Route::resource('Empresa','EmpresaController');
 Route::resource('Cartao','CartaoController');
-Route::resource('Categoria','CategoriaController');
 Route::resource('Endereco','EnderecoController');
 Route::resource('Foto','FotoController');
 Route::resource('Meta','MetaController');
@@ -26,6 +24,18 @@ Route::resource('Vendedor','VendedorController');
 Route::resource('PerfilUsuario','PerfilUsuarioController');
 Route::resource('TipoVendedor','TipoVendedorController');
 Route::resource('TipoEmpresa','TipoEmpresaController');
+
+//routes for "Categoria"
+Route::post('Categoria/editar/{id}', 'CategoriaController@update');
+Route::get('Categoria/editar/{id}', 'CategoriaController@edit');
+Route::get('Categoria/cadastrar', 'CategoriaController@create');
+Route::resource('Categoria','CategoriaController');
+
+//routes for "Empresa"
+Route::post('Empresa/editar/{id}', 'EmpresaController@update');
+Route::get('Empresa/editar/{id}', 'EmpresaController@edit');
+Route::get('Empresa/cadastrar', 'EmpresaController@create');
+Route::resource('Empresa','EmpresaController');
 
 //routes for "Filiais"
 Route::post('Filial/editar/{id}', 'FilialController@update');

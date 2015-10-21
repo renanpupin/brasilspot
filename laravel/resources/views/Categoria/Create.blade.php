@@ -50,34 +50,39 @@
     <div id="cadastro" class="grid-m-12 grid-s-12">
 
         {!! Form::Open(['route' => 'Categoria.store', 'method' => 'POST']) !!}
-            <div class="row">
-
-                <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+        <div class="row">
+            <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 {!! Form::label('nome', 'Nome *',null,['for' => 'nome']) !!}
                 {!! Form::text('nome',null,['id' => 'nome']) !!}
-                </div>
-
-                <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                    {!! Form::label('idCategoriaPai', 'Vincular Categoria',null,['for' => 'idCategoriaPai']) !!}
-                    <p class="text-caption">(Deseja vincular esta categoria a alguma outra?)</p>
-                    {!! Form::select('idCategoriaPai',null,['id' => 'idCategoriaPai']) !!}
-                </div>
-
-                <div class="row">
-                    <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                        <a href="{{ route('Categoria.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
-                            <span class="text-content">Voltar</span>
-                        </a>
-                    </div>
-                    <div class="form-group grid-m-3 grid-s-3 button-field">
-                        {!! Form::button('<span class="text-content">Cadastrar</span>',[
-                            'id' => 'btnCadastrar',
-                            'type' => 'submit',
-                            'class' => 'btn btn-primary ripple'
-                            ])!!}
-                    </div>
-                </div>
             </div>
+            <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
+                <label for="idCategoriaPai">Categoria Principal</label>
+                <select id="idCategoriaPai" name="idCategoriaPai">
+                    <option value="-1">Selecione a categoria da empresa</option>
+                    <option value="1">Promoção</option>
+                    <option value="2">Alimentos e Bebidas</option>
+                    <option value="3">Animais</option>
+                    <option value="4">Arte e cultura</option>
+                    <option value="5">Automóveis e veículos</option>
+                </select>
+                <p class="input-hint">(Não selecione caso a categoria cadastrada seja a principal)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
+                <a href="{{ route('Categoria.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                    <span class="text-content">Voltar</span>
+                </a>
+            </div>
+            <div class="form-group grid-m-3 grid-s-3 button-field">
+                {!! Form::button('<span class="text-content">Cadastrar</span>',[
+                    'id' => 'btnCadastrar',
+                    'type' => 'submit',
+                    'class' => 'btn btn-primary ripple'
+                    ])!!}
+            </div>
+        </div>
+
 
         {!! Form::Close() !!}
 

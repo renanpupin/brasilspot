@@ -47,7 +47,7 @@
         </div>
     @endif
 
-    <div id="cadastro" class="grid-m-12 grid-s-12">
+    <div id="detalhar" class="grid-m-12 grid-s-12">
 
 
         <div class="row">

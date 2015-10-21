@@ -17,7 +17,7 @@
 
 
     <div class="grid-m-3 grid-s-3 grid-xs-12">
-        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ route('Empresa.create') }}">
+        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Empresa/cadastrar') }}">
             <span class="text-content">Novo</span>
         </a>
     </div>
@@ -28,9 +28,9 @@
         <thead>
             <th>#</th>
             <th>Nome</th>
-            <th>Categoria</th>
             <th>Plano</th>
-            <th>Empreendimento</th>
+            <th>Categoria</th>
+            <th>Tipo</th>
             <th>Atende em casa</th>
             <th></th>
             <th></th>
@@ -52,14 +52,18 @@
                     <i class="material-icons">thumb_up</i>Sim
                 </td>
                 <td class="col-actions">
-                    {{--<a href="#" title="Deletar"><i class="material-icons">delete</i></a>--}}
-                    <a href="{{ route('Empresa.create') }}" title="Deletar"><i class="material-icons">delete</i></a>
+                    <a href="{{ route('Empresa.show', array('id' => $empresa->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
                 </td>
                 <td class="col-actions">
-                    <a href="#" title="Editar"><i class="material-icons">mode_edit</i></a>
+                    <a href="{{ url('Empresa/editar', [$empresa->id]) }}" title="Editar"><i class="material-icons">mode_edit</i></a>
                 </td>
                 <td class="col-actions">
-                    <a href="#" title="Detalhar"><i class="material-icons">description</i></a>
+                    {!! Form::open([
+                        'method' => 'DELETE',
+                        'route' => ['Empresa.destroy', $empresa->id]
+                    ]) !!}
+                    {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
+                    {!! Form::close() !!}
                 </td>
             </tr>
         @endforeach

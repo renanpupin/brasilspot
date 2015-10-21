@@ -47,7 +47,7 @@
         </div>
     @endif
 
-    <div id="cadastro" class="grid-m-12 grid-s-12">
+    <div id="editar" class="grid-m-12 grid-s-12 grid-xs-12">
 
         {!! Form::model($servico,['route' => ['Servico.update',$servico->id], 'method' => 'PUT']) !!}
         <div class="row">

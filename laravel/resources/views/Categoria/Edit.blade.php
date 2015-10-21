@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Serviço #{{ $servico->id }}</h2>
+        <h2>Categoria #{{ $categoria->id }}</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -20,7 +20,7 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ route('Servico.index') }}">Serviço</a></li>
+                    <li><a href="{{ route('Categoria.index') }}">Categoria</a></li>
                     <li>Editar</li>
                 </ul>
             </div>
@@ -47,31 +47,44 @@
         </div>
     @endif
 
-    <div id="cadastro" class="grid-m-12 grid-s-12">
+    <div id="editar" class="grid-m-12 grid-s-12 grid-xs-12">
 
-        {!! Form::model($servico,['route' => ['Servico.update',$servico->id], 'method' => 'PUT']) !!}
+        {!! Form::model($categoria,['route' => ['Categoria.update',$categoria->id], 'method' => 'PUT']) !!}
         <div class="row">
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('descricao', 'Descrição *',null,['for' => 'descricao']) !!}
-                {!! Form::text('descricao',$servico->descricao,['id' => 'descricao']) !!}
+                {!! Form::label('nome', 'Nome *',null,['for' => 'nome']) !!}
+                {!! Form::text('nome', $categoria->nome,['id' => 'nome']) !!}
             </div>
 
-            <div class="row">
-                <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                    <a href="{{ route('Servico.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
-                        <span class="text-content">Voltar</span>
-                    </a>
-                </div>
-                <div class="form-group grid-m-3 grid-s-3 button-field">
-                    {!! Form::button('<span class="text-content">Alterar</span>',[
-                        'id' => 'btnAlterar',
-                        'type' => 'submit',
-                        'class' => 'btn btn-primary ripple'
-                        ])!!}
-                </div>
+            <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
+                <label for="idCategoriaPai">Categoria Principal</label>
+                <select id="idCategoriaPai" name="idCategoriaPai">
+                    <option value="-1">Selecione a categoria da empresa</option>
+                    <option value="1">Promoção</option>
+                    <option value="2">Alimentos e Bebidas</option>
+                    <option value="3">Animais</option>
+                    <option value="4">Arte e cultura</option>
+                    <option value="5">Automóveis e veículos</option>
+                </select>
+                <p class="input-hint">(Não selecione caso a categoria cadastrada seja a principal)</p>
             </div>
         </div>
+        <div class="row">
+            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
+                <a href="{{ route('Categoria.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                    <span class="text-content">Voltar</span>
+                </a>
+            </div>
+            <div class="form-group grid-m-3 grid-s-3 button-field">
+                {!! Form::button('<span class="text-content">Alterar</span>',[
+                    'id' => 'btnAlterar',
+                    'type' => 'submit',
+                    'class' => 'btn btn-primary ripple'
+                    ])!!}
+            </div>
+        </div>
+
 
         {!! Form::Close() !!}
 

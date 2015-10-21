@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Serviço #{{ $servico->id }}</h2>
+        <h2>Categoria #{{ $categoria->id }}</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -20,7 +20,7 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ route('Servico.index') }}">Serviço</a></li>
+                    <li><a href="{{ route('Categoria.index') }}">Categoria</a></li>
                     <li>Detalhar</li>
                 </ul>
             </div>
@@ -47,27 +47,31 @@
         </div>
     @endif
 
-    <div id="cadastro" class="grid-m-12 grid-s-12">
+    <div id="detalhar" class="grid-m-12 grid-s-12">
 
 
         <div class="row">
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('descricao', 'Descrição',null,['for' => 'descricao']) !!}
-                {{--<input type="text" value="{{ $servico->descricao }}" disabled>--}}
-                <p class="field-disabled">{{ $servico->descricao }}</p>
+                {!! Form::label('nome', 'Nome',null,['for' => 'nome']) !!}
+                <p class="field-disabled">{{ $categoria->nome }}</p>
             </div>
 
-                <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                    <a href="{{ route('Servico.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
-                        <span class="text-content">Voltar</span>
-                    </a>
-                </div>
-                <div class="form-group grid-m-3 grid-s-3 button-field">
-                    <a href="{{ route('Servico.edit', $servico->id) }}" id="btnEditar" title="Editar" class="btn btn-primary ripple">
-                        <span class="text-content">Editar</span>
-                    </a>
-                </div>
+            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                {!! Form::label('idCategoriaPai', 'Categoria Pai',null,['for' => 'idCategoriaPai']) !!}
+                <p class="field-disabled">{{ $categoria->idCategoriaPai }}</p>
+            </div>
+
+            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
+                <a href="{{ route('Categoria.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                    <span class="text-content">Voltar</span>
+                </a>
+            </div>
+            <div class="form-group grid-m-3 grid-s-3 button-field">
+                <a href="{{ route('Categoria.edit', $categoria->id) }}" id="btnEditar" title="Editar" class="btn btn-primary ripple">
+                    <span class="text-content">Editar</span>
+                </a>
+            </div>
         </div>
 
 

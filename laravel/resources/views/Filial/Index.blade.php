@@ -11,7 +11,7 @@
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
         <h2>Listar Filiais</h2>
-        <h5>Nome Fantasia da Empresa</h5>
+        <h5>Nome Fantasia</h5>
     </div>
 
     <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
@@ -20,7 +20,7 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ route('Filial.index') }}">Filiais</a></li>
+                    <li><a href="{{ route('Filial.index') }}">Filial</a></li>
                     <li>Listar</li>
                 </ul>
             </div>
@@ -29,7 +29,7 @@
 
 
     <div class="grid-m-3 grid-s-3 grid-xs-12">
-        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ route('Filial.create') }}">
+        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Filial/cadastrar') }}">
             <span class="text-content">Novo</span>
         </a>
     </div>
@@ -64,14 +64,18 @@
                     <i class="material-icons">thumb_up</i>Sim
                 </td>
                 <td class="col-actions">
-                    {{--<a href="#" title="Deletar"><i class="material-icons">delete</i></a>--}}
-                    <a href="{{ route('Empresa.create') }}" title="Deletar"><i class="material-icons">delete</i></a>
+                    <a href="{{ route('Filial.show', array('id' => $filial->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
                 </td>
                 <td class="col-actions">
-                    <a href="#" title="Editar"><i class="material-icons">mode_edit</i></a>
+                    <a href="{{ url('Filial/editar', [$filial->id]) }}" title="Editar"><i class="material-icons">mode_edit</i></a>
                 </td>
                 <td class="col-actions">
-                    <a href="#" title="Detalhar"><i class="material-icons">description</i></a>
+                    {!! Form::open([
+                        'method' => 'DELETE',
+                        'route' => ['Filial.destroy', $servico->id]
+                    ]) !!}
+                    {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
+                    {!! Form::close() !!}
                 </td>
             </tr>
         @endforeach

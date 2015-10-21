@@ -11,7 +11,7 @@
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
         <h2>Cadastro Empresa</h2>
-        <p class="text-caption">Por favor, nos informe seus dados e da sua empresa. Os dados abaixo <strong>NÃO</strong> serão divulgados no site.</p>
+        {{--<p class="text-caption">Por favor, nos informe seus dados e da sua empresa. Os dados abaixo <strong>NÃO</strong> serão divulgados no site.</p>--}}
         <!-- <p class="text-caption">Campos com (*) são obrigatórios</p> -->
         <!-- <p class="text-caption">Suas edições serão aprovadas dentro de 72hs.</p> -->
 
@@ -23,8 +23,8 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="javascript:void(0)">Empresa</a></li>
-                    <li><a href="javascript:void(0)">Cadastrar</a></li>
+                    <li><a href="{{ route('Empresa.index') }}">Empresa</a></li>
+                    <li>Cadastrar</li>
                 </ul>
             </div>
         </div>
@@ -50,7 +50,7 @@
         </div>
     @endif
 
-    <div id="cadastro" class="grid-m-12 grid-s-12">
+    <div id="cadastro" class="grid-m-12 grid-s-12 grid-xs-12">
         {!! Form::Open(['route' => 'Empresa.store', 'method' => 'POST']) !!}
 
             <div class="row">
@@ -74,13 +74,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <p class="text-caption">- Campos com (*) são obrigatórios</p>
-                </div>
+                {{--<div class="form-group grid-m-6 grid-s-12 grid-xs-12">--}}
+                    {{--<p class="text-caption">- Campos com (*) são obrigatórios</p>--}}
+                {{--</div>--}}
 
-                <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                    <span class="text-title">
-                        <i class="material-icons">lock_outline</i>
+                <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
+                    <span class="text-display-1">
+                        <i class="material-icons" style="font-size: inherit;">lock_outline</i>
                         Informações Privadas
                     </span>
                     <p class="text-caption">- As informações inseridas abaixo não serão exibidas para o público</p>
@@ -91,7 +91,7 @@
                     {!! Form::text('inputEmpreendedor',null,['id' => 'inputEmpreendedor']) !!}
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="inputRazaoSocial">Razão Social</label>
+                    <label for="inputRazaoSocial">Razão Social *</label>
                     <input type="text" name="inputRazaoSocial" id="inputRazaoSocial">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
@@ -104,31 +104,31 @@
                 </div>
 
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                    <span class="text-title">
-                        <i class="material-icons">lock_open</i>
+                    <span class="text-display-1">
+                        <i class="material-icons" style="font-size: inherit;">lock_open</i>
                         Informações Públicas
                     </span>
                     <p class="text-caption">- As informações inseridas abaixo poderão ser vistas por qualquer um</p>
                 </div>
 
-                <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="inputServicos">Serviços</label>
-                    <div class="check-inline">
-                        <input type="checkbox" name="inputServicos" id="inputServicos1" value="1">Aberto 24 horas
-                    </div>
-                    <div class="check-inline">
-                        <input type="checkbox" name="inputServicos" id="inputServicos2" value="2">Delivery
-                    </div>
-                    <div class="check-inline">
-                        <input type="checkbox" name="inputServicos" id="inputServicos3" value="3">Wi-Fi
-                    </div>
-                    <div class="check-inline">
-                        <input type="checkbox" name="inputServicos" id="inputServicos4" value="3">Ar Condicionado
-                    </div>
-                    <div class="check-inline">
-                        <input type="checkbox" name="inputServicos" id="inputServicos5" value="3">Área para fumante
-                    </div>
-                </div>
+                {{--<div class="form-group grid-m-6 grid-s-12 grid-xs-12">--}}
+                    {{--<label for="inputServicos">Serviços</label>--}}
+                    {{--<div class="check-inline">--}}
+                        {{--<input type="checkbox" name="inputServicos" id="inputServicos1" value="1">Aberto 24 horas--}}
+                    {{--</div>--}}
+                    {{--<div class="check-inline">--}}
+                        {{--<input type="checkbox" name="inputServicos" id="inputServicos2" value="2">Delivery--}}
+                    {{--</div>--}}
+                    {{--<div class="check-inline">--}}
+                        {{--<input type="checkbox" name="inputServicos" id="inputServicos3" value="3">Wi-Fi--}}
+                    {{--</div>--}}
+                    {{--<div class="check-inline">--}}
+                        {{--<input type="checkbox" name="inputServicos" id="inputServicos4" value="3">Ar Condicionado--}}
+                    {{--</div>--}}
+                    {{--<div class="check-inline">--}}
+                        {{--<input type="checkbox" name="inputServicos" id="inputServicos5" value="3">Área para fumante--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     <label for="inputNomeFantasia">Nome Fantasia *</label>
                     <input type="email" name="inputNomeFantasia" id="inputNomeFantasia">
@@ -137,8 +137,13 @@
                     <label for="inputSlogan">Slogan *</label>
                     <input type="email" name="inputSlogan" id="inputSlogan">
                 </div>
+                <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                    <label for="inputDescricao">Descrição *</label>
+                    <p class="input-hint">(O que você mais quer que as pessoas saibam)</p>
+                    <textarea name="inputDescricao" id="inputDescricao"></textarea>
+                </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="selecionarTipoEmpreendimento">Tipo do Empreendimento</label>
+                    <label for="selecionarTipoEmpreendimento">Tipo do Empreendimento *</label>
                     <select id="selecionarTipoEmpreendimento" name="selecionarTipoEmpreendimento" required="">
                         <option value="-1">Selecione o tipo do empreendimento</option>
                         <option value="1">Comércio</option>
@@ -147,7 +152,7 @@
                     </select>
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="selecionarCategoria">Categoria</label>
+                    <label for="selecionarCategoria">Categoria *</label>
                     <select id="selecionarCategoria" name="selecionarCategoria" required="">
                         <option value="-1">Selecione a categoria da empresa</option>
                         <option value="1">Promoção</option>
@@ -156,11 +161,6 @@
                         <option value="4">Arte e cultura</option>
                         <option value="5">Automóveis e veículos</option>
                     </select>
-                </div>
-                <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                    <label for="inputDescricao">Descrição *</label>
-                    <p class="input-hint">(O que você mais quer que as pessoas saibam)</p>
-                    <textarea name="inputDescricao" id="inputDescricao"></textarea>
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                     <label for="inputHorarioFuncionamento">Horário de Funcionamento *</label>
@@ -175,8 +175,9 @@
                         <option value="3">Débito e Crédito</option>
                     </select>
                 </div>
-                <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                     <label for="inputTipoCartoesAceitos">Tipos de Cartões Aceitos</label>
+                    {{--<p class="input-hint">(Desconsidere caso sua empresa não aceite cartões)</p>--}}
                     <div class="check-inline">
                         <input type="checkbox" name="inputTipoCartoesAceitos" id="inputTipoCartoesAceitos1" value="VISA">VISA
                     </div>
@@ -185,6 +186,12 @@
                     </div>
                     <div class="check-inline">
                         <input type="checkbox" name="inputTipoCartoesAceitos" id="inputTipoCartoesAceitos3" value="AMEX">AMEX
+                    </div>
+                    <div class="check-inline">
+                        <input type="checkbox" name="inputTipoCartoesAceitos" id="inputTipoCartoesAceitos4" value="ELO">ELO
+                    </div>
+                    <div class="check-inline">
+                        <input type="checkbox" name="inputTipoCartoesAceitos" id="inputTipoCartoesAceitos5" value="ELO">DINERS CLUB
                     </div>
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
@@ -204,28 +211,31 @@
                     <input type="text" name="inputLinkFacebook" id="inputLinkFacebook" class="input-facebook" placeholder="Exemplo: https://www.facebook.com/brasilspot">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="inputLinkSiteEmpresa">Link para a página da sua empresa *</label>
+                    <label for="inputLinkSiteEmpresa">Link para o site da empresa *</label>
                     <input type="text" name="inputLinkSiteEmpresa" id="inputLinkSiteEmpresa" class="input-facebook" placeholder="Exemplo: https://www.suaempresa.com.br">
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                    <label for="inputSelecionarTags">Selecione suas tags *</label>
+                    <label for="inputSelecionarTags">Informe suas tags *</label>
                     <p class="input-hint">(Empresas do plano básico podem ter no máximo 5 e do plano premium no máximo 15.)</p>
+                    <p class="input-hint">(As tags facilitam sua empresa ser encontrada nos mecanismos de busca)</p>
+                    <p class="input-hint">(Separe as tags por vírgula)</p>
                     <input type="text" name="inputSelecionarTags" id="inputSelecionarTags" class="input-facebook" placeholder="EX: tag1, tag2, tag3">
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                    <button id="btnVoltar" class="btn btn-secundary ripple" type="button">
-                        <span class="text-content">Voltar</span>
-                    </button>
-                </div>
-                <div class="form-group grid-m-3 grid-s-3 button-field">
-                    <button id="btnCadastrar" class="btn btn-primary ripple" type="submit">
-                        <span class="text-content">Cadastrar</span>
-                    </button>
-{{--                    {!! Form::submit('Registrar',['class' => 'btn btn-primary']) !!}--}}
-                </div>
+        <div class="row">
+            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
+                <a href="{{ route('Empresa.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                    <span class="text-content">Voltar</span>
+                </a>
             </div>
+            <div class="form-group grid-m-3 grid-s-3 button-field">
+                {!! Form::button('<span class="text-content">Cadastrar</span>',[
+                    'id' => 'btnCadastrar',
+                    'type' => 'submit',
+                    'class' => 'btn btn-primary ripple'
+                    ])!!}
+            </div>
+        </div>
 
         {!! Form::Close() !!}
     </div>

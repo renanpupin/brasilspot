@@ -96,6 +96,6 @@ class ServicoController extends Controller
             return redirect()->back();
         }
 
-        return 'Servico não foi encontrado';
+        return 'Serviço não foi encontrado';
     }
 }

@@ -47,7 +47,7 @@
         </div>
     @endif
 
-    <div id="cadastro" class="grid-m-12 grid-s-12">
+    <div id="cadastro" class="grid-m-12 grid-s-12 grid-xs-12">
 
         {!! Form::Open(['route' => 'Servico.store', 'method' => 'POST']) !!}
             <div class="row">
