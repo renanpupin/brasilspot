@@ -58,7 +58,8 @@
                 </div>
 
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                    {!! Form::label('idCategoriaPai', 'Categoria Principal',null,['for' => 'idCategoriaPai']) !!}
+                    {!! Form::label('idCategoriaPai', 'Vincular Categoria',null,['for' => 'idCategoriaPai']) !!}
+                    <p class="text-caption">(Deseja vincular esta categoria a alguma outra?)</p>
                     {!! Form::select('idCategoriaPai',null,['id' => 'idCategoriaPai']) !!}
                 </div>
 

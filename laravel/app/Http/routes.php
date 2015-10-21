@@ -27,6 +27,11 @@ Route::resource('PerfilUsuario','PerfilUsuarioController');
 Route::resource('TipoVendedor','TipoVendedorController');
 Route::resource('TipoEmpresa','TipoEmpresaController');
 
+//routes for "Filiais"
+Route::post('Filial/editar/{id}', 'FilialController@update');
+Route::get('Filial/editar/{id}', 'FilialController@edit');
+Route::get('Filial/cadastrar', 'FilialController@create');
+Route::resource('Filial','FilialController');
 
 //routes for "Servicos"
 Route::post('Servico/editar/{id}', 'ServicoController@update');
