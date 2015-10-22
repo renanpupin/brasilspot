@@ -56,15 +56,9 @@
                 {!! Form::text('nome',null,['id' => 'nome']) !!}
             </div>
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                <label for="idCategoriaPai">Categoria Principal</label>
-                <select id="idCategoriaPai" name="idCategoriaPai">
-                    <option value="-1">Selecione a categoria da empresa</option>
-                    <option value="1">Promoção</option>
-                    <option value="2">Alimentos e Bebidas</option>
-                    <option value="3">Animais</option>
-                    <option value="4">Arte e cultura</option>
-                    <option value="5">Automóveis e veículos</option>
-                </select>
+                {!! Form::label('idCategoriaPai', 'Categoria Pai',null,['for' => 'idCategoriaPai']) !!}
+{{--                {!! Form::select('idCategoriaPai', (['-1' => 'Selecione a categoria'] + $categorias), null, ['id' => 'idCategoriaPai', 'class' => 'form-control']) !!}--}}
+                    {!!Form::select('idCategoriaPai', $categorias, null, ['id' => 'idCategoriaPai', 'class' => 'form-control']) !!}
                 <p class="input-hint">(Não selecione caso a categoria cadastrada seja a principal)</p>
             </div>
         </div>
@@ -82,7 +76,6 @@
                     ])!!}
             </div>
         </div>
-
 
         {!! Form::Close() !!}
 

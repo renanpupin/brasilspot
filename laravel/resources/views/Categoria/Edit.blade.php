@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Categoria #{{ $categoria->id }}</h2>
+        <h2>Editar Categoria</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -47,27 +47,18 @@
         </div>
     @endif
 
-    <div id="editar" class="grid-m-12 grid-s-12 grid-xs-12">
+    <div id="editar" class="grid-m-12 grid-s-12">
 
         {!! Form::model($categoria,['route' => ['Categoria.update',$categoria->id], 'method' => 'PUT']) !!}
         <div class="row">
-
-            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('nome', 'Nome *',null,['for' => 'nome']) !!}
-                {!! Form::text('nome', $categoria->nome,['id' => 'nome']) !!}
-            </div>
-
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                <label for="idCategoriaPai">Categoria Principal</label>
-                <select id="idCategoriaPai" name="idCategoriaPai">
-                    <option value="-1">Selecione a categoria da empresa</option>
-                    <option value="1">Promoção</option>
-                    <option value="2">Alimentos e Bebidas</option>
-                    <option value="3">Animais</option>
-                    <option value="4">Arte e cultura</option>
-                    <option value="5">Automóveis e veículos</option>
-                </select>
-                <p class="input-hint">(Não selecione caso a categoria cadastrada seja a principal)</p>
+                {!! Form::label('nome', 'Nome *',null,['for' => 'nome']) !!}
+                {!! Form::text('nome',null,['id' => 'nome']) !!}
+            </div>
+            <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
+                {!! Form::label('idCategoriaPai', 'Categoria Pai',null,['for' => 'idCategoriaPai']) !!}
+                {!!Form::select('idCategoriaPai', $categorias, null, ['id' => 'idCategoriaPai', 'class' => 'form-control']) !!}
+                <p class="input-hint">(Não selecione caso a categoria editada seja a principal)</p>
             </div>
         </div>
         <div class="row">
@@ -77,14 +68,13 @@
                 </a>
             </div>
             <div class="form-group grid-m-3 grid-s-3 button-field">
-                {!! Form::button('<span class="text-content">Alterar</span>',[
-                    'id' => 'btnAlterar',
+                {!! Form::button('<span class="text-content">Editar</span>',[
+                    'id' => 'btnEditar',
                     'type' => 'submit',
                     'class' => 'btn btn-primary ripple'
                     ])!!}
             </div>
         </div>
-
 
         {!! Form::Close() !!}
 

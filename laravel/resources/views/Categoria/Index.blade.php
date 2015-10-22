@@ -81,7 +81,7 @@
                         <td class="col-actions">
                             {!! Form::open([
                                 'method' => 'DELETE',
-                                'route' => ['Categoria.destroy', $servico->id]
+                                'route' => ['Categoria.destroy', $categoria->id]
                             ]) !!}
                             {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
                             {!! Form::close() !!}

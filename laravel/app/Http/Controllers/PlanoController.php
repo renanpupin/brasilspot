@@ -11,7 +11,7 @@ class PlanoController extends Controller
 
     public function index()
     {
-        //
+        return view('Plano.Index');
     }
 
 
@@ -23,7 +23,7 @@ class PlanoController extends Controller
 
     public function store(Request $request)
     {
-        \App\Plano::create([
+        Plano::create([
            'Nome' => $request['nome'],
            'Valor' => $request['valor'],
            'Descricao' =>  $request['descricao']
