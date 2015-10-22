@@ -71,7 +71,7 @@
                     <tr>
                         <td>{{ $categoria->id }}</td>
                         <td>{{ $categoria->nome }}</td>
-                        <td>{{ $categoria->idCategoriaPai }}</td>
+                        <td>{{ $categoria->nomeCategoriaPai }}</td>
                         <td class="col-actions">
                             <a href="{{ route('Categoria.show', array('id' => $categoria->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>

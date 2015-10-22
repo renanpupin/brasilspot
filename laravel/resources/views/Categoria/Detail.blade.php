@@ -59,7 +59,7 @@
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('idCategoriaPai', 'Categoria Pai',null,['for' => 'idCategoriaPai']) !!}
-                <p class="field-disabled">{{ $categoria->idCategoriaPai }}</p>
+                <p class="field-disabled">{{ $categoria->nomeCategoriaPai }}</p>
             </div>
 
             <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">

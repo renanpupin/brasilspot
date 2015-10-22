@@ -12,8 +12,17 @@ class CategoriaController extends Controller
 {
     public function index()
     {
-        $categorias = Categoria::all();
+                $categorias = Categoria::all();
 
+        foreach($categorias as $categoria)
+        {
+            if($categoria->idCategoriaPai != null) {
+                $categoria->nomeCategoriaPai = $categoria->CategoriaPai->nome;
+
+            }
+
+           // $categoria->nomeCategoriaPai = $categoriaPai->nome;
+        }
         return view('Categoria.Index')->with('categorias',$categorias);
     }
 
@@ -37,10 +46,20 @@ class CategoriaController extends Controller
 
         $this->validate($request, $regras, $mensagens);
 
-        Categoria::Create([
-            'nome' => $request['nome'],
-            'idCategoriaPai' => $request['idCategoriaPai']
-        ]);
+        if($request['idCategoriaPai'] == -1)
+        {
+            Categoria::Create([
+                'nome' => $request['nome'],
+                'idCategoriaPai' => null
+            ]);
+        }
+        else {
+
+            Categoria::Create([
+                'nome' => $request['nome'],
+                'idCategoriaPai' => $request['idCategoriaPai']
+            ]);
+        }
 
         Session::flash('flash_message', 'Categoria adicionada com sucesso!');
 
@@ -51,24 +70,24 @@ class CategoriaController extends Controller
     public function show($id)
     {
         $categoria = Categoria::find($id);
+
+        if($categoria->idCategoriaPai != null) {
+            $categoria->nomeCategoriaPai = $categoria->CategoriaPai->nome;
+        }
+
         return view('Categoria.Detail')->with('categoria',$categoria);
     }
 
 
     public function edit($id)
     {
-        //dropdown list
-        $categorias = ['-1'=>'Selecione a categoria pai'] + Categoria::lists('nome', 'id')->all();
+        $categoriasQuery = Categoria::where('id','<>',$id)->get();
 
-        //não mostrar no dropdown a própria categoria
+        $categoriasDropDown = ['-1'=>'Selecione a categoria pai'] + $categoriasQuery->lists('nome','id')->all();
 
-        //object model
         $categoria = Categoria::findOrNew($id);
 
-        //selected option
-        //$categoriaSelecionada = $categoria->idCategoriaPai;
-
-        return view('Categoria.Edit')->with('categorias', $categorias)->with('categoria',$categoria);
+        return view('Categoria.Edit')->with('categorias', $categoriasDropDown)->with('categoria',$categoria);
     }
 
 
@@ -86,8 +105,16 @@ class CategoriaController extends Controller
 
         $this->validate($request, $regras, $mensagens);
 
-        $categoria->nome = $request['nome'];
-        $categoria->idCategoriaPai = $request['idCategoriaPai'];
+        if($request['idCategoriaPai'] == -1)
+        {
+            $categoria->nome = $request['nome'];
+            $categoria->idCategoriaPai = null;
+        }
+        else {
+
+            $categoria->nome = $request['nome'];
+            $categoria->idCategoriaPai = $request['idCategoriaPai'];
+        }
 
         $categoria->save();
 

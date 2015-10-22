@@ -12,8 +12,13 @@ class Categoria extends Migration
         {
             $table->increments('id')->unsigned();
             $table->string('nome', 100);
-            $table->integer('idCategoriaPai')->unsigned();
+            $table->integer('idCategoriaPai')->unsigned()->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('Categorias', function($table)
+        {
+            $table->foreign('idCategoriaPai')->references('id')->on('Categorias');
         });
     }
 

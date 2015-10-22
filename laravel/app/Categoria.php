@@ -10,6 +10,12 @@ class Categoria extends Model
 
     protected $fillable = array(
       'nome',
-      'idCategoriaPai'
+      'idCategoriaPai',
+      'nomeCategoriaPai'
     );
+
+    public function CategoriaPai()
+    {
+        return $this->hasOne('App\Categoria','id','idCategoriaPai');
+    }
 }
