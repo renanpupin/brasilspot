@@ -6,10 +6,10 @@
     <file url="file://$PROJECT_DIR$/laravel/public/assets/css/style.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/laravel/resources/views/Empresa/Index.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/laravel/resources/views/Servico/Index.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/laravel/resources/views/index.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/laravel/resources/views/layouts/footer.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/laravel/resources/views/layouts/master.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/laravel/resources/views/layouts/sidebarSistema.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/laravel/resources/views/welcome.blade.php" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

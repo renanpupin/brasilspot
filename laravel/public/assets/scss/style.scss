@@ -795,6 +795,7 @@ footer{
     padding: 15px;
     .empresa-item{
       padding: 15px;
+      margin-bottom: 20px;
       @extend .shadow-1;
       border-radius: 2px;
       @include transition(all 0.2s ease-in-out);
@@ -856,6 +857,7 @@ footer{
   padding: 30px;
   a{
     color: #fff;
+    background-color: #E66D1B;
     i{
       vertical-align: middle;
       font-size: 34px;
@@ -967,6 +969,54 @@ footer{
       @extend .shadow-2;
       background-color: #404040;
       color: rgba(255,255,255,.9);
+    }
+  }
+}
+.empresa-filtro{
+  .filtroEmpreendimento{
+    text-align: center;
+    a{
+      text-decoration: none;
+    }
+    .filtroTipoEmpreendimento{
+      vertical-align: middle;
+      //text-transform: uppercase;
+      font-size: 14px;
+      font-size: .8rem;
+      svg{
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+        position: relative;
+        top: 5px;
+      }
+      //&:hover svg{
+      //  fill: red;
+      //}
+      &.filtroComercio{
+        &:hover, &:hover svg, &.selecionado {
+          color: #E66D1C;
+          fill: #E66D1C;
+        }
+      }
+      &.filtroServico{
+        &:hover, &:hover svg, &.selecionado {
+          color: #E66D1C;
+          fill: #E66D1C;
+        }
+      }
+      &.filtroAtracao{
+        &:hover, &:hover svg, &.selecionado {
+          color: #E66D1C;
+          fill: #E66D1C;
+        }
+      }
+      &.selecionado{
+        //padding: 5px 4px;
+        //background-color: #444;
+        //color: white;
+        //border-radius: 2px;
+      }
     }
   }
 }

@@ -13,7 +13,18 @@
         <h2>Listar Empresas</h2>
     </div>
 
-    @include('layouts.breadcrumbs')
+    <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
+        <div class="breadcrumbs-content container">
+            <div class="row">
+                <i class="material-icons">home</i>
+                Você está em:
+                <ul>
+                    <li><a href="{{ route('Empresa.index') }}">Empresa</a></li>
+                    <li>Cadastrar</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 
     <div class="grid-m-3 grid-s-3 grid-xs-12">

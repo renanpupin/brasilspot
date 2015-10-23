@@ -51,10 +51,27 @@ Route::resource('Servico','ServicoController');
 
 //routes for "Login"
 Route::post('Login/logar/', 'LoginController@logar');
-Route::get('Login/', 'LoginoController@index');
+Route::get('Login/', 'LoginController@index');
 Route::resource('Login','LoginController');
 
 
+
+//SITE ROUTES
+Route::get('Contato', function () {
+    return view('contato');
+});
+//Route::post('Contato', function () {
+//    return view('contatoSucesso');
+//});
+
+Route::get('Planos', function () {
+    return view('planos');
+});
+
+Route::get('Sobre', function () {
+    return view('sobre');
+});
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });

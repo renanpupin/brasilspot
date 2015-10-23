@@ -2260,6 +2260,7 @@ footer {
     padding: 15px; }
     #content .content-empresas .empresa-item {
       padding: 15px;
+      margin-bottom: 20px;
       border-radius: 2px;
       -webkit-transition: all 0.2s ease-in-out;
       -moz-transition: all 0.2s ease-in-out;
@@ -2315,7 +2316,8 @@ footer {
   text-align: center;
   padding: 30px; }
   #carregarMaisEmpresas a {
-    color: #fff; }
+    color: #fff;
+    background-color: #E66D1B; }
     #carregarMaisEmpresas a i {
       vertical-align: middle;
       font-size: 34px; }
@@ -2381,5 +2383,31 @@ footer {
   #listagem .col-actions i:hover {
     background-color: #404040;
     color: rgba(255, 255, 255, 0.9); }
+
+.empresa-filtro .filtroEmpreendimento {
+  text-align: center; }
+  .empresa-filtro .filtroEmpreendimento a {
+    text-decoration: none; }
+  .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento {
+    vertical-align: middle;
+    font-size: 14px;
+    font-size: .8rem; }
+    .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento:hover {
+      transform: scale(10); }
+    .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento svg {
+      width: 18px;
+      height: 18px;
+      margin-right: 5px;
+      position: relative;
+      top: 5px; }
+    .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroComercio:hover, .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroComercio:hover svg, .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroComercio.selecionado {
+      color: #E66D1C;
+      fill: #E66D1C; }
+    .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroServico:hover, .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroServico:hover svg, .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroServico.selecionado {
+      color: #E66D1C;
+      fill: #E66D1C; }
+    .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroAtracao:hover, .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroAtracao:hover svg, .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroAtracao.selecionado {
+      color: #E66D1C;
+      fill: #E66D1C; }
 
 /*# sourceMappingURL=style.css.map */
