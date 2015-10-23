@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cartao extends Model
 {
-    protected $table = "Cartoes";
+    protected $table = "cartoes";
 
     protected $fillable = array(
         'bandeira',

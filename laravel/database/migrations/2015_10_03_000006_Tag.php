@@ -7,7 +7,7 @@ class Tag extends Migration
 {
     public function up()
     {
-        Schema::create('Tags', function(Blueprint $table)
+        Schema::create('tags', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->string('nome', 50);
@@ -17,6 +17,6 @@ class Tag extends Migration
 
     public function down()
     {
-        Schema::drop('Tags');
+        Schema::drop('tags');
     }
 }

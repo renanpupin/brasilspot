@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PerfilUsuario extends Model
 {
-    protected $table = "PerfisUsuarios";
+    protected $table = "perfisUsuarios";
 
     protected $fillable = array(
         'tipo'

@@ -8,7 +8,7 @@ class FotoEmpresa extends Migration
 
     public function up()
     {
-        Schema::create('FotosEmpresas', function(Blueprint $table)
+        Schema::create('fotosEmpresas', function(Blueprint $table)
         {
             $table->integer('idEmpresa')->unsigned();
             $table->integer('idFoto')->unsigned();
@@ -16,14 +16,14 @@ class FotoEmpresa extends Migration
             $table->timestamps();
         });
 
-        Schema::table('FotosEmpresas', function($table){
-            $table->foreign('idEmpresa')->references('id')->on('Empresas');
-            $table->foreign('idFoto')->references('id')->on('Fotos');
+        Schema::table('fotosEmpresas', function($table){
+            $table->foreign('idEmpresa')->references('id')->on('empresas');
+            $table->foreign('idFoto')->references('id')->on('fotos');
         });
     }
 
     public function down()
     {
-        Schema::drop('FotosEmpresas');
+        Schema::drop('fotosEmpresas');
     }
 }

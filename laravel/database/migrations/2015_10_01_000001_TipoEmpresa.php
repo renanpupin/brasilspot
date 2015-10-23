@@ -8,7 +8,7 @@ class TipoEmpresa extends Migration
 
     public function up()
     {
-        Schema::create('TiposEmpresas', function(Blueprint $table)
+        Schema::create('tiposEmpresas', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->string('tipo', 50);
@@ -18,6 +18,6 @@ class TipoEmpresa extends Migration
 
     public function down()
     {
-        Schema:drop('TiposEmpresas');
+        Schema:drop('tiposEmpresas');
     }
 }

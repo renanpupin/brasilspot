@@ -8,22 +8,22 @@ class ServicoEmpresa extends Migration
 
     public function up()
     {
-        Schema::create('ServicosEmpresas', function(Blueprint $table)
+        Schema::create('servicosEmpresas', function(Blueprint $table)
         {
             $table->integer('idEmpresa')->unsigned();
             $table->integer('idServico')->unsigned();
             $table->timestamps();
         });
 
-        Schema::table('ServicosEmpresas', function($table)
+        Schema::table('servicosEmpresas', function($table)
         {
-            $table->foreign('idEmpresa')->references('id')->on('Empresas');
-            $table->foreign('idServico')->references('id')->on('Servicos');
+            $table->foreign('idEmpresa')->references('id')->on('empresas');
+            $table->foreign('idServico')->references('id')->on('servicos');
         });
     }
 
     public function down()
     {
-        Schema::drop('ServicosEmpresas');
+        Schema::drop('servicosEmpresas');
     }
 }

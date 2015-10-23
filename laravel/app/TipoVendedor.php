@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoVendedor extends Model
 {
-    protected $table = "TiposVendedores";
+    protected $table = "tiposVendedores";
 
     protected $fillable = array(
         'tipo'

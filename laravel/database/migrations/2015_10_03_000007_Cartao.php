@@ -8,7 +8,7 @@ class Cartao extends Migration
 
     public function up()
     {
-        Schema::create('Cartoes', function(Blueprint $table)
+        Schema::create('cartoes', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->string('bandeira', 100);
@@ -20,6 +20,6 @@ class Cartao extends Migration
 
     public function down()
     {
-        Schema::drop('Cartoes');
+        Schema::drop('cartoes');
     }
 }

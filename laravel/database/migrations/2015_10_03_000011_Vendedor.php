@@ -8,7 +8,7 @@ class Vendedor extends Migration
 
     public function up()
     {
-        Schema::create('Vendedores', function(Blueprint $table)
+        Schema::create('vendedores', function(Blueprint $table)
         {
             $table->increments('id');
             $table->boolean('isCoordenador')->default(false);;
@@ -19,11 +19,11 @@ class Vendedor extends Migration
             $table->timestamps();
         });
 
-        Schema::table('Vendedores', function($table)
+        Schema::table('vendedores', function($table)
         {
-            $table->foreign('idUsuario')->references('id')->on('Usuarios');
-            $table->foreign('idTipo')->references('id')->on('TiposVendedores');
-            $table->foreign('idMeta')->references('id')->on('Metas');
+            $table->foreign('idUsuario')->references('id')->on('users');
+            $table->foreign('idTipo')->references('id')->on('tiposVendedores');
+            $table->foreign('idMeta')->references('id')->on('metas');
 
         });
     }
@@ -31,6 +31,6 @@ class Vendedor extends Migration
 
     public function down()
     {
-        Schema::drop('Vendedores');
+        Schema::drop('vendedores');
     }
 }

@@ -8,7 +8,7 @@ class Foto extends Migration
 
     public function up()
     {
-        Schema::create('Fotos', function(Blueprint $table)
+        Schema::create('fotos', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->string('foto',400);
@@ -19,6 +19,6 @@ class Foto extends Migration
 
     public function down()
     {
-        Schema::drop('Fotos');
+        Schema::drop('fotos');
     }
 }

@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Meta extends Model
+class WhatsApp extends Model
 {
-    protected $table = "metas";
+    protected $table = "whatsApp";
 
     protected $fillable = Array(
-        'numeroEmpresas'
+        'numero'
     );
 }

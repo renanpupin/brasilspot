@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\User;
+use App\UsuarioPerfil;
 use App\Http\Controllers\Controller;
+use Hash;
 
 class UsuarioController extends Controller
 {
@@ -17,24 +20,25 @@ class UsuarioController extends Controller
 
     public function create()
     {
-        $perfis = \App\PerfilUsuario::all();
-        $perfisSelect = array();
-        foreach($perfis as $perfil)
-        {
-            $perfisSelect[$perfil->Id] = $perfil->Tipo;
-        }
+        $perfis = \App\PerfilUsuario::all()->lists('tipo','id');
+
         return View('Usuario.create')
-            ->with('perfis',$perfisSelect);
+            ->with('perfis',$perfis);
     }
 
 
     public function store(Request $request)
     {
-        \App\Usuario::create([
-           'Nome' => $request['nome'],
-           'Email' => $request['email'],
-           'IdPerfil' => $request['perfis'],
-           'IsVendedor' => $request['isVendedor']
+        $usuario = User::create([
+           'name' => $request['name'],
+           'email' => $request['email'],
+            'password' => Hash::make($request['email'])
+        ]);
+
+        UsuarioPerfil::create([
+            'idUsuario' => $usuario->id,
+            'idPerfilUsuario' => $request['perfis'],
+            'isVendedor'=> $request['isVendedor']
         ]);
 
         return 'Usuario Registrado com sucesso!!';

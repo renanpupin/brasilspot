@@ -15,9 +15,9 @@ class CategoriaController extends Controller
 {
     public function index()
     {
-        Auth::loginUsingId(1);
+       // Auth::loginUsingId(1);
 
-        $this->authorize('listar-categorias');
+        //$this->authorize('listar-categorias');
 
         $categorias = Categoria::all();
 
@@ -136,6 +136,13 @@ class CategoriaController extends Controller
 
         if(!empty($categoria))
         {
+            $encontrou = Categoria::where('idCategoriaPai','=',$categoria->id)->count() > 0;
+            if($encontrou)
+            {
+                $mensagem = 'Categoria seleciona é pai de outras categorias, remova todas as categorias filhas primeiro.';
+                return redirect()->back()->with('erros',$mensagem);
+            }
+
             $categoria->delete();
             Session::flash('flash_message', 'Categoria removida com sucesso!');
             return redirect()->back();

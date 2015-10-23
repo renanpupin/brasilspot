@@ -8,10 +8,10 @@ class Meta extends Migration
 
     public function up()
     {
-        Schema::create('Metas', function(Blueprint $table)
+        Schema::create('metas', function(Blueprint $table)
         {
-            $table->increments('Id')->unsigned();
-            $table->integer('NumeroEmpresas');
+            $table->increments('id')->unsigned();
+            $table->integer('numeroEmpresas');
             $table->timestamps();
         });
     }
@@ -19,6 +19,6 @@ class Meta extends Migration
 
     public function down()
     {
-        Schema::drop('Metas');
+        Schema::drop('metas');
     }
 }

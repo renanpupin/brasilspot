@@ -8,7 +8,7 @@ class Servico extends Migration
 
     public function up()
     {
-        Schema::create('Servicos', function(Blueprint $table)
+        Schema::create('servicos', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->string('descricao');
@@ -18,6 +18,6 @@ class Servico extends Migration
 
     public function down()
     {
-        Schema::drop('Servicos');
+        Schema::drop('servicos');
     }
 }

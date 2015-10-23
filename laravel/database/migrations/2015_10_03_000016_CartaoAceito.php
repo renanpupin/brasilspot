@@ -7,22 +7,22 @@ class CartaoAceito extends Migration
 {
     public function up()
     {
-        Schema::create('CartoesAceitos', function(Blueprint $table)
+        Schema::create('cartoesAceitos', function(Blueprint $table)
         {
             $table->integer('idEmpresa')->unsigned();
             $table->integer('idCartao')->unsigned();
             $table->timestamps();
         });
 
-        Schema::table('CartoesAceitos', function($table)
+        Schema::table('cartoesAceitos', function($table)
         {
-            $table->foreign('idEmpresa')->references('id')->on('Empresas');
-            $table->foreign('idCartao')->references('id')->on('Cartoes');
+            $table->foreign('idEmpresa')->references('id')->on('empresas');
+            $table->foreign('idCartao')->references('id')->on('cartoes');
         });
     }
 
     public function down()
     {
-        Schema::drop('CartoesAceitos');
+        Schema::drop('cartoesAceitos');
     }
 }

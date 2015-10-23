@@ -9,7 +9,7 @@ class Empresa extends Migration
     public function up()
     {
 
-        Schema::create('Empresas', function(Blueprint $table)
+        Schema::create('empresas', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->string('nomeEmpreendedor', 50);
@@ -33,17 +33,17 @@ class Empresa extends Migration
             $table->timestamps();
         });
 
-        Schema::table('Empresas', function($table)
+        Schema::table('empresas', function($table)
         {
-            $table->foreign('idTipoEmpresa')->references('id')->on('TiposEmpresas');
-            $table->foreign('idUsuario')->references('id')->on('Usuarios');
-            $table->foreign('idVendedor')->references('id')->on('Vendedores');
-            $table->foreign('idPlano')->references('id')->on('Planos');
+            $table->foreign('idTipoEmpresa')->references('id')->on('tiposEmpresas');
+            $table->foreign('idUsuario')->references('id')->on('users');
+            $table->foreign('idVendedor')->references('id')->on('vendedores');
+            $table->foreign('idPlano')->references('id')->on('planos');
         });
     }
 
     public function down()
     {
-        Schema::drop('Empresas');
+        Schema::drop('empresas');
     }
 }

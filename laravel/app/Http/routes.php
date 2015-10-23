@@ -19,7 +19,6 @@ Route::resource('Meta','MetaController');
 Route::resource('Plano','PlanoController');
 Route::resource('Tag','TagController');
 Route::resource('Telefone','TelefoneController');
-Route::resource('Usuario','UsuarioController');
 Route::resource('Vendedor','VendedorController');
 Route::resource('PerfilUsuario','PerfilUsuarioController');
 Route::resource('TipoVendedor','TipoVendedorController');
@@ -56,6 +55,6 @@ Route::get('Login/', 'LoginoController@index');
 Route::resource('Login','LoginController');
 
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+    return view('welcome');
+});

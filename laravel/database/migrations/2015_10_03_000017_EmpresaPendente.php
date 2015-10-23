@@ -8,7 +8,7 @@ class EmpresaPendente extends Migration
 
     public function up()
     {
-        Schema::create('EmpresasPendentes', function(Blueprint $table)
+        Schema::create('empresasPendentes', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->integer('idEmpresa')->unsigned();
@@ -34,17 +34,17 @@ class EmpresaPendente extends Migration
             $table->timestamps();
         });
 
-        Schema::table('EmpresasPendentes',function($table){
-            $table->foreign('idTipoEmpresa')->references('id')->on('TiposEmpresas');
-            $table->foreign('idUsuario')->references('id')->on('Usuarios');
-            $table->foreign('idVendedor')->references('id')->on('Vendedores');
-            $table->foreign('idPlano')->references('id')->on('Planos');
-            $table->foreign('idUsuarioAlteracao')->references('id')->on('Usuarios');
+        Schema::table('empresasPendentes',function($table){
+            $table->foreign('idTipoEmpresa')->references('id')->on('tiposEmpresas');
+            $table->foreign('idUsuario')->references('id')->on('users');
+            $table->foreign('idVendedor')->references('id')->on('vendedores');
+            $table->foreign('idPlano')->references('id')->on('planos');
+            $table->foreign('idUsuarioAlteracao')->references('id')->on('users');
         });
     }
 
     public function down()
     {
-        Schema::drop('EmpresasPendentes');
+        Schema::drop('empresasPendentes');
     }
 }

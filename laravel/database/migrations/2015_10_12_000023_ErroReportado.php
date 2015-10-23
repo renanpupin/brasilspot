@@ -12,16 +12,16 @@ class ErroReportado extends Migration
      */
     public function up()
     {
-        Schema::create('ErrosReportados', function(Blueprint $table)
+        Schema::create('errosReportados', function(Blueprint $table)
         {
            $table->increments('id');
            $table->string('descricao');
            $table->integer('idUsuario')->unsigned();
         });
 
-        Schema::table('ErrosReportados', function($table)
+        Schema::table('errosReportados', function($table)
         {
-            $table->foreign('idUsuario')->references('id')->on('Usuarios');
+            $table->foreign('idUsuario')->references('id')->on('users');
         });
     }
 
@@ -32,6 +32,6 @@ class ErroReportado extends Migration
      */
     public function down()
     {
-        Schema::drop('ErrosReportados');
+        Schema::drop('errosReportados');
     }
 }

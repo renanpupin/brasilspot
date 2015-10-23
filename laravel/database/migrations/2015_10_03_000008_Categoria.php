@@ -8,7 +8,7 @@ class Categoria extends Migration
 
     public function up()
     {
-        Schema::create('Categorias', function(Blueprint $table)
+        Schema::create('categorias', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->string('nome', 100);
@@ -16,15 +16,15 @@ class Categoria extends Migration
             $table->timestamps();
         });
 
-        Schema::table('Categorias', function($table)
+        Schema::table('categorias', function($table)
         {
-            $table->foreign('idCategoriaPai')->references('id')->on('Categorias');
+            $table->foreign('idCategoriaPai')->references('id')->on('categorias');
         });
     }
 
 
     public function down()
     {
-        Schema::drop('Categorias');
+        Schema::drop('categorias');
     }
 }

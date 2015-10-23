@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vendedor extends Model
 {
-    protected $table = "Vendedores";
+    protected $table = "vendedores";
 
     protected $fillable = Array(
       'isCoordenador',

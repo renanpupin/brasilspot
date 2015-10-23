@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
-    protected $table = "Categorias";
+    protected $table = "categorias";
 
     protected $fillable = array(
       'nome',
@@ -16,6 +16,6 @@ class Categoria extends Model
 
     public function CategoriaPai()
     {
-        return $this->hasOne('App\Categoria','id','idCategoriaPai');
+        return $this->hasOne('\App\Categoria','id','idCategoriaPai');
     }
 }

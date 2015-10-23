@@ -8,7 +8,7 @@ class Plano extends Migration
 
     public function up()
     {
-        Schema::create('Planos', function(Blueprint $table)
+        Schema::create('planos', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->string('nome', 100);
@@ -20,6 +20,6 @@ class Plano extends Migration
 
     public function down()
     {
-        Schema::drop('Planos');
+        Schema::drop('planos');
     }
 }

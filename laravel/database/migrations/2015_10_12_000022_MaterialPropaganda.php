@@ -12,15 +12,15 @@ class MaterialPropaganda extends Migration
      */
     public function up()
     {
-        Schema::create('MateriaisPropagandas', function(Blueprint $table){
+        Schema::create('materiaisPropagandas', function(Blueprint $table){
            $table->increments('id');
            $table->string('descricao',100);
            $table->string('motivo', 100);
            $table->integer('idUsuario')->unsigned();
         });
 
-        Schema::table('MateriaisPropagandas', function($table){
-           $table->foreign('idUsuario')->references('id')->on('Usuarios');
+        Schema::table('materiaisPropagandas', function($table){
+           $table->foreign('idUsuario')->references('id')->on('users');
         });
     }
 
@@ -31,6 +31,6 @@ class MaterialPropaganda extends Migration
      */
     public function down()
     {
-        Schema::drop('MateriaisPropagandas');
+        Schema::drop('materiaisPropagandas');
     }
 }

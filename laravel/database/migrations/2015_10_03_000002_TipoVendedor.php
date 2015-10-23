@@ -8,7 +8,7 @@ class TipoVendedor extends Migration
 
     public function up()
     {
-        Schema::create('TiposVendedores', function(Blueprint $table)
+        Schema::create('tiposVendedores', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->string('tipo', 100);
@@ -19,6 +19,6 @@ class TipoVendedor extends Migration
 
     public function down()
     {
-        Schema::drop('TiposVendedores');
+        Schema::drop('tiposVendedores');
     }
 }

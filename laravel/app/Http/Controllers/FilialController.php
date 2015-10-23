@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Empresa;
-use App\Usuario;
+use App\User;
 use App\TipoEmpresa;
 use App\Plano;
 use App\Vendedor;
@@ -25,7 +25,7 @@ class FilialController extends Controller
 
     public function create()
     {
-        $usuarios = Usuario::lists('nome','id');
+        $usuarios = User::lists('name','id');
 
         $tiposEmpresas = TipoEmpresa::lists('tipo','id');
 

@@ -7,7 +7,7 @@ class PerfilUsuario extends Migration
 {
     public function up()
     {
-        Schema::create('PerfisUsuarios', function(Blueprint $table)
+        Schema::create('perfisUsuarios', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->string('tipo', 50);
@@ -18,6 +18,6 @@ class PerfilUsuario extends Migration
 
     public function down()
     {
-        Schema::drop('PerfisUsuarios');
+        Schema::drop('perfisUsuarios');
     }
 }

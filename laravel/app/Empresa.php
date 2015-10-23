@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empresa extends Model
 {
-    protected $table = "Empresas";
+    protected $table = "empresas";
 
     protected $fillable = array(
         'nomeEmpreendedor',
@@ -18,8 +18,6 @@ class Empresa extends Model
         'descricao',
         'horarioFuncionamento',
         'atendeCasa',
-        'linkFacebook',
-        'numeroWhatsapp',
         'idPlano',
         'idUsuario',
         'idTipoEmpresa',

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmpresaPendente extends Model
 {
-    protected $table = "EmpresasPendentes";
+    protected $table = "empresasPendentes";
 
     protected $fillable = array(
         'idEmpresa',
@@ -20,7 +20,6 @@ class EmpresaPendente extends Model
         'horarioFuncionamento',
         'atendeCasa',
         'linkFacebook',
-        'numeroWhatsApp',
         'informacoesAdicionais',
         'idTipoEmpresa',
         'idUsuario',

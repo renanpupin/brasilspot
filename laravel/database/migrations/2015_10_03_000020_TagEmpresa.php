@@ -8,23 +8,23 @@ class TagEmpresa extends Migration
 
     public function up()
     {
-        Schema::create('TagsEmpresas', function(Blueprint $table)
+        Schema::create('tagsEmpresas', function(Blueprint $table)
         {
             $table->integer('idEmpresa')->unsigned();
             $table->integer('idTag')->unsigned();
             $table->timestamps();
         });
 
-        Schema::table('TagsEmpresas', function($table)
+        Schema::table('tagsEmpresas', function($table)
         {
-            $table->foreign('idEmpresa')->references('id')->on('Empresas');
-            $table->foreign('idTag')->references('id')->on('Tags');
+            $table->foreign('idEmpresa')->references('id')->on('empresas');
+            $table->foreign('idTag')->references('id')->on('tags');
         });
     }
 
 
     public function down()
     {
-        Schema::drop('TagsEmpresas');
+        Schema::drop('tagsEmpresas');
     }
 }

@@ -8,7 +8,7 @@ class Telefone extends Migration
 
     public function up()
     {
-        Schema::create('Telefones', function(Blueprint $table)
+        Schema::create('telefones', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->string('numero', 50);
@@ -18,6 +18,6 @@ class Telefone extends Migration
 
     public function down()
     {
-        Schema::drop('Telefones');
+        Schema::drop('telefones');
     }
 }

@@ -8,23 +8,23 @@ class CategoriaEmpresa extends Migration
 
     public function up()
     {
-        Schema::create('CategoriasEmpresas', function(Blueprint $table)
+        Schema::create('categoriasEmpresas', function(Blueprint $table)
         {
             $table->integer('idEmpresa')->unsigned();
             $table->integer('idCategoria')->unsigned();
             $table->timestamps();
         });
 
-        Schema::table('CategoriasEmpresas', function($table)
+        Schema::table('categoriasEmpresas', function($table)
         {
-            $table->foreign('idEmpresa')->references('id')->on('Empresas');
-            $table->foreign('idCategoria')->references('id')->on('Categorias');
+            $table->foreign('idEmpresa')->references('id')->on('empresas');
+            $table->foreign('idCategoria')->references('id')->on('categorias');
         });
     }
 
 
     public function down()
     {
-        Schema::drop('CategoriasEmpresas');
+        Schema::drop('categoriasEmpresas');
     }
 }

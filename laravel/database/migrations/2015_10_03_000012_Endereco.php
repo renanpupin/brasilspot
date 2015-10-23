@@ -8,7 +8,7 @@ class Endereco extends Migration
 
     public function up()
     {
-        Schema::create('Enderecos', function(Blueprint $table)
+        Schema::create('enderecos', function(Blueprint $table)
         {
             $table->increments('id');
             $table->string('endereco', 40);
@@ -23,6 +23,6 @@ class Endereco extends Migration
 
     public function down()
     {
-        Schema::drop('Enderecos');
+        Schema::drop('enderecos');
     }
 }

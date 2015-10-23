@@ -8,23 +8,23 @@ class TelefoneEmpresa extends Migration
 
     public function up()
     {
-        Schema::create('TelefonesEmpresas', function(Blueprint $table)
+        Schema::create('telefonesEmpresas', function(Blueprint $table)
         {
             $table->integer('idEmpresa')->unsigned();
             $table->integer('idTelefone')->unsigned();
             $table->timestamps();
         });
 
-        Schema::table('TelefonesEmpresas', function($table)
+        Schema::table('telefonesEmpresas', function($table)
         {
-            $table->foreign('idEmpresa')->references('id')->on('Empresas');
-            $table->foreign('idTelefone')->references('id')->on('Telefones');
+            $table->foreign('idEmpresa')->references('id')->on('empresas');
+            $table->foreign('idTelefone')->references('id')->on('telefones');
         });
     }
 
 
     public function down()
     {
-        Schema::drop('TelefonesEmpresas');
+        Schema::drop('telefonesEmpresas');
     }
 }
