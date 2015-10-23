@@ -11,8 +11,7 @@ class Usuario extends Migration
         Schema::create('Usuarios', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
-            $table->string('nome', 100);
-            $table->string('email', 60);
+            $table->integer('idUser')->unsigned();
             $table->integer('idPerfil')->unsigned();
             $table->boolean('isVendedor')->default(false);
             $table->timestamps();
@@ -21,6 +20,7 @@ class Usuario extends Migration
         Schema::table('Usuarios', function($table)
         {
             $table->foreign('idPerfil')->references('id')->on('PerfisUsuarios');
+            $table->foreign('idUser')->references('id')->on('Users');
         });
     }
 

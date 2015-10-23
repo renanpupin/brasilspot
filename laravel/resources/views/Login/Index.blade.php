@@ -1,6 +1,6 @@
 @include('errors.Erros')
 
-{!! Form::open(['route' => 'Login.store','method' => 'POST']) !!}
+{!! Form::open(['route' => 'Login.logar','method' => 'POST']) !!}
 {!! Form::label('email','E-mail:') !!}
 {!! Form::email('email', null,['class' => 'form-control']) !!}
 

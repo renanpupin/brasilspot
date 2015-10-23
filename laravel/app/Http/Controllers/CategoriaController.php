@@ -5,14 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Categoria;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class CategoriaController extends Controller
 {
     public function index()
     {
-                $categorias = Categoria::all();
+        Auth::loginUsingId(1);
+
+        $this->authorize('listar-categorias');
+
+        $categorias = Categoria::all();
 
         foreach($categorias as $categoria)
         {
@@ -74,7 +81,7 @@ class CategoriaController extends Controller
         if($categoria->idCategoriaPai != null) {
             $categoria->nomeCategoriaPai = $categoria->CategoriaPai->nome;
         }
-
+        
         return view('Categoria.Detail')->with('categoria',$categoria);
     }
 

@@ -50,6 +50,12 @@ Route::get('Servico/cadastrar', 'ServicoController@create');
 Route::resource('Servico','ServicoController');
 
 
+//routes for "Login"
+Route::post('Login/logar/', 'LoginController@logar');
+Route::get('Login/', 'LoginoController@index');
+Route::resource('Login','LoginController');
+
+
 //Route::get('/', function () {
 //    return view('welcome');
 //});

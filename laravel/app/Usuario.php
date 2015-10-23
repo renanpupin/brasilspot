@@ -16,4 +16,10 @@ class Usuario extends Model
         'idPerfil',
         'isVendedor'
     );
+
+    public function PerfilUsuario()
+    {
+        return $this->hasOne('App\PerfilUsuario','id','idPerfil');
+    }
+
 }
