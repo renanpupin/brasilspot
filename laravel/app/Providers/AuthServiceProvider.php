@@ -26,11 +26,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         parent::registerPolicies($gate);
 
-        $gate->define('listar-categorias', function($user){
-            $usuario = \App\Usuario::find($user->id);
-            $perfil = $usuario->PerfilUsuario;
 
-            return $perfil->tipo == 'Admin';
+        $gate->define('logar', function($user){
+
+            $perfil = $user->PerfilUsuario();
+            if(!empty($perfil))
+                return true;
+            return false;
         });
 
         //

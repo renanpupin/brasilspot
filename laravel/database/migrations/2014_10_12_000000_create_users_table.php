@@ -17,8 +17,15 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->boolean('isVendedor')->default(false);
+            $table->integer('idPerfilUsuario')->unsigned();
             $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::table('users', function($table)
+        {
+            $table->foreign('idPerfilUsuario')->references('id')->on('perfisUsuarios');
         });
     }
 

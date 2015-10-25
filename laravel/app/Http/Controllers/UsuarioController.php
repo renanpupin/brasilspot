@@ -8,6 +8,7 @@ use App\User;
 use App\UsuarioPerfil;
 use App\Http\Controllers\Controller;
 use Hash;
+use Illuminate\Support\Facades\Session;
 
 class UsuarioController extends Controller
 {
@@ -29,19 +30,31 @@ class UsuarioController extends Controller
 
     public function store(Request $request)
     {
+
+        $regras = array(
+            'email' => 'required|string',
+            'password' =>'required',
+            'name' => 'required',
+            'perfis' => 'required|integer',
+            'isVendedor' => 'boolean'
+        );
+        $mensagens = array(
+            'required' => 'O campo :attribute deve ser preenchido.'
+        );
+
+        $this->validate($request, $regras, $mensagens);
+
         $usuario = User::create([
            'name' => $request['name'],
            'email' => $request['email'],
-            'password' => Hash::make($request['email'])
+           'password' => Hash::make($request['password']),
+           'idPerfilUsuario' => $request['perfis'],
+           'isVendedor'=> $request['isVendedor']=='1'?'1':'0'
         ]);
 
-        UsuarioPerfil::create([
-            'idUsuario' => $usuario->id,
-            'idPerfilUsuario' => $request['perfis'],
-            'isVendedor'=> $request['isVendedor']
-        ]);
+        Session::flash('flash_message', 'Usuário adicionada com sucesso!');
 
-        return 'Usuario Registrado com sucesso!!';
+        return redirect()->back();
     }
 
 
