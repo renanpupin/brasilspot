@@ -8,9 +8,15 @@
 @stop
 
 @section('content')
+
+    <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
+        <h2>Encontre Empresas</h2>
+    </div>
+
     <div id="filtrar" class="empresa-filtro grid-m-12 grid-s-12 grid-xs-12">
         <form id="formFiltroEmpresas">
             <div class="row">
+                <span class="separator"></span>
                 <div class="filtroEmpreendimento form-group grid-m-5 grid-s-12 grid-xs-12" style="margin-top: 0px;">
                     <label for="selecionarTipoEmpreendimento" style="text-align: left;">Filtro</label>
                     <div class="row" style="margin-top: 5px">
@@ -66,13 +72,22 @@
         </form>
     </div>
 
+    {{--<div class="content-links grid-m-12 grid-s-12 grid-xs-12">--}}
+        {{--<div class="row">--}}
+            {{--<div class="grid-m-12 grid-s-12 grid-xs-12">--}}
+                {{--<a href="#">Grid</a>--}}
+                {{--<a href="#">List</a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+
     <div class="content-empresas grid-m-12 grid-s-12 grid-xs-12">
         <div class="row">
             <div class="grid-m-6  grid-s-12 grid-xs-12">
                 <div class="empresa-item ">
                     <div class="row">
                         <div class="empresa-logo grid-m-3 grid-s-4 grid-xs-4">
-                            <img src="assets/img/logo.00_png_srb">
+                            <img src="assets/img/placeholder-company.png">
                         </div>
                         <div class="empresa-nome grid-m-9 grid-s-8 grid-xs-8">
                             <div class="text-title">
@@ -122,7 +137,7 @@
                 <div class="empresa-item ">
                     <div class="row">
                         <div class="empresa-logo grid-m-3 grid-s-4 grid-xs-4">
-                            <img src="assets/img/logo.00_png_srb">
+                            <img src="assets/img/placeholder-company.png">
                         </div>
                         <div class="empresa-nome grid-m-9 grid-s-8 grid-xs-8">
                             <div class="text-title">
@@ -172,7 +187,7 @@
                 <div class="empresa-item ">
                     <div class="row">
                         <div class="empresa-logo grid-m-3 grid-s-4 grid-xs-4">
-                            <img src="assets/img/logo.00_png_srb">
+                            <img src="assets/img/placeholder-company.png">
                         </div>
                         <div class="empresa-nome grid-m-9 grid-s-8 grid-xs-8">
                             <div class="text-title">
@@ -222,7 +237,7 @@
                 <div class="empresa-item ">
                     <div class="row">
                         <div class="empresa-logo grid-m-3 grid-s-4 grid-xs-4">
-                            <img src="assets/img/logo.00_png_srb">
+                            <img src="assets/img/placeholder-company.png">
                         </div>
                         <div class="empresa-nome grid-m-9 grid-s-8 grid-xs-8">
                             <div class="text-title">
@@ -272,7 +287,7 @@
                 <div class="empresa-item ">
                     <div class="row">
                         <div class="empresa-logo grid-m-3 grid-s-4 grid-xs-4">
-                            <img src="assets/img/logo.00_png_srb">
+                            <img src="assets/img/placeholder-company.png">
                         </div>
                         <div class="empresa-nome grid-m-9 grid-s-8 grid-xs-8">
                             <div class="text-title">
@@ -322,7 +337,7 @@
                 <div class="empresa-item ">
                     <div class="row">
                         <div class="empresa-logo grid-m-3 grid-s-4 grid-xs-4">
-                            <img src="assets/img/logo.00_png_srb">
+                            <img src="assets/img/placeholder-company.png">
                         </div>
                         <div class="empresa-nome grid-m-9 grid-s-8 grid-xs-8">
                             <div class="text-title">
