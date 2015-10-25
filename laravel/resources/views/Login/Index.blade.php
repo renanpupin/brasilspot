@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                         @endif
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('Login') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Email:</label>
