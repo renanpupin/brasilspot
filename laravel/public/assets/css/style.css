@@ -2255,6 +2255,7 @@ footer {
 
 #content {
   display: inline-block;
+  width: 100%;
   margin-top: 15px; }
   #content .content-empresas {
     padding: 15px; }
@@ -2392,8 +2393,6 @@ footer {
     vertical-align: middle;
     font-size: 14px;
     font-size: .8rem; }
-    .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento:hover {
-      transform: scale(10); }
     .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento svg {
       width: 18px;
       height: 18px;

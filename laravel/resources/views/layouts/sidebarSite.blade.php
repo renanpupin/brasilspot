@@ -19,7 +19,7 @@
             </div>
             <ul role="menu">
                 <li>
-                    <a href="{{ url('Empresa' )}}" class="{{ Request::segment(1) === 'Empresa' ? 'active' : null }}">
+                    <a href="{{ url('Inicio' )}}" class="{{ Request::segment(1) === 'Inicio' ? 'active' : null }}">
                         <i class="material-icons" style="color: #DB0465;">place</i>Empresas
                     </a>
                 </li>

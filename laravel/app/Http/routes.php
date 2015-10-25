@@ -81,13 +81,22 @@ Route::get('Planos', function () {
     return view('planos');
 });
 
+Route::get('Politica', function () {
+    return view('politica');
+});
+
 Route::get('Sobre', function () {
     return view('sobre');
 });
 
-Route::get('/', function () {
+Route::get('TrabalheConosco', function () {
+    return view('trabalheConosco');
+});
+
+Route::get('Inicio', function () {
     return view('index');
 });
+<<<<<<< HEAD
 Route::get('/index', function () {
     return view('index');
 });
@@ -106,3 +115,9 @@ Route::post('forgot', ['as' =>'password/email', 'uses' => 'Auth\PasswordControll
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
+=======
+
+Route::get('/', function () {
+    return redirect('Inicio');
+});
+>>>>>>> origin/master

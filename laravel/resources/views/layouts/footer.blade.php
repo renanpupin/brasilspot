@@ -9,16 +9,16 @@
                             Links Úteis
                         </div>
                         <div class="footer-link text-caption">
-                            <a href="javascript:void(0);">Sobre</a>
+                            <a href="{{ url('Sobre' )}}">Sobre</a>
                         </div>
                         <div class="footer-link text-caption">
-                            <a href="javascript:void(0);">Contato</a>
+                            <a href="{{ url('Contato' )}}">Contato</a>
                         </div>
                         <div class="footer-link text-caption">
-                            <a href="javascript:void(0);">Politica de Privacidade</a>
+                            <a href="{{ url('Politica' )}}">Politica de Privacidade</a>
                         </div>
                         <div class="footer-link text-caption">
-                            <a href="javascript:void(0);">Trabalhe Conosco</a>
+                            <a href="{{ url('TrabalheConosco' )}}">Trabalhe Conosco</a>
                         </div>
                     </div>
                 </div>
