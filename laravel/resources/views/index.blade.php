@@ -168,9 +168,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="grid-m-4 grid-s-12 grid-xs-12">
+            <div class="grid-m-6  grid-s-12 grid-xs-12">
                 <div class="empresa-item ">
                     <div class="row">
                         <div class="empresa-logo grid-m-3 grid-s-4 grid-xs-4">
@@ -220,7 +218,7 @@
                     </div>
                 </div>
             </div>
-            <div class="grid-m-4 grid-s-12 grid-xs-12">
+            <div class="grid-m-6  grid-s-12 grid-xs-12">
                 <div class="empresa-item ">
                     <div class="row">
                         <div class="empresa-logo grid-m-3 grid-s-4 grid-xs-4">
@@ -270,7 +268,7 @@
                     </div>
                 </div>
             </div>
-            <div class="grid-m-4 grid-s-12 grid-xs-12">
+            <div class="grid-m-6  grid-s-12 grid-xs-12">
                 <div class="empresa-item ">
                     <div class="row">
                         <div class="empresa-logo grid-m-3 grid-s-4 grid-xs-4">
@@ -320,9 +318,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="grid-m-12 grid-s-12 grid-xs-12">
+            <div class="grid-m-6  grid-s-12 grid-xs-12">
                 <div class="empresa-item ">
                     <div class="row">
                         <div class="empresa-logo grid-m-3 grid-s-4 grid-xs-4">
@@ -381,14 +377,14 @@
         </a>
     </div>
 
-    <div id="tags" class="empresa-tags grid-m-12 grid-s-12 grid-xs-12">
-        <h4>Tags</h4>
-        <a href="javascript:void(0)"><span>TaTaggTag1</span></a>
-        <a href="javascript:void(0)"><span>Tag2Tag</span></a>
-        <a href="javascript:void(0)"><span>Tag2Tag</span></a>
-        <a href="javascript:void(0)"><span>Tag2Tag</span></a>
-        <a href="javascript:void(0)"><span>Tag2Tag</span></a>
-        <a href="javascript:void(0)"><span>Tag2Tag</span></a>
-        <a href="javascript:void(0)"><span>Tag3</span></a>
-    </div>
+    {{--<div id="tags" class="empresa-tags grid-m-12 grid-s-12 grid-xs-12">--}}
+        {{--<h4>Tags</h4>--}}
+        {{--<a href="javascript:void(0)"><span>TaTaggTag1</span></a>--}}
+        {{--<a href="javascript:void(0)"><span>Tag2Tag</span></a>--}}
+        {{--<a href="javascript:void(0)"><span>Tag2Tag</span></a>--}}
+        {{--<a href="javascript:void(0)"><span>Tag2Tag</span></a>--}}
+        {{--<a href="javascript:void(0)"><span>Tag2Tag</span></a>--}}
+        {{--<a href="javascript:void(0)"><span>Tag2Tag</span></a>--}}
+        {{--<a href="javascript:void(0)"><span>Tag3</span></a>--}}
+    {{--</div>--}}
 @stop

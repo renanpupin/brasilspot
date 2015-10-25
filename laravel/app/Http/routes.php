@@ -68,10 +68,22 @@ Route::get('Planos', function () {
     return view('planos');
 });
 
+Route::get('Politica', function () {
+    return view('politica');
+});
+
 Route::get('Sobre', function () {
     return view('sobre');
 });
 
-Route::get('/', function () {
+Route::get('TrabalheConosco', function () {
+    return view('trabalheConosco');
+});
+
+Route::get('Inicio', function () {
     return view('index');
+});
+
+Route::get('/', function () {
+    return redirect('Inicio');
 });
