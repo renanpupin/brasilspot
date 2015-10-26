@@ -134,7 +134,7 @@
                             </a>
                         </div>
                         <div class="grid-m-6 grid-s-6 grid-xs-6" style="padding-left: 0px;">
-                            <a href="{{ url('Logout' )}}">
+                            <a href="{{ url('Login/logout/' )}}">
                                 <i class="material-icons">arrow_forward</i>Logout
                             </a>
                         </div>

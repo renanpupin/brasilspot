@@ -27,6 +27,6 @@ class Empresa extends Model
 
     public function TipoEmpresa()
     {
-        return $this->hasOne('TiposEmpresas','id','idTipoEmpresa');
+        return $this->hasOne('\App\TipoEmpresa','id','idTipoEmpresa');
     }
 }

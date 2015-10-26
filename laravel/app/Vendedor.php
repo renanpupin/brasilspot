@@ -15,4 +15,9 @@ class Vendedor extends Model
       'idMeta',
       'idVendedorPai'
     );
+
+    public function Vendedor()
+    {
+        return $this.hasOne('\App\User','id','idVendedorPai');
+    }
 }

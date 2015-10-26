@@ -19,7 +19,7 @@
 
     <div>
         <button type="submit">
-            Send Password Reset Link
+            Envie o link de redefinição de senha
         </button>
     </div>
 </form>

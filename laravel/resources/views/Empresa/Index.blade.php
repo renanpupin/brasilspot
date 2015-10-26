@@ -3,8 +3,8 @@
 @section('title', 'Bem vindo!')
 
 @section('sidebar')
-@parent
-@include('layouts.sidebarSistema')
+    @parent
+    @include('layouts.sidebarSistema')
 @stop
 
 @section('content')
