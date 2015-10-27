@@ -44,30 +44,30 @@
                     </a>
                 </li>
                 <li class="submenu">
-                    <a href="javascript:void(0)" class="{{ Request::segment(1) === 'Cliente' ? 'active' : null }}">
+                    <a href="{{ url('Clientes' )}}" class="{{ Request::segment(1) === 'Clientes' ? 'active' : null }}">
                         <i class="material-icons" style="color: #266CAD;">person</i>Seus Clientes
                     </a>
                     <ul>
                         <li>
-                            <a href="{{ url('Cliente/Gerenciar' )}}" class="{{ Request::segment(1) === 'Cliente' ? 'active' : null }}">
+                            <a href="{{ url('Clientes/Gerenciar' )}}" class="{{ Request::segment(1) === 'Clientes' ? 'active' : null }}">
                                 <i class="material-icons">person_add</i>Gerenciar seus clientes
                             </a>
                         </li>
+                        {{--<li>--}}
+                            {{--<a href="{{ url('Cliente/Edicoes' )}}" class="{{ Request::segment(1) === 'Clientes' ? 'active' : null }}">--}}
+                                {{--<i class="material-icons">sync_problem</i>Edições não aprovadas--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
                         <li>
-                            <a href="{{ url('Cliente/Edicoes' )}}" class="{{ Request::segment(1) === 'Edicoes' ? 'active' : null }}">
-                                <i class="material-icons">sync_problem</i>Edições não aprovadas
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('Cliente/Reclamacoes' )}}" class="{{ Request::segment(1) === 'Reclamacoes' ? 'active' : null }}">
+                            <a href="{{ url('Clientes/Reclamacoes' )}}" class="{{ Request::segment(1) === 'Clientes' ? 'active' : null }}">
                                 <i class="material-icons">mood_bad</i>Reclamações
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ url('Cliente/EmpresasDesativadas' )}}" class="{{ Request::segment(1) === 'EmpresasDesativadas' ? 'active' : null }}">
-                                <i class="material-icons">location_off</i>Empresas desativadas
-                            </a>
-                        </li>
+                        {{--<li>--}}
+                            {{--<a href="{{ url('Cliente/EmpresasDesativadas' )}}" class="{{ Request::segment(1) === 'EmpresasDesativadas' ? 'active' : null }}">--}}
+                                {{--<i class="material-icons">location_off</i>Empresas desativadas--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
                     </ul>
                 </li>
                 <li class="submenu">
@@ -134,7 +134,7 @@
                             </a>
                         </div>
                         <div class="grid-m-6 grid-s-6 grid-xs-6" style="padding-left: 0px;">
-                            <a href="{{ url('Login/logout/' )}}">
+                            <a href="{{ url('Logout' )}}">
                                 <i class="material-icons">arrow_forward</i>Logout
                             </a>
                         </div>

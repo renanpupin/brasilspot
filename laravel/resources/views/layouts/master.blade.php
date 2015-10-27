@@ -78,14 +78,9 @@
 
         <!-- SCRIPTS SECTION -->
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script type="text/javascript" src="http://www.mattboldt.com/demos/typed-js/js/typed.custom.js"></script>
-        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js"></script>
-        {{--<script type="text/javascript" src="assets/js/dropdown.js"></script>--}}
-        {{--<script type="text/javascript" src="assets/js/script.js"></script>--}}
         <script type="text/javascript" src="{!! asset('assets/js/modal.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('assets/js/dropdown.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('assets/js/script.js') !!}"></script>
         @yield('scripts')
-        {{--yield scripts here--}}
     </body>
 </html>

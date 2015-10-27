@@ -60,6 +60,11 @@ class VendedorController extends Controller
         return "Vendedor Registrado com sucesso!!";
     }
 
+    public function mapa()
+    {
+        return view('Vendedor.Mapa');
+    }
+
 
     public function show($id)
     {

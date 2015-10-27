@@ -53,4 +53,15 @@ class MetaController extends Controller
     {
         //
     }
+
+    public function mensal()
+    {
+        return view('Meta.Mensal');
+    }
+
+
+    public function historico()
+    {
+        return view('Meta.Historico');
+    }
 }

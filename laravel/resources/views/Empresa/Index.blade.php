@@ -13,7 +13,7 @@
         <h2>Listar Empresas</h2>
     </div>
 
-    <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
+    <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
         <div class="breadcrumbs-content container">
             <div class="row">
                 <i class="material-icons">home</i>

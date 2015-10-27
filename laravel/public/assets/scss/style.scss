@@ -5,12 +5,13 @@ $text-black: #444;
 $green: #1c8a43;
 
 @import "_mixins";
+@import "_space";
 @import "_modal";
 @import "_alerts";
 @import "_stripped";
 @import "_formPatterns";
 @import "_tabelaPreco";
-@import "_space";
+@import "_login";
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 //code

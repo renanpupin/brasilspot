@@ -43,7 +43,7 @@ class LoginController extends Controller
 
             if($this->authorize('logar',$email,$senha))
             {
-                return redirect('/index');
+                return redirect('Empresa');
             }
         }
 
