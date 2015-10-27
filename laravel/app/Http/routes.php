@@ -116,6 +116,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('Usuario/editar/{id}', 'UsuarioController@edit');
     Route::get('Usuario/cadastrar', 'UsuarioController@create');
     Route::resource('Usuario','UsuarioController');
+
+    //routes for "Enderecos"
+    Route::post('Endereco/editar/{id}', 'EnderecoController@update');
+    Route::get('Endereco/editar/{id}', 'EnderecoController@edit');
+    Route::get('Endereco/cadastrar', 'EnderecoController@create');
+    Route::resource('Endereco','EnderecoController');
 });
 
 //SITE ROUTES
