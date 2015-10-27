@@ -59,7 +59,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Descrição</th>
-                    <th>Categoria pai</th>
+                    <th>Categoria principal</th>
                     <th></th>
                     <th></th>
                     <th></th>

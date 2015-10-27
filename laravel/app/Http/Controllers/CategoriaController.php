@@ -90,7 +90,7 @@ class CategoriaController extends Controller
     {
         $categoriasQuery = Categoria::where('id','<>',$id)->get();
 
-        $categoriasDropDown = ['-1'=>'Selecione a categoria pai'] + $categoriasQuery->lists('nome','id')->all();
+        $categoriasDropDown = ['-1'=>'Selecione a categoria principal'] + $categoriasQuery->lists('nome','id')->all();
 
         $categoria = Categoria::findOrNew($id);
 

@@ -15,11 +15,6 @@ $green: #1c8a43;
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 //code
-*, *:before, *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 
 html, body{
   height: 100%;
@@ -960,6 +955,72 @@ footer{
   }
 }
 
+#visualizar{
+  #galeria-empresa{
+    .galeria-feature{
+      width: 100%;
+      height: auto;
+      padding: 15px;
+      img{
+        // background-color: #e7e7e7;
+        width: 100%;
+        height: auto;
+        @extend .shadow-1;
+        &:hover{
+          @extend .shadow-2;
+        }
+      }
+    }
+    .galeria-thumb{
+      width: 100%;
+      // height: auto;
+      // padding: 15px;
+      .thumb-item{
+        &:first-child{
+          // padding-left: 0;
+        }
+        &:last-child{
+          // padding-right: 0;
+        }
+        img{
+          width: 100%;
+          height: auto;
+          @extend .shadow-1;
+          &:hover{
+            @extend .shadow-2;
+          }
+        }
+      }
+    }
+  }
+  .content-descricao{
+    text-align: justify ;
+  }
+  .cartoes{
+    .cartoes-bandeiras{
+      span img{
+        width: 30px;
+        height: auto;
+        margin-right: 5px;
+      }
+    }
+  }
+  .content-social{
+    //text-align: center;
+    .content-social-item{
+      margin-right: 15px;
+      a{
+        cursor: pointer;
+      }
+      img{
+        width: 1rem;
+        height: auto;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
 #listagem{
   .col-actions i{
     border-radius: 50%;
@@ -974,13 +1035,13 @@ footer{
     }
   }
 }
-.empresa-filtro{
-  .filtroEmpreendimento{
-    text-align: center;
+//.empresa-filtro{
+  .filtroEmpreendimento, .filtroCategoria{
+    //text-align: center;
     a{
       text-decoration: none;
     }
-    .filtroTipoEmpreendimento{
+    .filtroTipoEmpreendimento, .filtroTipoCategoria{
       vertical-align: middle;
       //text-transform: uppercase;
       font-size: 14px;
@@ -1013,6 +1074,12 @@ footer{
           fill: #E66D1C;
         }
       }
+      &.filtroItemCategoria{
+        &:hover, &:hover svg, &.selecionado {
+          color: #E66D1C;
+          fill: #E66D1C;
+        }
+      }
       &.selecionado{
         //padding: 5px 4px;
         //background-color: #444;
@@ -1020,5 +1087,37 @@ footer{
         //border-radius: 2px;
       }
     }
+  }
+//}
+
+.content-title{
+  #comercioIcon, #atracoesIcon, #servicosIcon{
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-right: 5px;
+    position: relative;
+    top: 5px;
+  }
+}
+
+.inline-logo{
+  text-align: center;
+  @extend .vertical-offset;
+}
+.inline-logo-text{
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: $green;
+  letter-spacing: -2px;
+  .yellow{
+    color: gold;
+  }
+  .spot{
+    color: $text-black;
+    letter-spacing: 0px;
+    font-size: 4.5rem;
+    font-weight: bold;
+    display: block;
   }
 }

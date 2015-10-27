@@ -12,13 +12,26 @@
                             <a href="{{ url('Sobre' )}}">Sobre</a>
                         </div>
                         <div class="footer-link text-caption">
-                            <a href="{{ url('Contato' )}}">Contato</a>
+                            <a href="{{ url('Planos' )}}">Planos</a>
                         </div>
                         <div class="footer-link text-caption">
-                            <a href="{{ url('Politica' )}}">Politica de Privacidade</a>
+                            <a href="{{ url('Contato' )}}">Contato</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-m-4 grid-s-6 grid-xs-12">
+                    <div class="footer-info">
+                        <div class="footer-title text-title">
+                            Área Spot
+                        </div>
+                        <div class="footer-link text-caption">
+                            <a href="{{ url('Login' )}}">Área de Vendedores</a>
                         </div>
                         <div class="footer-link text-caption">
                             <a href="{{ url('TrabalheConosco' )}}">Trabalhe Conosco</a>
+                        </div>
+                        <div class="footer-link text-caption">
+                            <a href="{{ url('Politica' )}}">Politica de Privacidade</a>
                         </div>
                     </div>
                 </div>

@@ -18,4 +18,17 @@ class ClienteController extends Controller
         return view('Cliente.Gerenciar');
     }
 
+    public function create()
+    {
+        $perfis = \App\PerfilUsuario::all()->lists('tipo','id');
+
+        return View('Cliente.create')
+            ->with('perfis',$perfis);
+    }
+
+    public function store()
+    {
+        //return View('Cliente.Create');
+    }
+
 }

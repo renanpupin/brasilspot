@@ -1779,11 +1779,6 @@ table .col-actions i {
   .inputError:hover {
     border-color: rgba(255, 0, 0, 0.5) !important; }
 
-*, *:before, *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-
 html, body {
   height: 100%;
   min-height: 100%;
@@ -1816,7 +1811,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-font-smoothing: antialiased;
   font-weight: 400; }
 
-.vertical-offset, #sidebar .sidebar-logo, #content .content-empresas {
+.vertical-offset, #sidebar .sidebar-logo, #content .content-empresas, .inline-logo {
   padding-top: 15px;
   padding-bottom: 15px; }
 
@@ -1942,10 +1937,10 @@ p {
     clear: both; }
 
 /* shadows */
-.shadow-1, .alert, .table-responsive:hover, #sidebar, #content .content-empresas .empresa-item, #breadcrumbs .breadcrumbs-content, #cadastro #galeria-empresa .galeria-feature img, #cadastro #galeria-empresa .galeria-thumb .thumb-item img {
+.shadow-1, .alert, .table-responsive:hover, #sidebar, #content .content-empresas .empresa-item, #breadcrumbs .breadcrumbs-content, #cadastro #galeria-empresa .galeria-feature img, #cadastro #galeria-empresa .galeria-thumb .thumb-item img, #visualizar #galeria-empresa .galeria-feature img, #visualizar #galeria-empresa .galeria-thumb .thumb-item img {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
-.shadow-2, .alert:hover, .btn:hover, #sidebar .sidebar-menu nav#sideMenu ul li a:not(.active):hover, #sidebar .sidebar-menu nav#sideMenu ul li.submenu.openSub > a, #sidebar .sidebar-links ul li a:hover, #sidebar .sidebar-links ul li a.active, #content .content-empresas .empresa-item:hover, #tags a span:hover, #cadastro #galeria-empresa .galeria-feature img:hover, #cadastro #galeria-empresa .galeria-thumb .thumb-item img:hover, #listagem .col-actions i:hover {
+.shadow-2, .alert:hover, .btn:hover, #sidebar .sidebar-menu nav#sideMenu ul li a:not(.active):hover, #sidebar .sidebar-menu nav#sideMenu ul li.submenu.openSub > a, #sidebar .sidebar-links ul li a:hover, #sidebar .sidebar-links ul li a.active, #content .content-empresas .empresa-item:hover, #tags a span:hover, #cadastro #galeria-empresa .galeria-feature img:hover, #cadastro #galeria-empresa .galeria-thumb .thumb-item img:hover, #visualizar #galeria-empresa .galeria-feature img:hover, #visualizar #galeria-empresa .galeria-thumb .thumb-item img:hover, #listagem .col-actions i:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 .shadow-3 {
@@ -2469,6 +2464,33 @@ footer {
     width: 100%;
     height: auto; }
 
+#visualizar #galeria-empresa .galeria-feature {
+  width: 100%;
+  height: auto;
+  padding: 15px; }
+  #visualizar #galeria-empresa .galeria-feature img {
+    width: 100%;
+    height: auto; }
+#visualizar #galeria-empresa .galeria-thumb {
+  width: 100%; }
+  #visualizar #galeria-empresa .galeria-thumb .thumb-item img {
+    width: 100%;
+    height: auto; }
+#visualizar .content-descricao {
+  text-align: justify; }
+#visualizar .cartoes .cartoes-bandeiras span img {
+  width: 30px;
+  height: auto;
+  margin-right: 5px; }
+#visualizar .content-social .content-social-item {
+  margin-right: 15px; }
+  #visualizar .content-social .content-social-item a {
+    cursor: pointer; }
+  #visualizar .content-social .content-social-item img {
+    width: 1rem;
+    height: auto;
+    vertical-align: middle; }
+
 #listagem .col-actions i {
   border-radius: 50%;
   padding: 4px;
@@ -2482,28 +2504,54 @@ footer {
     background-color: #404040;
     color: rgba(255, 255, 255, 0.9); }
 
-.empresa-filtro .filtroEmpreendimento {
+.filtroEmpreendimento a, .filtroCategoria a {
+  text-decoration: none; }
+.filtroEmpreendimento .filtroTipoEmpreendimento, .filtroEmpreendimento .filtroTipoCategoria, .filtroCategoria .filtroTipoEmpreendimento, .filtroCategoria .filtroTipoCategoria {
+  vertical-align: middle;
+  font-size: 14px;
+  font-size: .8rem; }
+  .filtroEmpreendimento .filtroTipoEmpreendimento svg, .filtroEmpreendimento .filtroTipoCategoria svg, .filtroCategoria .filtroTipoEmpreendimento svg, .filtroCategoria .filtroTipoCategoria svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    position: relative;
+    top: 5px; }
+  .filtroEmpreendimento .filtroTipoEmpreendimento.filtroComercio:hover, .filtroEmpreendimento .filtroTipoEmpreendimento.filtroComercio:hover svg, .filtroEmpreendimento .filtroTipoEmpreendimento.filtroComercio.selecionado, .filtroEmpreendimento .filtroTipoCategoria.filtroComercio:hover, .filtroEmpreendimento .filtroTipoCategoria.filtroComercio:hover svg, .filtroEmpreendimento .filtroTipoCategoria.filtroComercio.selecionado, .filtroCategoria .filtroTipoEmpreendimento.filtroComercio:hover, .filtroCategoria .filtroTipoEmpreendimento.filtroComercio:hover svg, .filtroCategoria .filtroTipoEmpreendimento.filtroComercio.selecionado, .filtroCategoria .filtroTipoCategoria.filtroComercio:hover, .filtroCategoria .filtroTipoCategoria.filtroComercio:hover svg, .filtroCategoria .filtroTipoCategoria.filtroComercio.selecionado {
+    color: #E66D1C;
+    fill: #E66D1C; }
+  .filtroEmpreendimento .filtroTipoEmpreendimento.filtroServico:hover, .filtroEmpreendimento .filtroTipoEmpreendimento.filtroServico:hover svg, .filtroEmpreendimento .filtroTipoEmpreendimento.filtroServico.selecionado, .filtroEmpreendimento .filtroTipoCategoria.filtroServico:hover, .filtroEmpreendimento .filtroTipoCategoria.filtroServico:hover svg, .filtroEmpreendimento .filtroTipoCategoria.filtroServico.selecionado, .filtroCategoria .filtroTipoEmpreendimento.filtroServico:hover, .filtroCategoria .filtroTipoEmpreendimento.filtroServico:hover svg, .filtroCategoria .filtroTipoEmpreendimento.filtroServico.selecionado, .filtroCategoria .filtroTipoCategoria.filtroServico:hover, .filtroCategoria .filtroTipoCategoria.filtroServico:hover svg, .filtroCategoria .filtroTipoCategoria.filtroServico.selecionado {
+    color: #E66D1C;
+    fill: #E66D1C; }
+  .filtroEmpreendimento .filtroTipoEmpreendimento.filtroAtracao:hover, .filtroEmpreendimento .filtroTipoEmpreendimento.filtroAtracao:hover svg, .filtroEmpreendimento .filtroTipoEmpreendimento.filtroAtracao.selecionado, .filtroEmpreendimento .filtroTipoCategoria.filtroAtracao:hover, .filtroEmpreendimento .filtroTipoCategoria.filtroAtracao:hover svg, .filtroEmpreendimento .filtroTipoCategoria.filtroAtracao.selecionado, .filtroCategoria .filtroTipoEmpreendimento.filtroAtracao:hover, .filtroCategoria .filtroTipoEmpreendimento.filtroAtracao:hover svg, .filtroCategoria .filtroTipoEmpreendimento.filtroAtracao.selecionado, .filtroCategoria .filtroTipoCategoria.filtroAtracao:hover, .filtroCategoria .filtroTipoCategoria.filtroAtracao:hover svg, .filtroCategoria .filtroTipoCategoria.filtroAtracao.selecionado {
+    color: #E66D1C;
+    fill: #E66D1C; }
+  .filtroEmpreendimento .filtroTipoEmpreendimento.filtroItemCategoria:hover, .filtroEmpreendimento .filtroTipoEmpreendimento.filtroItemCategoria:hover svg, .filtroEmpreendimento .filtroTipoEmpreendimento.filtroItemCategoria.selecionado, .filtroEmpreendimento .filtroTipoCategoria.filtroItemCategoria:hover, .filtroEmpreendimento .filtroTipoCategoria.filtroItemCategoria:hover svg, .filtroEmpreendimento .filtroTipoCategoria.filtroItemCategoria.selecionado, .filtroCategoria .filtroTipoEmpreendimento.filtroItemCategoria:hover, .filtroCategoria .filtroTipoEmpreendimento.filtroItemCategoria:hover svg, .filtroCategoria .filtroTipoEmpreendimento.filtroItemCategoria.selecionado, .filtroCategoria .filtroTipoCategoria.filtroItemCategoria:hover, .filtroCategoria .filtroTipoCategoria.filtroItemCategoria:hover svg, .filtroCategoria .filtroTipoCategoria.filtroItemCategoria.selecionado {
+    color: #E66D1C;
+    fill: #E66D1C; }
+
+.content-title #comercioIcon, .content-title #atracoesIcon, .content-title #servicosIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-right: 5px;
+  position: relative;
+  top: 5px; }
+
+.inline-logo {
   text-align: center; }
-  .empresa-filtro .filtroEmpreendimento a {
-    text-decoration: none; }
-  .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento {
-    vertical-align: middle;
-    font-size: 14px;
-    font-size: .8rem; }
-    .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento svg {
-      width: 18px;
-      height: 18px;
-      margin-right: 5px;
-      position: relative;
-      top: 5px; }
-    .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroComercio:hover, .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroComercio:hover svg, .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroComercio.selecionado {
-      color: #E66D1C;
-      fill: #E66D1C; }
-    .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroServico:hover, .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroServico:hover svg, .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroServico.selecionado {
-      color: #E66D1C;
-      fill: #E66D1C; }
-    .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroAtracao:hover, .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroAtracao:hover svg, .empresa-filtro .filtroEmpreendimento .filtroTipoEmpreendimento.filtroAtracao.selecionado {
-      color: #E66D1C;
-      fill: #E66D1C; }
+
+.inline-logo-text {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #1c8a43;
+  letter-spacing: -2px; }
+  .inline-logo-text .yellow {
+    color: gold; }
+  .inline-logo-text .spot {
+    color: #444;
+    letter-spacing: 0px;
+    font-size: 4.5rem;
+    font-weight: bold;
+    display: block; }
 
 /*# sourceMappingURL=style.css.map */

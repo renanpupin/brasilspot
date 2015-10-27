@@ -20,22 +20,27 @@
             <ul role="menu">
                 <li>
                     <a href="{{ url('Inicio' )}}" class="{{ Request::segment(1) === 'Inicio' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #DB0465;">place</i>Empresas
+                        <i class="material-icons" style="color: #DB0465;">home</i>Início
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('Sobre' )}}" class="{{ Request::segment(1) === 'Sobre' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #E66D1C;">description</i>Sobre
+                    <a href="{{ url('Empresas' )}}" class="{{ Request::segment(1) === 'Empresas' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #E66D1C;">place</i>Empresas
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('Planos' )}}" class="{{ Request::segment(1) === 'Plano' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #E6BD35;">trending_up</i>Planos
+                    <a href="{{ url('Comercios' )}}" class="{{ Request::segment(1) === 'Comercios' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #E6BD35;">business</i>Comércios
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('Contato' )}}" class="{{ Request::segment(1) === 'Contato' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #AECC1A;">send</i>Contato
+                    <a href="{{ url('Servicos' )}}" class="{{ Request::segment(1) === 'Servicos' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #AECC1A;">build</i>Serviços
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('Atracoes' )}}" class="{{ Request::segment(1) === 'Atracoes' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #11939C;">insert_emoticon</i>Atrações
                     </a>
                 </li>
                 <li class="menu-options">

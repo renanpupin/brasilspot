@@ -155,4 +155,11 @@ class EmpresaController extends Controller
     {
 
     }
+
+    public function visualizar()
+    {
+        $empresas = Empresa::all();
+
+        return view('VisualizarEmpresa')->with('empresas',$empresas);
+    }
 }

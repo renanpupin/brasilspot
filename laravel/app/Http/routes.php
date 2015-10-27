@@ -23,6 +23,10 @@ Route::post('Password/email', 'PasswordController@postEmail');
 Route::get('Password/reset/{token}', 'PasswordController@getReset');
 Route::post('Password/reset', 'PasswordController@postReset');
 
+Route::get('RecuperarSenha', function () {
+    return view('RecuperarSenha');
+});
+
 //check access
 Route::group(['middleware' => 'auth'], function () {
 
@@ -51,6 +55,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     //routes for "Clientes"
     Route::get('Clientes/Gerenciar', 'ClienteController@gerenciar');
+    Route::get('Clientes/cadastrar', 'ClienteController@create');
+    Route::resource('Clientes','ClienteController');
+
     Route::get('Clientes/Reclamacoes', 'ReclamacaoController@index');
     Route::get('Clientes/Reclamacao/cadastrar', 'ReclamacaoController@create');
     Route::get('Clientes/Reclamacoes/{id}', 'ReclamacaoController@show');
@@ -148,12 +155,30 @@ Route::get('TrabalheConosco', function () {
     return view('trabalheConosco');
 });
 
-Route::get('Inicio', function () {
+Route::get('Comercios', function () {
+    return view('Comercios');
+});
+
+Route::get('Servicos', function () {
+    return view('Servicos');
+});
+
+Route::get('Atracoes', function () {
+    return view('Atracoes');
+});
+
+Route::get('Empresas/{id}', 'EmpresaController@visualizar');
+
+Route::get('Empresas', function () {
     return view('index');
 });
 
+Route::get('Inicio', function () {
+    return view('PesquisaEmpresa');
+});
+
 Route::get('/index', function () {
-    return view('index');
+    return view('PesquisaEmpresa');
 });
 
 Route::get('/', function () {
