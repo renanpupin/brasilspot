@@ -13,7 +13,11 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('Login.index');
+        if(Auth::viaRemember())
+        {
+            return redirect('Empresa');
+        }
+        return view('Login.Index');
     }
 
     public function logar(Request $request)
@@ -35,17 +39,24 @@ class LoginController extends Controller
         $senha = $request['password'];
 
         $condicao = ['email' => $email];
-        $usuario = User::where($condicao)->first();
+        $remember = !empty($request['remember'])?true:false;
 
-        if(!empty($usuario) && Hash::check($senha,$usuario->password))
+        if(Auth::attempt(['email' => $email, 'password' => $senha],$remember))
         {
-            Auth::loginUsingId($usuario->id);
-
             if($this->authorize('logar',$email,$senha))
             {
                 return redirect('Empresa');
             }
         }
+//        if(!empty($usuario) && Hash::check($senha,$usuario->password))
+//        {
+//                Auth::loginUsingId($usuario->id);
+//
+//            if($this->authorize('logar',$email,$senha))
+//            {
+//                return redirect('Empresa');
+//            }
+//        }
 
         return redirect()->back()->withErrors('Usuário inválido.');
     }

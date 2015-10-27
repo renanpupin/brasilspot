@@ -15,7 +15,9 @@ class Endereco extends Migration
             $table->string('bairro', 25);
             $table->string('cidade', 50);
             $table->string('estado', 50);
-            $table->string('cordenadasLatlon', 100);
+            $table->string('cep', 10);
+            $table->string('lat', 100);
+            $table->string('log', 100);
             $table->timestamps();
         });
     }

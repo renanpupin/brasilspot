@@ -29,4 +29,19 @@ class Empresa extends Model
     {
         return $this->hasOne('\App\TipoEmpresa','id','idTipoEmpresa');
     }
+
+    public function Plano()
+    {
+        return $this->hasOne('\App\Plano','id','idPlano');
+    }
+
+    public function Usuario()
+    {
+        return $this->hasOne('\App\User','id','idUsuario');
+    }
+
+    public function Vendedor()
+    {
+        return $this->hasOne('\App\Vendedor','id','idVendedor');
+    }
 }

@@ -12,4 +12,14 @@ class ServicoEmpresa extends Model
       'idEmpresa',
       'idServico',
     );
+
+    public function Empresa()
+    {
+        return $this->hasOne('\App\Empresa','id','idEmpresa');
+    }
+
+    public function Servico()
+    {
+        return $this->hasOne('\App\Servico','id','idServico');
+    }
 }

@@ -41,4 +41,19 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasOne('\App\PerfilUsuario','id','idPerfilUsuario');
     }
+
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
+    }
 }

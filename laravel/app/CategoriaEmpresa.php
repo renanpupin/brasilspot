@@ -12,4 +12,14 @@ class CategoriaEmpresa extends Model
       'idEmpresa',
       'idCategoria'
     );
+
+    public function Empresa()
+    {
+       return $this->hasOne('\App\Empresa','id','idEmpresa');
+    }
+
+    public function Categoria()
+    {
+        return $this->hasOne('\App\Categoria','id','idCategoria');
+    }
 }

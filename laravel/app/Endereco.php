@@ -13,6 +13,8 @@ class Endereco extends Model
       'bairro',
       'cidade',
       'estado',
-      'cordenadasLatlon'
+      'cep',
+      'lon',
+      'lat'
     );
 }

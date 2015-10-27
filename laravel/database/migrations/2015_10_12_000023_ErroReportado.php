@@ -17,6 +17,8 @@ class ErroReportado extends Migration
            $table->increments('id');
            $table->string('descricao');
            $table->integer('idUsuario')->unsigned();
+           $table->boolean('isCorrigido')->default(false);
+           $table->timestamps();
         });
 
         Schema::table('errosReportados', function($table)

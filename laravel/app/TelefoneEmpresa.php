@@ -12,4 +12,14 @@ class TelefoneEmpresa extends Model
       'idEmpresa',
       'idTelefone'
     );
+
+    public function Empresa()
+    {
+        return $this->hasOne('\App\Empresa','id','idEmpresa');
+    }
+
+    public function Telefone()
+    {
+        return $this->hasOne('\App\Telefone','id','idTelefone');
+    }
 }

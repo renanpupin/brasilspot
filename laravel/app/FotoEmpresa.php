@@ -13,4 +13,14 @@ class FotoEmpresa extends Model
       'idFoto',
       'destaque'
     );
+
+    public function Empresa()
+    {
+        return $this->hasOne('\App\Empresa','id','idEmpresa');
+    }
+
+    public function Foto()
+    {
+        return $this->hasOne('\App\Foto','id','idFoto');
+    }
 }

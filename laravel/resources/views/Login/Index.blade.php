@@ -68,7 +68,7 @@
                         <div class="form-field">
                             <div class="check-inline">
                                 <label>
-                                    <input type="checkbox" name="remember">Lembrar-me
+                                    <input type="checkbox" id="remember" name="remember">Lembrar-me
                                 </label>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
 
                         <div class="forget-password">
                             <span class="info">?</span>
-                            <a href="{{ url('RecuperarSenha') }}">Recuperar senha</a>
+                            <a href="{{ url('Password/email') }}">Recuperar senha</a>
                         </div>
 
                     </form>

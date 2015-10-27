@@ -12,4 +12,14 @@ class TagEmpresa extends Model
       'idEmpresa',
       'idTag'
     );
+
+    public function Empresa()
+    {
+        return $this->hasOne('\App\Empresa','id','idEmpresa');
+    }
+
+    public function Tag()
+    {
+        return $this->hasOne('\App\Tag','id','idTag');
+    }
 }
