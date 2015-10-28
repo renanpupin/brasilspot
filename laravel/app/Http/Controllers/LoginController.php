@@ -13,7 +13,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        if(Auth::viaRemember())
+        if(Auth::Check())
         {
             return redirect('Empresa');
         }

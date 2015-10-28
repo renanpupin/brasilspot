@@ -51,9 +51,9 @@
         @foreach($empresas as $empresa)
             <tr>
                 <td>id</td>
-                <td>{{ $empresa->NomeEmpreendedor }}</td>
-                <td>{{ $empresa->RazaoSocial }}</td>
-                <td>{{ $empresa->NomeFantasia }}</td>
+                <td>{{ $empresa->nomeEmpreendedor }}</td>
+                <td>{{ $empresa->Plano->nome }}</td>
+                <td>{{ $empresa->TipoEmpresa->tipo }}</td>
                 <td>
                     <i class="material-icons" title="Comércio">store</i>Comércio
                     <!-- <i class="material-icons" title="Serviço">work</i>

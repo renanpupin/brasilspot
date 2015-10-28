@@ -20,7 +20,7 @@ class EmpresaController extends Controller
 
     public function index()
     {
-        $empresas = Empresa::all();
+        $empresas = Empresa::with('Plano')->with('TipoEmpresa')->get();
 
         return view('Empresa.Index')->with('empresas',$empresas);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filial;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Empresa;
@@ -10,6 +11,8 @@ use App\TipoEmpresa;
 use App\Plano;
 use App\Vendedor;
 use Illuminate\Support\Facades\Session;
+use Auth;
+use Gate;
 use App\Http\Controllers\Controller;
 
 class FilialController extends Controller
@@ -17,9 +20,17 @@ class FilialController extends Controller
 
     public function index()
     {
-        $empresas = Empresa::all();
 
-        return view('Filial.Index')->with('empresas',$empresas);
+        if(Gate::allows('AcessoComerciante'))
+        {
+            $usuario = Auth::user();
+            $empresa = $usuario->Empresa()->first();
+            $filiais = Filial::where('idEmpresa','=',$empresa->id)->get();
+
+            return view('Filial.Index')->with('filiais',$filiais);
+        }
+        $filiais = Filial::with('Endereco')->get();
+        return view('Filial.Index')->with('filiais',$filiais);
     }
 
 

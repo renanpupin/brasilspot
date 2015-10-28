@@ -49,12 +49,14 @@
             <th></th>
         </thead>
         <tbody>
-        @foreach($empresas as $empresa)
+        @foreach($filiais as $filial)
             <tr>
                 <td>id</td>
-                <td>{{ $empresa->NomeEmpreendedor }}</td>
-                <td>{{ $empresa->RazaoSocial }}</td>
-                <td>{{ $empresa->NomeFantasia }}</td>
+                <td>{{ $filial->Endereco->cidade }}</td>
+                <td>{{ $filial->Endereco->estado }}</td>
+                <td>{{ $filial->Endereco->lat }}</td>
+                <td>{{ $filial->Endereco->lon }}</td>
+                <td>{{ $filial->principal }}</td>
                 <td>
                     <i class="material-icons" title="Comércio">store</i>Comércio
                     <!-- <i class="material-icons" title="Serviço">work</i>

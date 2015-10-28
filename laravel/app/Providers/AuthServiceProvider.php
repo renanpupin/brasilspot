@@ -61,8 +61,8 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('AcessoComerciante', function($user){
 
-            $perfil = $user->PerfilUsuario();
-            if($perfil->tipo->equals('Comerciante'))
+            $perfil = $user->PerfilUsuario()->first();
+            if($perfil->tipo == 'Comerciante')
                 return true;
             return false;
         });

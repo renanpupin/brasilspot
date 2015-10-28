@@ -43,12 +43,16 @@
                 <th></th>
                 <th></th>
                 </thead>
+
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                 <tbody>
                 @foreach($cartoes as $cartao)
                     <tr>
                         <td>{{ $cartao->id }}</td>
                         <td>{{ $cartao->bandeira }}</td>
                         <td>{{ $cartao->tipo }}</td>
+
                         <td class="col-actions">
                             <a href="{{ route('Cartao.show', array('id' => $cartao->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>

@@ -35,11 +35,16 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['id','password', 'remember_token'];
 
     public function PerfilUsuario()
     {
         return $this->hasOne('\App\PerfilUsuario','id','idPerfilUsuario');
+    }
+
+    public function Empresa()
+    {
+        return $this->hasOne('\App\Empresa','idUsuario','id');
     }
 
     public function getRememberToken()
