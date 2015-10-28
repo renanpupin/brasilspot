@@ -78,7 +78,7 @@
 
                         <div class="forget-password">
                             <span class="info">?</span>
-                            <a href="{{ url('Password/email') }}">Recuperar senha</a>
+                            <a href="{{ url('RecuperarSenha') }}">Recuperar senha</a>
                         </div>
 
                     </form>
@@ -91,6 +91,6 @@
 
 <!-- SCRIPTS SECTION -->
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-{{--<script type="text/javascript" src="{!! asset('assets/js/script.js') !!}"></script>--}}
+<script type="text/javascript" src="{!! asset('assets/js/script.js') !!}"></script>
 </body>
 </html>

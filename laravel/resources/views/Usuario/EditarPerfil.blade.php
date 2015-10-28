@@ -9,22 +9,8 @@
 @stop
 
 @section('content')
-
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Reclamação #5</h2>
-    </div>
-
-    <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
-        <div class="breadcrumbs-content container">
-            <div class="row">
-                <i class="material-icons">home</i>
-                Você está em:
-                <ul>
-                    <li><a href="{{ url('Clientes/Reclamacoes') }}">Reclamações</a></li>
-                    <li>Detalhar</li>
-                </ul>
-            </div>
-        </div>
+        <h2>Perfil</h2>
     </div>
 
     @if(Session::has('flash_message'))
@@ -47,36 +33,47 @@
         </div>
     @endif
 
-    <div id="detalhar" class="grid-m-12 grid-s-12">
+    <div id="cadastro" class="grid-m-12 grid-s-12">
 
-
+        {!! Form::Open(['route' => 'Clientes.store', 'method' => 'POST']) !!}
         <div class="row">
+            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                {!! Form::label('nome', 'Nome *',null,['for' => 'nome']) !!}
+                {!! Form::text('nome',null,['id' => 'nome']) !!}
+            </div>
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('usuario', 'Usuário',null,['for' => 'usuario']) !!}
-                <p class="field-disabled">José de Silva</p>
-            </div>
-            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('descricao', 'Descrição',null,['for' => 'descricao']) !!}
-                <p class="field-disabled">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
-            </div>
-            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('is_visualizada', 'Visualizada',null,['for' => 'is_visualizada']) !!}
-                <p class="field-disabled">NÃO</p>
+                {!! Form::label('email', 'E-Mail *',null,['for' => 'email']) !!}
+                {!! Form::text('email',null,['class' => 'form-control']) !!}
             </div>
 
-            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 grid-xs-12 button-field">
-                <a href="{{ url('Clientes/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
-                    <span class="text-content">Voltar</span>
-                </a>
+            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                {!! Form::label('password', 'Senha *',null,['for' => 'password']) !!}
+                {!! Form::password('password',null,['class' => 'form-control']) !!}
             </div>
-            <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
-                <a href="{{ url('Clientes/Reclamacoes/aprovar/1') }}" id="btnAprovar" title="Aprovar" class="btn btn-primary ripple">
-                    <span class="text-content">Aprovar</span>
-                </a>
+
+            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                {!! Form::label('passwordConfirm', 'Confirme sua senha *',null,['for' => 'passwordConfirm']) !!}
+                {!! Form::password('passwordConfirm',null,['class' => 'form-control']) !!}
             </div>
         </div>
 
 
+        <div class="row">
+            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-xs-12 grid-s-offset-6 button-field">
+                <a href="{{ url('Clientes/Gerenciar') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                    <span class="text-content">Voltar</span>
+                </a>
+            </div>
+            <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
+                {!! Form::button('<span class="text-content">Editar</span>',[
+                    'id' => 'btnEditar',
+                    'type' => 'submit',
+                    'class' => 'btn btn-primary ripple'
+                    ])!!}
+            </div>
+        </div>
+
+        {!! Form::Close() !!}
     </div>
 @stop

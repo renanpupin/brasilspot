@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Reportar Erro</h2>
+        <h2>Cadastro Reclamação</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -20,7 +20,7 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('Erros') }}">Erro</a></li>
+                    <li><a href="{{ url('Clientes/Reclamacoes') }}">Reclamações</a></li>
                     <li>Cadastrar</li>
                 </ul>
             </div>
@@ -49,7 +49,7 @@
 
     <div id="cadastro" class="grid-m-12 grid-s-12 grid-xs-12">
 
-        {!! Form::Open(['route' => 'Erro.store', 'method' => 'POST']) !!}
+        {!! Form::Open(['route' => 'Reclamacao.store', 'method' => 'POST']) !!}
         <div class="row">
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('descricao', 'Descrição *',null,['for' => 'descricao']) !!}
@@ -58,7 +58,7 @@
         </div>
         <div class="row">
             <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                <a href="{{ url('Erros') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                <a href="{{ url('Clientes/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
                     <span class="text-content">Voltar</span>
                 </a>
             </div>

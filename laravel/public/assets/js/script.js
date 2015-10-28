@@ -42,7 +42,9 @@
     //code here
 
     //init dropdown
-    $("#sideMenu").dropdown();
+    if($("#sideMenu").length != 0){
+        $("#sideMenu").dropdown();
+    }
 
     //init alert globally
     $(".close-alert").click(function(e){

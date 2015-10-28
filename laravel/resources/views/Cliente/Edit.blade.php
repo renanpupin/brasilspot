@@ -9,9 +9,8 @@
 @stop
 
 @section('content')
-
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Reportar Erro</h2>
+        <h2>Cadastro de Cliente</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -20,7 +19,7 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('Erros') }}">Erro</a></li>
+                    <li><a href="{{ url('Clientes/Gerenciar') }}">Cliente</a></li>
                     <li>Cadastrar</li>
                 </ul>
             </div>
@@ -46,33 +45,47 @@
             </div>
         </div>
     @endif
+    <div id="cadastro" class="grid-m-12 grid-s-12">
 
-    <div id="cadastro" class="grid-m-12 grid-s-12 grid-xs-12">
-
-        {!! Form::Open(['route' => 'Erro.store', 'method' => 'POST']) !!}
+        {!! Form::Open(['route' => 'Clientes.store', 'method' => 'POST']) !!}
         <div class="row">
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('descricao', 'Descrição *',null,['for' => 'descricao']) !!}
-                {!! Form::textarea('descricao',null,['id' => 'descricao']) !!}
+                {!! Form::label('nome', 'Nome *',null,['for' => 'nome']) !!}
+                {!! Form::text('nome',null,['id' => 'nome']) !!}
+            </div>
+
+            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                {!! Form::label('email', 'E-Mail *',null,['for' => 'email']) !!}
+                {!! Form::text('email',null,['class' => 'form-control']) !!}
+            </div>
+
+            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                {!! Form::label('password', 'Senha *',null,['for' => 'password']) !!}
+                {!! Form::password('password',null,['class' => 'form-control']) !!}
+            </div>
+
+            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                {!! Form::label('perfis', 'Perfil *',null,['for' => 'perfis']) !!}
+                {!! Form::select('perfis', $perfis) !!}
             </div>
         </div>
+
+
         <div class="row">
-            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                <a href="{{ url('Erros') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-xs-12 grid-s-offset-6 button-field">
+                <a href="{{ url('Clientes/Gerenciar') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
                     <span class="text-content">Voltar</span>
                 </a>
             </div>
-            <div class="form-group grid-m-3 grid-s-3 button-field">
-                {!! Form::button('<span class="text-content">Cadastrar</span>',[
-                    'id' => 'btnCadastrar',
+            <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
+                {!! Form::button('<span class="text-content">Editar</span>',[
+                    'id' => 'btnEditar',
                     'type' => 'submit',
                     'class' => 'btn btn-primary ripple'
                     ])!!}
             </div>
         </div>
 
-
         {!! Form::Close() !!}
-
     </div>
 @stop

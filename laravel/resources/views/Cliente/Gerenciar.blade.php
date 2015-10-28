@@ -52,10 +52,10 @@
                         <td>PRO</td>
                         <td>21/11/2015</td>
                         <td class="col-actions">
-                            <a href="#" title="Detalhar"><i class="material-icons">description</i></a>
+                            <a href="{{ url('Clientes/1') }}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>
                         <td class="col-actions">
-                            <a href="#" title="Editar"><i class="material-icons">mode_edit</i></a>
+                            <a href="{{ url('Clientes/editar/1') }}" title="Editar"><i class="material-icons">mode_edit</i></a>
                         </td>
                         <td class="col-actions">
                             {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}

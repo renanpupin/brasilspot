@@ -69,6 +69,12 @@ class UsuarioController extends Controller
         //
     }
 
+    public function editarPerfil()
+    {
+        return View('Usuario.EditarPerfil');
+    }
+
+
 
     public function update(Request $request, $id)
     {

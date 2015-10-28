@@ -12,7 +12,7 @@ use Auth;
 
 class ClienteController extends Controller
 {
-    public function gerenciar()
+    public function index()
     {
 
         return view('Cliente.Gerenciar');
@@ -29,6 +29,31 @@ class ClienteController extends Controller
     public function store()
     {
         //return View('Cliente.Create');
+    }
+
+    public function show($id)
+    {
+        return view('Cliente.Detail');
+    }
+
+
+    public function edit($id)
+    {
+        $perfis = \App\PerfilUsuario::all()->lists('tipo','id');
+
+        return View('Cliente.Edit')
+            ->with('perfis',$perfis);
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        //
     }
 
 }

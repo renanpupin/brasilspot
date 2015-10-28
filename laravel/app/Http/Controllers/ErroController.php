@@ -31,8 +31,8 @@ class ErroController extends Controller
 
     public function show($id)
     {
-        $erro = Erro::find($id);
-        return view('Erros.Detail')->with('erro',$erro);
+        //$erro = Erro::find($id);
+        return view('Erros.Detail');//->with('erro',$erro);
     }
 
     public function destroy($id)

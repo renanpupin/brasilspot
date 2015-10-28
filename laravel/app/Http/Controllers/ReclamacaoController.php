@@ -19,6 +19,11 @@ class ReclamacaoController extends Controller
         return view('Reclamacao.Index');
     }
 
+    public function create()
+    {
+        return View('Reclamacao.create');
+    }
+
 
     public function show($id)
     {

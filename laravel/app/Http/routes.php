@@ -48,20 +48,24 @@ Route::group(['middleware' => 'auth'], function () {
 
     //routes for "ReportarErro" (somente cadastrar, detalhar e excluir)
     Route::get('Solicitacoes/ReportarErro', 'ErroController@create');
-    Route::resource('ReportarErro','ReclamacaoController');
+    //Route::resource('ReportarErro','ReclamacaoController');
+
     Route::get('Erros', 'ErroController@index');
     Route::get('Erros/{id}', 'ErroController@show');
-    Route::resource('Erros','ErrosController');
+    Route::resource('Erro','ErroController');
 
-    //routes for "Clientes"
-    Route::get('Clientes/Gerenciar', 'ClienteController@gerenciar');
-    Route::get('Clientes/cadastrar', 'ClienteController@create');
-    Route::resource('Clientes','ClienteController');
-
+    //routes for "Reclamacoes"
     Route::get('Clientes/Reclamacoes', 'ReclamacaoController@index');
-    Route::get('Clientes/Reclamacao/cadastrar', 'ReclamacaoController@create');
+    Route::get('Clientes/Reclamacoes/cadastrar', 'ReclamacaoController@create');
     Route::get('Clientes/Reclamacoes/{id}', 'ReclamacaoController@show');
     Route::resource('Reclamacao','ReclamacaoController');
+
+    //routes for "Clientes"
+    Route::post('Clientes/editar/{id}', 'ClienteController@update');
+    Route::get('Clientes/editar/{id}', 'ClienteController@edit');
+    Route::get('Clientes/Gerenciar', 'ClienteController@index');
+    Route::get('Clientes/cadastrar', 'ClienteController@create');
+    Route::resource('Clientes','ClienteController');
 
     //routes for "Plano"
     Route::get('Plano', 'PlanoController@index');
@@ -122,6 +126,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('Usuario/editar/{id}', 'UsuarioController@update');
     Route::get('Usuario/editar/{id}', 'UsuarioController@edit');
     Route::get('Usuario/cadastrar', 'UsuarioController@create');
+    Route::get('Perfil', 'UsuarioController@editarPerfil');
+    Route::post('Perfil', 'UsuarioController@atualizarPerfil');
     Route::resource('Usuario','UsuarioController');
 
     //routes for "Enderecos"

@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Reportar Erro</h2>
+        <h2>Cliente #5</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -20,8 +20,8 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('Erros') }}">Erro</a></li>
-                    <li>Cadastrar</li>
+                    <li><a href="{{ url('Clientes/Gerenciar') }}">Clientes</a></li>
+                    <li>Detalhar</li>
                 </ul>
             </div>
         </div>
@@ -47,32 +47,36 @@
         </div>
     @endif
 
-    <div id="cadastro" class="grid-m-12 grid-s-12 grid-xs-12">
+    <div id="detalhar" class="grid-m-12 grid-s-12">
 
-        {!! Form::Open(['route' => 'Erro.store', 'method' => 'POST']) !!}
+
         <div class="row">
+
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('descricao', 'Descrição *',null,['for' => 'descricao']) !!}
-                {!! Form::textarea('descricao',null,['id' => 'descricao']) !!}
+                {!! Form::label('nome', 'Nome',null,['for' => 'nome']) !!}
+                <p class="field-disabled">José de Silva</p>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                <a href="{{ url('Erros') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                {!! Form::label('email', 'Email',null,['for' => 'email']) !!}
+                <p class="field-disabled">josesilva@email.com</p>
+            </div>
+            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                {!! Form::label('perfis', 'Perfil',null,['for' => 'perfis']) !!}
+                <p class="field-disabled">Comerciante</p>
+            </div>
+
+            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 grid-xs-12 button-field">
+                <a href="{{ url('Clientes/Gerenciar') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
                     <span class="text-content">Voltar</span>
                 </a>
             </div>
-            <div class="form-group grid-m-3 grid-s-3 button-field">
-                {!! Form::button('<span class="text-content">Cadastrar</span>',[
-                    'id' => 'btnCadastrar',
-                    'type' => 'submit',
-                    'class' => 'btn btn-primary ripple'
-                    ])!!}
+            <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
+                <a href="{{ url('Clientes/editar/1') }}" id="btnEditar" title="Editar" class="btn btn-primary ripple">
+                    <span class="text-content">Editar</span>
+                </a>
             </div>
         </div>
 
-
-        {!! Form::Close() !!}
 
     </div>
 @stop
