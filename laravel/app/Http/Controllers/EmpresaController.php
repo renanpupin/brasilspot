@@ -9,6 +9,8 @@ use App\User;
 use App\TipoEmpresa;
 use App\Plano;
 use App\Vendedor;
+use App\Categoria;
+use App\Cartao;
 use Illuminate\Support\Facades\Session;
 use Input;
 use Validator;
@@ -39,29 +41,25 @@ class EmpresaController extends Controller
 
     public function create()
     {
-        $usuarios = User::lists('name','id');
-
-        $tiposEmpresas = TipoEmpresa::lists('tipo','id');
-
-        $planos = Plano::lists('nome','id');
-
-        $vendedores  = Vendedor::all();
-        $vendedoresSelect = array();
-        //TODO: Refatorar isso depois
-        foreach($vendedores as $vendedor)
-        {
-            $vendedoresSelect[$vendedor->id] = $vendedor->Usuario()->name;
-        }
+        $usuarios = User::orderBy('name','asc')->lists('name','id');
+        $tiposEmpresas = TipoEmpresa::orderBy('tipo','asc   ')->lists('tipo','id');
+        $planos = Plano::orderBy('nome','asc')->lists('nome','id');
+        $categorias = Categoria::orderBy('nome','asc')->lists('nome','id');
+        $cartoes = Cartao::orderBy('tipo','asc')->lists('tipo','id');
+        $vendedores  = Vendedor::with('Usuario')->get()->lists('Usuario.name','id');
 
         return view('Empresa.Create')
             ->with('usuarios',$usuarios)
             ->with('tiposEmpresas',$tiposEmpresas)
             ->with('planos',$planos)
-            ->with('vendedores',$vendedoresSelect);
+            ->with('cartoes',$cartoes)
+            ->with('categorias',$categorias)
+            ->with('vendedores',$vendedores);
     }
 
     public function store(Request $request)
     {
+
         $regras = array(
             'nomeEmpreendedor' => 'required|string',
             'razaoSocial' => 'string',

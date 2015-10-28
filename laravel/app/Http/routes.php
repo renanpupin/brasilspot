@@ -85,6 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('Categoria/editar/{id}', 'CategoriaController@update');
     Route::get('Categoria/editar/{id}', 'CategoriaController@edit');
     Route::get('Categoria/cadastrar', 'CategoriaController@create');
+    Route::delete('Categoria/remover/{id}', ['as' =>'Categoria.remover', 'uses' => 'CategoriaController@destroy']);
     Route::resource('Categoria', 'CategoriaController');
 
     //routes for "Empresa"

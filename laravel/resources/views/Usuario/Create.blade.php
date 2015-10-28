@@ -48,6 +48,7 @@
     <div id="cadastro" class="grid-m-12 grid-s-12">
 
     {!! Form::Open(['route' => 'Usuario.store', 'method' => 'POST']) !!}
+
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div class="form-group">
     {!! Form::label('Nome:') !!}

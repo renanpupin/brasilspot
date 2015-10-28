@@ -148,34 +148,21 @@
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                     <label for="selecionarCategoria">Categoria *</label>
-                    {!! Form::select('categorias',$ !!}
-                    <select id="selecionarCategoria" name="selecionarCategoria" required="">
-                        <option value="-1">Selecione a categoria da empresa</option>
-                        <option value="1">Promoção</option>
-                        <option value="2">Alimentos e Bebidas</option>
-                        <option value="3">Animais</option>
-                        <option value="4">Arte e cultura</option>
-                        <option value="5">Automóveis e veículos</option>
-                    </select>
+                    {!! Form::select('categorias',$categorias,'Selecione a categoria da empresa')!!}
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="inputHorarioFuncionamento">Horário de Funcionamento *</label>
-                    <input type="text" name="inputHorarioFuncionamento" id="inputHorarioFuncionamento">
+                    <label for="horarioFuncionamento">Horário de Funcionamento *</label>
+                    <input type="text" name="horarioFuncionamento" id="horarioFuncionamento">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="selecionarCartoesAceitos">Cartões Aceitos</label>
-                    <select id="selecionarCartoesAceitos" name="selecionarCartoesAceitos" required>
-                        <option value="-1">Selecione os cartões aceitos</option>
-                        <option value="1">Débito</option>
-                        <option value="2">Crédito</option>
-                        <option value="3">Débito e Crédito</option>
-                    </select>
+                    <label for="horarioFuncionamento">Cartões </label>
+                    {!! Form::select('cartoes',$cartoes,'Selecione os cartões aceitos')!!}
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                     <label for="inputTipoCartoesAceitos">Tipos de Cartões Aceitos</label>
                     {{--<p class="input-hint">(Desconsidere caso sua empresa não aceite cartões)</p>--}}
                     <div class="check-inline">
-                        <input type="checkbox" name="inputTipoCartoesAceitos" id="inputTipoCartoesAceitos1" value="VISA">VISA
+                        <input type="checkbox" name="tipo" id="inputTipoCartoesAceitos1" value="VISA">VISA
                     </div>
                     <div class="check-inline">
                         <input type="checkbox" name="inputTipoCartoesAceitos" id="inputTipoCartoesAceitos2" value="MASTER">MASTER
@@ -194,28 +181,28 @@
                     <label for="inputAtendeCasa">Sua empresa atende em casa *</label>
                     <p class="input-hint">(Entrega de comida, presta serviços, busca de animais em casa para tosa, entre outros.)</p>
                     <label>
-                        <input type="radio" name="inputAtendeCasa" id="inputAtendeCasa1" value="SIM" checked>
+                        <input type="radio" name="atendeCasa" id="atendeCasa1" value="SIM" checked>
                         SIM
                     </label>
                     <label>
-                        <input type="radio" name="inputAtendeCasa" id="inputAtendeCasa2" value="NÃO">
+                        <input type="radio" name="atendeCasa" id="atendeCasa2" value="NÃO">
                         NÃO
                     </label>
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                     <label for="inputLinkFacebook">Link para sua página do Facebook *</label>
-                    <input type="text" name="inputLinkFacebook" id="inputLinkFacebook" class="input-facebook" placeholder="Exemplo: https://www.facebook.com/brasilspot">
+                    <input type="text" name="linkFacebook" id="linkFacebook" class="input-facebook" placeholder="Exemplo: https://www.facebook.com/brasilspot">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                     <label for="inputLinkSiteEmpresa">Link para o site da empresa *</label>
-                    <input type="text" name="inputLinkSiteEmpresa" id="inputLinkSiteEmpresa" class="input-facebook" placeholder="Exemplo: https://www.suaempresa.com.br">
+                    <input type="text" name="linkSiteEmpresa" id="linkSiteEmpresa" class="input-facebook" placeholder="Exemplo: https://www.suaempresa.com.br">
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     <label for="inputSelecionarTags">Informe suas tags *</label>
                     <p class="input-hint">(Empresas do plano básico podem ter no máximo 5 e do plano premium no máximo 15.)</p>
                     <p class="input-hint">(As tags facilitam sua empresa ser encontrada nos mecanismos de busca)</p>
                     <p class="input-hint">(Separe as tags por vírgula)</p>
-                    <input type="text" name="inputSelecionarTags" id="inputSelecionarTags" class="input-facebook" placeholder="EX: tag1, tag2, tag3">
+                    <input type="text" name="tags" id="tags" class="input-facebook" placeholder="EX: tag1, tag2, tag3">
                 </div>
             </div>
         <div class="row">

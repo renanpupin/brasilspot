@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
-use App\UsuarioPerfil;
+use App\PerfilUsuario;
 use App\Http\Controllers\Controller;
 use Hash;
 use Illuminate\Support\Facades\Session;
@@ -21,7 +21,7 @@ class UsuarioController extends Controller
 
     public function create()
     {
-        $perfis = \App\PerfilUsuario::all()->lists('tipo','id');
+        $perfis = PerfilUsuario::orderBy('tipo','asc')->lists('tipo','id');
 
         return View('Usuario.create')
             ->with('perfis',$perfis);
