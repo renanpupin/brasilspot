@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Session;
 use Input;
 use Validator;
 use Redirect;
+use Gate;
+use Auth;
 use App\Http\Controllers\Controller;
 
 class EmpresaController extends Controller
@@ -20,6 +22,15 @@ class EmpresaController extends Controller
 
     public function index()
     {
+        if(Gate::allows('AcessoComerciante'))
+        {
+            $usuario = Auth::User();
+            $empresa = $usuario->Empresa()->first();
+            $empresa = $empresa->with('Plano')->with('TipoEmpresa');
+
+            return view('Empresa.Index')->with('empresas',$empresa);
+        }
+
         $empresas = Empresa::with('Plano')->with('TipoEmpresa')->get();
 
         return view('Empresa.Index')->with('empresas',$empresas);

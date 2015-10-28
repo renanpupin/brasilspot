@@ -87,20 +87,20 @@
                 </div>
 
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    {!! Form::label('inputEmpreendedor', 'Nome do Empreendedor *',null,['for' => 'inputEmpreendedor']) !!}
-                    {!! Form::text('inputEmpreendedor',null,['id' => 'inputEmpreendedor']) !!}
+                    <label for="nomeEmpreendedor">Nome do Empreendedor *</label>
+                    <input type="text" name="nomeEmpreendedor" id="nomeEmpreendedor">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="inputRazaoSocial">Razão Social *</label>
-                    <input type="text" name="inputRazaoSocial" id="inputRazaoSocial">
+                    <label for="razaoSocial">Razão Social *</label>
+                    <input type="text" name="razaoSocial" id="razaoSocial">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="inputCpfCnpj">CPF ou CNPJ *</label>
-                    <input type="text" name="inputCpfCnpj" id="inputCpfCnpj">
+                    <label for="cpfCnpj">CPF ou CNPJ *</label>
+                    <input type="text" name="cpfCnpj" id="cpfCnpj">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="inputEmail">Email *</label>
-                    <input type="email" name="inputEmail" id="inputEmail">
+                    <label for="email">Email *</label>
+                    <input type="email" name="email" id="email">
                 </div>
 
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
@@ -130,29 +130,25 @@
                     {{--</div>--}}
                 {{--</div>--}}
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                    <label for="inputNomeFantasia">Nome Fantasia *</label>
-                    <input type="email" name="inputNomeFantasia" id="inputNomeFantasia">
+                    <label for="nomeFantasia">Nome Fantasia *</label>
+                    <input type="text" name="nomeFantasia" id="nomeFantasia">
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                    <label for="inputSlogan">Slogan *</label>
-                    <input type="email" name="inputSlogan" id="inputSlogan">
+                    <label for="slogan">Slogan *</label>
+                    <input type="text" name="slogan" id="slogan">
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                    <label for="inputDescricao">Descrição *</label>
+                    <label for="descricao">Descrição *</label>
                     <p class="input-hint">(O que você mais quer que as pessoas saibam)</p>
-                    <textarea name="inputDescricao" id="inputDescricao"></textarea>
+                    <textarea name="descricao" id="descricao"></textarea>
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                     <label for="selecionarTipoEmpreendimento">Tipo do Empreendimento *</label>
-                    <select id="selecionarTipoEmpreendimento" name="selecionarTipoEmpreendimento" required="">
-                        <option value="-1">Selecione o tipo do empreendimento</option>
-                        <option value="1">Comércio</option>
-                        <option value="3">Serviço</option>
-                        <option value="3">Atração</option>
-                    </select>
+                    {!! Form::select('tiposEmpreendimentos', $tiposEmpresas,'Selecione o tipo do empreendimento') !!}
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                     <label for="selecionarCategoria">Categoria *</label>
+                    {!! Form::select('categorias',$ !!}
                     <select id="selecionarCategoria" name="selecionarCategoria" required="">
                         <option value="-1">Selecione a categoria da empresa</option>
                         <option value="1">Promoção</option>
