@@ -173,4 +173,9 @@ class EmpresaController extends Controller
 
         return view('VisualizarEmpresa')->with('empresas',$empresas);
     }
+
+    public function BuscaEmpresa($nomeFantasia)
+    {
+        return Empresa::where('nomeFantasia','like','%'+$nomeFantasia+'%')->get();
+    }
 }
