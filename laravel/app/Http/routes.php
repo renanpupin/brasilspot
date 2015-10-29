@@ -180,6 +180,10 @@ Route::get('Empresas', function () {
     return view('index');
 });
 
+Route::get('Categorias', function () {
+    return view('Categorias');
+});
+
 Route::get('Inicio', function () {
     return view('PesquisaEmpresa');
 });

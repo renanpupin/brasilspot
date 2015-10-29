@@ -1937,10 +1937,10 @@ p {
     clear: both; }
 
 /* shadows */
-.shadow-1, .alert, .table-responsive:hover, #sidebar, #content .content-empresas .empresa-item, #breadcrumbs .breadcrumbs-content, #cadastro #galeria-empresa .galeria-feature img, #cadastro #galeria-empresa .galeria-thumb .thumb-item img, #visualizar #galeria-empresa .galeria-feature img, #visualizar #galeria-empresa .galeria-thumb .thumb-item img {
+.shadow-1, .alert, .table-responsive:hover, #sidebar, #content .content-empresas .empresa-item, #breadcrumbs .breadcrumbs-content, #cadastro #galeria-empresa .galeria-feature img, #cadastro #galeria-empresa .galeria-thumb .thumb-item img, #visualizar #galeria-empresa .galeria-feature img, #visualizar #galeria-empresa .galeria-thumb .thumb-item img, .sublink, .floatingButton a, #categorias .lista-categorias .item-categoria a {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
-.shadow-2, .alert:hover, .btn:hover, #sidebar .sidebar-menu nav#sideMenu ul li a:not(.active):hover, #sidebar .sidebar-menu nav#sideMenu ul li.submenu.openSub > a, #sidebar .sidebar-links ul li a:hover, #sidebar .sidebar-links ul li a.active, #content .content-empresas .empresa-item:hover, #tags a span:hover, #cadastro #galeria-empresa .galeria-feature img:hover, #cadastro #galeria-empresa .galeria-thumb .thumb-item img:hover, #visualizar #galeria-empresa .galeria-feature img:hover, #visualizar #galeria-empresa .galeria-thumb .thumb-item img:hover, #listagem .col-actions i:hover {
+.shadow-2, .alert:hover, .btn:hover, #sidebar .sidebar-menu nav#sideMenu ul li a:not(.active):hover, #sidebar .sidebar-menu nav#sideMenu ul li.submenu.openSub > a, #sidebar .sidebar-links ul li a:hover, #sidebar .sidebar-links ul li a.active, #content .content-empresas .empresa-item:hover, #tags a span:hover, #cadastro #galeria-empresa .galeria-feature img:hover, #cadastro #galeria-empresa .galeria-thumb .thumb-item img:hover, #visualizar #galeria-empresa .galeria-feature img:hover, #visualizar #galeria-empresa .galeria-thumb .thumb-item img:hover, #listagem .col-actions i:hover, .sublink:hover, .floatingButton a:hover, #categorias .lista-categorias .item-categoria a:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 .shadow-3 {
@@ -2553,5 +2553,83 @@ footer {
     font-size: 4.5rem;
     font-weight: bold;
     display: block; }
+
+.sublink {
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  text-align: center;
+  display: block;
+  border-radius: 2px;
+  width: 100%;
+  height: 36px;
+  line-height: 2rem;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out; }
+  .sublink:hover {
+    color: white;
+    background-color: #E66D1B;
+    text-decoration: none; }
+  .sublink span {
+    color: #E66D1B; }
+  .sublink:hover span {
+    color: white; }
+
+.floatingButton {
+  position: fixed;
+  top: 15px;
+  right: 15px; }
+  .floatingButton a {
+    background-color: #1c8a43;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 50%;
+    color: white;
+    display: block;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out; }
+    .floatingButton a i {
+      font-size: 2rem; }
+
+#categorias {
+  margin-top: 20px; }
+  #categorias .lista-categorias .item-categoria {
+    margin-top: 20px; }
+    #categorias .lista-categorias .item-categoria:hover {
+      -webkit-transform: scale(1.04);
+      -moz-transform: scale(1.04);
+      -ms-transform: scale(1.04);
+      transform: scale(1.04);
+      -webkit-transition: all 0.2s ease-in-out;
+      -moz-transition: all 0.2s ease-in-out;
+      -o-transition: all 0.2s ease-in-out;
+      -ms-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out; }
+    #categorias .lista-categorias .item-categoria a {
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      display: block;
+      border-radius: 2px;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: scale(1.04);
+      -moz-transform: scale(1.04);
+      -ms-transform: scale(1.04);
+      transform: scale(1.04); }
+      #categorias .lista-categorias .item-categoria a:hover {
+        color: white;
+        background-color: #E66D1B;
+        text-decoration: none; }
+      #categorias .lista-categorias .item-categoria a span {
+        color: #E66D1B; }
+      #categorias .lista-categorias .item-categoria a:hover span {
+        color: white; }
 
 /*# sourceMappingURL=style.css.map */

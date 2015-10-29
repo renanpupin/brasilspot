@@ -29,18 +29,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('Comercios' )}}" class="{{ Request::segment(1) === 'Comercios' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #E6BD35;">business</i>Comércios
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('Servicos' )}}" class="{{ Request::segment(1) === 'Servicos' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #AECC1A;">build</i>Serviços
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('Atracoes' )}}" class="{{ Request::segment(1) === 'Atracoes' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #11939C;">insert_emoticon</i>Atrações
+                    <a href="{{ url('Categorias' )}}" class="{{ Request::segment(1) === 'Categorias' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #E6BD35;">business</i>Categorias
                     </a>
                 </li>
                 <li class="menu-options">
@@ -53,6 +43,32 @@
                     </div>
                 </li>
             </ul>
+            <div class="grid-m-12 grid-s-12 grid-xs-12" style="border-top: 1px solid #e7e7e7;">
+
+                <form id="formLocation">
+                    <div class="row">
+                        <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                            <label for="pesquisaEmpresa">O que você procura?</label>
+                            <input type="text" name="pesquisaEmpresa" id="pesquisaEmpresa">
+                            <p class="input-hint">
+                                (Restaurante, bar, loja, etc.)
+                            </p>
+                        </div>
+                        <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                            <label for="pesquisaEndereco">Onde?</label>
+                            <input type="text" name="pesquisaEndereco" id="pesquisaEndereco">
+                            <p class="input-hint">
+                                (Um endereço específico, bairro ou cidade.)
+                            </p>
+                        </div>
+                        <div class="form-group grid-m-12 grid-s-12 grid-xs-12 button-field">
+                            <a href="{{ url('Empresas' )}}" id="btnEncontre" class="btn btn-primary ripple">
+                                <i class="material-icons">send</i> <span class="text-content">Encontre</span>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </nav>
     </div>
 
