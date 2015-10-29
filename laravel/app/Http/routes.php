@@ -17,8 +17,8 @@ Route::get('Login/', 'LoginController@index');
 Route::get('Logout','LoginController@logout');
 
 //routes for "reset password"
-Route::get('Password/email', 'PasswordController@getEmail');
-Route::post('Password/email', 'PasswordController@postEmail');
+Route::get('Password/email', ['as'=>'Resetar', 'uses'=> 'PasswordController@getEmail']);
+Route::post('Password/email', ['as'=>'ResetarPost','uses'=> 'PasswordController@postEmail']);
 
 Route::get('Password/reset/{token}', 'PasswordController@getReset');
 Route::post('Password/reset', 'PasswordController@postReset');

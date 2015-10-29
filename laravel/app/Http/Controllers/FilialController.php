@@ -9,11 +9,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Empresa;
 use App\User;
-use App\Emdereco;
+use App\Endereco;
 use App\Plano;
-use App\Vendedor;
+use App\Telefone;
 use Illuminate\Support\Facades\Session;
 use Auth;
+use DB;
 use Gate;
 use App\Http\Controllers\Controller;
 
@@ -63,8 +64,7 @@ class FilialController extends Controller
 
         $this->validate($request,$regras,$mensagens);
 
-        DB::transaction(function($request) {
-
+        DB::beginTransaction();
             try {
                 $endereco = Endereco::create([
                     'endereco' => $request['endereco'],
@@ -88,8 +88,14 @@ class FilialController extends Controller
                     ]);
                 }
 
-                $usuario = Auth::user();
-                $idEmpresa = $usuario->Empresa()->id;
+                $usuario = Auth::user()->with('Empresa');
+                $idEmpresa = $usuario->Empresa->id;
+
+                if(empty($idEmpresa))
+                {
+                    DB::rollBack();
+                    return redirect()->back();
+                }
 
                 Filial::create([
                     'idEmpresa' => $idEmpresa,
@@ -101,9 +107,10 @@ class FilialController extends Controller
             }
             catch(ValidationException $exception)
             {
+                DB::rollBack();
                 return redirect()->back();
             }
-        });
+        DB::commit();
 
         Session::flash('flash_message', 'Filial adicionada com sucesso!');
 

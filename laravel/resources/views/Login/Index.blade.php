@@ -78,7 +78,7 @@
 
                         <div class="forget-password">
                             <span class="info">?</span>
-                            <a href="{{ url('RecuperarSenha') }}">Recuperar senha</a>
+                            <a href="{{ route('Resetar') }}">Recuperar senha</a>
                         </div>
 
                     </form>
