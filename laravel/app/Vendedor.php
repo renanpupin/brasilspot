@@ -31,7 +31,7 @@ class Vendedor extends Model
         return $this->hasOne('\App\Meta','id','idMeta');
     }
 
-    public function Vendedor()
+    public function VendedorPai()
     {
         return $this->hasOne('\App\User','id','idVendedorPai');
     }

@@ -25,7 +25,35 @@ class EnderecoController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $regras = array(
+        'endereco' => 'required|string',
+        'bairro' => 'required|string',
+        'cidade' => 'required|string',
+        'estado' => 'required|string',
+        'cep' => 'string',
+        'lat' => 'string',
+        'lon' => 'string');
+
+        $mensagens = array(
+            'required' => 'O campo :attribute deve ser preenchido.',
+            'string' => 'O campo :attribute deve ser texto.'
+        );
+
+        $this->validate($request,$regras,$mensagens);
+
+        Endereco::create([
+            'endereco' => $request['endereco'],
+            'bairro' => $request['bairro'],
+            'cidade' => $request['cidade'],
+            'estado' => $request['estado'],
+            'cep' => $request['cep'],
+            'lat' => $request['lat'],
+            'lon' => $request['lon']
+        ]);
+
+        Session::flash('flash_message', 'Enderço adicionado com sucesso!');
+
+        return redirect()->back();
     }
 
     public function show($id)

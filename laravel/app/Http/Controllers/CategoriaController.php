@@ -133,7 +133,7 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         $categoria = Categoria::find($id);
-
+        dd($categoria);
         if(!empty($categoria))
         {
             $encontrou = Categoria::where('idCategoriaPai','=',$categoria->id)->count() > 0;

@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password','isVendedor','idPerfilUsuario'];
+    protected $fillable = ['name', 'email', 'password','idPlano','idPerfilUsuario'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -44,7 +44,7 @@ class User extends Model implements AuthenticatableContract,
 
     public function Empresa()
     {
-        return $this->hasOne('\App\Empresa','idUsuario','id');
+        return $this->hasOne('\App\Empresa','idUsuario','id')->first();
     }
 
     public function getRememberToken()

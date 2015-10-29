@@ -17,7 +17,7 @@ class Endereco extends Migration
             $table->string('estado', 50);
             $table->string('cep', 10);
             $table->string('lat', 100);
-            $table->string('log', 100);
+            $table->string('lon', 100);
             $table->timestamps();
         });
     }

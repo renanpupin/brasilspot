@@ -11,7 +11,7 @@ class Vendedor extends Migration
         Schema::create('vendedores', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->boolean('isCoordenador')->default(false);;
+            //$table->boolean('isCoordenador')->default(false);;
             $table->integer('idUsuario')->unsigned();
             $table->integer('idTipo')->unsigned();
             $table->integer('idMeta')->unsigned();

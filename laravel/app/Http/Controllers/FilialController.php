@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Filial;
+use App\WhatsApp;
+use Illuminate\Contracts\Validation\ValidationException;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Empresa;
 use App\User;
-use App\TipoEmpresa;
+use App\Emdereco;
 use App\Plano;
 use App\Vendedor;
 use Illuminate\Support\Facades\Session;
@@ -36,45 +38,22 @@ class FilialController extends Controller
 
     public function create()
     {
-        $usuarios = User::lists('name','id');
-
-        $tiposEmpresas = TipoEmpresa::lists('tipo','id');
-
-        $planos = Plano::lists('nome','id');
-
-        $vendedores  = Vendedor::all();
-        $vendedoresSelect = array();
-        //TODO: Refatorar isso depois
-        foreach($vendedores as $vendedor)
-        {
-            $vendedoresSelect[$vendedor->id] = Usuario::find($vendedor->idUsuario)->nome;
-        }
-
-        return view('Filial.Create')
-            ->with('usuarios',$usuarios)
-            ->with('tiposEmpresas',$tiposEmpresas)
-            ->with('planos',$planos)
-            ->with('vendedores',$vendedoresSelect);
+        return view('Filial.Create');
     }
 
     public function store(Request $request)
     {
         $regras = array(
-            'nomeEmpreendedor' => 'required|string',
-            'razaoSocial' => 'string',
-            'nomeFantasia' => 'required|string',
-            'slogan' => 'string',
-            'cpfCnpj' => 'required|string',
-            'email' => 'required|string',
-            'descricao' => 'required|string',
-            'horarioFuncionamento' => 'required|string',
-            'linkFacebook' => 'string',
-            'numeroWhatsapp' => 'string',
-            'idPlano' => 'required',
-            'idUsuario' => 'required',
-            'idTipoEmpresa' => 'required',
-            'idVendedor' => 'required',
-            'idPlano' => 'required'
+            'endereco' => 'required|string',
+            'bairro' => 'required|string',
+            'cidade' => 'required|string',
+            'estado' => 'required|string',
+            'cep' => 'string',
+            'lon' => 'string',
+            'lat' => 'string',
+            'telefone' => 'required|string',
+            'whatsApp' => 'string',
+            'isPrincipal' => 'required|string'
         );
 
         $mensagens = array(
@@ -84,26 +63,49 @@ class FilialController extends Controller
 
         $this->validate($request,$regras,$mensagens);
 
-        Empresa::create([
-            'nomeEmpreendedor' => $request['nomeEmpreendedor'],
-            'razaoSocial' => $request['razaoSocial'],
-            'nomeFantasia' => $request['nomeFantasia'],
-            'slogan' => $request['slogan'],
-            'cpfCnpj' => $request['cpfCnpj'],
-            'email' => $request['email'],
-            'descricao' => $request['descricao'],
-            'horarioFuncionamento' => $request['horarioFuncionamento'],
-            'atendeCasa' => $request['atendeCasa'],
-            'linkFacebook' => $request['facebook'],
-            'numeroWhatsapp' => $request['whatsapp'],
-            'idUsuario' => $request['usuarios'],
-            'idTipoEmpresa' => $request['tiposEmpresas'],
-            'idVendedor' => $request['vendedores'],
-            'idPlano' => $request['planos'],
-            'dataCadastro' => '2015-10-11',
-            'dataVencimentoPlano' => '2016-10-11']);
+        DB::transaction(function($request) {
 
-        Session::flash('flash_message', 'Empresa adicionada com sucesso!');
+            try {
+                $endereco = Endereco::create([
+                    'endereco' => $request['endereco'],
+                    'bairro' => $request['bairro'],
+                    'estado' => $request['estado'],
+                    'cidade' => $request['cidade'],
+                    'lon' => $request['lon'],
+                    'lat' => $request['lat'],
+                    'cep' => $request['cep']
+                ]);
+
+                $telefone = Telefone::create([
+                    'numero' => $request['telefone']
+                ]);
+
+                $whatsAppNumero = $request['whatsapp'];
+                if(!empty($whatsAppNumero))
+                {
+                    $whatsApp = WhatsApp::create([
+                       'numero' => $whatsAppNumero
+                    ]);
+                }
+
+                $usuario = Auth::user();
+                $idEmpresa = $usuario->Empresa()->id;
+
+                Filial::create([
+                    'idEmpresa' => $idEmpresa,
+                    'idEndereco' => $endereco->id,
+                    'idTelefone' => $telefone->id,
+                    'idWhatsApp' => $whatsApp->id,
+                    'isPrincipal' => $request['isPrincipal']
+                ]);
+            }
+            catch(ValidationException $exception)
+            {
+                return redirect()->back();
+            }
+        });
+
+        Session::flash('flash_message', 'Filial adicionada com sucesso!');
 
         return redirect()->back();
     }

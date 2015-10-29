@@ -55,21 +55,24 @@
                 </div>
 
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="inputEndereceo">Endereço *</label>
-                    <input type="text" name="inputEndereceo" id="inputEndereceo">
+                    <label for="endereco">Endereço *</label>
+                    <input type="text" name="endereco" id="endereco">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="selecionarBairro">Bairro *</label>
-                    <select id="selecionarBairro" name="selecionarBairro" required>
-                        <option value="-1">Selecione o bairro</option>
-                        <option value="1">Bairro 1</option>
-                        <option value="2">Bairro 2</option>
-                        <option value="3">Bairro 3</option>
-                    </select>
+                    <label for="bairro">Bairro *</label>
+                    <input type="text" name="bairro" id="bairro">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="selecionarEstado">Estado *</label>
-                    <select id="selecionarEstado" name="selecionarEstado" required>
+                    <label for="cep">Cep </label>
+                    <input type="text" name="cep" id="cep">
+                </div>
+                <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
+                    <label for="cidade">Cidade *</label>
+                    <input type="text" name="cidade" id="cidade">
+                </div>
+                <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
+                    <label for="estado">Estado *</label>
+                    <select id="estado" name="estado" required>
                         <option value="-1">Selecione o estado</option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -100,39 +103,31 @@
                         <option value="TO">Tocantins</option>
                     </select>
                 </div>
-                <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="selecionarCidade">Cidade *</label>
-                    <select id="selecionarCidade" name="selecionarCidade" required>
-                        <option value="-1">Selecione a cidade</option>
-                        <option value="1">Cidade 1</option>
-                        <option value="2">Cidade 2</option>
-                        <option value="3">Cidade 3</option>
-                    </select>
-                </div>
+
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                    <label for="inputCoordenadasLat">Coordenadas</label>
+                    <label for="lat">Coordenadas</label>
                     <p class="input-hint">(Ofereceços o serviço de localização utilizando as coordenadas de latitude e longitude)</p>
                     <div class="row">
                         <div class="grid-m-6">
-                            <label for="inputCoordenadasLat" class="input-subhead">Latitude</label><input type="text" name="inputCoordenadasLat" id="inputCoordenadasLat" placeholder="Exemplo: -55.1551">
+                            <label for="lat" class="input-subhead">Latitude</label><input type="text" name="lat" id="lat" placeholder="Exemplo: -55.1551">
                         </div>
                         <div class="grid-m-6">
-                            <label for="inputCoordenadasLon" class="input-subhead">Longitude</label><input type="text" name="inputCoordenadasLon" id="inputCoordenadasLon" placeholder="Exemplo: -21.123">
+                            <label for="lon" class="input-subhead">Longitude</label><input type="text" name="lon" id="lon" placeholder="Exemplo: -21.123">
                         </div>
                     </div>
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="inputTelefone">Telefone para clientes *</label>
-                    <input type="text" name="inputTelefone" id="inputTelefone" class="input-phone">
+                    <label for="telefone">Telefone para clientes *</label>
+                    <input type="text" name="telefone" id="telefone" class="input-phone">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="inputWhatsapp">Whatsapp para clientes</label>
-                    <input type="text" name="inputWhatsapp" id="inputWhatsapp" class="input-whatsapp">
+                    <label for="whatsapp">Whatsapp para clientes</label>
+                    <input type="text" name="whatsapp" id="whatsapp" class="input-whatsapp">
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     <label for="inputIsPrincipal">É a empresa principal? *</label>
                     <p class="input-hint">(Selecione 'SIM' para definir a filial como sendo o endereço principal)</p>
-                    <select id="inputIsPrincipal" name="inputIsPrincipal" required>
+                    <select id="isPrincipal" name="isPrincipal" required>
                         <option value="0">NÃO</option>
                         <option value="1">SIM</option>
                     </select>

@@ -17,7 +17,7 @@ class PlanoUsuario extends Migration
 
         Schema::table('planosUsuarios',function($table)
         {
-            $table->foreign('planos')->references('id')->on('idPlano');
+            $table->foreign('idPlano')->references('id')->on('planos');
         });
     }
 

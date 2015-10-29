@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
-            $table->boolean('isVendedor')->default(false);
             $table->integer('idPerfilUsuario')->unsigned();
+            $table->integer('idPlano')->unsigned();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -26,14 +26,10 @@ class CreateUsersTable extends Migration
         Schema::table('users', function($table)
         {
             $table->foreign('idPerfilUsuario')->references('id')->on('perfisUsuarios');
+            $table->foreign('idPlano')->references('id')->on('planosUsuarios');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('users');
