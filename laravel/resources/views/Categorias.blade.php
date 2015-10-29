@@ -44,6 +44,96 @@
             <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
                 <a href="#">Transportes</a>
             </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Alimentos e Bebidas</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Automóveis e Veículos</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Animais</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Decoração</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Educação</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Música</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Negócios</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Restaurantes</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Transportes</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Alimentos e Bebidas</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Automóveis e Veículos</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Animais</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Decoração</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Educação</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Música</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Negócios</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Restaurantes</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Transportes</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Alimentos e Bebidas</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Automóveis e Veículos</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Animais</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Decoração</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Educação</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Música</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Negócios</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Restaurantes</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Transportes</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Negócios</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Restaurantes</a>
+            </div>
+            <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
+                <a href="#">Transportes</a>
+            </div>
         </div>
     </div>
 

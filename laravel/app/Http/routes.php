@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
     //routes for "Clientes"
     Route::post('Clientes/editar/{id}', 'ClienteController@update');
     Route::get('Clientes/editar/{id}', 'ClienteController@edit');
+    Route::get('Clientes/AtualizarVencimento/{id}', 'ClienteController@atualizarVencimento');
     Route::get('Clientes/Gerenciar', 'ClienteController@index');
     Route::get('Clientes/cadastrar', 'ClienteController@create');
     Route::resource('Clientes','ClienteController');

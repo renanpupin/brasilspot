@@ -41,6 +41,7 @@
                 <th>Nome</th>
                 <th>Plano</th>
                 <th>Vencimento</th>
+                <th style="text-align: center;">Atualizar Vencimento</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -51,6 +52,9 @@
                         <td>Nome</td>
                         <td>PRO</td>
                         <td>21/11/2015</td>
+                        <td class="col-actions currency">
+                            <a href="{{ url('Clientes/AtualizarVencimento/1') }}" title="Atualizar Vencimento"><i class="material-icons">attach_money</i></a>
+                        </td>
                         <td class="col-actions">
                             <a href="{{ url('Clientes/1') }}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>

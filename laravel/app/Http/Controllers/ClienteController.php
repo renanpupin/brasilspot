@@ -56,4 +56,9 @@ class ClienteController extends Controller
         //
     }
 
+    public function atualizarVencimento($id)
+    {
+        return View('Cliente.AtualizarVencimento');
+    }
+
 }

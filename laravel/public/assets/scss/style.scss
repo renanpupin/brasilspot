@@ -1034,6 +1034,16 @@ footer{
       color: rgba(255,255,255,.9);
     }
   }
+  .currency{
+    text-align: center;
+    i{
+      color: #1c8a43;
+      &:hover{
+        background-color: #1c8a43;
+        color: white;
+      }
+    }
+  }
 }
 //.empresa-filtro{
   .filtroEmpreendimento, .filtroCategoria{

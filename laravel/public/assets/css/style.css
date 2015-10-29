@@ -2503,6 +2503,13 @@ footer {
   #listagem .col-actions i:hover {
     background-color: #404040;
     color: rgba(255, 255, 255, 0.9); }
+#listagem .currency {
+  text-align: center; }
+  #listagem .currency i {
+    color: #1c8a43; }
+    #listagem .currency i:hover {
+      background-color: #1c8a43;
+      color: white; }
 
 .filtroEmpreendimento a, .filtroCategoria a {
   text-decoration: none; }
