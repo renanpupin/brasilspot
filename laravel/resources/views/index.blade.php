@@ -2,9 +2,14 @@
 
 @section('title', 'Bem vindo!')
 
-@section('sidebar')
+@section('navbar')
     @parent
     @include('layouts.sidebarSite')
+@stop
+
+@section('sideFilter')
+    @parent
+    @include('layouts.sideFilter')
 @stop
 
 @section('content')
@@ -13,99 +18,6 @@
         <h2>
             Destaques Locais
         </h2>
-    </div>
-
-    <div id="filtrar" class="empresa-filtro grid-m-12 grid-s-12 grid-xs-12">
-        <form id="formBuscaEmpresas">
-            <div class="row">
-                <div class="form-group grid-m-6 grid-s-6 grid-xs-12">
-                    <label for="selecionarCategoria">Categoria</label>
-                    <input type="text" id="selecionarCategoria" placeholder="Busque por categorias">
-                </div>
-                <div class="form-group grid-m-6 grid-s-6 grid-xs-12">
-                    <label for="selecionarEstado">Estado</label>
-                    <select id="selecionarEstado" name="selecionarEstado" required>
-                        <option value="-1">Selecione o estado</option>
-                        <option value="AC">Acre</option>
-                        <option value="AL">Alagoas</option>
-                        <option value="AP">Amapá</option>
-                        <option value="AM">Amazonas</option>
-                        <option value="BA">Bahia</option>
-                        <option value="CE">Ceará</option>
-                        <option value="DF">Distrito Federal</option>
-                        <option value="ES">Espirito Santo</option>
-                        <option value="GO">Goiás</option>
-                        <option value="MA">Maranhão</option>
-                        <option value="MS">Mato Grosso do Sul</option>
-                        <option value="MT">Mato Grosso</option>
-                        <option value="MG">Minas Gerais</option>
-                        <option value="PA">Pará</option>
-                        <option value="PB">Paraíba</option>
-                        <option value="PR">Paraná</option>
-                        <option value="PE">Pernambuco</option>
-                        <option value="PI">Piauí</option>
-                        <option value="RJ">Rio de Janeiro</option>
-                        <option value="RN">Rio Grande do Norte</option>
-                        <option value="RS">Rio Grande do Sul</option>
-                        <option value="RO">Rondônia</option>
-                        <option value="RR">Roraima</option>
-                        <option value="SC">Santa Catarina</option>
-                        <option value="SP">São Paulo</option>
-                        <option value="SE">Sergipe</option>
-                        <option value="TO">Tocantins</option>
-                    </select>
-                </div>
-            </div>
-            {{--<div class="row">--}}
-                {{--<div class="form-group grid-m-9 grid-s-8 grid-xs-12">--}}
-                    {{--<label for="pesquisa">Pesquisar</label>--}}
-                    {{--<input type="text" id="pesquisa" plceholder="Pesquise uma empresa">--}}
-                {{--</div>--}}
-                {{--<div class="form-group grid-m-3 grid-s-4 grid-xs-12 button-field" style="margin-top: 10px;">--}}
-                    {{--<a href="{{ url('Empresas' )}}" id="btnPesquisarEmpresas" class="btn btn-primary ripple">--}}
-                        {{--<span class="text-content">Pesquisar</span>--}}
-                    {{--</a>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        </form>
-
-        <div class="row">
-            <div class="filtroEmpreendimento form-group grid-m-12 grid-s-12 grid-xs-12" style="margin-top: 0px;">
-                <label for="selecionarTipoEmpreendimento" style="text-align: left;">Filtros</label>
-                <div class="row" style="margin-top: 5px">
-                    <div class="grid-m-4 grid-s-4 grid-xs-4">
-                        <a href="javascript:void(0)">
-                    <span class="filtroComercio filtroTipoEmpreendimento selecionado" >
-                    <svg>
-                        <use xlink:href="{!! asset('assets/img/comercio.svg#comercioIcon') !!}"></use>
-                    </svg>
-                    Comércio
-                    </span>
-                        </a>
-                    </div>
-                    <div class="grid-m-4 grid-s-4 grid-xs-4" style="text-align: center;">
-                        <a href="javascript:void(0)">
-                    <span class="filtroServico filtroTipoEmpreendimento">
-                    <svg>
-                        <use xlink:href="{!! asset('assets/img/servicos.svg#servicosIcon') !!}"></use>
-                    </svg>
-                    Serviço
-                    </span>
-                        </a>
-                    </div>
-                    <div class="grid-m-4 grid-s-4 grid-xs-4" style="text-align: right;">
-                        <a href="javascript:void(0)">
-                    <span class="filtroAtracao filtroTipoEmpreendimento">
-                    <svg>
-                        <use xlink:href="{!! asset('assets/img/atracoes.svg#atracoesIcon') !!}"></use>
-                    </svg>
-                    Atração
-                    </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="content-empresas grid-m-12 grid-s-12 grid-xs-12">
@@ -199,9 +111,4 @@
     {{--<a href="javascript:void(0)"><span>Tag3</span></a>--}}
     {{--</div>--}}
 
-    <div class="floatingButton" title="Login">
-        <a href="{{ url('Login' )}}">
-            <i class="material-icons">person</i>
-        </a>
-    </div>
 @stop

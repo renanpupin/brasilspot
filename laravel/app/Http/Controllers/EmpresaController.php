@@ -78,10 +78,13 @@ class EmpresaController extends Controller
             'idPlano' => 'required'
         );
 
+        //TODO: Mudar a mensagem de validação para não aparecer o id do atributo e sim um nome mais agradável
+        //Por Exemplo: (Mudar de : 'O campo id vendedor deve ser preenchido.' para 'O campo vendedor deve ser preenchido')
         $mensagens = array(
             'required' => 'O campo :attribute deve ser preenchido.',
             'string' => 'O campo :attribute deve ser texto.'
         );
+
 
         $this->validate($request,$regras,$mensagens);
 
@@ -176,4 +179,10 @@ class EmpresaController extends Controller
     {
         return Empresa::where('nomeFantasia','like','%'+$nomeFantasia+'%')->get();
     }
+
+    public function pesquisarEmpresa()
+    {
+        //ajax and json
+    }
+
 }

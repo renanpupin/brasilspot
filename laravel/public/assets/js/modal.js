@@ -27,12 +27,6 @@
             min_height: "inherit",
             size: "auto",
             addClass: "",
-            // onConfirm: function(){
-            //   alert("OK click");
-            // },
-            // onClose: function(){
-            //   alert("CLOSE click");
-            // },
             closeButtonText: "CLOSE",
             confirmButtonText: "OK"
         };
@@ -70,24 +64,21 @@
 
         //close event
         $("#modalClose, #btnCloseModal").on( "click", function(e){
-            if (settings.onClose !== undefined) {
-                settings.onClose();
-            }
+            $(self).trigger('close');
             closeModal();
             e.stopPropagation();
         });
         $(document).on("keyup", self, function (e){
             e.preventDefault();
             if(e.keyCode == 27 && $(self).hasClass("open")){
+                $(self).trigger('close');
                 closeModal();
             }
         });
 
         //confirm event
         $("#btnConfirmModal").on( "click", function(e) {
-            if (settings.onConfirm !== undefined) {
-                settings.onConfirm();
-            }
+            $(self).trigger('confirm');
             e.stopPropagation();
         });
 

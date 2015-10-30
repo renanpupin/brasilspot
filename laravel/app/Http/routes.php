@@ -28,7 +28,7 @@ Route::get('RecuperarSenha', function () {
 });
 
 //check access
-Route::group(['middleware' => 'auth'], function () {
+//Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('Tag','TagController');
     Route::resource('PerfilUsuario','PerfilUsuarioController');
@@ -137,7 +137,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('Endereco/editar/{id}', 'EnderecoController@edit');
     Route::get('Endereco/cadastrar', 'EnderecoController@create');
     Route::resource('Endereco','EnderecoController');
-});
+//});   //middleware
 
 //SITE ROUTES
 Route::get('Contato', function () {
@@ -175,6 +175,30 @@ Route::get('Atracoes', function () {
     return view('Atracoes');
 });
 
+Route::get('Empresas/pesquisarEndereco', function(){
+    $in = array(
+        "suggestions" => array(
+            array("value" => "Rio de Janeiro, RJ", "data" => "Rio de Janeiro, RJ"),
+            array("value" => "São Paulo, SP", "data" => "São Paulo, SP"),
+            array("value" => "Brasília, DF", "data" => "Brasília, DF"),
+            array("value" => "Imobiliária", "data" => "imobiliária")
+        )
+    );
+    return Response::json($in);
+});
+
+//Route::get('Empresas/pesquisarEmpresa', 'EmpresaController@pesquisarEmpresa');
+Route::get('Empresas/pesquisarEmpresa', function(){
+    $in = array(
+        "suggestions" => array(
+            array("value" => "Padaria", "data" => "padaria"),
+            array("value" => "Restaurante", "data" => "restaurante"),
+            array("value" => "Pizzaria", "data" => "pizzaria"),
+            array("value" => "Imobiliária", "data" => "imobiliária")
+        )
+    );
+    return Response::json($in);
+});
 Route::get('Empresas/{id}', 'EmpresaController@visualizar');
 
 Route::get('Empresas', function () {
