@@ -155,27 +155,23 @@
                     <input type="text" name="horarioFuncionamento" id="horarioFuncionamento">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="horarioFuncionamento">Cartões </label>
-                    {!! Form::select('cartoes',$cartoes,'Selecione os cartões aceitos')!!}
+                    <label for="selecionaTipoCartaoAceito">Tipos de cartões aceitos </label>
+                    <select id="selecionaTipoCartaoAceito" name="selecionaTipoCartaoAceito" required="">
+                        <option value="-1">Selecione o tipo de cartão aceito</option>
+                        <option value="1">Apenas débito</option>
+                        <option value="2">Apenas crédito</option>
+                        <option value="3">Débito e crédito</option>
+                        <option value="4">Nenhum cartão</option>
+                    </select>
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="inputTipoCartoesAceitos">Tipos de Cartões Aceitos</label>
-                    {{--<p class="input-hint">(Desconsidere caso sua empresa não aceite cartões)</p>--}}
-                    <div class="check-inline">
-                        <input type="checkbox" name="tipo" id="inputTipoCartoesAceitos1" value="VISA">VISA
-                    </div>
-                    <div class="check-inline">
-                        <input type="checkbox" name="inputTipoCartoesAceitos" id="inputTipoCartoesAceitos2" value="MASTER">MASTER
-                    </div>
-                    <div class="check-inline">
-                        <input type="checkbox" name="inputTipoCartoesAceitos" id="inputTipoCartoesAceitos3" value="AMEX">AMEX
-                    </div>
-                    <div class="check-inline">
-                        <input type="checkbox" name="inputTipoCartoesAceitos" id="inputTipoCartoesAceitos4" value="ELO">ELO
-                    </div>
-                    <div class="check-inline">
-                        <input type="checkbox" name="inputTipoCartoesAceitos" id="inputTipoCartoesAceitos5" value="ELO">DINERS CLUB
-                    </div>
+                    <label for="inputTipoCartoesAceitos">Cartões Aceitos</label>
+                    @foreach($cartoes as $cartao)
+                        <div class="check-inline">
+                            <input type="checkbox" name="inputCartoesAceitos" id="1" value="x">
+                        </div>
+                    @endforeach
+
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                     <label for="inputAtendeCasa">Sua empresa atende em casa *</label>
