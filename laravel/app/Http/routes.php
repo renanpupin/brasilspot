@@ -137,17 +137,15 @@ Route::get('RecuperarSenha', function () {
     Route::get('Endereco/editar/{id}', 'EnderecoController@edit');
     Route::get('Endereco/cadastrar', 'EnderecoController@create');
     Route::resource('Endereco','EnderecoController');
-<<<<<<< HEAD
+
 
     //routes for "TiposEmpresas"
     Route::post('TipoEmpresa/editar/{id}', 'TipoEmpresaController@update');
     Route::get('TipoEmpresa/editar/{id}', 'TipoEmpresaController@edit');
     Route::get('TipoEmpresa/cadastrar', 'TipoEmpresaController@create');
     Route::resource('TipoEmpresa','TipoEmpresaController');
-});
-=======
-//});   //middleware
->>>>>>> origin/master
+//});
+
 
 //SITE ROUTES
 Route::get('Contato', function () {

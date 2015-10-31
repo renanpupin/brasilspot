@@ -126,10 +126,7 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         $categoria = Categoria::find($id);
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
         if(!empty($categoria))
         {
             $possuiCategoriaVinculada = Categoria::where('idCategoriaPai','=',$categoria->id)->count() > 0;

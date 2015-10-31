@@ -32,10 +32,6 @@
             <div class="loader-text">Carregando...</div>
         </div>
 
-        <div class="navbar-section">
-            @section('navbar')
-            @show
-        </div>
         <!--BODY CONTENT -->
         <div class="body-content">
             <div class="body-wrapper">
@@ -43,7 +39,8 @@
                     <div class="row">
                         <div class="grid-m-3 grid-s-4 grid-xs-12">
                             <div id="sidebar-filtros">
-                                @yield('sideFilter')
+                                @section('sidebar')
+                                @show
                             </div>
                         </div>
                         <div class="grid-m-9 grid-s-8 grid-xs-12">

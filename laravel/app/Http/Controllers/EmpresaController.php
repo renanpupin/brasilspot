@@ -127,13 +127,11 @@ class EmpresaController extends Controller
             else
             {
 
-<<<<<<< HEAD
             }
         }
-=======
 
         $this->validate($request,$regras,$mensagens);
->>>>>>> origin/master
+
 
         Empresa::create([
             'nomeEmpreendedor' => $request['nomeEmpreendedor'],

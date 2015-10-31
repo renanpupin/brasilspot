@@ -4,7 +4,7 @@
 
 @section('sidebar')
     @parent
-    @include('layouts.sidebarSite')
+    @include('layouts.navbarSite')
 @stop
 
 @section('content')

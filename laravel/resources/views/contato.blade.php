@@ -1,10 +1,10 @@
-@extends('layouts.master')
+@extends('layouts.masterSite')
 
 @section('title', 'Bem vindo!')
 
 @section('sidebar')
     @parent
-    @include('layouts.sidebarSite')
+    @include('layouts.navbarSite')
 @stop
 
 @section('content')

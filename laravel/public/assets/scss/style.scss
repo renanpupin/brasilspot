@@ -8,12 +8,13 @@ $green: #1c8a43;
 @import "_mixins";
 @import "_space";
 @import "_navbar";
-@import "_sideFilter";
+@import "_sideFilter";;
 @import "_modal";
 @import "_alerts";
 @import "_stripped";
 @import "_formPatterns";
 @import "_tabelaPreco";
+@import "_galeriaEmpresa";
 @import "_login";
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
@@ -802,6 +803,7 @@ footer{
     .empresa-item{
       padding: 15px;
       margin-bottom: 20px;
+      background-color: #fff;
       @extend .shadow-1;
       border-radius: 2px;
       @include transition(all 0.2s ease-in-out);
@@ -827,12 +829,13 @@ footer{
             &:hover{
               color: #E66D1C;
               i{
-                @include transform(rotate(360deg));
+                //@include transform(rotate(360deg));
+                @include transform(scale(1.15));
                 color: #E66D1C;
               }
             }
             i{
-              @include transition(all 0.5s ease-in-out);
+              @include transition(all 0.2s ease-in-out);
               font-size: 20px;
               vertical-align: middle;
             }
@@ -1002,6 +1005,11 @@ footer{
       }
     }
   }
+  .info-empresa{
+    label{
+      display: inline-block;
+    }
+  }
   .content-descricao{
     text-align: justify ;
   }
@@ -1022,10 +1030,28 @@ footer{
         cursor: pointer;
       }
       img{
-        width: 1rem;
+        width: 18px;
         height: auto;
         vertical-align: middle;
       }
+    }
+  }
+}
+
+#contato-empresa{
+  .contato-wrapper{
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #fff;
+    @extend .shadow-1;
+    &:hover{
+      @extend .shadow-2;
+    }
+    .empresa-mapa{
+      width: 100%;
+    }
+    .contato-form{
+
     }
   }
 }

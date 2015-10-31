@@ -1,10 +1,10 @@
-@extends('layouts.master')
+@extends('layouts.masterSite')
 
 @section('title', 'Bem vindo!')
 
 @section('navbar')
     @parent
-    @include('layouts.sidebarSite')
+    @include('layouts.navbarSite')
 @stop
 
 @section('sideFilter')
@@ -68,19 +68,19 @@
 
                     <div class="row">
 
-                        <div class="grid-m-4 grid-s-6 grid-xs-6">
+                        <div class="grid-m-8 grid-s-6 grid-xs-6">
                             <div class="empresa-categoria text-caption">
                                 <i class="material-icons">toys</i>
                                 <!-- <i class="material-icons">filter_vintage</i> -->
                                 Gastronomia
                             </div>
                         </div>
-                        <div class="grid-m-4 grid-s-6 grid-xs-6" style="text-align: center;">
-                            <div class="empresa-categoria text-caption">
-                                <i class="material-icons">business</i>
-                                Comércio
-                            </div>
-                        </div>
+                        {{--<div class="grid-m-4 grid-s-6 grid-xs-6" style="text-align: center;">--}}
+                            {{--<div class="empresa-categoria text-caption">--}}
+                                {{--<i class="material-icons">business</i>--}}
+                                {{--Comércio--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
                         <div class="grid-m-4 grid-s-12 grid-xs-12 button-field">
                             <a href="{{ url('Empresas/1') }}" id="btnView" class="btn round-btn ripple" title="Ver Empresa">
