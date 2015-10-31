@@ -32,16 +32,21 @@
             <div class="loader-text">Carregando...</div>
         </div>
 
+        <div class="navbar-section">
+            @section('navbar')
+            @show
+        </div>
         <!--BODY CONTENT -->
         <div class="body-content">
             <div class="body-wrapper">
                 <div class="container">
                     <div class="row">
-                        <div class="grid-xs-12 grid-s-12 grid-m-3 ">
-                            @section('sidebar')
-                            @show
+                        <div class="grid-m-3 grid-s-4 grid-xs-12">
+                            <div id="sidebar-filtros">
+                                @yield('sideFilter')
+                            </div>
                         </div>
-                        <div class="grid-m-9 grid-s-12 grid-xs-12">
+                        <div class="grid-m-9 grid-s-8 grid-xs-12">
                             <div id="content">
                                 @yield('content')
                             </div>
@@ -51,7 +56,7 @@
             </div>
         </div>
 
-        <span class="separator"></span>
+        {{--<span class="separator"></span>--}}
 
         @extends('layouts.footer')
 
@@ -78,6 +83,7 @@
 
         <!-- SCRIPTS SECTION -->
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="{!! asset('assets/js/jquery.autocomplete.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('assets/js/modal.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('assets/js/dropdown.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('assets/js/script.js') !!}"></script>

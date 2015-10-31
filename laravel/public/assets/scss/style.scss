@@ -4,8 +4,11 @@ $text-black: #444;
 
 $green: #1c8a43;
 
+
 @import "_mixins";
 @import "_space";
+@import "_navbar";
+@import "_sideFilter";
 @import "_modal";
 @import "_alerts";
 @import "_stripped";
@@ -273,6 +276,9 @@ footer{
   margin: 0;
   position: relative;
   .footer-top{
+    @extend .shadow-1;
+    border-top: 1px solid #e7e7e7;
+    background: #E66D1B;
     padding: 15px;
     // background-color: white;
     // -webkit-transition: all 0.2s ease-in-out;
@@ -286,10 +292,12 @@ footer{
     // }
     .footer-info, .footer-contact{
       .footer-title{
-        color: #E6BD35;
+        //color: #E6BD35;
+        color: white;
         text-transform: uppercase;
         font-size: 14px;
         font-size: 1rem;
+        text-align: center;
         i{
           // vertical-align: middle;
           // position: relative;
@@ -297,14 +305,16 @@ footer{
           // @include transform(rotate(-45deg));
           // font-size: 18px;
         }
-      }
-      .footer-link{
-        // padding-left: 18px;
-        img{
-          width: 14px;
-          height: auto;
-          vertical-align: middle;
-          margin-right: 5px;
+        a{
+          text-decoration: none;
+          color: white;
+          opacity: .7;
+          @include transition(0.3s);
+          &:hover{
+            opacity: 1;
+            //color: #E66D1B;
+            color: white;
+          }
         }
       }
     }
@@ -322,27 +332,26 @@ footer{
       }
     }
   }
-  // .footer-bottom{
-  //   background-color: #404040;
-  //   padding: 10px;
-  //   color: white;
-  //   text-align: center;
-  // }
-  .footer-bottom{
-    display: inline-block;
-    overflow-x: hidden;
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
-    // line-height: 0;
-    // height: 250px;
-    // span{
-    //   display: inline-block;
-    //   float: left;
-    //   width: 12.5%;
-    //   height: 250px;
-    // }
-  }
+   .footer-bottom{
+     //background-color: #404040;
+     //color: white;
+     text-align: center;
+     display: inline-block;
+     margin: 0px;
+     padding: 10px;
+     width: 100%;
+     .footer-contact{
+       .footer-link{
+         svg{
+           width: 18px;
+           height: auto;
+           vertical-align: middle;
+           margin-right: 5px;
+           //fill: white;
+         }
+       }
+     }
+   }
 }
 
 .gotop{

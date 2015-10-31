@@ -1,0 +1,110 @@
+$text-black: #444;
+
+.side-filter{
+  background-color: #fff;
+  @extend .shadow-1;
+  padding: 0;
+  margin-bottom: 20px;
+  &:hover{
+    @extend .shadow-2;
+    transition: all 0.3s ease;
+  }
+  .filter-title{
+    text-transform: uppercase;
+    border-bottom: 1px solid #e7e7e7;
+    h6{
+      padding: 5px 15px;
+    }
+    &.side-filter-empreendimento{
+      background-color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      &:hover{
+        @extend .shadow-2;
+        transform: scale(1.04);
+      }
+      &.active{
+        background-color: #E66D1C;
+        a{
+          color: white;
+        }
+      }
+      a{
+        width: 100%;
+        display: inline-block;
+        padding: 5px 15px;
+        text-decoration: none;
+        color: $text-black;
+        i{
+          /* display: inline-block; */
+          //float: left;
+          width: 25px;
+          margin-right: 7px;
+        }
+      }
+    }
+  }
+  .search-list{
+    width: 100%;
+    /* height: 2rem; */
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    border: 1px solid #e7e7e7;
+    &:hover{
+      @extend .shadow-1;
+    }
+  }
+  .filter-list{
+    padding: 5px 15px;
+    ul{
+      max-height: 200px;
+      overflow-y: auto;
+      padding: 0;
+      margin: 0;
+      li {
+        list-style: none;
+        a{
+          opacity: .8;
+          line-height: 2rem;
+          color: $text-black;
+          text-decoration: none;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          user-select: none;
+          &:hover{
+            opacity: 1;
+            text-decoration: underline;
+          }
+        }
+        label{
+          opacity: .8;
+          cursor: pointer;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          user-select: none;
+          &:hover{
+            opacity: 1;
+          }
+        }
+        input[type="checkbox"]{
+          width: auto;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+
+.autocomplete-suggestions {
+  border: 1px solid #e7e7e7;
+  background: #FFF;
+  overflow: auto;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.autocomplete-suggestion { padding: 3px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #E66D1B; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }

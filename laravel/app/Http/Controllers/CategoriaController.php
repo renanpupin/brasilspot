@@ -29,7 +29,7 @@ class CategoriaController extends Controller
 
     public function create()
     {
-        $categorias = ['-1'=>'Selecione a categoria pai'] + Categoria::lists('nome', 'id')->all();
+        $categorias = ['-1'=>'Selecione a categoria principal'] + Categoria::lists('nome', 'id')->all();
         return view('Categoria.Create')->with('categorias', $categorias);
     }
 
@@ -126,19 +126,22 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         $categoria = Categoria::find($id);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
         if(!empty($categoria))
         {
-            $encontrou = Categoria::where('idCategoriaPai','=',$categoria->id)->count() > 0;
-            if($encontrou)
+            $possuiCategoriaVinculada = Categoria::where('idCategoriaPai','=',$categoria->id)->count() > 0;
+            if($possuiCategoriaVinculada)
             {
-                $mensagem = 'Categoria seleciona é pai de outras categorias, remova todas as categorias filhas primeiro.';
-                return redirect()->back()->with('erros',$mensagem);
+                $mensagem = 'A Categoria seleciona possui outras categorias vinculadas, remova todas estas categorias primeiro.';
+                return redirect()->back()->with('erros', $mensagem);
+            }else{
+                $categoria->delete();
+                Session::flash('flash_message', 'Categoria removida com sucesso!');
+                return redirect()->back();
             }
-
-            $categoria->delete();
-            Session::flash('flash_message', 'Categoria removida com sucesso!');
-            return redirect()->back();
         }
 
         return 'Categoria não foi encontrado';

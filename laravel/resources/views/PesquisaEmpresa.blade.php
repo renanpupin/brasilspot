@@ -52,15 +52,15 @@
                                 <form id="formLocation">
 
                                         <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                                            <label for="pesquisaEmpresa">O que você procura?</label>
-                                            <input type="text" name="pesquisaEmpresa" id="pesquisaEmpresa">
+                                            <label for="pesquisaEmpresa">Eu procuro</label>
+                                            <input type="text" name="pesquisaEmpresa" id="pesquisaEmpresa" placeholder="O que você procura?">
                                             <p class="input-hint">
                                                 (Restaurante, bar, loja, etc.)
                                             </p>
                                         </div>
                                         <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                                             <label for="pesquisaEndereco">Onde?</label>
-                                            <input type="text" name="pesquisaEndereco" id="pesquisaEndereco">
+                                            <input type="text" name="pesquisaEndereco" id="pesquisaEndereco" placeholder="Rio de Janeiro, RJ">
                                             <p class="input-hint">
                                                 (Um endereço específico, bairro ou cidade.)
                                             </p>
@@ -87,19 +87,20 @@
             </div>
         </div>
 
-        <div class="floatingButton" title="Login">
-            <a href="{{ url('Login' )}}">
-                <i class="material-icons">person</i>
-            </a>
-        </div>
+        {{--<div class="floatingButton" title="Login">--}}
+            {{--<a href="{{ url('Login' )}}">--}}
+                {{--<i class="material-icons">person</i>--}}
+            {{--</a>--}}
+        {{--</div>--}}
 
-        <span class="separator"></span>
+        {{--<span class="separator"></span>--}}
 
         @extends('layouts.footer')
 
         <!-- SCRIPTS SECTION -->
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script type="text/javascript" src="{!! asset('assets/js/modal.js') !!}"></script>
+        <script type="text/javascript" src="{!! asset('assets/js/jquery.autocomplete.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('assets/js/dropdown.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('assets/js/script.js') !!}"></script>
         @yield('scripts')
