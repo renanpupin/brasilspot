@@ -137,6 +137,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('Endereco/editar/{id}', 'EnderecoController@edit');
     Route::get('Endereco/cadastrar', 'EnderecoController@create');
     Route::resource('Endereco','EnderecoController');
+
+    //routes for "TiposEmpresas"
+    Route::post('TipoEmpresa/editar/{id}', 'TipoEmpresaController@update');
+    Route::get('TipoEmpresa/editar/{id}', 'TipoEmpresaController@edit');
+    Route::get('TipoEmpresa/cadastrar', 'TipoEmpresaController@create');
+    Route::resource('TipoEmpresa','TipoEmpresaController');
 });
 
 //SITE ROUTES

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Empresa;
@@ -13,7 +14,6 @@ use App\Categoria;
 use App\Cartao;
 use Illuminate\Support\Facades\Session;
 use Input;
-use Validator;
 use Redirect;
 use Gate;
 use Auth;
@@ -28,8 +28,12 @@ class EmpresaController extends Controller
         {
             $usuario = Auth::User();
             $empresa = $usuario->Empresa()->first();
-            $empresa = $empresa->with('Plano')->with('TipoEmpresa');
-
+            if(!empty($empresa))
+            {
+                $empresa = $empresa->with('Plano')->with('TipoEmpresa');
+                return view('Empresa.Index')->with('empresas',$empresa);
+            }
+            $empresa = array();
             return view('Empresa.Index')->with('empresas',$empresa);
         }
 
@@ -42,10 +46,10 @@ class EmpresaController extends Controller
     public function create()
     {
         $usuarios = User::orderBy('name','asc')->lists('name','id');
-        $tiposEmpresas = TipoEmpresa::orderBy('tipo','asc   ')->lists('tipo','id');
+        $tiposEmpresas = TipoEmpresa::orderBy('tipo','asc')->lists('tipo','id');
         $planos = Plano::orderBy('nome','asc')->lists('nome','id');
         $categorias = Categoria::orderBy('nome','asc')->lists('nome','id');
-        $cartoes = Cartao::orderBy('tipo','asc')->lists('tipo','id');
+        $cartoes = Cartao::orderBy('tipo','asc')->lists('bandeira','id');
         $vendedores  = Vendedor::with('Usuario')->get()->lists('Usuario.name','id');
 
         return view('Empresa.Create')
@@ -59,7 +63,6 @@ class EmpresaController extends Controller
 
     public function store(Request $request)
     {
-
         $regras = array(
             'nomeEmpreendedor' => 'required|string',
             'razaoSocial' => 'string',
@@ -71,42 +74,82 @@ class EmpresaController extends Controller
             'horarioFuncionamento' => 'required|string',
             'linkFacebook' => 'string',
             'numeroWhatsapp' => 'string',
-            'idPlano' => 'required',
-            'idUsuario' => 'required',
-            'idTipoEmpresa' => 'required',
-            'idVendedor' => 'required',
-            'idPlano' => 'required'
+            'tiposEmpreendimentos' => 'required',
         );
 
         $mensagens = array(
             'required' => 'O campo :attribute deve ser preenchido.',
             'string' => 'O campo :attribute deve ser texto.'
         );
+        $validator = Validator::make($request->all(),$regras,$mensagens);
 
-        $this->validate($request,$regras,$mensagens);
+        if(Gate::allows('AcessoComerciante'))
+        {
+            $usuario = Auth::user();
+            $planoUsuario = $usuario->PlanoUsuario->with('Plano')->first();
+            $plano = $planoUsuario->Plano->nome;
+
+            if(!empty($plano))
+            {
+                if( $plano == 'Básico')
+                {
+                    $tags = explode(',',$request['tags']);
+                    if(count($tags) <= 5)
+                    {
+
+                    }
+                    else
+                    {
+                        $errors = $validator->getMessageBag();
+                        $errors->add('ErroTags','Seu plano não permite mais de 5 tags.');
+
+                        return redirect()->back()->with('errors',$errors);
+                    }
+                }
+                else if( $plano == 'Pro')
+                {
+                    $tags = explode(',',$request['tags']);
+                    if(count($tags) <= 15)
+                    {
+
+                    }
+                    else
+                    {
+                        $errors = $validator->getMessageBag();
+                        $errors->add('ErroTags','Seu plano não permite mais de 15 tags.');
+
+                        return redirect()->back()->with('errors',$errors);
+                    }
+                }
+            }
+            else
+            {
+
+            }
+        }
 
         Empresa::create([
-         'nomeEmpreendedor' => $request['nomeEmpreendedor'],
-         'razaoSocial' => $request['razaoSocial'],
-         'nomeFantasia' => $request['nomeFantasia'],
-         'slogan' => $request['slogan'],
-         'cpfCnpj' => $request['cpfCnpj'],
-         'email' => $request['email'],
-         'descricao' => $request['descricao'],
-         'horarioFuncionamento' => $request['horarioFuncionamento'],
-         'atendeCasa' => $request['atendeCasa'],
-         'linkFacebook' => $request['facebook'],
-         'numeroWhatsapp' => $request['whatsapp'],
-         'idUsuario' => $request['usuarios'],
-         'idTipoEmpresa' => $request['tiposEmpresas'],
-         'idVendedor' => $request['vendedores'],
-         'idPlano' => $request['planos'],
-         'dataCadastro' => '2015-10-11',
-         'dataVencimentoPlano' => '2016-10-11']);
+            'nomeEmpreendedor' => $request['nomeEmpreendedor'],
+            'razaoSocial' => $request['razaoSocial'],
+            'nomeFantasia' => $request['nomeFantasia'],
+            'slogan' => $request['slogan'],
+            'cpfCnpj' => $request['cpfCnpj'],
+            'email' => $request['email'],
+            'descricao' => $request['descricao'],
+            'horarioFuncionamento' => $request['horarioFuncionamento'],
+            'atendeCasa' => $request['atendeCasa'],
+            'linkFacebook' => $request['facebook'],
+            'numeroWhatsapp' => $request['whatsapp'],
+            'idUsuario' => $request['usuarios'],
+            'idTipoEmpresa' => $request['tiposEmpresas'],
+            'idVendedor' => $request['vendedores'],
+            'idPlano' => $request['planos'],
+            'dataCadastro' => '2015-10-11',
+            'dataVencimentoPlano' => '2016-10-11']);
 
-         Session::flash('flash_message', 'Empresa adicionada com sucesso!');
+        Session::flash('flash_message', 'Empresa adicionada com sucesso!');
 
-         return redirect()->back();
+        return redirect()->back();
     }
 
 
@@ -177,3 +220,4 @@ class EmpresaController extends Controller
         return Empresa::where('nomeFantasia','like','%'+$nomeFantasia+'%')->get();
     }
 }
+

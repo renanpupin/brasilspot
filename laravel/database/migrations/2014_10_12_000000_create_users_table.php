@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->integer('idPerfilUsuario')->unsigned();
-            $table->integer('idPlano')->unsigned();
+            $table->integer('idPlanoUsuario')->unsigned();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
         Schema::table('users', function($table)
         {
             $table->foreign('idPerfilUsuario')->references('id')->on('perfisUsuarios');
-            $table->foreign('idPlano')->references('id')->on('planosUsuarios');
+            $table->foreign('idPlanoUsuario')->references('id')->on('planosUsuarios');
         });
     }
 

@@ -44,7 +44,12 @@ class User extends Model implements AuthenticatableContract,
 
     public function Empresa()
     {
-        return $this->hasOne('\App\Empresa','idUsuario','id')->first();
+        return $this->hasOne('\App\Empresa','idUsuario','id');
+    }
+
+    public function PlanoUsuario()
+    {
+        return $this->hasOne('\App\PlanoUsuario','id','idPlano');
     }
 
     public function getRememberToken()

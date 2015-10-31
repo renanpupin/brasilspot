@@ -69,11 +69,19 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <tbody>
+
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @foreach($categorias as $categoria)
                     <tr>
                         <td>{{ $categoria->id }}</td>
                         <td>{{ $categoria->nome }}</td>
-                        <td>{{ $categoria->nomeCategoriaPai }}</td>
+
+                        @if($categoria->CategoriaPai == null)
+                            <td></td>
+                        @endif
+                        @if($categoria->CategoriaPai != null)
+                            <td>{{ $categoria->CategoriaPai->nome }}</td>
+                        @endif
                         <td class="col-actions">
                             <a href="{{ route('Categoria.show', array('id' => $categoria->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>
@@ -90,6 +98,11 @@
                         </td>
                     </tr>
                 @endforeach
+                <div class="row">
+                    <div class="col-md-12">
+                        {!! $categorias->render() !!}
+                    </div>
+                </div>
                 </tbody>
             </table>
 

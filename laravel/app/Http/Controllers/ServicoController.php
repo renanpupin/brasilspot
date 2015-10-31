@@ -7,12 +7,13 @@ use App\Http\Requests;
 use App\Servico;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 
 class ServicoController extends Controller
 {
     public function index()
     {
-        $servicos = Servico::all();
+        $servicos = Servico::orderBy('descricao','asc')->paginate(10);
 
         return view('Servico.Index')->with('servicos',$servicos);
     }

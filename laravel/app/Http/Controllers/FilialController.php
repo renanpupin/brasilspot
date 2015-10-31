@@ -26,11 +26,11 @@ class FilialController extends Controller
 
         if(Gate::allows('AcessoComerciante'))
         {
-            $usuario = Auth::user();
-            $empresa = $usuario->Empresa()->first();
-            $filiais = Filial::where('idEmpresa','=',$empresa->id)->get();
+//            $usuario = Auth::user();
+//            $empresa = $usuario->Empresa()->first();
+//            $filiais = Filial::where('idEmpresa','=',$empresa->id)->get();
 
-            return view('Filial.Index')->with('filiais',$filiais);
+//            return view('Filial.Index')->with('filiais',$filiais);
         }
         $filiais = Filial::with('Endereco')->get();
         return view('Filial.Index')->with('filiais',$filiais);

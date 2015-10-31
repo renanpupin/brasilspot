@@ -28,6 +28,7 @@ class Empresa extends Migration
             $table->integer('idTipoEmpresa')->unsigned();
             $table->integer('idUsuario')->unsigned();
             $table->integer('idVendedor')->unsigned();
+            $table->integer('idTipoCartao')->unsigned();
             $table->dateTime('dataCadastro');
             $table->timestamps();
         });
@@ -37,6 +38,7 @@ class Empresa extends Migration
             $table->foreign('idTipoEmpresa')->references('id')->on('tiposEmpresas');
             $table->foreign('idUsuario')->references('id')->on('users');
             $table->foreign('idVendedor')->references('id')->on('vendedores');
+            $table->foreign('idTipoCartao')->references('id')->on('tiposCartoes');
         });
     }
 

@@ -83,6 +83,11 @@
                         </td>
                     </tr>
                 @endforeach
+                <div class="row">
+                    <div class="col-md-12">
+                        {!! $servicos->render() !!}
+                    </div>
+                </div>
                 </tbody>
             </table>
 

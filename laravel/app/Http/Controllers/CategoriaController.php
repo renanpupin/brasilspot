@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Auth;
 
 class CategoriaController extends Controller
@@ -19,17 +21,8 @@ class CategoriaController extends Controller
 
         //$this->authorize('listar-categorias');
 
-        $categorias = Categoria::all();
+        $categorias = Categoria::orderBy('nome','asc')->with('CategoriaPai')->paginate(10);
 
-        foreach($categorias as $categoria)
-        {
-            if($categoria->idCategoriaPai != null) {
-                $categoria->nomeCategoriaPai = $categoria->CategoriaPai->nome;
-
-            }
-
-           // $categoria->nomeCategoriaPai = $categoriaPai->nome;
-        }
         return view('Categoria.Index')->with('categorias',$categorias);
     }
 
@@ -133,7 +126,7 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         $categoria = Categoria::find($id);
-        dd($categoria);
+
         if(!empty($categoria))
         {
             $encontrou = Categoria::where('idCategoriaPai','=',$categoria->id)->count() > 0;
