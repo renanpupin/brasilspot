@@ -186,7 +186,9 @@ Route::get('Atracoes', function () {
 });
 
 
-Route::get('Empresas/pesquisarEmpresa', 'EmpresaController@pesquisarEmpresa');
+Route::get('Empresas/encontre/{categoria}/{subcategoria?}', 'EmpresaController@filtroEmpresas');
+
+Route::get('Empresas/pesquisaDrEmpresa', 'EmpresaController@pesquisarEmpresa');
 Route::get('Empresas/pesquisarEndereco', 'EmpresaController@pesquisarEndereco');
 
 Route::get('Empresas/{id}', 'EmpresaController@visualizar');
@@ -196,6 +198,8 @@ Route::get('Empresas', function () {
 });
 
 Route::get('categorias', 'CategoriaController@listarCategorias');
+
+Route::get('categoria/{slug}', 'EmpresaController@listarPorCategoria');
 
 Route::get('Inicio', function () {
     return view('PesquisaEmpresa');

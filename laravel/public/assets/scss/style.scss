@@ -284,7 +284,7 @@ footer{
   .footer-top{
     @extend .shadow-1;
     border-top: 1px solid #e7e7e7;
-    background: #E66D1B;
+    //background: #E66D1B;
     padding: 15px;
     // background-color: white;
     // -webkit-transition: all 0.2s ease-in-out;
@@ -299,7 +299,7 @@ footer{
     .footer-info, .footer-contact{
       .footer-title{
         //color: #E6BD35;
-        color: white;
+        //color: white;
         text-transform: uppercase;
         font-size: 14px;
         font-size: 1rem;
@@ -313,13 +313,13 @@ footer{
         }
         a{
           text-decoration: none;
-          color: white;
+          //color: white;
           opacity: .7;
           @include transition(0.3s);
           &:hover{
             opacity: 1;
             //color: #E66D1B;
-            color: white;
+            //color: white;
           }
         }
       }

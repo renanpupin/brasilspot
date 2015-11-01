@@ -19,7 +19,7 @@
         <div class="lista-categorias row">
             @foreach($categorias as $categoria)
                 <div class="item-categoria grid-m-4 grid-s-6 grid-xs-12">
-                    <a href="{{url('Categorias/'.str_slug($categoria, "-"))}}">{{ $categoria }}</a>
+                    <a href="{{url('categoria/'.str_slug($categoria, "-"))}}">{{ $categoria }}</a>
                 </div>
             @endforeach
         </div>

@@ -247,5 +247,32 @@ class EmpresaController extends Controller
 
         return Response::json($registers);
     }
+
+    public function filtroEmpresas($categoria, $subcategoria = null)
+    {
+        $servicos = Input::get("servico");  //um ou varios
+        $estado = Input::get("em");
+
+
+        //a subcategoria é opcional e os serviços e estado podem vir ou não
+        if( $subcategoria){
+            $servicos = Input::get("servicos");
+            dd($categoria, $subcategoria, $estado, explode(",", $servicos));
+        }else {
+            $servicos = Input::get("servicos");
+            dd($categoria , $estado, explode(",", $servicos));
+
+        }
+        //Todo: busca de empresas pelos parâmetros informados na url
+        //EX: http://localhost:8000/Empresas/encontre/restaurantes/padaria?em=sp&servicos=wifi,delivery
+
+    }
+
+    public function listarPorCategoria($slug){
+
+        //TODO:buscar id da categoria pelo slug (ver funçao slug do eloquent) e retornar as empresas paginadas por esta categoria
+        //Se a categoria possuir filhas, então traz as empresas da categoria filha também
+        return view('Categoria')->with('slug',$slug);
+    }
 }
 
