@@ -1289,6 +1289,8 @@ NAV
           float: left;
           padding-left: 15px;
           padding-right: 15px; }
+          .navSite ul li.content-center .nav-item a {
+            color: #fff; }
     .navSite ul .btn {
       height: 29px;
       line-height: 29px;
@@ -2241,6 +2243,9 @@ body {
   -webkit-text-size-adjust: 100%;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem; }
+
+.body-content {
+  margin-bottom: 20px; }
 
 ul li {
   list-style-type: none; }

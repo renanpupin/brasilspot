@@ -76,12 +76,15 @@
                         <td>{{ $categoria->id }}</td>
                         <td>{{ $categoria->nome }}</td>
 
+                        {{--TODO: adicionar um ternário aqui--}}
                         @if($categoria->CategoriaPai == null)
                             <td></td>
                         @endif
+
                         @if($categoria->CategoriaPai != null)
                             <td>{{ $categoria->CategoriaPai->nome }}</td>
                         @endif
+
                         <td class="col-actions">
                             <a href="{{ route('Categoria.show', array('id' => $categoria->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>

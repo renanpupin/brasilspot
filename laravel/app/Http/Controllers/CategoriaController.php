@@ -26,6 +26,13 @@ class CategoriaController extends Controller
         return view('Categoria.Index')->with('categorias',$categorias);
     }
 
+    public function listarCategorias()
+    {
+        $categorias = Categoria::orderBy('nome','asc')->lists('nome', 'id');
+
+        return view('Categorias')->with('categorias',$categorias);
+    }
+
 
     public function create()
     {

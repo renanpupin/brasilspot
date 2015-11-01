@@ -75,7 +75,7 @@
 
                             <div class="row">
                                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                                    <a href="{{ url('Categorias' )}}" id="verCategorias" class="sublink">
+                                    <a href="{{ url('categorias' )}}" id="verCategorias" class="sublink">
                                         <span class="text-content">Veja todas as categorias</span>
                                     </a>
                                 </div>

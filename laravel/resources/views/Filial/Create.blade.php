@@ -121,7 +121,7 @@
                     <input type="text" name="telefone" id="telefone" class="input-phone">
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="whatsapp">Whatsapp para clientes</label>
+                    <label for="whatsapp">Whatsapp</label>
                     <input type="text" name="whatsapp" id="whatsapp" class="input-whatsapp">
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">

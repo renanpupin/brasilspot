@@ -62,13 +62,16 @@
                     </div>
                     <div class="row">
                         <div class="galeria-thumb">
-                            <div class="thumb-item grid-xs-4 grid-s-4 grid-m-4 grid-l-4">
+                            <div class="thumb-item grid-xs-3 grid-s-3 grid-m-3">
                                 <img src="{!! asset('assets/img/placeholder-company.png') !!}">
                             </div>
-                            <div class="thumb-item grid-xs-4 grid-s-4 grid-m-4 grid-l-4">
+                            <div class="thumb-item grid-xs-3 grid-s-3 grid-m-3">
                                 <img src="{!! asset('assets/img/placeholder-company.png') !!}">
                             </div>
-                            <div class="thumb-item grid-xs-4 grid-s-4 grid-m-4 grid-l-4">
+                            <div class="thumb-item grid-xs-3 grid-s-3 grid-m-3">
+                                <img src="{!! asset('assets/img/placeholder-company.png') !!}">
+                            </div>
+                            <div class="thumb-item grid-xs-3 grid-s-3 grid-m-3">
                                 <img src="{!! asset('assets/img/placeholder-company.png') !!}">
                             </div>
                         </div>
@@ -168,7 +171,7 @@
                     <label for="inputTipoCartoesAceitos">Cartões Aceitos</label>
                     @foreach($cartoes as $cartao)
                         <div class="check-inline">
-                            <input type="checkbox" name="inputCartoesAceitos" id="1" value="x">
+                            <input type="checkbox" name="inputCartoesAceitos" id="1" value="{{$cartao}}">{{$cartao}}
                         </div>
                     @endforeach
 

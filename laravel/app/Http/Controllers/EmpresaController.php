@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Response;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Empresa;
 use App\User;
 use App\TipoEmpresa;
+use App\Endereco;
 use App\Plano;
 use App\Vendedor;
 use App\Categoria;
@@ -227,8 +228,24 @@ class EmpresaController extends Controller
 
     public function pesquisarEmpresa()
     {
-        //ajax and json
+        $query = Input::get("query");
+
+        $registers = Empresa::where('nomeFantasia','like','%'.$query.'%')->get();
+
+//        if($registers->isEmpty()){
+//            $registers = Categoria::where('nome','like','%'.$query.'%')->get();
+//        }
+
+        return Response::json($registers);
     }
 
+    public function pesquisarEndereco()
+    {
+        $query = Input::get("query");
+
+        $registers = Endereco::where('endereco','like','%'.$query.'%')->orWhere('cidade','like','%'.$query.'%')->orWhere('estado','like','%'.$query.'%')->get();
+
+        return Response::json($registers);
+    }
 }
 

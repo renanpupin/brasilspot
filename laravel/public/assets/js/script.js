@@ -113,6 +113,16 @@
             serviceUrl: 'Empresas/pesquisarEmpresa',
             onSelect: function (suggestion) {
                 alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+            },
+            transformResult: function(response) {
+                response = JSON.parse(response);
+                return {
+
+                    suggestions: $.map(response, function(dataItem) {
+                        //return { value: (dataItem.nome != undefined ? dataItem.nome : dataItem.nomeFantasia), data: dataItem.id };
+                        return { value: dataItem.nomeFantasia, data: dataItem.id };
+                    })
+                };
             }
         });
     };
@@ -122,11 +132,22 @@
             serviceUrl: 'Empresas/pesquisarEndereco',
             onSelect: function (suggestion) {
                 alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+            },
+            transformResult: function(response) {
+                response = JSON.parse(response);
+                return {
+                    suggestions: $.map(response, function(dataItem) {
+                        return { value: dataItem.endereco + ", " + dataItem.cidade + " - " + dataItem.estado, data: dataItem.id };
+                    })
+                };
             }
         });
+        //on submit we can get the value by
+        //$('#pesquisaEmpresa').autocomplete().selection.data
+        //if($('#pesquisaEmpresa').autocomplete().selection.data !== null){}
     };
 
-    if (lightbox != undefined){
+    if (typeof(lightbox) !== 'undefined'){
         lightbox.option({
             'resizeDuration': 200,
             'wrapAround': true,

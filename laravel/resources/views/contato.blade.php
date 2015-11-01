@@ -1,15 +1,15 @@
-@extends('layouts.masterSite')
+@extends('layouts.masterSiteSemSidebar')
 
 @section('title', 'Bem vindo!')
 
-@section('sidebar')
+@section('navbar')
     @parent
     @include('layouts.navbarSite')
 @stop
 
 @section('content')
 
-    <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
+    <div class="content-title grid-m-10 grid-m-offset-2 grid-s-12 grid-xs-12">
         <h2>Contato</h2>
         <h6>Tire suas duvidas, dê sugestões.</h6>
     </div>

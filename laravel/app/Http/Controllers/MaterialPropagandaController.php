@@ -14,13 +14,13 @@ class MaterialPropagandaController extends Controller
     {
         //$erros = Erro::all();
 
-        return view('Erros.Index');
+        return view('MaterialPropaganda.Index');
     }
 
 
     public function create()
     {
-        return view('Erros.Create');
+        return view('MaterialPropaganda.Create');
     }
 
 
@@ -31,21 +31,21 @@ class MaterialPropagandaController extends Controller
 
     public function show($id)
     {
-        $erro = Erro::find($id);
-        return view('Erros.Detail')->with('erro',$erro);
+//        $erro = Erro::find($id);
+        return view('MaterialPropaganda.Detail');
     }
 
     public function destroy($id)
     {
-        $erro = Erro::find($id);
-
-        if(!empty($erro))
-        {
-            $erro->delete();
-            Session::flash('flash_message', 'Erro removido com sucesso!');
-            return redirect()->back();
-        }
-
-        return 'O erro não foi encontrado';
+//        $erro = Erro::find($id);
+//
+//        if(!empty($erro))
+//        {
+//            $erro->delete();
+//            Session::flash('flash_message', 'Erro removido com sucesso!');
+//            return redirect()->back();
+//        }
+//
+//        return 'O erro não foi encontrado';
     }
 }

@@ -44,6 +44,8 @@ Route::get('RecuperarSenha', function () {
 
     //routes for "MaterialPropaganda"
     Route::get('Solicitacoes/MaterialPropaganda/cadastrar', 'MaterialPropagandaController@create');
+    Route::get('Solicitacoes/MaterialPropaganda/{id}', 'MaterialPropagandaController@show');
+    Route::get('Solicitacoes/MaterialPropaganda', 'MaterialPropagandaController@index');
     Route::resource('MaterialPropaganda','MaterialPropagandaController');
 
     //routes for "ReportarErro" (somente cadastrar, detalhar e excluir)
@@ -183,39 +185,17 @@ Route::get('Atracoes', function () {
     return view('Atracoes');
 });
 
-Route::get('Empresas/pesquisarEndereco', function(){
-    $in = array(
-        "suggestions" => array(
-            array("value" => "Rio de Janeiro, RJ", "data" => "Rio de Janeiro, RJ"),
-            array("value" => "São Paulo, SP", "data" => "São Paulo, SP"),
-            array("value" => "Brasília, DF", "data" => "Brasília, DF"),
-            array("value" => "Imobiliária", "data" => "imobiliária")
-        )
-    );
-    return Response::json($in);
-});
 
-//Route::get('Empresas/pesquisarEmpresa', 'EmpresaController@pesquisarEmpresa');
-Route::get('Empresas/pesquisarEmpresa', function(){
-    $in = array(
-        "suggestions" => array(
-            array("value" => "Padaria", "data" => "padaria"),
-            array("value" => "Restaurante", "data" => "restaurante"),
-            array("value" => "Pizzaria", "data" => "pizzaria"),
-            array("value" => "Imobiliária", "data" => "imobiliária")
-        )
-    );
-    return Response::json($in);
-});
+Route::get('Empresas/pesquisarEmpresa', 'EmpresaController@pesquisarEmpresa');
+Route::get('Empresas/pesquisarEndereco', 'EmpresaController@pesquisarEndereco');
+
 Route::get('Empresas/{id}', 'EmpresaController@visualizar');
 
 Route::get('Empresas', function () {
     return view('index');
 });
 
-Route::get('Categorias', function () {
-    return view('Categorias');
-});
+Route::get('categorias', 'CategoriaController@listarCategorias');
 
 Route::get('Inicio', function () {
     return view('PesquisaEmpresa');

@@ -21,7 +21,7 @@
                 Você está em:
                 <ul>
                     <li><a href="{{ url('Erros') }}">Erro</a></li>
-                    <li>Cadastrar</li>
+                    <li>Reportar</li>
                 </ul>
             </div>
         </div>
@@ -63,8 +63,8 @@
                 </a>
             </div>
             <div class="form-group grid-m-3 grid-s-3 button-field">
-                {!! Form::button('<span class="text-content">Cadastrar</span>',[
-                    'id' => 'btnCadastrar',
+                {!! Form::button('<span class="text-content">Enviar</span>',[
+                    'id' => 'btnEnviar',
                     'type' => 'submit',
                     'class' => 'btn btn-primary ripple'
                     ])!!}

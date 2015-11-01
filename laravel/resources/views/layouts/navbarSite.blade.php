@@ -3,7 +3,7 @@
         <em class="hamburger"></em>
     </button>
     <div class="brand">
-        <a href="#">
+        <a href="{{url('/')}}">
             <img class="" src="{!! asset('assets/img/logo.00_png_srb') !!}" width="50px">
             <img class="brand-text" src="{!! asset('assets/img/logo_texto.png') !!}">
         </a>
@@ -24,24 +24,24 @@
         <li class="content-center">
             <div class="row">
                 <div class="nav-item">
-                    <a href="#">
+                    {{--<a href="#">--}}
                         <input type="text" name="pesquisaEmpresa" id="pesquisaEmpresa" placeholder="O que você procura?">
-                    </a>
+                    {{--</a>--}}
                 </div>
                 <div class="nav-item">
-                    <a href="#">
+                    {{--<a href="#">--}}
                         <input type="text" name="pesquisaEndereco" id="pesquisaEndereco" placeholder="Onde?">
-                    </a>
+                    {{--</a>--}}
                 </div>
                 <div class="nav-item">
-                    <button href="#" id="btnEncontre" class="btn btn-primary ripple">
+                    <button type="submit" id="btnEncontre" class="btn btn-primary ripple">
                         <span class="text-content">Encontre</span>
                     </button>
                 </div>
                 <div class="nav-item">
-                    <button href="#" id="btnEncontre" class="btn btn-secundary ripple">
+                    <a href="{{url('categorias')}}" id="btnEncontre" class="btn btn-secundary ripple">
                         <span class="text-content">Categorias</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </li>

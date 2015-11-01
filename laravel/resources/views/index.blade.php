@@ -68,7 +68,7 @@
 
                     <div class="row">
 
-                        <div class="grid-m-8 grid-s-6 grid-xs-6">
+                        <div class="grid-m-10 grid-s-10 grid-xs-10">
                             <div class="empresa-categoria text-caption">
                                 <i class="material-icons">toys</i>
                                 <!-- <i class="material-icons">filter_vintage</i> -->
@@ -82,7 +82,7 @@
                             {{--</div>--}}
                         {{--</div>--}}
 
-                        <div class="grid-m-4 grid-s-12 grid-xs-12 button-field">
+                        <div class="grid-m-2 grid-s-2 grid-xs-2 button-field">
                             <a href="{{ url('Empresas/1') }}" id="btnView" class="btn round-btn ripple" title="Ver Empresa">
                                 <i class="material-icons">arrow_forward</i>
                             </a>
@@ -99,16 +99,5 @@
             <i class="material-icons">more_horiz</i>
         </a>
     </div>
-
-    {{--<div id="tags" class="empresa-tags grid-m-12 grid-s-12 grid-xs-12">--}}
-    {{--<h4>Tags</h4>--}}
-    {{--<a href="javascript:void(0)"><span>TaTaggTag1</span></a>--}}
-    {{--<a href="javascript:void(0)"><span>Tag2Tag</span></a>--}}
-    {{--<a href="javascript:void(0)"><span>Tag2Tag</span></a>--}}
-    {{--<a href="javascript:void(0)"><span>Tag2Tag</span></a>--}}
-    {{--<a href="javascript:void(0)"><span>Tag2Tag</span></a>--}}
-    {{--<a href="javascript:void(0)"><span>Tag2Tag</span></a>--}}
-    {{--<a href="javascript:void(0)"><span>Tag3</span></a>--}}
-    {{--</div>--}}
 
 @stop
