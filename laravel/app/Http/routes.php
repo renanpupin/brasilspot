@@ -92,10 +92,9 @@ Route::get('RecuperarSenha', function () {
     Route::resource('Categoria', 'CategoriaController');
 
     //routes for "Empresa"
-    Route::get('upload', function() {
-        return View::make('Empresa.Upload');
-    });
-    Route::post('apply/upload', 'EmpresaController@upload');
+
+
+    Route::post('Empresa/uploadFiles', 'EmpresaController@uploadFiles');
 
     Route::post('Empresa/editar/{id}', 'EmpresaController@update');
     Route::get('Empresa/editar/{id}', 'EmpresaController@edit');
@@ -146,6 +145,13 @@ Route::get('RecuperarSenha', function () {
     Route::get('TipoEmpresa/editar/{id}', 'TipoEmpresaController@edit');
     Route::get('TipoEmpresa/cadastrar', 'TipoEmpresaController@create');
     Route::resource('TipoEmpresa','TipoEmpresaController');
+
+    //routes for "TiposCartoes"
+    Route::post('TipoCartao/editar/{id}', 'TipoCartaoController@update');
+    Route::get('TipoCartao/editar/{id}', 'TipoCartaoController@edit');
+    Route::get('TipoCartao/cadastrar', 'TipoCartaoController@create');
+    Route::delete('TipoCartao/remover/{id}', ['as' =>'TipoCartao.remover', 'uses' => 'TipoCartaoController@destroy']);
+    Route::resource('TipoCartao', 'TipoCartaoController');
 //});
 
 

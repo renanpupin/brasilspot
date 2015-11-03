@@ -9,6 +9,7 @@ class Cartao extends Model
     protected $table = "cartoes";
 
     protected $fillable = array(
+        'id',
         'bandeira',
         'tipo'
     );

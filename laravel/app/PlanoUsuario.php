@@ -9,6 +9,7 @@ class PlanoUsuario extends Model
     protected $table = "planosUsuarios";
 
     protected $fillable = array(
+        'id',
         'idPlano',
         'dataVencimento'
     );

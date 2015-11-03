@@ -35,26 +35,19 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-        $gate->define('AcessoVendedorAlfa', function($user){
 
-            $perfil = $user->PerfilUsuario();
-            if($perfil->tipo->equals('Vendedor Alfa'))
-                return true;
-            return false;
-        });
+        $gate->define('AcessoVendedor', function($user){
 
-        $gate->define('AcessoVendedorBeta', function($user){
-
-            $perfil = $user->PerfilUsuario();
-            if($perfil->tipo->equals('Vendedor Beta'))
+            $perfil = $user->PerfilUsuario()->first();
+            if($perfil->tipo == 'Vendedor')
                 return true;
             return false;
         });
 
         $gate->define('AcessoAdministrador', function($user){
 
-            $perfil = $user->PerfilUsuario();
-            if($perfil->tipo->equals('Administrador'))
+            $perfil = $user->PerfilUsuario()->first();
+            if($perfil->tipo == 'Administrador')
                 return true;
             return false;
         });

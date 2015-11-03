@@ -16,25 +16,10 @@ class User extends Model implements AuthenticatableContract,
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
     protected $table = 'users';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['name', 'email', 'password','idPlano','idPerfilUsuario'];
+    protected $fillable = ['name', 'email', 'password','idPlanoUsuario','idPerfilUsuario'];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
     protected $hidden = ['id','password', 'remember_token'];
 
     public function PerfilUsuario()
@@ -44,12 +29,17 @@ class User extends Model implements AuthenticatableContract,
 
     public function Empresa()
     {
-        return $this->hasOne('\App\Empresa','idUsuario','id');
+        return $this->hasOne('\App\Empresa','id','idUsuario');
     }
 
-    public function PlanoUsuario()
+    public function Vendedor()
     {
-        return $this->hasOne('\App\PlanoUsuario','id','idPlano');
+        return $this->hasOne('\App\Vendedor','idUsuario','id');
+    }
+
+    public function Comerciante()
+    {
+        return $this->hasOne('\App\Comerciante','idUsuario','id');
     }
 
     public function getRememberToken()
@@ -66,4 +56,5 @@ class User extends Model implements AuthenticatableContract,
     {
         return 'remember_token';
     }
+
 }

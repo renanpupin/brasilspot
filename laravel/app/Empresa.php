@@ -19,6 +19,8 @@ class Empresa extends Model
         'horarioFuncionamento',
         'atendeCasa',
         'idUsuario',
+        'idVendedor',
+        'idTipoCartao',
         'idTipoEmpresa',
         'dataCadastro',
         'dataVencimentoPlano');
@@ -26,6 +28,11 @@ class Empresa extends Model
     public function TipoEmpresa()
     {
         return $this->hasOne('\App\TipoEmpresa','id','idTipoEmpresa');
+    }
+
+    public function TipoCartao()
+    {
+        return $this->hasOne('\App\TipoCartao','id','idTipoCartao');
     }
 
     public function Usuario()

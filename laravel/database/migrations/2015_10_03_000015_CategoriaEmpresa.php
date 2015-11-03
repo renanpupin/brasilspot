@@ -17,7 +17,7 @@ class CategoriaEmpresa extends Migration
 
         Schema::table('categoriasEmpresas', function($table)
         {
-            $table->foreign('idEmpresa')->references('id')->on('empresas');
+            $table->foreign('idEmpresa')->references('id')->on('empresas')->onDelete('cascade');
             $table->foreign('idCategoria')->references('id')->on('categorias');
         });
     }

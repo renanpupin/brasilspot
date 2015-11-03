@@ -145,3 +145,12 @@
     </div>
 
 </div>
+
+
+@section('scripts')
+    <script type="text/javascript" src="{!! asset('assets/js/jquery.inputmask.bundle.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('assets/js/jquery.inputmask.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('assets/js/inputmask.regex.extensions.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('assets/js/usuario/usuario.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('assets/js/empresa/empresa.js') !!}"></script>
+@stop
