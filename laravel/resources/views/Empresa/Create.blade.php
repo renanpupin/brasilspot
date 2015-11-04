@@ -66,22 +66,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="galeria-thumb">
-                        <div class="thumb-item grid-xs-4 grid-s-4 grid-m-4 grid-l-4">
-                            <div class="dropzone" id="dropzoneFileUpload2">
-                            </div>
-                        </div>
-                        <div class="thumb-item grid-xs-4 grid-s-4 grid-m-4 grid-l-4">
-                            <div class="dropzone" id="dropzoneFileUpload3">
-                            </div>
-                        </div>
-                        <div class="thumb-item grid-xs-4 grid-s-4 grid-m-4 grid-l-4">
-                            <div class="dropzone" id="dropzoneFileUpload4">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{--<div class="row">--}}
+                    {{--<div class="galeria-thumb">--}}
+                        {{--<div class="thumb-item grid-xs-4 grid-s-4 grid-m-4 grid-l-4">--}}
+                            {{--<div class="dropzone" id="dropzoneFileUpload2">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="thumb-item grid-xs-4 grid-s-4 grid-m-4 grid-l-4">--}}
+                            {{--<div class="dropzone" id="dropzoneFileUpload3">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="thumb-item grid-xs-4 grid-s-4 grid-m-4 grid-l-4">--}}
+                            {{--<div class="dropzone" id="dropzoneFileUpload4">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
             {{--<div class="form-group grid-m-6 grid-s-12 grid-xs-12">--}}
             {{--<p class="text-caption">- Campos com (*) são obrigatórios</p>--}}

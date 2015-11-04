@@ -54,27 +54,45 @@
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('usuario', 'Usuário',null,['for' => 'usuario']) !!}
-                <p class="field-disabled">José de Silva</p>
+                <p class="field-disabled">{{ $reclamacao->Usuario->name }}</p>
             </div>
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('descricao', 'Descrição',null,['for' => 'descricao']) !!}
-                <p class="field-disabled">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                <p class="field-disabled">{{ $reclamacao->descricao }}</p>
             </div>
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('is_visualizada', 'Visualizada',null,['for' => 'is_visualizada']) !!}
-                <p class="field-disabled">NÃO</p>
+                @if($reclamacao->isVisualizada)
+                    <p class="field-disabled">SIM</p>
+                @endif
+
+                @if(!$reclamacao->isVisualizada)
+                    <p class="field-disabled">NÃO</p>
+                @endif
             </div>
 
-            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 grid-xs-12 button-field">
-                <a href="{{ url('Clientes/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
-                    <span class="text-content">Voltar</span>
-                </a>
-            </div>
-            <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
-                <a href="{{ url('Clientes/Reclamacoes/aprovar/1') }}" id="btnAprovar" title="Aprovar" class="btn btn-primary ripple">
-                    <span class="text-content">Aprovar</span>
-                </a>
-            </div>
+            @if($reclamacao->isVisualizada == 1)
+                <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 grid-xs-12 button-field">
+                    <a href="{{ url('Clientes/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                        <span class="text-content">Voltar</span>
+                    </a>
+                </div>
+            @endif
+            @if($reclamacao->isVisualizada == 0)
+                <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
+                    <a href="{{ url('Clientes/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                        <span class="text-content">Voltar</span>
+                    </a>
+                </div>
+            @endif
+
+            @if($reclamacao->isVisualizada == 0)
+                <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
+                    <a href="{{ url('Clientes/Reclamacoes/visualizar',[$reclamacao->id]) }}" id="btnVisualizar" title="Visualizar" class="btn btn-primary ripple">
+                        <span class="text-content">Visualizar</span>
+                    </a>
+                </div>
+            @endif
         </div>
 
 

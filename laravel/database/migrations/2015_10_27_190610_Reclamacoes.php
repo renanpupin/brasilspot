@@ -11,7 +11,7 @@ class Reclamacoes extends Migration
         Schema::create('reclamacoes', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('idUsuario')->unsigned();
-            $table->string('descricao', 250);
+            $table->string('descricao');
             $table->boolean('isVisualizada')->default(false);
             $table->timestamps();
         });
