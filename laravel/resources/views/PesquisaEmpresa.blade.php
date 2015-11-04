@@ -32,56 +32,65 @@
             <div class="loader-text">Carregando...</div>
         </div>
 
+        <div class="floatingButton">
+            <a href="{{url('login')}}" id="" class="btn btn-login ripple">
+                <i class="material-icons">person</i> <span class="text-content">Login</span>
+            </a>
+            <a href="{{url('Planos')}}" id="" class="btn btn-assinar ripple">
+                <i class="material-icons">assignment_turned_in</i> <span class="text-content">Assinar</span>
+            </a>
+        </div>
+
         <!--BODY CONTENT -->
         <div class="body-content">
             <div class="body-wrapper">
-                <div class="container">
-                    <div class="row">
+                <div id="intro">
+                    <div class="container">
+                        <div class="row">
 
-                        <div class="inline-logo grid-m-6 grid-m-offset-3 grid-s-12 grid-xs-12">
-                            <img src="{!! asset('assets/img/logo.00_png_srb') !!}">
-                        </div>
-                        <div class="inline-logo-text grid-m-6 grid-m-offset-3 grid-s-12 grid-xs-12">
-                            <span class="brasil">BRASIL</span>
-
-                            <span class="spot">SPOT</span>
-                        </div>
-
-                        <div class="intro-form grid-m-6 grid-m-offset-3 grid-s-12 grid-xs-12">
-                            <div class="row">
-                                <form id="formLocation">
-
-                                        <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                                            <label for="pesquisaEmpresa">Eu procuro</label>
-                                            <input type="text" name="pesquisaEmpresa" id="pesquisaEmpresa" placeholder="O que você procura?">
-                                            <p class="input-hint">
-                                                (Restaurante, bar, loja, etc.)
-                                            </p>
-                                        </div>
-                                        <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                                            <label for="pesquisaEndereco">Onde?</label>
-                                            <input type="text" name="pesquisaEndereco" id="pesquisaEndereco" placeholder="Rio de Janeiro, RJ">
-                                            <p class="input-hint">
-                                                (Um endereço específico, bairro ou cidade.)
-                                            </p>
-                                        </div>
-                                        <div class="form-group grid-m-12 grid-s-12 grid-xs-12 button-field">
-                                            <a href="{{ url('Empresas' )}}" id="btnEncontre" class="btn btn-primary ripple">
-                                                <i class="material-icons">send</i> <span class="text-content">Encontre</span>
-                                            </a>
-                                        </div>
-                                </form>
+                            <div class="inline-logo grid-m-6 grid-m-offset-3 grid-s-12 grid-xs-12">
+                                <img src="{!! asset('assets/img/logo.00_png_srb') !!}">
+                            </div>
+                            <div class="intro-logo-text grid-m-6 grid-m-offset-3 grid-s-12 grid-xs-12">
+                                <img class="brand-text" src="{!! asset('assets/img/logo_texto.png') !!}">
                             </div>
 
-                            <div class="row">
-                                <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                                    <a href="{{ url('categorias' )}}" id="verCategorias" class="sublink">
-                                        <span class="text-content">Veja todas as categorias</span>
-                                    </a>
+                            <div class="intro-form grid-m-4 grid-m-offset-4 grid-s-6 grid-s-offset-3 grid-xs-12">
+                                <div class="row">
+                                    <form id="formLocation">
+
+                                            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                                                <label for="pesquisaEmpresa">Eu procuro</label>
+                                                <input type="text" name="pesquisaEmpresa" id="pesquisaEmpresa" placeholder="O que você procura?">
+                                                <p class="input-hint">
+                                                    (Restaurante, bar, loja, etc.)
+                                                </p>
+                                            </div>
+                                            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                                                <label for="pesquisaEndereco">Onde?</label>
+                                                <input type="text" name="pesquisaEndereco" id="pesquisaEndereco" placeholder="Rio de Janeiro, RJ">
+                                                <p class="input-hint">
+                                                    (Um endereço específico, bairro ou cidade.)
+                                                </p>
+                                            </div>
+                                            <div class="form-group grid-m-6 grid-m-offset-3 grid-s-6 grid-s-offset-3 grid-xs-12 button-field">
+                                                <a href="{{ url('Empresas' )}}" id="btnEncontre" class="btn btn-primary ripple">
+                                                    <i class="material-icons">send</i> <span class="text-content">Encontre</span>
+                                                </a>
+                                            </div>
+                                    </form>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                                        <a href="{{ url('categorias' )}}" id="verCategorias" class="sublink">
+                                            <span class="text-content">Veja todas as categorias</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>

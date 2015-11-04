@@ -69,43 +69,43 @@
         });
     }
 
-    if($("#inputFiltrarEstado").length != 0){
-        var estados = [
-            { value: 'Acre', data: 'AC' },
-            { value: 'Alagoas', data: 'AL' },
-            { value: 'Amapá', data: 'AP' },
-            { value: 'Amazonas', data: 'AM' },
-            { value: 'Bahia', data: 'BA' },
-            { value: 'Ceará', data: 'CE' },
-            { value: 'Distrito Federal', data: 'DF' },
-            { value: 'Espirito Santo', data: 'ES' },
-            { value: 'Goiás', data: 'GO'},
-            { value: 'Maranhão', data: 'MA'},
-            { value: 'Mato Grosso do Sul', data: 'MS'},
-            { value: 'Mato Grosso', data: 'MT'},
-            { value: 'Minas Gerais', data: 'MG'},
-            { value: 'Pará', data: 'PA'},
-            { value: 'Paraíba', data: 'PB'},
-            { value: 'Paraná', data: 'PR'},
-            { value: 'Pernambuco', data: 'PE'},
-            { value: 'Piauí', data: 'PI'},
-            { value: 'Rio de Janeiro', data: 'RJ'},
-            { value: 'Rio Grande do Norte', data: 'RN'},
-            { value: 'Rio Grande do Sul', data: 'RS'},
-            { value: 'Rondônia', data: 'RO'},
-            { value: 'Roraima', data: 'RR'},
-            { value: 'Santa Catarina', data: 'SC'},
-            { value: 'São Paulo', data: 'SP'},
-            { value: 'Sergipe', data: 'SE'},
-            { value: 'Tocantins', data: 'TO'}
-        ];
-        $("#inputFiltrarEstado").autocomplete({
-            lookup: estados,
-            onSelect: function (suggestion) {
-                alert('Selecionado: ' + suggestion.value + ', ' + suggestion.data);
-            }
-        });
-    };
+    //if($("#inputFiltrarEstado").length != 0){
+    //    var estados = [
+    //        { value: 'Acre', data: 'AC' },
+    //        { value: 'Alagoas', data: 'AL' },
+    //        { value: 'Amapá', data: 'AP' },
+    //        { value: 'Amazonas', data: 'AM' },
+    //        { value: 'Bahia', data: 'BA' },
+    //        { value: 'Ceará', data: 'CE' },
+    //        { value: 'Distrito Federal', data: 'DF' },
+    //        { value: 'Espirito Santo', data: 'ES' },
+    //        { value: 'Goiás', data: 'GO'},
+    //        { value: 'Maranhão', data: 'MA'},
+    //        { value: 'Mato Grosso do Sul', data: 'MS'},
+    //        { value: 'Mato Grosso', data: 'MT'},
+    //        { value: 'Minas Gerais', data: 'MG'},
+    //        { value: 'Pará', data: 'PA'},
+    //        { value: 'Paraíba', data: 'PB'},
+    //        { value: 'Paraná', data: 'PR'},
+    //        { value: 'Pernambuco', data: 'PE'},
+    //        { value: 'Piauí', data: 'PI'},
+    //        { value: 'Rio de Janeiro', data: 'RJ'},
+    //        { value: 'Rio Grande do Norte', data: 'RN'},
+    //        { value: 'Rio Grande do Sul', data: 'RS'},
+    //        { value: 'Rondônia', data: 'RO'},
+    //        { value: 'Roraima', data: 'RR'},
+    //        { value: 'Santa Catarina', data: 'SC'},
+    //        { value: 'São Paulo', data: 'SP'},
+    //        { value: 'Sergipe', data: 'SE'},
+    //        { value: 'Tocantins', data: 'TO'}
+    //    ];
+    //    $("#inputFiltrarEstado").autocomplete({
+    //        lookup: estados,
+    //        onSelect: function (suggestion) {
+    //            alert('Selecionado: ' + suggestion.value + ', ' + suggestion.data);
+    //        }
+    //    });
+    //};
 
     if($("#pesquisaEmpresa").length != 0){
 
@@ -158,3 +158,34 @@
 
 
 })(jQuery, undefined);
+
+
+
+
+(function ($) {
+    jQuery.expr[':'].Contains = function (elem, i, m) {
+        return (elem.textContent || elem.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+    };
+
+    function listFilter(input, list) {
+        $(input).change(function () {
+            var filter = $(this).val();
+            if (filter) {
+                $(list).find("li:not(:Contains(" + filter + "))").hide();
+                $(list).find("li:Contains(" + filter + ")").show();
+            } else {
+                $(list).find("li").show();
+            }
+            return false;
+        }).keyup(function () {
+            $(this).change();
+        });
+    }
+
+    //ready
+    $(function () {
+        if($("#inputFiltrarEstado").length != 0){
+            listFilter("#inputFiltrarEstado", "#listaEstados");
+        }
+    });
+}(jQuery));

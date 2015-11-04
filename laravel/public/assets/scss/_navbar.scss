@@ -72,14 +72,15 @@ NAV
       }
     }
     .brand-text{
-      top: 0;
-      width: 125px;
+      top: 7px;
+      width: 75px;
       height: auto;
     }
   }
   ul {
     margin: 0;
-    //margin-top: 5px;
+    //padding: 0;
+    height: 72px;
     text-transform: uppercase;
     li{
       display: inline-block;
@@ -100,11 +101,14 @@ NAV
       }
       &.login-right{
         float: right;
-        padding: 15px 0px;
+        padding: 21px 0px;
         width: 15%;
       }
       &.content-center{
         width: 68%;
+        .center-row{
+          padding: 5px;
+        }
         .nav-item{
           width: 25%;
           position: relative;
@@ -385,10 +389,11 @@ input, textarea, select{
 
 #pesquisaEmpresa{
   padding-left: 30px;
-  fill: red;
+  padding-right: 30px;
   background: #fefefe url("https://storage.googleapis.com/material-icons/external-assets/v1/icons/svg/ic_grade_black_24px.svg") no-repeat scroll 5px 50% / 20px 20px;
 }
 #pesquisaEndereco{
   padding-left: 30px;
+  padding-right: 30px;
   background: #fefefe url("https://storage.googleapis.com/material-icons/external-assets/v1/icons/svg/ic_place_black_24px.svg") no-repeat scroll 5px 50% / 20px 20px;
 }

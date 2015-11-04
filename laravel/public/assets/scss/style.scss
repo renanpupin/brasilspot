@@ -318,7 +318,7 @@ footer{
           @include transition(0.3s);
           &:hover{
             opacity: 1;
-            //color: #E66D1B;
+            color: #E66D1B;
             //color: white;
           }
         }
@@ -506,13 +506,20 @@ footer{
   }
 }
 
-/* section#intro */
 #intro{
-  .intro-logo{
+  .intro-logo-text{
     text-align: center;
+    margin-bottom: 15px;
+    img{
+      width: 150px;
+      height: auto;
+    }
   }
   .intro-form{
-    // text-align: center;
+     text-align: center;
+    form input{
+      text-align: center;
+    }
   }
 }
 
@@ -1200,24 +1207,46 @@ footer{
 }
 
 .floatingButton{
-  position: fixed;
+  position: absolute;
   top: 15px;
   right: 15px;
   //border: 1px solid black;
-  a{
-    background-color: #1c8a43;
-    padding: 7px;
-    cursor: pointer;
-    border-radius: 50%;
-    color: white;
-    display: block;
-    @include transition(all 0.2s ease-in-out);
-    @extend .shadow-1;
-    &:hover{
-      @extend .shadow-2;
-    }
+  font-size: .8rem;
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  z-index: 2;
+  .btn{
     i{
-      font-size: 2rem;
+      top: -1px;
+      @include transform(rotate(0deg));
+    }
+  }
+  a{
+    width: 95px;
+    float: left;
+    padding: 0px 10px;
+    &.btn-login{
+      border: 1px solid $green;
+      background-color: transparent;
+      color: $green;
+      &:hover{
+        background-color: $green;
+        color: #fff;
+      }
+    }
+    &.btn-assinar{
+      background-color: #E6BD35;
+      margin-left: 5px;
+    }
+  }
+}
+@media (max-width: 600px){
+  .floatingButton{
+    width: 100px;
+    a.btn-assinar{
+      margin-left: 0px;
+      margin-top: 5px;
     }
   }
 }

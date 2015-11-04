@@ -22,7 +22,7 @@
         {{--<li>--}}
         {{--</li>--}}
         <li class="content-center">
-            <div class="row">
+            <div class="center-row row">
                 <div class="nav-item">
                     {{--<a href="#">--}}
                         <input type="text" name="pesquisaEmpresa" id="pesquisaEmpresa" placeholder="O que você procura?">
@@ -46,7 +46,7 @@
             </div>
         </li>
         <li class="login-right">
-            <a href="#login">
+            <a href="{{url('Login')}}">
                 <i class="material-icons">person</i>
                 Login/Assinar
             </a>
