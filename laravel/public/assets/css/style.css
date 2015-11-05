@@ -1481,10 +1481,10 @@ NAV
   .btn-primary:hover {
     background-color: #1e9247; }
 
-.shadow-1, .side-filter, .side-filter .search-list:hover, .alert, #galeria-empresa .galeria-item .galeria-item-image, .table-responsive:hover, footer .footer-top, #sidebar, #content .content-empresas .empresa-item, #breadcrumbs .breadcrumbs-content, #cadastro #galeria-empresa .galeria-feature img, #cadastro #galeria-empresa .galeria-thumb .thumb-item img, #visualizar #galeria-empresa .galeria-feature img, #visualizar #galeria-empresa .galeria-thumb .thumb-item img, #contato-empresa .contato-wrapper, .sublink, #categorias .lista-categorias .item-categoria a {
+.shadow-1, .side-filter, .side-filter .search-list:hover, .alert, #galeria-empresa .galeria-item .galeria-item-image, .table-responsive:hover, footer .footer-top, #sidebar, #content .content-empresas .empresa-item, #breadcrumbs .breadcrumbs-content, #cadastro #galeria-empresa .galeria-feature img, #cadastro #galeria-empresa .galeria-thumb .thumb-item img, #visualizar #galeria-empresa .galeria-feature img, #visualizar #galeria-empresa .galeria-thumb .thumb-item img, #contato-empresa .contato-wrapper, .sublink, #categorias .lista-categorias .item-categoria a, #dashboard .dashboard-header, #dashboard .dashboard-resumo {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
-.shadow-2, .btn:hover, .side-filter:hover, .side-filter .filter-title.side-filter-empreendimento:hover, .alert:hover, #galeria-empresa .galeria-item .galeria-item-image:hover, #sidebar .sidebar-menu nav#sideMenu ul li a:not(.active):hover, #sidebar .sidebar-menu nav#sideMenu ul li.submenu.openSub > a, #sidebar .sidebar-links ul li a:hover, #sidebar .sidebar-links ul li a.active, #content .content-empresas .empresa-item:hover, #tags a span:hover, #cadastro #galeria-empresa .galeria-feature img:hover, #cadastro #galeria-empresa .galeria-thumb .thumb-item img:hover, #visualizar #galeria-empresa .galeria-feature img:hover, #visualizar #galeria-empresa .galeria-thumb .thumb-item img:hover, #contato-empresa .contato-wrapper:hover, #listagem .col-actions i:hover, .sublink:hover, #categorias .lista-categorias .item-categoria a:hover {
+.shadow-2, .btn:hover, .side-filter:hover, .side-filter .filter-title.side-filter-empreendimento:hover, .alert:hover, #galeria-empresa .galeria-item .galeria-item-image:hover, #sidebar .sidebar-menu nav#sideMenu ul li a:not(.active):hover, #sidebar .sidebar-menu nav#sideMenu ul li.submenu.openSub > a, #sidebar .sidebar-links ul li a:hover, #sidebar .sidebar-links ul li a.active, #content .content-empresas .empresa-item:hover, #tags a span:hover, #cadastro #galeria-empresa .galeria-feature img:hover, #cadastro #galeria-empresa .galeria-thumb .thumb-item img:hover, #visualizar #galeria-empresa .galeria-feature img:hover, #visualizar #galeria-empresa .galeria-thumb .thumb-item img:hover, #contato-empresa .contato-wrapper:hover, #listagem .col-actions i:hover, .sublink:hover, #categorias .lista-categorias .item-categoria a:hover, #dashboard .dashboard-header:hover, #dashboard .dashboard-resumo:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 .shadow-3 {
@@ -2391,10 +2391,10 @@ p {
     clear: both; }
 
 /* shadows */
-.shadow-1, .side-filter, .side-filter .search-list:hover, .alert, #galeria-empresa .galeria-item .galeria-item-image, .table-responsive:hover, footer .footer-top, #sidebar, #content .content-empresas .empresa-item, #breadcrumbs .breadcrumbs-content, #cadastro #galeria-empresa .galeria-feature img, #cadastro #galeria-empresa .galeria-thumb .thumb-item img, #visualizar #galeria-empresa .galeria-feature img, #visualizar #galeria-empresa .galeria-thumb .thumb-item img, #contato-empresa .contato-wrapper, .sublink, #categorias .lista-categorias .item-categoria a {
+.shadow-1, .side-filter, .side-filter .search-list:hover, .alert, #galeria-empresa .galeria-item .galeria-item-image, .table-responsive:hover, footer .footer-top, #sidebar, #content .content-empresas .empresa-item, #breadcrumbs .breadcrumbs-content, #cadastro #galeria-empresa .galeria-feature img, #cadastro #galeria-empresa .galeria-thumb .thumb-item img, #visualizar #galeria-empresa .galeria-feature img, #visualizar #galeria-empresa .galeria-thumb .thumb-item img, #contato-empresa .contato-wrapper, .sublink, #categorias .lista-categorias .item-categoria a, #dashboard .dashboard-header, #dashboard .dashboard-resumo {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
-.shadow-2, .btn:hover, .side-filter:hover, .side-filter .filter-title.side-filter-empreendimento:hover, .alert:hover, #galeria-empresa .galeria-item .galeria-item-image:hover, #sidebar .sidebar-menu nav#sideMenu ul li a:not(.active):hover, #sidebar .sidebar-menu nav#sideMenu ul li.submenu.openSub > a, #sidebar .sidebar-links ul li a:hover, #sidebar .sidebar-links ul li a.active, #content .content-empresas .empresa-item:hover, #tags a span:hover, #cadastro #galeria-empresa .galeria-feature img:hover, #cadastro #galeria-empresa .galeria-thumb .thumb-item img:hover, #visualizar #galeria-empresa .galeria-feature img:hover, #visualizar #galeria-empresa .galeria-thumb .thumb-item img:hover, #contato-empresa .contato-wrapper:hover, #listagem .col-actions i:hover, .sublink:hover, #categorias .lista-categorias .item-categoria a:hover {
+.shadow-2, .btn:hover, .side-filter:hover, .side-filter .filter-title.side-filter-empreendimento:hover, .alert:hover, #galeria-empresa .galeria-item .galeria-item-image:hover, #sidebar .sidebar-menu nav#sideMenu ul li a:not(.active):hover, #sidebar .sidebar-menu nav#sideMenu ul li.submenu.openSub > a, #sidebar .sidebar-links ul li a:hover, #sidebar .sidebar-links ul li a.active, #content .content-empresas .empresa-item:hover, #tags a span:hover, #cadastro #galeria-empresa .galeria-feature img:hover, #cadastro #galeria-empresa .galeria-thumb .thumb-item img:hover, #visualizar #galeria-empresa .galeria-feature img:hover, #visualizar #galeria-empresa .galeria-thumb .thumb-item img:hover, #contato-empresa .contato-wrapper:hover, #listagem .col-actions i:hover, .sublink:hover, #categorias .lista-categorias .item-categoria a:hover, #dashboard .dashboard-header:hover, #dashboard .dashboard-resumo:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 .shadow-3 {
@@ -2622,19 +2622,12 @@ footer {
   #sidebar .sidebar-logo {
     text-align: center; }
   #sidebar .sidebar-logo-text {
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: #1c8a43;
-    letter-spacing: -2px; }
-    #sidebar .sidebar-logo-text .yellow {
-      color: gold; }
-    #sidebar .sidebar-logo-text .spot {
-      color: #444;
-      letter-spacing: 0px;
-      font-size: 4.5rem;
-      font-weight: bold;
-      display: block; }
+    text-align: center; }
+    #sidebar .sidebar-logo-text img {
+      top: 7px;
+      width: 125px;
+      height: auto;
+      position: relative; }
   #sidebar .sidebar-menu {
     padding: 0; }
     #sidebar .sidebar-menu nav#sideMenu {
@@ -2769,16 +2762,15 @@ footer {
     #sidebar .sidebar-logo {
       padding: 5px 0px; }
       #sidebar .sidebar-logo img {
-        height: 36px;
+        height: 40px;
         width: auto; }
     #sidebar .sidebar-logo-text {
-      font-size: 1.5rem;
-      line-height: 50px;
       text-align: left; }
-      #sidebar .sidebar-logo-text .spot {
-        padding-left: 10px;
-        font-size: 1.5rem;
-        display: inline-block; }
+      #sidebar .sidebar-logo-text img {
+        top: 7px;
+        width: 70px;
+        height: auto;
+        position: relative; }
     #sidebar nav {
       border-top: 1px solid #e7e7e7; } }
   #sidebar .sidebar-links ul {
@@ -3074,7 +3066,7 @@ footer {
   right: 15px;
   font-size: .8rem;
   display: inline-block;
-  width: 200px;
+  width: 210px;
   text-align: center;
   z-index: 2; }
   .floatingButton .btn i {
@@ -3084,24 +3076,29 @@ footer {
     -ms-transform: rotate(0deg);
     transform: rotate(0deg); }
   .floatingButton a {
-    width: 95px;
+    width: 100px;
     float: left;
     padding: 0px 10px; }
     .floatingButton a.btn-login {
-      border: 1px solid #1c8a43;
+      border: 1px solid #266CAD;
       background-color: transparent;
-      color: #1c8a43; }
+      color: #266CAD;
+      margin-left: 5px; }
       .floatingButton a.btn-login:hover {
-        background-color: #1c8a43;
+        background-color: #266CAD;
         color: #fff; }
     .floatingButton a.btn-assinar {
-      background-color: #E6BD35;
-      margin-left: 5px; }
+      border: 1px solid #E6BD35;
+      background-color: transparent;
+      color: #E6BD35; }
+      .floatingButton a.btn-assinar:hover {
+        background-color: #E6BD35;
+        color: #fff; }
 
 @media (max-width: 600px) {
   .floatingButton {
     width: 100px; }
-    .floatingButton a.btn-assinar {
+    .floatingButton a.btn-login {
       margin-left: 0px;
       margin-top: 5px; } }
 #categorias {
@@ -3138,5 +3135,55 @@ footer {
         color: #E66D1B; }
       #categorias .lista-categorias .item-categoria a:hover span {
         color: white; }
+
+#dashboard .dashboard-header {
+  margin-bottom: 20px; }
+  #dashboard .dashboard-header .feature-empresa {
+    padding: 0;
+    margin-bottom: -4px; }
+    #dashboard .dashboard-header .feature-empresa img {
+      width: 100%;
+      height: auto;
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px; }
+  #dashboard .dashboard-header .btn-editar {
+    border: 1px solid #266CAD;
+    background-color: transparent;
+    color: #266CAD;
+    font-size: .8rem; }
+    #dashboard .dashboard-header .btn-editar:hover {
+      background-color: #266CAD;
+      color: #fff; }
+    #dashboard .dashboard-header .btn-editar i {
+      top: -1px;
+      transform: rotate(0deg); }
+  #dashboard .dashboard-header .btn-visualizar {
+    border: 1px solid #E6BD35;
+    background-color: transparent;
+    color: #E6BD35;
+    font-size: .8rem; }
+    #dashboard .dashboard-header .btn-visualizar:hover {
+      background-color: #E6BD35;
+      color: #fff; }
+    #dashboard .dashboard-header .btn-visualizar i {
+      top: -1px;
+      transform: rotate(0deg); }
+#dashboard .dashboard-resumo-titulo > div {
+  padding: 0; }
+#dashboard .dashboard-resumo {
+  margin-bottom: 20px; }
+  #dashboard .dashboard-resumo .resumo-item {
+    text-align: center;
+    font-size: 2rem; }
+    #dashboard .dashboard-resumo .resumo-item a {
+      color: inherit; }
+      #dashboard .dashboard-resumo .resumo-item a i {
+        font-size: 2rem;
+        padding: 5px; }
+      #dashboard .dashboard-resumo .resumo-item a .resumo-item-info {
+        vertical-align: middle; }
+    #dashboard .dashboard-resumo .resumo-item p {
+      font-size: 1rem;
+      color: #444; }
 
 /*# sourceMappingURL=style.css.map */

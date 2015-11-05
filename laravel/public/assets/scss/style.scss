@@ -537,21 +537,12 @@ footer{
     @extend .vertical-offset;
   }
   .sidebar-logo-text{
-    //$logo-colors: "#DB0465" "#E66D1C" "#E6BD35" "#AECC1A" "#11939C" "#266CAD" "#A32995" "#BA2879";
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: $green;
-    letter-spacing: -2px;
-    .yellow{
-      color: gold;
-    }
-    .spot{
-      color: $text-black;
-      letter-spacing: 0px;
-      font-size: 4.5rem;
-      font-weight: bold;
-      display: block;
+    img{
+      top: 7px;
+      width: 125px;
+      height: auto;
+      position: relative;
     }
   }
   .sidebar-form{
@@ -735,18 +726,17 @@ footer{
     .sidebar-logo{
       padding: 5px 0px;
       img{
-        height: 36px;
+        height: 40px;
         width: auto;
       }
     }
     .sidebar-logo-text{
-      font-size: 1.5rem;
-      line-height: 50px;
       text-align: left;
-      .spot{
-        padding-left: 10px;
-        font-size: 1.5rem;
-        display: inline-block;
+      img{
+        top: 7px;
+        width: 70px;
+        height: auto;
+        position: relative;
       }
     }
     nav{
@@ -1213,7 +1203,7 @@ footer{
   //border: 1px solid black;
   font-size: .8rem;
   display: inline-block;
-  width: 200px;
+  width: 210px;
   text-align: center;
   z-index: 2;
   .btn{
@@ -1223,28 +1213,35 @@ footer{
     }
   }
   a{
-    width: 95px;
+    width: 100px;
     float: left;
     padding: 0px 10px;
     &.btn-login{
-      border: 1px solid $green;
+      border: 1px solid #266CAD;
       background-color: transparent;
-      color: $green;
+      color: #266CAD;
+      margin-left: 5px;
       &:hover{
-        background-color: $green;
+        background-color: #266CAD;
         color: #fff;
       }
     }
     &.btn-assinar{
-      background-color: #E6BD35;
-      margin-left: 5px;
+      border: 1px solid #E6BD35;
+      background-color: transparent;
+      color: #E6BD35;
+
+      &:hover{
+        background-color: #E6BD35;
+        color: #fff;
+      }
     }
   }
 }
 @media (max-width: 600px){
   .floatingButton{
     width: 100px;
-    a.btn-assinar{
+    a.btn-login{
       margin-left: 0px;
       margin-top: 5px;
     }
@@ -1282,6 +1279,84 @@ footer{
         &:hover span{
           color: white;
         }
+      }
+    }
+  }
+}
+
+#dashboard{
+  .dashboard-header{
+    margin-bottom: 20px;
+    @extend .shadow-1;
+    &:hover{
+      @extend .shadow-2;
+    }
+    .feature-empresa{
+      padding: 0;
+      margin-bottom: -4px;
+      img{
+        width: 100%;
+        height: auto;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+      }
+    }
+    .btn-editar{
+       border: 1px solid #266CAD;
+       background-color: transparent;
+       color: #266CAD;
+       font-size: .8rem;
+       &:hover{
+         background-color: #266CAD;
+         color: #fff;
+       }
+       i{
+         top: -1px;
+         transform: rotate(0deg);
+       }
+     }
+    .btn-visualizar{
+      border: 1px solid #E6BD35;
+      background-color: transparent;
+      color: #E6BD35;
+      font-size: .8rem;
+      &:hover{
+        background-color: #E6BD35;
+        color: #fff;
+      }
+      i{
+        top: -1px;
+        transform: rotate(0deg);
+      }
+    }
+  }
+  .dashboard-resumo-titulo{
+    > div{
+      padding: 0;
+    }
+  }
+  .dashboard-resumo{
+    margin-bottom: 20px;
+    @extend .shadow-1;
+    &:hover{
+      @extend .shadow-2;
+    }
+    .resumo-item{
+      text-align: center;
+      font-size: 2rem;
+      a{
+        color: inherit;
+        i{
+          font-size: 2rem;
+          padding: 5px;
+        }
+        .resumo-item-info{
+          vertical-align: middle;
+        }
+      }
+      p{
+        font-size: 1rem;
+        color: #444;
       }
     }
   }

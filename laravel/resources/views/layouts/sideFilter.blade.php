@@ -2,6 +2,14 @@
 
     <div class="grid-m-12 grid-s-12 grid-xs-12">
         <div class="side-filter">
+            <div class="filter-title side-filter-empreendimento">
+                <a href="#" style="color: #E6BD35;"><i class="material-icons">local_offer</i>Promoções</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-m-12 grid-s-12 grid-xs-12">
+        <div class="side-filter">
             {{--<div class="filter-title side-filter-empreendimento active">--}}
             <div class="filter-title side-filter-empreendimento active">
                 <a href="#"><i class="material-icons">dashboard</i>Todos</a>

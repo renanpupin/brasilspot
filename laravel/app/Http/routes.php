@@ -152,7 +152,43 @@ Route::get('RecuperarSenha', function () {
     Route::get('TipoCartao/cadastrar', 'TipoCartaoController@create');
     Route::delete('TipoCartao/remover/{id}', ['as' =>'TipoCartao.remover', 'uses' => 'TipoCartaoController@destroy']);
     Route::resource('TipoCartao', 'TipoCartaoController');
+
+
 //});
+
+//rotas que os comerciantes vão ver no menu
+Route::get('Resumo', function () {
+    return view('Comerciante/resumo');
+});
+
+Route::get('SuaEmpresa', function () {
+    return view('Empresa/detalhar');
+});
+
+Route::get('SuasFiliais', function () {
+    return view('Filiais/index');
+});
+
+Route::get('SuaAssinatura', function () {
+    return view('Assinatura');
+});
+
+Route::get('Reclamar', function () {
+    return view('Reclamacao/Create');
+});
+
+Route::get('ReportarErro', function () {
+    return view('Erro/Create');
+});
+
+Route::get('SuasMensagens', function () {
+    return view('Mensagens/index');
+});
+
+//esse item no menu só aparece para quem assinar o plano de 39.90
+Route::get('SuasPromocoes', function () {
+    return view('Promocoes');
+});
 
 
 //SITE ROUTES
