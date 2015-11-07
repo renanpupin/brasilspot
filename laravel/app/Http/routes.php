@@ -60,6 +60,7 @@ Route::get('RecuperarSenha', function () {
     Route::get('Clientes/Reclamacoes', 'ReclamacaoController@index');
     Route::get('Clientes/Reclamacoes/cadastrar', 'ReclamacaoController@create');
     Route::get('Clientes/Reclamacoes/{id}', 'ReclamacaoController@show');
+    Route::get('Clientes/Reclamacoes/visualizar/{id}', 'ReclamacaoController@visualizar');
     Route::resource('Reclamacao','ReclamacaoController');
 
     //routes for "Clientes"

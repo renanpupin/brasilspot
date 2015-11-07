@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\CartaoAceito;
 use App\CategoriaEmpresa;
+use App\EmpresaPendente;
 use App\FotoEmpresa;
 use App\ServicoEmpresa;
 use App\Tag;
@@ -140,7 +141,7 @@ class EmpresaController extends Controller
 
             if(!empty($plano))
             {
-                $empresa = Empresa::create([
+                $empresa = EmpresaPendente::create([
                     'nomeEmpreendedor' => $request['nomeEmpreendedor'],
                     'razaoSocial' => $request['razaoSocial'],
                     'nomeFantasia' => $request['nomeFantasia'],
@@ -156,7 +157,7 @@ class EmpresaController extends Controller
                     'idTipoEmpresa' => $request['tiposEmpreendimentos'],
                     'idVendedor' => $usuarioLogado->Vendedor->id,
                     'idTipoCartao' => $request['tiposCartoes'],
-                    'dataCadastro' => date("Y/m/d")
+                    'isAceito' => false
                 ]);
 
                 $categoria = CategoriaEmpresa::create([
@@ -276,7 +277,7 @@ class EmpresaController extends Controller
 
             try {
 
-                $empresa = Empresa::create([
+                $empresa = EmpresaPendente::create([
                     'nomeEmpreendedor' => $request['nomeEmpreendedor'],
                     'razaoSocial' => $request['razaoSocial'],
                     'nomeFantasia' => $request['nomeFantasia'],
@@ -292,7 +293,7 @@ class EmpresaController extends Controller
                     'idTipoEmpresa' => $request['tiposEmpreendimentos'],
                     'idVendedor' => $usuarioLogado->Vendedor->id,
                     'idTipoCartao' => $request['tiposCartoes'],
-                    'dataCadastro' => date("Y/m/d")
+                    'isAceito' => false
                 ]);
 
                 $categoria = CategoriaEmpresa::create([
@@ -320,7 +321,10 @@ class EmpresaController extends Controller
 
                 $tags = explode(',',$request['tags']);
 
-                $usuario = User::where('id','=',$request['usuarios'])->first()->load('Comerciante')->load('Comerciante.Plano');
+                $usuario = User::where('id','=',$request['usuarios'])
+                    ->first()
+                    ->load('Comerciante')
+                    ->load('Comerciante.Plano');
 
                 if($usuario->Comerciante->Plano->nome == 'Básico') {
                     for ($i = 0,$max = 0; $i < count($tags) && $max<5; $i++) {
@@ -421,17 +425,17 @@ class EmpresaController extends Controller
 
     public function uploadFiles() {
 
-        $input = Input::all();
-
-        $rules = array(
-            'file' => 'image|max:3000',
-        );
-
-        $validation = Validator::make($input, $rules);
-
-        if ($validation->fails()) {
-            return Response::make($validation->errors->first(), 400);
-        }
+//        $input = Input::all();
+//
+//        $rules = array(
+//            'file' => 'image|max:3000',
+//        );
+//
+//        $validation = Validator::make($input, $rules);
+//
+//        if ($validation->fails()) {
+//            return Response::make($validation->errors->first(), 400);
+//        }
 
         $destinationPath = 'uploads'; // upload path
         $extension = Input::file('file')->getClientOriginalExtension(); // getting file extension

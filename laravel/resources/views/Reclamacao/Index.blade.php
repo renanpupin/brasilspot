@@ -44,17 +44,26 @@
                     <th></th>
                 </thead>
                 <tbody>
+                @foreach($reclamacoes as $reclamacao)
                     <tr>
-                        <td>1</td>
-                        <td>José da Silva</td>
-                        <td>SIM</td>
+                        <td>{{ $reclamacao->id }}</td>
+                        <td>{{ $reclamacao->Usuario->name }}</td>
+                        @if($reclamacao->isVisualizada)
+                            <td>SIM</td>
+                        @endif
+
+                        @if(!$reclamacao->isVisualizada)
+                            <td>NÃO</td>
+                        @endif
+
                         <td class="col-actions">
-                            <a href="{{ url('Clientes/Reclamacoes/1') }}" title="Detalhar"><i class="material-icons">description</i></a>
+                            <a href="{{ url('Clientes/Reclamacoes',[$reclamacao->id]) }}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>
                         <td class="col-actions">
                             {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
                         </td>
                     </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
