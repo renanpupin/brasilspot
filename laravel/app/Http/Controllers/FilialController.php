@@ -24,14 +24,14 @@ class FilialController extends Controller
     public function index()
     {
 
-        if(Gate::allows('AcessoComerciante'))
-        {
+        //if(Gate::allows('AcessoComerciante'))
+        //{
 //            $usuario = Auth::user();
 //            $empresa = $usuario->Empresa()->first();
 //            $filiais = Filial::where('idEmpresa','=',$empresa->id)->get();
 
 //            return view('Filial.Index')->with('filiais',$filiais);
-        }
+        //}
         $filiais = Filial::with('Endereco')->get();
         return view('Filial.Index')->with('filiais',$filiais);
     }

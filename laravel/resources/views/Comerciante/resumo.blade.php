@@ -20,13 +20,13 @@
                 <p>Slogan Slogan Slogan Slogan Slogan Slogan </p>
                 <div class="row" style="margin-bottom: 20px;">
                     <div class="grid-m-6 grid-s-6 grid-xs-6">
-                        <a href="{{url('VisualizarEmpresa/1')}}" class="btn btn-editar ripple">
+                        <a href="{{url('SuaEmpresa/Editar')}}" class="btn btn-editar ripple">
                             <i class="material-icons">mode_edit</i>
                             <span class="text-content">Editar</span>
                         </a>
                     </div>
                     <div class="grid-m-6 grid-s-6 grid-xs-6">
-                        <a href="{{url('VisualizarEmpresa/1')}}" class="btn btn-visualizar ripple">
+                        <a href="{{url('SuaEmpresa')}}" class="btn btn-visualizar ripple">
                             <i class="material-icons">info_outline</i>
                             <span class="text-content">Visualizar</span>
                         </a>

@@ -4,10 +4,8 @@
 
 @section('sidebar')
     @parent
-    @include('layouts.sidebarSistema')
+    @include('layouts.sidebarComerciante')
 @stop
-
-
 
 @section('content')
 
@@ -15,7 +13,7 @@
 
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Cadastro Empresa</h2>
+        <h2>Cadastro da Empresa</h2>
         {{--<p class="text-caption">Por favor, nos informe seus dados e da sua empresa. Os dados abaixo <strong>NÃO</strong> serão divulgados no site.</p>--}}
         <!-- <p class="text-caption">Campos com (*) são obrigatórios</p> -->
         <!-- <p class="text-caption">Suas edições serão aprovadas dentro de 72hs.</p> -->
@@ -28,7 +26,7 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ route('Empresa.index') }}">Empresa</a></li>
+                    <li><a href="{{ url('SuaEmpresa') }}">Sua Empresa</a></li>
                     <li>Cadastrar</li>
                 </ul>
             </div>
@@ -63,22 +61,6 @@
                 <div class="row">
                     <div class="galeria-feature">
                         <div class="dropzone" id="dropzoneFileUpload1">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="galeria-thumb">
-                        <div class="thumb-item grid-xs-4 grid-s-4 grid-m-4 grid-l-4">
-                            <div class="dropzone" id="dropzoneFileUpload2">
-                            </div>
-                        </div>
-                        <div class="thumb-item grid-xs-4 grid-s-4 grid-m-4 grid-l-4">
-                            <div class="dropzone" id="dropzoneFileUpload3">
-                            </div>
-                        </div>
-                        <div class="thumb-item grid-xs-4 grid-s-4 grid-m-4 grid-l-4">
-                            <div class="dropzone" id="dropzoneFileUpload4">
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -203,7 +185,7 @@
         </div>
         <div class="row">
             <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 grid-xs-12 button-field">
-                <a href="{{ route('Empresa.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                <a href="{{ url('SuaEmpresa') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
                     <span class="text-content">Voltar</span>
                 </a>
             </div>

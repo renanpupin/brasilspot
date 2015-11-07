@@ -3,8 +3,8 @@
 @section('title', 'Bem vindo!')
 
 @section('sidebar')
-@parent
-@include('layouts.sidebarSistema')
+    @parent
+    @include('layouts.sidebarComerciante')
 @stop
 
 @section('content')
@@ -12,6 +12,7 @@
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
         <h2>Listar Filiais</h2>
         <h5>Nome Fantasia</h5>
+        <p>No momento você pode ter <b>1</b> filial. Para adicionar mais filiais clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
     </div>
 
     <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
@@ -20,7 +21,7 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ route('Filial.index') }}">Filial</a></li>
+                    <li><a href="{{ url('SuasFiliais') }}">Suas Filiais</a></li>
                     <li>Listar</li>
                 </ul>
             </div>
@@ -29,7 +30,7 @@
 
 
     <div class="grid-m-3 grid-s-3 grid-xs-12">
-        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Filial/cadastrar') }}">
+        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('SuasFiliais/cadastrar') }}">
             <span class="text-content">Novo</span>
         </a>
     </div>
@@ -66,10 +67,10 @@
                     <i class="material-icons">thumb_up</i>Sim
                 </td>
                 <td class="col-actions">
-                    <a href="{{ route('Filial.show', array('id' => $filial->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
+                    <a href="{{ route('SuasFiliais.show', array('id' => $filial->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
                 </td>
                 <td class="col-actions">
-                    <a href="{{ url('Filial/editar', [$filial->id]) }}" title="Editar"><i class="material-icons">mode_edit</i></a>
+                    <a href="{{ url('SuasFiliais/editar', [$filial->id]) }}" title="Editar"><i class="material-icons">mode_edit</i></a>
                 </td>
                 <td class="col-actions">
                     {!! Form::open([

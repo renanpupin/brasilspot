@@ -1,17 +1,17 @@
 @extends('layouts.master')
 
-
 @section('title', 'Bem vindo!')
 
 @section('sidebar')
     @parent
-    @include('layouts.sidebarSistema')
+    {{--se perfil for de vendedor carregar sidebarVendedor, se for comerciante sidebarComerciante--}}
+    @include('layouts.sidebarComerciante')
 @stop
 
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Cadastro Reclamação</h2>
+        <h2>Fazer Reclamação</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -20,8 +20,7 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('Clientes/Reclamacoes') }}">Reclamações</a></li>
-                    <li>Cadastrar</li>
+                    <li><a href="{{ url('Reclamar') }}">Fazer Reclamação</a></li>
                 </ul>
             </div>
         </div>
@@ -57,14 +56,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                <a href="{{ url('Clientes/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
-                    <span class="text-content">Voltar</span>
-                </a>
-            </div>
-            <div class="form-group grid-m-3 grid-s-3 button-field">
-                {!! Form::button('<span class="text-content">Cadastrar</span>',[
-                    'id' => 'btnCadastrar',
+            <div class="form-group grid-m-3 grid-m-offset-9 grid-s-3 grid-s-offset-9 grid-xs-12 button-field">
+                {!! Form::button('<span class="text-content">Enviar</span>',[
+                    'id' => 'btnEnviar',
                     'type' => 'submit',
                     'class' => 'btn btn-primary ripple'
                     ])!!}

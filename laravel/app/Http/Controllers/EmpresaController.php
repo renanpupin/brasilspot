@@ -61,15 +61,15 @@ class EmpresaController extends Controller
         $vendedores  = ['-1'=>'Selecione o usuário'] + Vendedor::with('Usuario')->get()->lists('Usuario.name','id')->all();
         $tiposCartoes = ['-1'=>'Selecione o tipo dos cartões'] + TipoCartao::orderBy('descricao','asc')->lists('descricao','id')->all();
 
-        if(Gate::allows('AcessoComerciante')) {
+        //if(Gate::allows('AcessoComerciante')) {
             return view('Empresa.Create')
                 ->with('tiposEmpresas', $tiposEmpresas)
                 ->with('cartoes', $cartoes)
                 ->with('categorias', $categorias)
                 ->with('vendedores', $vendedores)
                 ->with('tiposCartoes', $tiposCartoes);
-        }
-        else
+        //}
+        //else
             if(Gate::allows('AcessoVendedor'))
             {
                 $usuarios = ['-1'=>'Selecione o cliente'] + DB::table('users')
@@ -87,7 +87,7 @@ class EmpresaController extends Controller
                     ->with('vendedores', $vendedores)
                     ->with('tiposCartoes', $tiposCartoes);
             }
-        return view('401');
+        //return view('401');
     }
 
     public function store(Request $request)
@@ -391,6 +391,26 @@ class EmpresaController extends Controller
         $empresa = Empresa::find($id);
 
         return view('Empresa.Edit')->with('empresa',$empresa);
+    }
+
+    public function editar()
+    {
+        //$id = deverá receber a empresa cadastrada do comerciante que está logado na sessão
+        //$empresa = Empresa::find($id);
+
+        $tiposEmpresas = ['-1'=>'Selecione o tipo do empreendimento'] + TipoEmpresa::orderBy('tipo','asc')->lists('tipo','id')->all();
+        $categorias = ['-1'=>'Selecione a categoria'] + Categoria::orderBy('nome','asc')->lists('nome','id')->all();
+        $cartoes = Cartao::orderBy('tipo','asc')->get();
+        $vendedores  = ['-1'=>'Selecione o usuário'] + Vendedor::with('Usuario')->get()->lists('Usuario.name','id')->all();
+        $tiposCartoes = ['-1'=>'Selecione o tipo dos cartões'] + TipoCartao::orderBy('descricao','asc')->lists('descricao','id')->all();
+
+
+        return view('Empresa.Edit')
+            ->with('tiposEmpresas', $tiposEmpresas)
+            ->with('cartoes', $cartoes)
+            ->with('categorias', $categorias)
+            ->with('vendedores', $vendedores)
+            ->with('tiposCartoes', $tiposCartoes);
     }
 
 

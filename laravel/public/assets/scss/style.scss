@@ -1361,3 +1361,18 @@ footer{
     }
   }
 }
+
+.dropzone{
+  border: 0;
+  border-radius: 2px;
+  @extend .shadow-1;
+  &:hover{
+    @extend .shadow-2;
+  }
+}
+
+#editar #galeria-empresa .galeria-feature {
+  width: 100%;
+  height: auto;
+  padding: 15px;
+}

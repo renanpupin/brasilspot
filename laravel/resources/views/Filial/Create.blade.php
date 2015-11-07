@@ -4,13 +4,13 @@
 
 @section('sidebar')
     @parent
-    @include('layouts.sidebarSistema')
+    @include('layouts.sidebarComerciante')
 @stop
 
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Cadastro Filial</h2>
+        <h2>Cadastro de Filial</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -19,7 +19,7 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ route('Filial.index') }}">Filial</a></li>
+                    <li><a href="{{ route('SuasFiliais.index') }}">Suas Filiais</a></li>
                     <li>Cadastrar</li>
                 </ul>
             </div>
@@ -135,7 +135,7 @@
             </div>
         <div class="row">
             <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                <a href="{{ route('Filial.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                <a href="{{ route('SuasFiliais.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
                     <span class="text-content">Voltar</span>
                 </a>
             </div>

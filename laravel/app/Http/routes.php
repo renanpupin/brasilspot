@@ -161,16 +161,21 @@ Route::get('Resumo', function () {
     return view('Comerciante/resumo');
 });
 
-Route::get('SuaEmpresa', function () {
-    return view('Empresa/detalhar');
-});
+Route::post('SuasFiliais/editar/{id}', 'FilialController@update');
+Route::get('SuasFiliais/editar/{id}', 'FilialController@edit');
+Route::get('SuasFiliais/cadastrar', 'FilialController@create');
+Route::resource('SuasFiliais', 'FilialController@index');
 
-Route::get('SuasFiliais', function () {
-    return view('Filiais/index');
+Route::get('SuaEmpresa/Editar', 'EmpresaController@editar');
+
+Route::get('SuaEmpresa/Cadastrar', 'EmpresaController@create');
+
+Route::get('SuaEmpresa', function () {
+    return view('Empresa/Detail');
 });
 
 Route::get('SuaAssinatura', function () {
-    return view('Assinatura');
+    return view('Comerciante/Assinatura');
 });
 
 Route::get('Reclamar', function () {
@@ -178,11 +183,15 @@ Route::get('Reclamar', function () {
 });
 
 Route::get('ReportarErro', function () {
-    return view('Erro/Create');
+    return view('Erros/Create');
+});
+
+Route::get('SuasMensagens/responder/{id}', function () {
+    return view('Mensagem/Responder');
 });
 
 Route::get('SuasMensagens', function () {
-    return view('Mensagens/index');
+    return view('Mensagem/index');
 });
 
 //esse item no menu só aparece para quem assinar o plano de 39.90
