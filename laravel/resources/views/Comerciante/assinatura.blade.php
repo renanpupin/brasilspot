@@ -11,11 +11,7 @@
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
         <h2>Assinatura</h2>
-        <p>No momento você possui <b>1</b> assinaturas. Para adicionar mais assinaturas clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
-
-        {{--exibe um dos dois abaixo, o plano é um só, mas pode ter várias assinaturas--}}
-        <p>Se desejar mudar seu plano para <b>Basico</b> clique <a href="{{url('DowngradePlano/1')}}" target="_blank">AQUI</a>.</p>
-        <p>Se desejar mudar seu plano para <b>Pro</b> clique <a href="{{url('UpgradePlano/1')}}" target="_blank">AQUI</a>.</p>
+        <p>No momento você possui <b>2</b> assinaturas. Para adicionar mais assinaturas clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -35,18 +31,38 @@
         <div class="table-responsive">
             <table id="listarAssinaturas" class="table">
                 <thead>
-                <th>#</th>
-                <th>Empresa</th>
-                <th>Vencimento</th>
-                <th></th>
+                    <th>#</th>
+                    <th>Plano</th>
+                    <th>Ativa desde</th>
+                    <th>Vencimento</th>
+                    <th style="min-width: 175px; width: 175px;"></th>
+                    <th style="min-width: 175px; width: 175px;"></th>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Assinatura 1</td>
-                        <td>Imobiliaria Brasil</td>
-                        <td>20/11/2015</td>
+                        <td>Pro</td>
+                        <td>05/10/2015</td>
+                        <td>05/11/2015</td>
                         <td class="col-actions">
-                            <a href="{{ url('Assinatura.cancelar', array('id' => 1))}}" title="Cancelar Assinatura"><i class="material-icons">delete</i></a>
+                             <a href="{{url('SuaAssinatura/Downgrade/1')}}" class="btn">Downgrade</a>
+                        </td>
+                        <td class="col-actions">
+                            <a href="{{ url('SuaAssinatura/Cancelar', array('id' => 1))}}" title="Cancelar Assinatura" class="btn btn-cancel">Cancelar</a>
+                            {{--ao clicar aqui, informar ao usuário que ele perderá a assinatura se ele continuar--}}
+                            {{--pedir para ele infomar a senha novamente--}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Assinatura 2</td>
+                        <td>Básico</td>
+                        <td>03/11/2015</td>
+                        <td>03/12/2015</td>
+                        <td class="col-actions">
+                            <a href="{{url('SuaAssinatura/Upgrade/1')}}" class="btn btn-primary">Upgrade</a>
+                        </td>
+                        <td class="col-actions">
+                            <a href="{{ url('SuaAssinatura/Cancelar', array('id' => 2))}}" title="Cancelar Assinatura" class="btn btn-cancel">Cancelar</a>
                             {{--ao clicar aqui, informar ao usuário que ele perderá a assinatura se ele continuar--}}
                             {{--pedir para ele infomar a senha novamente--}}
                         </td>

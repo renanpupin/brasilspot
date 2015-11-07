@@ -1921,6 +1921,11 @@ button {
   .btn-secundary:hover {
     background-color: gray; }
 
+.btn-cancel {
+  background-color: #C50C0C; }
+  .btn-cancel:hover {
+    background-color: #cf0d0d; }
+
 button[disabled=disabled], button:disabled {
   background-color: #ddd; }
   button[disabled=disabled]:hover, button:disabled:hover {

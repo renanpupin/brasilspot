@@ -175,6 +175,18 @@ Route::get('SuaEmpresa', function () {
     return view('Empresa/Detail');
 });
 
+Route::get('SuaAssinatura/Upgrade/{id}', function () {
+    return view('Comerciante/UpgradeAssinatura');
+});
+
+Route::get('SuaAssinatura/Downgrade/{id}', function () {
+    return view('Comerciante/DowngradeAssinatura');
+});
+
+Route::get('SuaAssinatura/Cancelar/{id}', function () {
+    return view('Comerciante/CancelarAssinatura');
+});
+
 Route::get('SuaAssinatura', function () {
     return view('Comerciante/Assinatura');
 });
