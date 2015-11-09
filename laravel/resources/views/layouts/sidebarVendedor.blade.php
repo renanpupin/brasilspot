@@ -92,6 +92,28 @@
                         </li>
                     </ul>
                 </li>
+                <li class="submenu">
+                    <a href="{{ url('Metas' )}}" class="{{ Request::segment(1) === 'Metas' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #A32995;">trending_up</i>Suas Metas
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{ url('Metas/Mensal' )}}" class="">
+                                <i class="material-icons">event_note</i>Metas do mês
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('Metas/Ocasional' )}}" class="">
+                                <i class="material-icons">today</i>Metas Ocasionais
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('Metas/Mensal' )}}" class="">
+                                <i class="material-icons">people</i>Metas de equipe
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="{{ url('SuasMensagens' )}}" class="{{ Request::segment(1) === 'SuasMensagens' ? 'active' : null }}">
                         <i class="material-icons" style="color: #A32995;">mail</i>Mensagens

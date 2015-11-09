@@ -10,7 +10,7 @@
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Meta Mensal</h2>
+        <h2>Metas da Equipe</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -19,8 +19,8 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('Metas/Historico') }}">Metas</a></li>
-                    <li>Mensal</li>
+                    <li><a href="{{ url('Metas/Mensal') }}">Metas</a></li>
+                    <li>Da Equipe</li>
                 </ul>
             </div>
         </div>
@@ -28,6 +28,6 @@
 
 
     <div id="listagem" class="grid-m-12 grid-s-12">
-        <p>Sua meta mensal é de <b>30</b> empresas.</p>
+        <p>Atualmente você não possui metas de equipe.</p>
     </div>
 @stop

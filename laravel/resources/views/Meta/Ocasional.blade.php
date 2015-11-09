@@ -10,7 +10,7 @@
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Meta Mensal</h2>
+        <h2>Metas Ocasionais</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -20,7 +20,7 @@
                 Você está em:
                 <ul>
                     <li><a href="{{ url('Metas/Historico') }}">Metas</a></li>
-                    <li>Mensal</li>
+                    <li>Ocasionais</li>
                 </ul>
             </div>
         </div>
@@ -28,6 +28,6 @@
 
 
     <div id="listagem" class="grid-m-12 grid-s-12">
-        <p>Sua meta mensal é de <b>30</b> empresas.</p>
+        <p>Sua meta ocasional "promoção de natal" é de <b>50</b> empresas.</p>
     </div>
 @stop

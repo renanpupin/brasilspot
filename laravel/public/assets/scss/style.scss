@@ -1376,3 +1376,7 @@ footer{
   height: auto;
   padding: 15px;
 }
+
+.grafico{
+  @extend .shadow-1;
+}

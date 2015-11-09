@@ -64,6 +64,12 @@ Route::get('RecuperarSenha', function () {
     Route::resource('Reclamacao','ReclamacaoController');
 
     //routes for "Clientes"
+    Route::get('Clientes/Atualizacoes', function () {
+        return view('Cliente/Atualizacoes');
+    });
+Route::get('Clientes/VerAtualizacao/{id}', function () {
+    return view('Cliente/VerAtualizacao');
+});
     Route::post('Clientes/editar/{id}', 'ClienteController@update');
     Route::get('Clientes/editar/{id}', 'ClienteController@edit');
     Route::get('Clientes/AtualizarVencimento/{id}', 'ClienteController@atualizarVencimento');
@@ -77,6 +83,12 @@ Route::get('RecuperarSenha', function () {
     //routes for "Meta"
     Route::get('Metas/Historico', 'MetaController@historico');
     Route::get('Metas/Mensal', 'MetaController@mensal');
+    Route::get('Metas/Ocasional', function () {
+        return view('Meta/Ocasional');
+    });
+    Route::get('Metas/Equipe', function () {
+        return view('Meta/Equipe');
+    });
     Route::resource('Meta','MetaController');
 
     //routes for "Salario"
