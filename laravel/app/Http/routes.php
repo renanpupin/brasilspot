@@ -157,6 +157,15 @@ Route::get('RecuperarSenha', function () {
 
 //});
 
+//rotas vendedores
+Route::get('SeuDesempenho', function () {
+    return view('Vendedor/Desempenho');
+});
+
+Route::get('MapaVendas', function () {
+    return view('Mapa/mapa');
+});
+
 //rotas que os comerciantes vão ver no menu
 Route::get('Resumo', function () {
     return view('Comerciante/resumo');
