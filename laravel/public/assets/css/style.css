@@ -2627,10 +2627,12 @@ footer {
   #sidebar .sidebar-logo {
     text-align: center; }
   #sidebar .sidebar-logo-text {
-    text-align: center; }
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px; }
     #sidebar .sidebar-logo-text img {
       top: 7px;
-      width: 125px;
+      width: 100%;
       height: auto;
       position: relative; }
   #sidebar .sidebar-menu {
@@ -2770,10 +2772,11 @@ footer {
         height: 40px;
         width: auto; }
     #sidebar .sidebar-logo-text {
-      text-align: left; }
+      text-align: center;
+      padding: 0 !important; }
       #sidebar .sidebar-logo-text img {
-        top: 7px;
-        width: 70px;
+        top: 6px;
+        width: 100px;
         height: auto;
         position: relative; }
     #sidebar nav {

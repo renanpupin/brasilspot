@@ -170,6 +170,15 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
 //});
 
 //rotas vendedores
+
+Route::get('NovaMensagem', function () {    //essa rota vai ter em vendedor e comerciante
+    return view('Mensagem/Create');
+});
+
+Route::get('NovaEmpresa', function () {
+    return "colocar aqui a view em que o vendedor cadastra um novo comerciante";
+});
+
 Route::get('SeuDesempenho', function () {
     return view('Vendedor/Desempenho');
 });

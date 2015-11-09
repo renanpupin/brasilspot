@@ -2,11 +2,11 @@
     <div class="sidebar-hamburger grid-m-12 grid-xs-3">
         <span class="toggleMenu text-menu"><i class="material-icons">menu</i></span>
     </div>
-    <div class="sidebar-logo grid-m-12 grid-xs-1">
-        <img src="{!! asset('assets/img/logo.00_png_srb') !!}">
-    </div>
+    {{--<div class="sidebar-logo grid-m-12 grid-xs-1">--}}
+        {{--<img src="{!! asset('assets/img/logo.00_png_srb') !!}">--}}
+    {{--</div>--}}
     <div class="sidebar-logo-text grid-m-12 grid-xs-7">
-        <img class="brand-text" src="{!! asset('assets/img/logo_texto.png') !!}">
+        <img class="brand-text" src="{!! asset('assets/img/logo_final.png') !!}">
     </div>
 
     <div class="sidebar-menu grid-m-12 grid-xs-12">

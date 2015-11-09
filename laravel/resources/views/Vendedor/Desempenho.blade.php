@@ -20,7 +20,7 @@
                 <p>Você já conseguiu <b>12</b> novos clientes neste mês.</p>
             </div>
             <div class="grid-m-12 grid-s-12 grid-xs-12">
-                <div class="text-headline">Acompanhe seu histórico</div>
+                <div class="text-headline">Acompanhe seu histórico de salários</div>
             </div>
             <div class="grid-m-12 grid-s-12 grid-xs-12">
                 <div class="row">
@@ -32,18 +32,18 @@
                             <table id="listaClientes" class="table">
                                 <thead>
                                 <th>Mês</th>
-                                <th>Ano</th>
+                                {{--<th>Ano</th>--}}
                                 <th>Valor</th>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>Setembro</td>
-                                    <td>2015</td>
+                                    <td>Setembro/2015</td>
+                                    {{--<td></td>--}}
                                     <td>R$ 1.000,00</td>
                                 </tr>
                                 <tr>
-                                    <td>Outubro</td>
-                                    <td>2015</td>
+                                    <td>Outubro/2015</td>
+                                    {{--<td>2015</td>--}}
                                     <td>R$ 1.500,00</td>
                                 </tr>
                                 </tbody>
