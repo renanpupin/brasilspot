@@ -169,6 +169,15 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
 
 //});
 
+
+//rotas admin além das rotas acima
+Route::get('Comerciantes', function () {
+    return view('Comerciante/ListarComerciantes');
+});
+Route::get('Dashboard', function () {
+    return view('Admin/Dashboard');
+});
+
 //rotas vendedores
 
 Route::get('NovaMensagem', function () {    //essa rota vai ter em vendedor e comerciante
