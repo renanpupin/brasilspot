@@ -23,23 +23,17 @@ class FilialController extends Controller
 
     public function index()
     {
-//        if (Gate::allows('AcessoComerciante'))
-//        {
-        $usuarioLogado = Auth::user();
-        $empresa = Empresa::where('idUsuario','=',$usuarioLogado->id)->first();
-        if($empresa != null)
-        {
-            $filiais = Filial::where('idEmpresa','=',$empresa->id)->get();
-        }
-        return redirect('/Filial');
-//        }
-//        else
-//            if(Gate::allows('AcessoVendedor') || Gate::allows('AcessoComerciante') )
-//            {
-//                $filiais = Filial::with('Endereco')->get();
-//                return redirect()->route('SuasFiliais')->with('filiais',$filiais);
-//            }
 
+        //if(Gate::allows('AcessoComerciante'))
+        //{
+//            $usuario = Auth::user();
+//            $empresa = $usuario->Empresa()->first();
+//            $filiais = Filial::where('idEmpresa','=',$empresa->id)->get();
+
+//            return view('Filial.Index')->with('filiais',$filiais);
+        //}
+        $filiais = Filial::with('Endereco')->get();
+        return view('Filial.Index')->with('filiais',$filiais);
     }
 
 
@@ -71,51 +65,51 @@ class FilialController extends Controller
         $this->validate($request,$regras,$mensagens);
 
         DB::beginTransaction();
-        try {
-            $endereco = Endereco::create([
-                'endereco' => $request['endereco'],
-                'bairro' => $request['bairro'],
-                'estado' => $request['estado'],
-                'cidade' => $request['cidade'],
-                'lon' => $request['lon'],
-                'lat' => $request['lat'],
-                'cep' => $request['cep']
-            ]);
+            try {
+                $endereco = Endereco::create([
+                    'endereco' => $request['endereco'],
+                    'bairro' => $request['bairro'],
+                    'estado' => $request['estado'],
+                    'cidade' => $request['cidade'],
+                    'lon' => $request['lon'],
+                    'lat' => $request['lat'],
+                    'cep' => $request['cep']
+                ]);
 
-            $telefone = Telefone::create([
-                'numero' => $request['telefone']
-            ]);
+                $telefone = Telefone::create([
+                    'numero' => $request['telefone']
+                ]);
 
-            $whatsAppNumero = $request['whatsapp'];
-            if(!empty($whatsAppNumero))
-            {
-                $whatsApp = WhatsApp::create([
-                    'numero' => $whatsAppNumero
+                $whatsAppNumero = $request['whatsapp'];
+                if(!empty($whatsAppNumero))
+                {
+                    $whatsApp = WhatsApp::create([
+                       'numero' => $whatsAppNumero
+                    ]);
+                }
+
+                $usuario = Auth::user()->with('Empresa');
+                $idEmpresa = $usuario->Empresa->id;
+
+                if(empty($idEmpresa))
+                {
+                    DB::rollBack();
+                    return redirect()->back();
+                }
+
+                Filial::create([
+                    'idEmpresa' => $idEmpresa,
+                    'idEndereco' => $endereco->id,
+                    'idTelefone' => $telefone->id,
+                    'idWhatsApp' => $whatsApp->id,
+                    'isPrincipal' => $request['isPrincipal']
                 ]);
             }
-
-            $usuario = Auth::user()->with('Empresa');
-            $idEmpresa = $usuario->Empresa->id;
-
-            if(empty($idEmpresa))
+            catch(ValidationException $exception)
             {
                 DB::rollBack();
                 return redirect()->back();
             }
-
-            Filial::create([
-                'idEmpresa' => $idEmpresa,
-                'idEndereco' => $endereco->id,
-                'idTelefone' => $telefone->id,
-                'idWhatsApp' => $whatsApp->id,
-                'isPrincipal' => $request['isPrincipal']
-            ]);
-        }
-        catch(ValidationException $exception)
-        {
-            DB::rollBack();
-            return redirect()->back();
-        }
         DB::commit();
 
         Session::flash('flash_message', 'Filial adicionada com sucesso!');

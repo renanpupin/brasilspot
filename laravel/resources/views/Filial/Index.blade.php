@@ -4,15 +4,7 @@
 
 @section('sidebar')
     @parent
-    @can('AcessoComerciante')
-        @include('layouts.sidebarComerciante')
-    @endcan
-    @can('AcessoVendedor')
-        @include('layouts.sidebarSistema')
-    @endcan
-    @can('AcessoAdministrador')
-        @include('layouts.sidebarSistema')
-    @endcan
+    @include('layouts.sidebarComerciante')
 @stop
 
 @section('content')
@@ -20,9 +12,7 @@
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
         <h2>Listar Filiais</h2>
         <h5>Nome Fantasia</h5>
-        @can('AcessoComerciante')
-             <p>No momento você pode ter <b>1</b> filial. Para adicionar mais filiais clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
-        @endcan
+        <p>No momento você pode ter <b>1</b> filial. Para adicionar mais filiais clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
     </div>
 
     <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">

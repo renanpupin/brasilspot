@@ -145,7 +145,9 @@ class UsuarioController extends Controller
 
                 Comerciante::create([
                     'idVendedor' => $usuarioLogado->Vendedor->id,
-                    'idUsuario' => $usuario->id
+                    'idUsuario' => $usuario->id,
+                    'idPlano' => $request['planos'],
+                    'dataVencimentoPlano' => date("Y/m/d", strtotime("+ 30 days"))
                 ]);
 
                 Mail::send('Usuario.EmailTemplate', ['email' => $usuario->email, 'password' => $senha], function ($message) use ($usuario) {

@@ -23,6 +23,7 @@ class Empresa extends Migration
             $table->boolean('atendeCasa')->default(false);
             $table->string('linkSite', 100);
             $table->string('linkFacebook', 100);
+            $table->string('numeroWhatsApp', 20);
             $table->string('informacoesAdicionais', 100);
             $table->integer('idTipoEmpresa')->unsigned();
             $table->integer('idUsuario')->unsigned();

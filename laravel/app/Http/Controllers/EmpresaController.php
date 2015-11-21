@@ -62,15 +62,15 @@ class EmpresaController extends Controller
         $vendedores  = ['-1'=>'Selecione o usuário'] + Vendedor::with('Usuario')->get()->lists('Usuario.name','id')->all();
         $tiposCartoes = ['-1'=>'Selecione o tipo dos cartões'] + TipoCartao::orderBy('descricao','asc')->lists('descricao','id')->all();
 
-        if(Gate::allows('AcessoComerciante')) {
+        //if(Gate::allows('AcessoComerciante')) {
             return view('Empresa.Create')
                 ->with('tiposEmpresas', $tiposEmpresas)
                 ->with('cartoes', $cartoes)
                 ->with('categorias', $categorias)
                 ->with('vendedores', $vendedores)
                 ->with('tiposCartoes', $tiposCartoes);
-        }
-        else
+        //}
+        //else
             if(Gate::allows('AcessoVendedor'))
             {
                 $usuarios = ['-1'=>'Selecione o cliente'] + DB::table('users')
@@ -88,7 +88,7 @@ class EmpresaController extends Controller
                     ->with('vendedores', $vendedores)
                     ->with('tiposCartoes', $tiposCartoes);
             }
-        return view('401');
+        //return view('401');
     }
 
     public function store(Request $request)
@@ -152,8 +152,10 @@ class EmpresaController extends Controller
                     'horarioFuncionamento' => $request['horarioFuncionamento'],
                     'atendeCasa' => $request['atendeCasa'],
                     'linkFacebook' => $request['facebook'],
+                    'numeroWhatsapp' => $request['whatsapp'],
                     'idUsuario' => $request['usuarios'],
                     'idTipoEmpresa' => $request['tiposEmpreendimentos'],
+                    'idVendedor' => $usuarioLogado->Vendedor->id,
                     'idTipoCartao' => $request['tiposCartoes'],
                     'isAceito' => false
                 ]);
@@ -290,7 +292,7 @@ class EmpresaController extends Controller
                     'idUsuario' => $request['usuarios'],
                     'idTipoEmpresa' => $request['tiposEmpreendimentos'],
                     'idVendedor' => $usuarioLogado->Vendedor->id,
-                    //'idTipoCartao' => $request['tiposCartoes'],
+                    'idTipoCartao' => $request['tiposCartoes'],
                     'isAceito' => false
                 ]);
 

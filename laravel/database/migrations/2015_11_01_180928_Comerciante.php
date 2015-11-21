@@ -11,6 +11,8 @@ class Comerciante extends Migration
             $table->increments('id')->unsigned();
             $table->integer('idVendedor')->unsigned();
             $table->integer('idUsuario')->unsigned();
+            $table->integer('idPlano')->unsigned();
+            $table->dateTime('dataVencimentoPlano');
             $table->timestamps();
         });
 
@@ -18,6 +20,7 @@ class Comerciante extends Migration
         {
             $table->foreign('idUsuario')->references('id')->on('users');
             $table->foreign('idVendedor')->references('id')->on('vendedores');
+            $table->foreign('idPlano')->references('id')->on('planos');
         });
     }
 

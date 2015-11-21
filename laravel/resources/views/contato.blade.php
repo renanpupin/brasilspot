@@ -38,7 +38,7 @@
         <div class="row">
             {{--<span class="separator"></span>--}}
             <div class="contato-form grid-m-8 grid-m-offset-2 grid-s-8 grid-s-offset-2 grid-xs-12">
-                {!! Form::Open(['route' => 'Contato.store', 'method' => 'POST']) !!}
+                {!! Form::Open(['route' => 'Servico.store', 'method' => 'POST']) !!}
                     <div class="row">
                         <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                             {!! Form::label('nome', 'Nome *',null,['for' => 'nome']) !!}

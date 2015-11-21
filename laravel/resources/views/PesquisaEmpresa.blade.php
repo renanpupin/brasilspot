@@ -36,7 +36,7 @@
             <a href="{{url('Planos')}}" id="" class="btn btn-assinar ripple">
                 <i class="material-icons">assignment_turned_in</i> <span class="text-content">Assinar</span>
             </a>
-            <a href="{{url('Login')}}" id="" class="btn btn-login ripple">
+            <a href="{{url('login')}}" id="" class="btn btn-login ripple">
                 <i class="material-icons">person</i> <span class="text-content">Login</span>
             </a>
         </div>

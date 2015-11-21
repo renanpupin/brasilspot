@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\ErroReportado;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+//use App\Erro;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
-use Validator;
-use Redirect;
-use Auth;
 
 class ErroController extends Controller
 {
     public function index()
     {
-        $erros = ErroReportado::all()->load('Usuario');
-        return view('Erros.Index')->with('erros',$erros);
+        //$erros = Erro::all();
+
+        return view('Erros.Index');
     }
 
 
@@ -28,39 +26,13 @@ class ErroController extends Controller
 
     public function store(Request $request)
     {
-        $regras = array(
-            'descricao' => 'required|string'
-        );
 
-        $mensagens = array(
-            'descricao.required' => 'O campo Descrição deve ser preenchido.',
-        );
-
-        $validator = Validator::make($request->all(), $regras, $mensagens);
-
-        if ($validator->fails()) {
-            return redirect('ReportarErro')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $usuarioLogado = Auth::User();
-
-        $erro = ErroReportado::create([
-            'idUsuario' => $usuarioLogado->id,
-            'descricao' => $request['descricao'],
-            'isCorrigido' => false
-        ]);
-
-        Session::flash('flash_message', 'Erro reportado com sucesso!');
-
-        return redirect()->back();
     }
 
     public function show($id)
     {
-        $erros = ErroReportado::find($id)->load('Usuario');
-        return view('Erros.Detail')->with('erros',$erros);
+        //$erro = Erro::find($id);
+        return view('Erros.Detail');//->with('erro',$erro);
     }
 
     public function destroy($id)
