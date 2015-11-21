@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Requisição de Material #31</h2>
+        <h2>Cliente #5</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -20,8 +20,8 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('Solicitacoes/MaterialPropaganda') }}">Material de Propaganda</a></li>
-                    <li>Avaliar</li>
+                    <li><a href="{{ url('Clientes/Atualizacoes') }}">Clientes</a></li>
+                    <li>Atualização</li>
                 </ul>
             </div>
         </div>
@@ -53,29 +53,30 @@
         <div class="row">
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('usuario', 'Usuário',null,['for' => 'usuario']) !!}
+                {!! Form::label('nome', 'Nome',null,['for' => 'nome']) !!}
                 <p class="field-disabled">José de Silva</p>
             </div>
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('descricao', 'Descrição',null,['for' => 'descricao']) !!}
-                <p class="field-disabled">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                {!! Form::label('email', 'Email',null,['for' => 'email']) !!}
+                <p class="field-disabled">josesilva@email.com</p>
             </div>
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('motivo', 'Motivo',null,['for' => 'motivo']) !!}
-                <p class="field-disabled">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
-            </div>
-            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('is_aprovado', 'Aprovado',null,['for' => 'is_aprovado']) !!}
-                <p class="field-disabled">NÃO</p>
+                {!! Form::label('perfis', 'Perfil',null,['for' => 'perfis']) !!}
+                <p class="field-disabled">Comerciante</p>
             </div>
 
-            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 grid-xs-12 button-field">
-                <a href="{{ url('Solicitacoes/MaterialPropaganda/reprovar/1') }}" id="btnReprovar" title="Aprovar" class="btn btn-secundary ripple">
+            <div class="form-group grid-m-3 grid-m-offset-3 grid-s-3 grid-s-offset-3 grid-xs-12 button-field">
+                <a href="{{ url('Clientes/Atualizacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                    <span class="text-content">Voltar</span>
+                </a>
+            </div>
+            <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
+                <a href="{{ url('Clientes/reprovar/1') }}" id="btnReprovar" title="Reprovar" class="btn btn-cancel ripple">
                     <span class="text-content">Reprovar</span>
                 </a>
             </div>
             <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
-                <a href="{{ url('Solicitacoes/MaterialPropaganda/aprovar/1') }}" id="btnAprovar" title="Aprovar" class="btn btn-primary ripple">
+                <a href="{{ url('Clientes/aprovar/1') }}" id="btnEditar" title="Aprovar" class="btn btn-primary ripple">
                     <span class="text-content">Aprovar</span>
                 </a>
             </div>

@@ -10,7 +10,7 @@
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Consultar Salário</h2>
+        <h2>Metas da Equipe</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -19,8 +19,8 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('Salario/Consultar') }}">Salário</a></li>
-                    <li>Consultar</li>
+                    <li><a href="{{ url('Metas/Mensal') }}">Metas</a></li>
+                    <li>Da Equipe</li>
                 </ul>
             </div>
         </div>
@@ -28,6 +28,6 @@
 
 
     <div id="listagem" class="grid-m-12 grid-s-12">
-        <p>Seu salário até o momento é de <b>R$ 10.000,00</b>.</p>
+        <p>Atualmente você não possui metas de equipe.</p>
     </div>
 @stop

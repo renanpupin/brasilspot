@@ -17,33 +17,18 @@
             </div>
             <ul role="menu">
                 <li>
-                    <a href="{{ url('Empresa' )}}" class="{{ Request::segment(1) === 'Empresa' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #DB0465;">account_balance</i>Empresas
+                    <a href="{{ url('SeuDesempenho' )}}" class="{{ Request::segment(1) === 'SeuDesempenho' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #DB0465;">insert_chart</i>Seu Desempenho
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('Filial' )}}" class="{{ Request::segment(1) === 'Filial' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #E66D1C;">home</i>Filiais
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('Categoria' )}}" class="{{ Request::segment(1) === 'Categoria' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #E6BD35;">dns</i>Categorias
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('Servico' )}}" class="{{ Request::segment(1) === 'Servico' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #AECC1A;">work</i>Serviços
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('Plano' )}}" class="{{ Request::segment(1) === 'Plano' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #11939C;">assignment</i>Planos
+                    <a href="{{ url('NovaEmpresa' )}}" class="{{ Request::segment(1) === 'NovaEmpresa' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #E66D1C;">account_balance</i>Nova Empresa
                     </a>
                 </li>
                 <li class="submenu">
                     <a href="{{ url('Clientes' )}}" class="{{ Request::segment(1) === 'Clientes' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #266CAD;">person</i>Seus Clientes
+                        <i class="material-icons" style="color: #E6BD35;">person</i>Seus Clientes
                     </a>
                     <ul>
                         <li>
@@ -52,42 +37,30 @@
                             </a>
                         </li>
                         {{--<li>--}}
-                            {{--<a href="{{ url('Cliente/Edicoes' )}}" class="">--}}
-                                {{--<i class="material-icons">sync_problem</i>Edições não aprovadas--}}
-                            {{--</a>--}}
+                        {{--<a href="{{ url('Cliente/Edicoes' )}}" class="">--}}
+                        {{--<i class="material-icons">sync_problem</i>Edições não aprovadas--}}
+                        {{--</a>--}}
                         {{--</li>--}}
                         <li>
                             <a href="{{ url('Clientes/Reclamacoes' )}}" class="">
-                                <i class="material-icons">mood_bad</i>Reclamações
+                                <i class="material-icons">mood_bad</i>Reclamações (3)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('Clientes/Atualizacoes' )}}" class="">
+                                <i class="material-icons" style="width: 28px;">updates</i>Atualizações (5)
                             </a>
                         </li>
                         {{--<li>--}}
-                            {{--<a href="{{ url('Cliente/EmpresasDesativadas' )}}" class="{{ Request::segment(1) === 'EmpresasDesativadas' ? 'active' : null }}">--}}
-                                {{--<i class="material-icons">location_off</i>Empresas desativadas--}}
-                            {{--</a>--}}
+                        {{--<a href="{{ url('Cliente/EmpresasDesativadas' )}}" class="{{ Request::segment(1) === 'EmpresasDesativadas' ? 'active' : null }}">--}}
+                        {{--<i class="material-icons">location_off</i>Empresas desativadas--}}
+                        {{--</a>--}}
                         {{--</li>--}}
-                    </ul>
-                </li>
-                <li class="submenu">
-                    <a href="{{ url('Metas' )}}" class="{{ Request::segment(1) === 'Metas' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #A32995;">trending_up</i>Suas Metas
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="{{ url('Metas/Historico' )}}" class="">
-                                <i class="material-icons">history</i>Histórico de Vendas
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('Metas/Mensal' )}}" class="">
-                                <i class="material-icons">open_in_browser</i>Metas do mês
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="submenu">
                     <a href="{{ url('Solicitacoes' )}}" class="{{ Request::segment(1) === 'Solicitacoes' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #BA2879;">description</i>Solicitações
+                        <i class="material-icons" style="color: #11939C;">description</i>Solicitações
                     </a>
                     <ul>
                         <li>
@@ -100,16 +73,11 @@
                                 <i class="material-icons">volume_up</i>Material de propaganda
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ url('Solicitacoes/MapaVendedores' )}}" class="">
-                                <i class="material-icons">recent_actors</i>Mapa de vendedores
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="submenu">
                     <a href="{{ url('Salario' )}}" class="{{ Request::segment(1) === 'Salario' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #1c8a43;">attach_money</i>Seu Salário
+                        <i class="material-icons" style="color: #266CAD;">attach_money</i>Seu Salário
                     </a>
                     <ul>
                         <li>
@@ -124,11 +92,48 @@
                         </li>
                     </ul>
                 </li>
+                <li class="submenu">
+                    <a href="{{ url('Metas' )}}" class="{{ Request::segment(1) === 'Metas' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #A32995;">trending_up</i>Suas Metas
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{ url('Metas/Mensal' )}}" class="">
+                                <i class="material-icons">event_note</i>Metas do mês
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('Metas/Ocasional' )}}" class="">
+                                <i class="material-icons">today</i>Metas Ocasionais
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('Metas/Equipe' )}}" class="">
+                                <i class="material-icons">people</i>Metas de equipe
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ url('SuasMensagens' )}}" class="{{ Request::segment(1) === 'SuasMensagens' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #A32995;">mail</i>Mensagens
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('MapaVendas' )}}" class="{{ Request::segment(1) === 'MapaVendas' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #11939C;">place</i>Mapa de Vendas
+                    </a>
+                </li>
+                {{--<li>--}}
+                    {{--<a href="{{ url('SuasPromocoes' )}}" class="{{ Request::segment(1) === 'SuasPromocoes' ? 'active' : null }}">--}}
+                        {{--<i class="material-icons" style="color: #BA2879;">local_offer</i>Promoções--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 <li class="menu-options">
                     <div class="row">
                         <div class="grid-m-6 grid-s-6 grid-xs-6" style="padding-right: 0px;">
                             <a href="{{ url('Perfil' )}}">
-                                <i class="material-icons">person</i>Perfil
+                                <i class="material-icons">person</i>Editar Perfil
                             </a>
                         </div>
                         <div class="grid-m-6 grid-s-6 grid-xs-6" style="padding-left: 0px;">

@@ -64,6 +64,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('Reclamacao','ReclamacaoController');
 
     //routes for "Clientes"
+    Route::get('Clientes/Atualizacoes', function () {
+        return view('Cliente/Atualizacoes');
+    });
+Route::get('Clientes/VerAtualizacao/{id}', function () {
+    return view('Cliente/VerAtualizacao');
+});
     Route::post('Clientes/editar/{id}', 'ClienteController@update');
     Route::get('Clientes/editar/{id}', 'ClienteController@edit');
     Route::get('Clientes/AtualizarVencimento/{id}', 'ClienteController@atualizarVencimento');
@@ -78,6 +84,12 @@ Route::group(['middleware' => 'auth'], function () {
     //routes for "Meta"
     Route::get('Metas/Historico', 'MetaController@historico');
     Route::get('Metas/Mensal', 'MetaController@mensal');
+    Route::get('Metas/Ocasional', function () {
+        return view('Meta/Ocasional');
+    });
+    Route::get('Metas/Equipe', function () {
+        return view('Meta/Equipe');
+    });
     Route::resource('Meta','MetaController');
 
     //routes for "Salario"
@@ -165,7 +177,41 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('SuasFiliais/cadastrar', 'FilialController@create');
     Route::resource('SuasFiliais','FilialController');
 
+<<<<<<< HEAD
     Route::get('SuaEmpresa/Editar', 'EmpresaController@editar');
+=======
+
+//rotas admin além das rotas acima
+Route::get('Comerciantes', function () {
+    return view('Comerciante/ListarComerciantes');
+});
+Route::get('Dashboard', function () {
+    return view('Admin/Dashboard');
+});
+
+//rotas vendedores
+
+Route::get('NovaMensagem', function () {    //essa rota vai ter em vendedor e comerciante
+    return view('Mensagem/Create');
+});
+
+Route::get('NovaEmpresa', function () {
+    return "colocar aqui a view em que o vendedor cadastra um novo comerciante";
+});
+
+Route::get('SeuDesempenho', function () {
+    return view('Vendedor/Desempenho');
+});
+
+Route::get('MapaVendas', function () {
+    return view('Mapa/mapa');
+});
+
+//rotas que os comerciantes vão ver no menu
+Route::get('Resumo', function () {
+    return view('Comerciante/resumo');
+});
+>>>>>>> origin/master
 
     Route::get('SuaEmpresa/Cadastrar', 'EmpresaController@create');
 
@@ -181,9 +227,27 @@ Route::group(['middleware' => 'auth'], function () {
         return view('Reclamacao/Create');
     });
 
+<<<<<<< HEAD
     Route::get('ReportarErro', function () {
         return view('Erros/Create');
     });
+=======
+Route::get('SuaAssinatura/Upgrade/{id}', function () {
+    return view('Comerciante/UpgradeAssinatura');
+});
+
+Route::get('SuaAssinatura/Downgrade/{id}', function () {
+    return view('Comerciante/DowngradeAssinatura');
+});
+
+Route::get('SuaAssinatura/Cancelar/{id}', function () {
+    return view('Comerciante/CancelarAssinatura');
+});
+
+Route::get('SuaAssinatura', function () {
+    return view('Comerciante/Assinatura');
+});
+>>>>>>> origin/master
 
     Route::get('SuasMensagens/responder/{id}', function () {
         return view('Mensagem/Responder');

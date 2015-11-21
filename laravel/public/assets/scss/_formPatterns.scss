@@ -151,6 +151,13 @@ button{
   }
 }
 
+.btn-cancel{
+  background-color: #C50C0C;
+  &:hover{
+    background-color: lighten(#C50C0C, 2%);
+  }
+}
+
 button[disabled=disabled], button:disabled{
   background-color: #ddd;
   &:hover{

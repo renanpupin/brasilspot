@@ -4,7 +4,7 @@
 
 @section('sidebar')
     @parent
-    @include('layouts.sidebarSistema')
+    @include('layouts.sidebarVendedor')
 @stop
 
 @section('content')
@@ -27,7 +27,7 @@
     </div>
 
 
-    <div id="listagem" class="grid-m-12 grid-s-12">
+    <div id="listagem" class="grid-m-12 grid-s-12 grid-xs-12">
         <div class="table-responsive">
             <table id="listaClientes" class="table">
                 <thead>

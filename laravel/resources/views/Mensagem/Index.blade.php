@@ -13,10 +13,10 @@
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
         <h2>Mensagens</h2>
-        <p>Você possui <b>2</b> nova(s) mensagem(ns).</p>
+        <p>Você possui <b>1</b> nova(s) mensagem(ns).</p>
     </div>
 
-    <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
+    <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
         <div class="breadcrumbs-content container">
             <div class="row">
                 <i class="material-icons">home</i>
@@ -26,6 +26,12 @@
                 </ul>
             </div>
         </div>
+    </div>
+
+    <div class="grid-m-3 grid-s-3 grid-xs-12">
+        <a id="btnNova" class="btn btn-primary ripple" style="margin-top: 25px; margin-bottom: 25px;" href="{{ url('NovaMensagem') }}">
+            <span class="text-content">Nova</span>
+        </a>
     </div>
 
     <div id="listagem" class="grid-m-12 grid-s-12">

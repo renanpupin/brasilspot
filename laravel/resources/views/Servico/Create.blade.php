@@ -5,7 +5,7 @@
 
 @section('sidebar')
     @parent
-    @include('layouts.sidebarSistema')
+    @include('layouts.sidebarAdmin')
 @stop
 
 @section('content')
