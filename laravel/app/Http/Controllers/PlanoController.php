@@ -24,9 +24,9 @@ class PlanoController extends Controller
     public function store(Request $request)
     {
         Plano::create([
-           'Nome' => $request['nome'],
-           'Valor' => $request['valor'],
-           'Descricao' =>  $request['descricao']
+            'Nome' => $request['nome'],
+            'Valor' => $request['valor'],
+            'Descricao' =>  $request['descricao']
         ]);
 
         return "Plano Registrado com sucesso!!";

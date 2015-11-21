@@ -17,7 +17,7 @@ class CategoriaController extends Controller
 {
     public function index()
     {
-       // Auth::loginUsingId(1);
+        // Auth::loginUsingId(1);
 
         //$this->authorize('listar-categorias');
 
@@ -81,7 +81,7 @@ class CategoriaController extends Controller
         if($categoria->idCategoriaPai != null) {
             $categoria->nomeCategoriaPai = $categoria->CategoriaPai->nome;
         }
-        
+
         return view('Categoria.Detail')->with('categoria',$categoria);
     }
 

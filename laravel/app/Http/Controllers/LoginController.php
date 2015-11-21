@@ -41,7 +41,7 @@ class LoginController extends Controller
         $condicao = ['email' => $email];
         $remember = !empty($request['remember'])?true:false;
 
-        if(Auth::attempt(['email' => $email, 'password' => $senha],$remember))
+        if(dd(Auth::attempt(['email' => $email, 'password' => $senha],$remember)))
         {
             if($this->authorize('logar',$email,$senha))
             {

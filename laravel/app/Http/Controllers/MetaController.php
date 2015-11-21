@@ -24,7 +24,7 @@ class MetaController extends Controller
     public function store(Request $request)
     {
         \App\Meta::create([
-           'NumeroEmpresas' => $request['numeroEmpresas']
+            'NumeroEmpresas' => $request['numeroEmpresas']
         ]);
 
         return "Meta Registrada com sucesso!!";

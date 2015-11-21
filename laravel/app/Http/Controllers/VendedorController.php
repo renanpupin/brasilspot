@@ -50,11 +50,11 @@ class VendedorController extends Controller
     public function store(Request $request)
     {
         \App\Vendedor::create([
-           'IsCoordenador' => $request['isCoordenador'],
-           'IdUsuario' => $request['usuarios'],
-           'IdTipo' => $request['tipos'],
-           'IdMeta' => $request['metas'],
-           'IdVendedorPai' => $request['vendedorPai']
+            'IsCoordenador' => $request['isCoordenador'],
+            'IdUsuario' => $request['usuarios'],
+            'IdTipo' => $request['tipos'],
+            'IdMeta' => $request['metas'],
+            'IdVendedorPai' => $request['vendedorPai']
         ]);
 
         return "Vendedor Registrado com sucesso!!";

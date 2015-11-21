@@ -29,6 +29,7 @@ class ReclamacaoController extends Controller
 
     public function store(Request $request)
     {
+
         $regras = array(
             'descricao' => 'required|string'
         );
@@ -38,6 +39,12 @@ class ReclamacaoController extends Controller
         );
 
         $validator = Validator::make($request->all(), $regras, $mensagens);
+
+        if ($validator->fails()) {
+            return redirect('Reclamar')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $usuarioLogado = Auth::User();
 

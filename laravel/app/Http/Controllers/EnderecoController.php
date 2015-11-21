@@ -2,79 +2,78 @@
 
 namespace App\Http\Controllers;
 
+use App\ErroReportado;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
-use App\Endereco;
+use Validator;
+use Redirect;
+use Auth;
 
-class EnderecoController extends Controller
+class ErroController extends Controller
 {
-
     public function index()
     {
-        $enderecos = Endereco::all();
-        return view('Endereco.Index')->with('enderecos',$enderecos);
+        $erros = ErroReportado::all()->load('Usuario');
+        return view('Erros.Index')->with('erros',$erros);
     }
 
 
     public function create()
     {
-        return view('Endereco.Create');
+        return view('Erros.Create');
     }
 
 
     public function store(Request $request)
     {
         $regras = array(
-        'endereco' => 'required|string',
-        'bairro' => 'required|string',
-        'cidade' => 'required|string',
-        'estado' => 'required|string',
-        'cep' => 'string',
-        'lat' => 'string',
-        'lon' => 'string');
-
-        $mensagens = array(
-            'required' => 'O campo :attribute deve ser preenchido.',
-            'string' => 'O campo :attribute deve ser texto.'
+            'descricao' => 'required|string'
         );
 
-        $this->validate($request,$regras,$mensagens);
+        $mensagens = array(
+            'descricao.required' => 'O campo Descrição deve ser preenchido.',
+        );
 
-        Endereco::create([
-            'endereco' => $request['endereco'],
-            'bairro' => $request['bairro'],
-            'cidade' => $request['cidade'],
-            'estado' => $request['estado'],
-            'cep' => $request['cep'],
-            'lat' => $request['lat'],
-            'lon' => $request['lon']
+        $validator = Validator::make($request->all(), $regras, $mensagens);
+
+        if ($validator->fails()) {
+            return redirect('ReportarErro')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $usuarioLogado = Auth::User();
+
+        $erro = ErroReportado::create([
+            'idUsuario' => $usuarioLogado->id,
+            'descricao' => $request['descricao'],
+            'isCorrigido' => false
         ]);
 
-        Session::flash('flash_message', 'Enderço adicionado com sucesso!');
+        Session::flash('flash_message', 'Erro reportado com sucesso!');
 
         return redirect()->back();
     }
 
     public function show($id)
     {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
+        $erros = ErroReportado::find($id)->load('Usuario');
+        return view('Erros.Detail')->with('erros',$erros);
     }
 
     public function destroy($id)
     {
-        //
+        $erro = Erro::find($id);
+
+        if(!empty($erro))
+        {
+            $erro->delete();
+            Session::flash('flash_message', 'Erro removido com sucesso!');
+            return redirect()->back();
+        }
+
+        return 'O erro não foi encontrado';
     }
 }
