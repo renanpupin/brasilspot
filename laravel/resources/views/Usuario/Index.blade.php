@@ -97,8 +97,8 @@
                             <td></td>
                         @endif
                         @if($usuario->Comerciante != null)
-                            <td>{{ $usuario->Comerciante->Plano->nome }}</td>
-                        @endif
+                            {{--<td>{{ $usuario->Comerciante->Plano->nome }}</td>--}}
+                        {{--@endif--}}
                         <td>{{ $usuario->PerfilUsuario->tipo }}</td>
 
                         {{--<td class="col-actions">--}}

@@ -49,12 +49,12 @@
 
     <div id="editar" class="grid-m-12 grid-s-12 grid-xs-12">
 
-        <form>
+        {!! Form::Open(['route' => 'Cliente.AtualizarVencimentoStore', 'method' => 'POST']) !!}
             <div class="row">
 
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     {!! Form::label('cliente', 'Cliente',null,['for' => 'cliente']) !!}
-                    <p class="field-disabled">José da Silva</p>
+                    <p class="field-disabled">{{ $usuario->name }}</p>
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     {!! Form::label('plano', 'Plano',null,['for' => 'plano']) !!}
@@ -65,7 +65,7 @@
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     {!! Form::label('dataVencimento', 'Data de Vencimento do Plano',null,['for' => 'dataVencimento']) !!}
-                    <input id="dataVencimento" name="dataVencimento" value="25/12/2015">
+                    {!! Form::text('dataVencimento',$usuario->Comerciante->AssinaturaComerciante->Assinatura->dataVencimento,['class' => 'form-control']) !!}
                 </div>
             </div>
             <div class="row">
@@ -83,8 +83,7 @@
                 </div>
             </div>
 
-
-        </form>
+        {!! Form::Close() !!}
 
     </div>
 @stop

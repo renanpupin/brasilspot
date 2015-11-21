@@ -47,24 +47,26 @@
                 <th></th>
                 </thead>
                 <tbody>
+                @foreach($comerciantes as $comerciante)
                     <tr>
-                        <td>1</td>
-                        <td>Nome</td>
-                        <td>PRO</td>
-                        <td>21/11/2015</td>
+                        <td>{{ $comerciante->Usuario->id }}</td>
+                        <td>{{ $comerciante->Usuario->name }}</td>
+                        <td>{{ $comerciante->AssinaturaComerciante->Assinatura->Plano->nome }}</td>
+                        <td>{{ $comerciante->AssinaturaComerciante->Assinatura->dataVencimento }} </td>
                         <td class="col-actions currency">
-                            <a href="{{ url('Clientes/AtualizarVencimento/1') }}" title="Atualizar Vencimento"><i class="material-icons">attach_money</i></a>
+                            <a href="{{ url('Clientes/AtualizarVencimento',$comerciante->Usuario->id) }}" title="Atualizar Vencimento"><i class="material-icons">attach_money</i></a>
                         </td>
                         <td class="col-actions">
-                            <a href="{{ url('Clientes/1') }}" title="Detalhar"><i class="material-icons">description</i></a>
+                            <a href="{{ url('Clientes',$comerciante->Usuario->id) }}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>
                         <td class="col-actions">
-                            <a href="{{ url('Clientes/editar/1') }}" title="Editar"><i class="material-icons">mode_edit</i></a>
+                            <a href="{{ url('Clientes/editar',$comerciante->Usuario->id) }}" title="Editar"><i class="material-icons">mode_edit</i></a>
                         </td>
                         <td class="col-actions">
                             {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
                         </td>
                     </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

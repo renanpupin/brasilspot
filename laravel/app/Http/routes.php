@@ -28,7 +28,7 @@ Route::get('RecuperarSenha', function () {
 });
 
 //check access
-//Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('Tag','TagController');
     Route::resource('PerfilUsuario','PerfilUsuarioController');
@@ -67,6 +67,7 @@ Route::get('RecuperarSenha', function () {
     Route::post('Clientes/editar/{id}', 'ClienteController@update');
     Route::get('Clientes/editar/{id}', 'ClienteController@edit');
     Route::get('Clientes/AtualizarVencimento/{id}', 'ClienteController@atualizarVencimento');
+    Route::post('Clientes/AtualizarVencimento', ['as' => 'Cliente.AtualizarVencimentoStore', 'uses' => 'ClienteController@atualizarVencimentoStore']);
     Route::get('Clientes/Gerenciar', 'ClienteController@index');
     Route::get('Clientes/cadastrar', 'ClienteController@create');
     Route::resource('Clientes','ClienteController');
@@ -154,57 +155,56 @@ Route::get('RecuperarSenha', function () {
     Route::delete('TipoCartao/remover/{id}', ['as' =>'TipoCartao.remover', 'uses' => 'TipoCartaoController@destroy']);
     Route::resource('TipoCartao', 'TipoCartaoController');
 
+    //rotas que os comerciantes vão ver no menu
+    Route::get('Resumo', function () {
+        return view('Comerciante/resumo');
+    });
 
-//});
+    Route::post('SuasFiliais/editar/{id}', 'FilialController@update');
+    Route::get('SuasFiliais/editar/{id}', 'FilialController@edit');
+    Route::get('SuasFiliais/cadastrar', 'FilialController@create');
+    Route::resource('SuasFiliais','FilialController');
 
-//rotas que os comerciantes vão ver no menu
-Route::get('Resumo', function () {
-    return view('Comerciante/resumo');
-});
+    Route::get('SuaEmpresa/Editar', 'EmpresaController@editar');
 
-Route::post('SuasFiliais/editar/{id}', 'FilialController@update');
-Route::get('SuasFiliais/editar/{id}', 'FilialController@edit');
-Route::get('SuasFiliais/cadastrar', 'FilialController@create');
-Route::resource('SuasFiliais', 'FilialController@index');
+    Route::get('SuaEmpresa/Cadastrar', 'EmpresaController@create');
 
-Route::get('SuaEmpresa/Editar', 'EmpresaController@editar');
+    Route::get('SuaEmpresa', function () {
+        return view('Empresa/Detail');
+    });
 
-Route::get('SuaEmpresa/Cadastrar', 'EmpresaController@create');
+    Route::get('SuaAssinatura', function () {
+        return view('Comerciante/Assinatura');
+    });
 
-Route::get('SuaEmpresa', function () {
-    return view('Empresa/Detail');
-});
+    Route::get('Reclamar', function () {
+        return view('Reclamacao/Create');
+    });
 
-Route::get('SuaAssinatura', function () {
-    return view('Comerciante/Assinatura');
-});
+    Route::get('ReportarErro', function () {
+        return view('Erros/Create');
+    });
 
-Route::get('Reclamar', function () {
-    return view('Reclamacao/Create');
-});
+    Route::get('SuasMensagens/responder/{id}', function () {
+        return view('Mensagem/Responder');
+    });
 
-Route::get('ReportarErro', function () {
-    return view('Erros/Create');
-});
-
-Route::get('SuasMensagens/responder/{id}', function () {
-    return view('Mensagem/Responder');
-});
-
-Route::get('SuasMensagens', function () {
-    return view('Mensagem/index');
-});
+    Route::get('SuasMensagens', function () {
+        return view('Mensagem/index');
+    });
 
 //esse item no menu só aparece para quem assinar o plano de 39.90
-Route::get('SuasPromocoes', function () {
-    return view('Promocoes');
+    Route::get('SuasPromocoes', function () {
+        return view('Promocoes');
+    });
+
 });
+
 
 
 //SITE ROUTES
-Route::get('Contato', function () {
-    return view('contato');
-});
+Route::get('Contato','ContatoController@index');
+Route::post('Contato',['as'=>'Contato.store', 'uses'=> 'ContatoController@store']);
 //Route::post('Contato', function () {
 //    return view('contatoSucesso');
 //});

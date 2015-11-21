@@ -9,6 +9,7 @@ class Comerciante extends Model
     protected $table = "comerciantes";
 
     protected $fillable = array(
+        'id',
         'idUsuario',
         'idVendedor',
         'idPlano',
@@ -20,9 +21,14 @@ class Comerciante extends Model
         return $this->hasOne('\App\Vendedor','id','idVendedor');
     }
 
+    public function AssinaturaComerciante()
+    {
+        return $this->hasOne('\App\AssinaturaComerciante','idComerciante','id');
+    }
+
     public function Usuario()
     {
-        return $this->hasOne('\App\Usuario','id','idUsuario');
+        return $this->hasOne('\App\User','id','idUsuario');
     }
 
     public function Plano()

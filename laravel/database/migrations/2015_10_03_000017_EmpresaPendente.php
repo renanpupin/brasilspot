@@ -11,6 +11,7 @@ class EmpresaPendente extends Migration
         Schema::create('empresasPendentes', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
+            $table->integer('idEmpresa')->unsigned();
             $table->string('nomeEmpreendedor', 50);
             $table->string('razaoSocial', 100);
             $table->string('cpfCnpj', 20);
@@ -22,12 +23,9 @@ class EmpresaPendente extends Migration
             $table->boolean('atendeCasa')->default(false);
             $table->string('linkSite', 100);
             $table->string('linkFacebook', 100);
-            $table->string('numeroWhatsApp', 20);
-            $table->string('informacoesAdicionais', 100);
+            $table->integer('idTipoCartao')->unsigned();
             $table->integer('idTipoEmpresa')->unsigned();
             $table->integer('idUsuario')->unsigned();
-            $table->integer('idVendedor')->unsigned();
-            $table->integer('idTipoCartao')->unsigned();
             $table->boolean('isAceito')->default(false);
             $table->timestamps();
         });
@@ -35,7 +33,7 @@ class EmpresaPendente extends Migration
         {
             $table->foreign('idTipoEmpresa')->references('id')->on('tiposEmpresas');
             $table->foreign('idUsuario')->references('id')->on('users');
-            $table->foreign('idVendedor')->references('id')->on('vendedores');
+            $table->foreign('idEmpresa')->references('id')->on('empresas')->nullable;
             $table->foreign('idTipoCartao')->references('id')->on('tiposCartoes');
         });
     }

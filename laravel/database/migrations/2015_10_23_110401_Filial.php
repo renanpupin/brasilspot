@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class Filial extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('filiais', function (Blueprint $table) {
@@ -31,11 +26,6 @@ class Filial extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('filiais');
