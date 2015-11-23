@@ -18,19 +18,16 @@ class ClienteController extends Controller
 {
     public function index()
     {
-        $usuarioLogado = Auth::User()->load('Vendedor');
 
         if(Gate::allows('AcessoVendedor')) {
-
+            $usuarioLogado = Auth::User()->load('Vendedor');
             $comerciantes = Comerciante::where('idVendedor', '=',$usuarioLogado->Vendedor->id)
                 ->with('Usuario')
                 ->with('AssinaturaComerciante')
                 ->with('AssinaturaComerciante.Assinatura')
                 ->with('AssinaturaComerciante.Assinatura.Plano')
                 ->get();
-
             $vendedores = Vendedor::where('idVendedorPai','=',$usuarioLogado->Vendedor->id)->with('Usuario')->get();
-
             return view('Cliente.Gerenciar')->with('comerciantes',$comerciantes);
         }
         return view('401');
@@ -174,7 +171,7 @@ class ClienteController extends Controller
     {
         $perfis = \App\PerfilUsuario::all()->lists('tipo','id');
 
-        return View('Cliente.Edit')
+        return view('Cliente.Edit')
             ->with('perfis',$perfis);
     }
 
@@ -197,13 +194,11 @@ class ClienteController extends Controller
             ->with('Comerciante.AssinaturaComerciante.Assinatura')
             ->with('Comerciante.AssinaturaComerciante.Assinatura.Plano')
             ->first();
-
-        return View('Cliente.AtualizarVencimento')->with('usuario',$usuario);
+        return view('Cliente.AtualizarVencimento')->with('usuario',$usuario);
     }
-
     public function atualizarVencimentoStore(Request $request)
     {
-        dd($request);
+        dd($request->id);
     }
 
 }

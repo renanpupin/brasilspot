@@ -74,7 +74,8 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
     Route::get('Clientes/editar/{id}', 'ClienteController@edit');
     Route::get('Clientes/AtualizarVencimento/{id}', 'ClienteController@atualizarVencimento');
     Route::get('Clientes/Gerenciar', 'ClienteController@index');
-    Route::get('Clientes/cadastrar', 'ClienteController@create');
+    Route::get('Clientes/Cadastrar', 'ClienteController@create');
+    Route::post('Clientes/AtualizarVencimentoStore', ['as' => 'Cliente.atualizarVencimentoStore', 'uses' => 'ClienteController@atualizarVencimentoStore']);
     Route::resource('Clientes','ClienteController');
 
     //routes for "Plano"
@@ -111,7 +112,7 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
 
     Route::post('Empresa/editar/{id}', 'EmpresaController@update');
     Route::get('Empresa/editar/{id}', 'EmpresaController@edit');
-    Route::get('Empresa/cadastrar', 'EmpresaController@create');
+    Route::get('Empresa/cadastrar', ['as' => 'Empresa.cadastrar','uses' => 'EmpresaController@create']);
     Route::resource('Empresa','EmpresaController');
 
     //routes for "Filiais"
@@ -185,7 +186,7 @@ Route::get('NovaMensagem', function () {    //essa rota vai ter em vendedor e co
 });
 
 Route::get('NovaEmpresa', function () {
-    return "colocar aqui a view em que o vendedor cadastra um novo comerciante";
+    return Redirect::route('Empresa.cadastrar');
 });
 
 Route::get('SeuDesempenho', function () {
@@ -198,7 +199,10 @@ Route::get('MapaVendas', function () {
 
 //rotas que os comerciantes vão ver no menu
 Route::get('Resumo', function () {
-    return view('Comerciante/resumo');
+    if(Gate::allows('AcessoComerciante')) {
+        return view('Comerciante/resumo');
+    }
+    return view('401');
 });
 
 Route::post('SuasFiliais/editar/{id}', 'FilialController@update');

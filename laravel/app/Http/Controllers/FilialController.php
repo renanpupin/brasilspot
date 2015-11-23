@@ -23,22 +23,22 @@ class FilialController extends Controller
 
     public function index()
     {
-//        if (Gate::allows('AcessoComerciante'))
-//        {
-        $usuarioLogado = Auth::user();
-        $empresa = Empresa::where('idUsuario','=',$usuarioLogado->id)->first();
-        if($empresa != null)
+        if (Gate::allows('AcessoComerciante'))
         {
-            $filiais = Filial::where('idEmpresa','=',$empresa->id)->get();
-        }
-        return redirect('/Filial');
-//        }
-//        else
-//            if(Gate::allows('AcessoVendedor') || Gate::allows('AcessoComerciante') )
-//            {
-//                $filiais = Filial::with('Endereco')->get();
-//                return redirect()->route('SuasFiliais')->with('filiais',$filiais);
-//            }
+            $usuarioLogado = Auth::user();
+            $empresa = Empresa::where('idUsuario','=',$usuarioLogado->id)->first();
+            if($empresa != null)
+            {
+                $filiais = Filial::where('idEmpresa','=',$empresa->id)->get();
+            }
+           return view('Filial.index')->with('filiais',$filiais);
+         }
+            else
+            if(Gate::allows('AcessoVendedor') || Gate::allows('AcessoComerciante') )
+            {
+                $filiais = Filial::with('Endereco')->get();
+                return view('Filial.index')->with('filiais',$filiais);
+            }
 
     }
 

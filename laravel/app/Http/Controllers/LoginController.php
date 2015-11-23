@@ -8,13 +8,22 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
 use Hash;
+use Gate;
 
 class LoginController extends Controller
 {
     public function index()
     {
-        if(Auth::Check())
-        {
+        if (Auth::Check()) {
+            if (Gate::allows('AcessoComerciante')) {
+                return redirect('Resumo');
+            } else
+                if (Gate::allows('AcessoAdministrador')) {
+                    return redirect('Dashboard');
+                } else
+                    if (Gate::allows('AcessoVendedor')) {
+                        return redirect('SeuDesempenho');
+                    }
             return redirect('Empresa');
         }
         return view('Login.Index');
@@ -25,7 +34,7 @@ class LoginController extends Controller
 
         $regras = array(
             'email' => 'required|string',
-            'password' =>'required'
+            'password' => 'required'
         );
 
         $mensagens = array(
@@ -39,12 +48,10 @@ class LoginController extends Controller
         $senha = $request['password'];
 
         $condicao = ['email' => $email];
-        $remember = !empty($request['remember'])?true:false;
+        $remember = !empty($request['remember']) ? true : false;
 
-        if(dd(Auth::attempt(['email' => $email, 'password' => $senha],$remember)))
-        {
-            if($this->authorize('logar',$email,$senha))
-            {
+        if (Auth::attempt(['email' => $email, 'password' => $senha], $remember)) {
+            if ($this->authorize('logar', $email, $senha)) {
                 return redirect('Empresa');
             }
         }

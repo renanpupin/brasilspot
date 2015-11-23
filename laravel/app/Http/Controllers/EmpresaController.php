@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\CartaoAceito;
 use App\CategoriaEmpresa;
 use App\EmpresaPendente;
@@ -34,51 +35,49 @@ class EmpresaController extends Controller
 
     public function index()
     {
-        if(Gate::allows('AcessoComerciante'))
-        {
+        if (Gate::allows('AcessoComerciante')) {
             $usuario = Auth::User();
             $empresa = $usuario->Empresa()->first();
-            if(!empty($empresa))
-            {
+            if (!empty($empresa)) {
                 $empresa = $empresa->with('Plano')->with('TipoEmpresa');
-                return view('Empresa.Index')->with('empresas',$empresa);
+                return view('Empresa.Index')->with('empresas', $empresa);
             }
             $empresa = array();
-            return view('Empresa.Index')->with('empresas',$empresa);
+            return view('Empresa.Index')->with('empresas', $empresa);
         }
-
-        $empresas = Empresa::with('TipoEmpresa')->get();
-
-        return view('Empresa.Index')->with('empresas',$empresas);
+        else
+            if (Gate::allows('AcessoAdministrador')) {
+                $empresas = Empresa::with('TipoEmpresa')->get();
+                return view('Empresa.Index')->with('empresas', $empresas);
+            }
+        return view('401');
     }
 
     public function create()
     {
         $usuario = Auth::User();
 
-        $tiposEmpresas = ['-1'=>'Selecione o tipo do empreendimento'] + TipoEmpresa::orderBy('tipo','asc')->lists('tipo','id')->all();
-        $categorias = ['-1'=>'Selecione a categoria'] + Categoria::orderBy('nome','asc')->lists('nome','id')->all();
-        $cartoes = Cartao::orderBy('tipo','asc')->get();
-        $vendedores  = ['-1'=>'Selecione o usuário'] + Vendedor::with('Usuario')->get()->lists('Usuario.name','id')->all();
-        $tiposCartoes = ['-1'=>'Selecione o tipo dos cartões'] + TipoCartao::orderBy('descricao','asc')->lists('descricao','id')->all();
+        $tiposEmpresas = ['-1' => 'Selecione o tipo do empreendimento'] + TipoEmpresa::orderBy('tipo', 'asc')->lists('tipo', 'id')->all();
+        $categorias = ['-1' => 'Selecione a categoria'] + Categoria::orderBy('nome', 'asc')->lists('nome', 'id')->all();
+        $cartoes = Cartao::orderBy('tipo', 'asc')->get();
+        $vendedores = ['-1' => 'Selecione o usuário'] + Vendedor::with('Usuario')->get()->lists('Usuario.name', 'id')->all();
+        $tiposCartoes = ['-1' => 'Selecione o tipo dos cartões'] + TipoCartao::orderBy('descricao', 'asc')->lists('descricao', 'id')->all();
 
-        if(Gate::allows('AcessoComerciante')) {
+        if (Gate::allows('AcessoComerciante')) {
             return view('Empresa.Create')
                 ->with('tiposEmpresas', $tiposEmpresas)
                 ->with('cartoes', $cartoes)
                 ->with('categorias', $categorias)
                 ->with('vendedores', $vendedores)
                 ->with('tiposCartoes', $tiposCartoes);
-        }
-        else
-            if(Gate::allows('AcessoVendedor'))
-            {
-                $usuarios = ['-1'=>'Selecione o cliente'] + DB::table('users')
-                        ->leftJoin('empresas','empresas.idUsuario','=','users.id')
-                        ->leftJoin('perfisUsuarios','perfisUsuarios.id','=','users.idPerfilUsuario')
-                        ->where('tipo','=','Comerciante')
-                        ->where('idUsuario','=',null)
-                        ->select(['users.id','users.name','empresas.idUsuario','perfisUsuarios.tipo'])->lists('name','id');
+        } else
+            if (Gate::allows('AcessoVendedor')) {
+                $usuarios = ['-1' => 'Selecione o cliente'] + DB::table('users')
+                        ->leftJoin('empresas', 'empresas.idUsuario', '=', 'users.id')
+                        ->leftJoin('perfisUsuarios', 'perfisUsuarios.id', '=', 'users.idPerfilUsuario')
+                        ->where('tipo', '=', 'Comerciante')
+                        ->where('idUsuario', '=', null)
+                        ->select(['users.id', 'users.name', 'empresas.idUsuario', 'perfisUsuarios.tipo'])->lists('name', 'id');
 
                 return view('Empresa.Create')
                     ->with('usuarios', $usuarios)
@@ -124,7 +123,7 @@ class EmpresaController extends Controller
             'string' => 'O campo :attribute deve ser texto.'
         );
 
-        $validator = Validator::make($request->all(),$regras,$mensagens);
+        $validator = Validator::make($request->all(), $regras, $mensagens);
 
         if ($validator->fails()) {
             return redirect('Empresa/cadastrar')
@@ -134,13 +133,11 @@ class EmpresaController extends Controller
 
         $usuarioLogado = Auth::user();
 
-        if(Gate::allows('AcessoComerciante'))
-        {
+        if (Gate::allows('AcessoComerciante')) {
             $planoUsuario = $usuarioLogado->Comerciante->with('Plano')->first();
             $plano = $planoUsuario->Plano->nome;
 
-            if(!empty($plano))
-            {
+            if (!empty($plano)) {
                 $empresa = EmpresaPendente::create([
                     'nomeEmpreendedor' => $request['nomeEmpreendedor'],
                     'razaoSocial' => $request['razaoSocial'],
@@ -166,9 +163,8 @@ class EmpresaController extends Controller
                 $qtdCartao = DB::table('cartoes')->count();
 
                 //TODO: Refatorar isso depois, pode dar errado caso os ids não estejam em ordem na tabela
-                for($i=0;$i<=$qtdCartao;$i++)
-                {
-                    if(!is_null($request[$i])){
+                for ($i = 0; $i <= $qtdCartao; $i++) {
+                    if (!is_null($request[$i])) {
                         $cartoesAceitos = CartaoAceito::create([
                             'idEmpresa' => $empresa->id,
                             'idCartao' => $i
@@ -176,23 +172,20 @@ class EmpresaController extends Controller
                     }
                 }
 
-                $usuario = User::where('id','=',$request['usuarios'])->first()->load('Comerciante')->load('Comerciante.Plano');
+                $usuario = User::where('id', '=', $request['usuarios'])->first()->load('Comerciante')->load('Comerciante.Plano');
 
-                if( $plano == 'Básico')
-                {
-                    $tags = explode(',',$request['tags']);
-                    if(count($tags) <= 5)
-                    {
+                if ($plano == 'Básico') {
+                    $tags = explode(',', $request['tags']);
+                    if (count($tags) <= 5) {
 
 
 //                $foto = FotoEmpresa::create([
 //
 //                ]);
 
-                        if($usuario->Comerciante->Plano->nome == 'Básico') {
-                            for ($i = 0,$max = 0; $i < count($tags) && $max<5; $i++) {
-                                if(!empty($tags[$i]))
-                                {
+                        if ($usuario->Comerciante->Plano->nome == 'Básico') {
+                            for ($i = 0, $max = 0; $i < count($tags) && $max < 5; $i++) {
+                                if (!empty($tags[$i])) {
                                     $tag = Tag::create([
                                         'nome' => $tags[$i]
                                     ]);
@@ -205,24 +198,18 @@ class EmpresaController extends Controller
                                 }
                             }
                         }
-                    }
-                    else
-                    {
+                    } else {
                         $errors = $validator->getMessageBag();
-                        $errors->add('ErroTags','Seu plano não permite mais de 5 tags.');
+                        $errors->add('ErroTags', 'Seu plano não permite mais de 5 tags.');
 
-                        return redirect()->back()->with('errors',$errors);
+                        return redirect()->back()->with('errors', $errors);
                     }
-                }
-                else if( $plano == 'Pro')
-                {
-                    $tags = explode(',',$request['tags']);
-                    if(count($tags) <= 15)
-                    {
-                        if($usuario->Comerciante->Plano->nome == 'Pro') {
-                            for ($i = 0,$max = 0; $i < count($tags) && $max<15; $i++) {
-                                if(!empty($tags[$i]))
-                                {
+                } else if ($plano == 'Pro') {
+                    $tags = explode(',', $request['tags']);
+                    if (count($tags) <= 15) {
+                        if ($usuario->Comerciante->Plano->nome == 'Pro') {
+                            for ($i = 0, $max = 0; $i < count($tags) && $max < 15; $i++) {
+                                if (!empty($tags[$i])) {
                                     $tag = Tag::create([
                                         'nome' => $tags[$i]
                                     ]);
@@ -235,23 +222,17 @@ class EmpresaController extends Controller
                                 }
                             }
                         }
-                    }
-                    else
-                    {
+                    } else {
                         $errors = $validator->getMessageBag();
-                        $errors->add('ErroTags','Seu plano não permite mais de 15 tags.');
+                        $errors->add('ErroTags', 'Seu plano não permite mais de 15 tags.');
 
-                        return redirect()->back()->with('errors',$errors);
+                        return redirect()->back()->with('errors', $errors);
                     }
                 }
-            }
-            else
-            {
+            } else {
 
             }
-        }
-        else if(Gate::allows('AcessoVendedor'))
-        {
+        } else if (Gate::allows('AcessoVendedor')) {
             $usuarioLogado = $usuarioLogado->load('Vendedor');
 
             $regras = array(
@@ -263,7 +244,7 @@ class EmpresaController extends Controller
                 'usuarios.not_in' => 'O campo Clientes deve ser selecionado.'
             );
 
-            $validator = Validator::make($request->all(),$regras,$mensagens);
+            $validator = Validator::make($request->all(), $regras, $mensagens);
 
             if ($validator->fails()) {
                 return redirect('Empresa/create')
@@ -302,9 +283,8 @@ class EmpresaController extends Controller
                 $qtdCartao = DB::table('cartoes')->count();
 
                 //TODO: Refatorar isso depois, pode dar errado caso os ids não estejam em ordem na tabela
-                for($i=0;$i<=$qtdCartao;$i++)
-                {
-                    if(!is_null($request[$i])){
+                for ($i = 0; $i <= $qtdCartao; $i++) {
+                    if (!is_null($request[$i])) {
                         $cartoesAceitos = CartaoAceito::create([
                             'idEmpresa' => $empresa->id,
                             'idCartao' => $i
@@ -317,17 +297,16 @@ class EmpresaController extends Controller
 //
 //                ]);
 
-                $tags = explode(',',$request['tags']);
+                $tags = explode(',', $request['tags']);
 
-                $usuario = User::where('id','=',$request['usuarios'])
+                $usuario = User::where('id', '=', $request['usuarios'])
                     ->first()
                     ->load('Comerciante')
                     ->load('Comerciante.Plano');
 
-                if($usuario->Comerciante->Plano->nome == 'Básico') {
-                    for ($i = 0,$max = 0; $i < count($tags) && $max<5; $i++) {
-                        if(!empty($tags[$i]))
-                        {
+                if ($usuario->Comerciante->Plano->nome == 'Básico') {
+                    for ($i = 0, $max = 0; $i < count($tags) && $max < 5; $i++) {
+                        if (!empty($tags[$i])) {
                             $tag = Tag::create([
                                 'nome' => $tags[$i]
                             ]);
@@ -339,12 +318,10 @@ class EmpresaController extends Controller
                             $max++;
                         }
                     }
-                }
-                else
-                    if($usuario->Comerciante->Plano->nome == 'Pro') {
-                        for ($i = 0,$max = 0; $i < count($tags) && $max<15; $i++) {
-                            if(!empty($tags[$i]))
-                            {
+                } else
+                    if ($usuario->Comerciante->Plano->nome == 'Pro') {
+                        for ($i = 0, $max = 0; $i < count($tags) && $max < 15; $i++) {
+                            if (!empty($tags[$i])) {
                                 $tag = Tag::create([
                                     'nome' => $tags[$i]
                                 ]);
@@ -363,9 +340,7 @@ class EmpresaController extends Controller
 //                    'idServico' =>'',
 //                ]);
 
-            }
-            catch(Exception $exception)
-            {
+            } catch (Exception $exception) {
                 DB::rollBack();
                 $errors = $validator->getMessageBag();
                 $errors->add('ErroException', 'Não foi possivel cadastrar a empresa.');
@@ -385,14 +360,14 @@ class EmpresaController extends Controller
     {
         $empresa = Empresa::find($id);
 
-        return view('Empresa.Detail')->with('empresa',$empresa);
+        return view('Empresa.Detail')->with('empresa', $empresa);
     }
 
     public function edit($id)
     {
         $empresa = Empresa::find($id);
 
-        return view('Empresa.Edit')->with('empresa',$empresa);
+        return view('Empresa.Edit')->with('empresa', $empresa);
     }
 
     public function editar()
@@ -400,11 +375,11 @@ class EmpresaController extends Controller
         //$id = deverá receber a empresa cadastrada do comerciante que está logado na sessão
         //$empresa = Empresa::find($id);
 
-        $tiposEmpresas = ['-1'=>'Selecione o tipo do empreendimento'] + TipoEmpresa::orderBy('tipo','asc')->lists('tipo','id')->all();
-        $categorias = ['-1'=>'Selecione a categoria'] + Categoria::orderBy('nome','asc')->lists('nome','id')->all();
-        $cartoes = Cartao::orderBy('tipo','asc')->get();
-        $vendedores  = ['-1'=>'Selecione o usuário'] + Vendedor::with('Usuario')->get()->lists('Usuario.name','id')->all();
-        $tiposCartoes = ['-1'=>'Selecione o tipo dos cartões'] + TipoCartao::orderBy('descricao','asc')->lists('descricao','id')->all();
+        $tiposEmpresas = ['-1' => 'Selecione o tipo do empreendimento'] + TipoEmpresa::orderBy('tipo', 'asc')->lists('tipo', 'id')->all();
+        $categorias = ['-1' => 'Selecione a categoria'] + Categoria::orderBy('nome', 'asc')->lists('nome', 'id')->all();
+        $cartoes = Cartao::orderBy('tipo', 'asc')->get();
+        $vendedores = ['-1' => 'Selecione o usuário'] + Vendedor::with('Usuario')->get()->lists('Usuario.name', 'id')->all();
+        $tiposCartoes = ['-1' => 'Selecione o tipo dos cartões'] + TipoCartao::orderBy('descricao', 'asc')->lists('descricao', 'id')->all();
 
 
         return view('Empresa.Edit')
@@ -421,7 +396,8 @@ class EmpresaController extends Controller
 
     }
 
-    public function uploadFiles() {
+    public function uploadFiles()
+    {
 
 //        $input = Input::all();
 //
@@ -456,12 +432,12 @@ class EmpresaController extends Controller
     {
         $empresas = Empresa::all();
 
-        return view('VisualizarEmpresa')->with('empresas',$empresas);
+        return view('VisualizarEmpresa')->with('empresas', $empresas);
     }
 
     public function BuscaEmpresa($nomeFantasia)
     {
-        return Empresa::where('nomeFantasia','like','%'+$nomeFantasia+'%')->get();
+        return Empresa::where('nomeFantasia', 'like', '%' + $nomeFantasia + '%')->get();
     }
 
     public function pesquisarEmpresa()
@@ -469,7 +445,7 @@ class EmpresaController extends Controller
         //ajax and json
         $query = Input::get("query");
 
-        $registers = Empresa::where('nomeFantasia','like','%'.$query.'%')->get();
+        $registers = Empresa::where('nomeFantasia', 'like', '%' . $query . '%')->get();
 
 //        if($registers->isEmpty()){
 //            $registers = Categoria::where('nome','like','%'.$query.'%')->get();
@@ -483,7 +459,7 @@ class EmpresaController extends Controller
     {
         $query = Input::get("query");
 
-        $registers = Endereco::where('endereco','like','%'.$query.'%')->orWhere('cidade','like','%'.$query.'%')->orWhere('estado','like','%'.$query.'%')->get();
+        $registers = Endereco::where('endereco', 'like', '%' . $query . '%')->orWhere('cidade', 'like', '%' . $query . '%')->orWhere('estado', 'like', '%' . $query . '%')->get();
 
         return Response::json($registers);
     }
@@ -495,12 +471,12 @@ class EmpresaController extends Controller
 
 
         //a subcategoria é opcional e os serviços e estado podem vir ou não
-        if( $subcategoria){
+        if ($subcategoria) {
             $servicos = Input::get("servicos");
-            dd($categoria, $subcategoria, $estado, explode(",", $servicos));
-        }else {
+           // dd($categoria, $subcategoria, $estado, explode(",", $servicos));
+        } else {
             $servicos = Input::get("servicos");
-            dd($categoria , $estado, explode(",", $servicos));
+            //dd($categoria, $estado, explode(",", $servicos));
 
         }
         //Todo: busca de empresas pelos parâmetros informados na url
@@ -508,11 +484,12 @@ class EmpresaController extends Controller
 
     }
 
-    public function listarPorCategoria($slug){
+    public function listarPorCategoria($slug)
+    {
 
         //TODO:buscar id da categoria pelo slug (ver funçao slug do eloquent) e retornar as empresas paginadas por esta categoria
         //Se a categoria possuir filhas, então traz as empresas da categoria filha também
-        return view('Categoria')->with('slug',$slug);
+        return view('Categoria')->with('slug', $slug);
     }
 }
 

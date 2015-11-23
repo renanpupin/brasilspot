@@ -4,7 +4,12 @@
 
 @section('sidebar')
     @parent
-    @include('layouts.sidebarAdmin')
+    @can('AcessoComerciante')
+        @include('layouts.sidebarComerciante')
+    @endcan
+    @can('AcessoAdministrador')
+        @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')

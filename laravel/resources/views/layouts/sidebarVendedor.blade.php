@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('NovaEmpresa' )}}" class="{{ Request::segment(1) === 'NovaEmpresa' ? 'active' : null }}">
+                    <a href="{{ url('NovaEmpresa' )}}" class="{{ Request::segment(1) === 'Empresa' ? 'active' : null }}">
                         <i class="material-icons" style="color: #E66D1C;">account_balance</i>Nova Empresa
                     </a>
                 </li>

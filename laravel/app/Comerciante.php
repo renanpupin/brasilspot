@@ -22,11 +22,16 @@ class Comerciante extends Model
 
     public function Usuario()
     {
-        return $this->hasOne('\App\Usuario','id','idUsuario');
+        return $this->hasOne('\App\User','id','idUsuario');
     }
 
     public function Plano()
     {
         return $this->hasOne('\App\Plano','id','idPlano');
+    }
+
+    public function AssinaturaComerciante()
+    {
+        return $this->hasOne('\App\AssinaturaComerciante','idComerciante','id');
     }
 }
