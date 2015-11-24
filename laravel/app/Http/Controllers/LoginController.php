@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Hash;
 use Gate;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -17,13 +18,13 @@ class LoginController extends Controller
         if (Auth::Check()) {
             if (Gate::allows('AcessoComerciante')) {
                 return redirect('Resumo');
-            } else
-                if (Gate::allows('AcessoAdministrador')) {
-                    return redirect('Dashboard');
-                } else
-                    if (Gate::allows('AcessoVendedor')) {
-                        return redirect('SeuDesempenho');
-                    }
+            } else if (Gate::allows('AcessoAdministrador')) {
+//                return redirect('Dashboard');
+                return Redirect::route('Dashboard');
+            } else if (Gate::allows('AcessoVendedor')) {
+                return redirect('SeuDesempenho');
+            }
+            //return redirect()->back()->withErrors('Ocorreu um erro interno, por favor contate um administrador Spot.');
             return redirect('Empresa');
         }
         return view('Login.Index');
@@ -52,7 +53,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $email, 'password' => $senha], $remember)) {
             if ($this->authorize('logar', $email, $senha)) {
-                return redirect('Empresa');
+                return Redirect::action('LoginController@index');
             }
         }
 //        if(!empty($usuario) && Hash::check($senha,$usuario->password))

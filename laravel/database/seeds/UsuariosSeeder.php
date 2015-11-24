@@ -11,11 +11,18 @@ class UsuariosSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('assinaturasFiliais')->delete();
+        DB::table('assinaturasComerciantes')->delete();
+        DB::table('assinaturas')->delete();
         DB::table('planos')->delete();
-        DB::table('metas')->delete();
-        DB::table('tiposVendedores')->delete();
+
+
         DB::table('comerciantes')->delete();
         DB::table('vendedores')->delete();
+        DB::table('tiposVendedores')->delete();
+        DB::table('metas')->delete();
+        DB::table('reclamacoes')->delete();
         DB::table('users')->delete();
         DB::table('perfisUsuarios')->delete();
 

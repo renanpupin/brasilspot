@@ -82,6 +82,11 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
     Route::get('Plano', 'PlanoController@index');
 
     //routes for "Meta"
+    Route::get('Metas/{id}', 'MetaController@show');
+    Route::get('Metas', 'MetaController@index');
+    Route::get('Metas/cadastrar', 'MetaController@create');
+    Route::post('Metas/editar/{id}', 'MetaController@update');
+    Route::get('Metas/editar/{id}', 'MetaController@edit');
     Route::get('Metas/Historico', 'MetaController@historico');
     Route::get('Metas/Mensal', 'MetaController@mensal');
     Route::get('Metas/Ocasional', function () {

@@ -19,17 +19,13 @@ class ComercianteTableSeeder extends Seeder
         DB::table('comerciantes')->insert(array(
             array(
                 'id' => 1,
-                'id_vendedor' => 1,
-                'id_usuario' => 5,
-                'id_plano' => 1,
-                'data_vencimento' => '20/11/2015'
+                'idVendedor' => 1,
+                'idUsuario' => 5
             ),
             array(
                 'id' => 2,
                 'id_vendedor' => 2,
-                'id_usuario' => 6,
-                'id_plano' => 2,
-                'data_vencimento' => '02/11/2015'
+                'id_usuario' => 6
             ),
         ));
     }
