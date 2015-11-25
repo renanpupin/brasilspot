@@ -47,6 +47,12 @@ class ServicoController extends Controller
         return redirect()->back();
     }
 
+    public function selecionar()
+    {
+        //$servicos = Servico::list($id);
+        //buscar todos os servicos já selecionados na empresa para listar nos cmombos
+        return view('Servico.ServicosOferecidos');//->with('servico',$servico);
+    }
 
     public function show($id)
     {

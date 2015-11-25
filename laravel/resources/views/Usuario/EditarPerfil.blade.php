@@ -5,7 +5,7 @@
 
 @section('sidebar')
     @parent
-    @include('layouts.sidebarSistema')
+    @include('layouts.sidebarComerciante')
 @stop
 
 @section('content')
@@ -33,13 +33,13 @@
         </div>
     @endif
 
-    <div id="cadastro" class="grid-m-12 grid-s-12">
+    <div id="editar" class="grid-m-12 grid-s-12">
 
-        {!! Form::Open(['route' => 'Clientes.store', 'method' => 'POST']) !!}
+        {!! Form::model($usuario,['route' => ['Usuario.edit',$usuario->id], 'method' => 'PUT']) !!}
         <div class="row">
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('nome', 'Nome *',null,['for' => 'nome']) !!}
-                {!! Form::text('nome',null,['id' => 'nome']) !!}
+                {!! Form::label('name', 'Nome *',null,['for' => 'name']) !!}
+                {!! Form::text('name',null,['id' => 'name']) !!}
             </div>
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
@@ -60,12 +60,12 @@
 
 
         <div class="row">
-            <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-xs-12 grid-s-offset-6 button-field">
-                <a href="{{ url('Clientes/Gerenciar') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
-                    <span class="text-content">Voltar</span>
-                </a>
-            </div>
-            <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
+            {{--<div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-xs-12 grid-s-offset-6 button-field">--}}
+                {{--<a href="{{ url('Clientes/Gerenciar') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">--}}
+                    {{--<span class="text-content">Voltar</span>--}}
+                {{--</a>--}}
+            {{--</div>--}}
+            <div class="form-group grid-m-3 grid-m-offset-9 grid-s-3 grid-xs-12 grid-s-offset-9 button-field">
                 {!! Form::button('<span class="text-content">Editar</span>',[
                     'id' => 'btnEditar',
                     'type' => 'submit',

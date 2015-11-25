@@ -19,8 +19,8 @@ class LoginController extends Controller
             if (Gate::allows('AcessoComerciante')) {
                 return redirect('Resumo');
             } else if (Gate::allows('AcessoAdministrador')) {
-//                return redirect('Dashboard');
-                return Redirect::route('Dashboard');
+                return redirect('Dashboard');
+//                return Redirect::url('Dashboard');
             } else if (Gate::allows('AcessoVendedor')) {
                 return redirect('SeuDesempenho');
             }
@@ -72,7 +72,8 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->back();
+//        return redirect()->back();
+        return redirect('Login');
     }
 
 }

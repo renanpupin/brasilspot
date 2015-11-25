@@ -189,9 +189,17 @@ class UsuarioController extends Controller
             ->with('planos', $planos);
     }
 
-    public function editarPerfil()
+    public function editarSeuPerfil()
     {
-        return View('Usuario.EditarPerfil');
+        $usuario = Auth::User();
+        $id = $usuario->id;
+//        dd($usuario);
+        return view('Usuario.EditarPerfil')->with('usuario',$usuario);
+    }
+
+    public function atualizarSeuPerfil()
+    {
+        dd("TODO");
     }
 
 

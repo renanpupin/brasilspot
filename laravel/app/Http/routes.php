@@ -148,8 +148,8 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
     Route::post('Usuario/editar/{id}', 'UsuarioController@update');
     Route::get('Usuario/editar/{id}', 'UsuarioController@edit');
     Route::get('Usuario/cadastrar', 'UsuarioController@create');
-    Route::get('Perfil', 'UsuarioController@editarPerfil');
-    Route::post('Perfil', 'UsuarioController@atualizarPerfil');
+    Route::get('Perfil', 'UsuarioController@editarSeuPerfil');
+    Route::post('Perfil', 'UsuarioController@atualizarSeuPerfil');
     Route::resource('Usuario','UsuarioController');
 
     //routes for "Enderecos"
@@ -222,6 +222,8 @@ Route::get('SuaEmpresa/Cadastrar', 'EmpresaController@create');
 Route::get('SuaEmpresa', function () {
     return view('Empresa/Detail');
 });
+
+Route::get('ServicosOferecidos', 'ServicoController@selecionar');
 
 Route::get('SuaAssinatura/Upgrade/{id}', function () {
     return view('Comerciante/UpgradeAssinatura');

@@ -27,6 +27,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ url('ServicosOferecidos' )}}" class="{{ Request::segment(1) === 'ServicosOferecidos' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #E66D1C;">build</i>Serviços Oferecidos
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url('SuasFiliais' )}}" class="{{ Request::segment(1) === 'SuasFiliais' ? 'active' : null }}">
                         <i class="material-icons" style="color: #E6BD35;">home</i>Suas Filiais
                     </a>
