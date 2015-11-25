@@ -16,15 +16,15 @@ class PerfilUsuarioTableSeeder extends Seeder
         DB::table('perfisUsuarios')->insert(array(
             array(
                 'id' => 1,
-                'tipo' => 'administrador',
+                'tipo' => 'Administrador',
             ),
             array(
                 'id' => 2,
-                'tipo' => 'vendedor',
+                'tipo' => 'Vendedor',
             ),
             array(
                 'id' => 3,
-                'tipo' => 'comerciante',
+                'tipo' => 'Comerciante',
             ),
         ));
     }
