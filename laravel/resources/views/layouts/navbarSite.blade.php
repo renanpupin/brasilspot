@@ -25,6 +25,7 @@
             <div class="center-row row">
                 <div class="nav-item">
                     {{--<a href="#">--}}
+                    {{--Route::getCurrentRoute()->getParameter('busca');--}}
                         <input type="text" name="pesquisaEmpresa" id="pesquisaEmpresa" placeholder="O que você procura?">
                     {{--</a>--}}
                 </div>

@@ -299,21 +299,23 @@ Route::get('Atracoes', function () {
     return view('Atracoes');
 });
 
+/*rotas dos filtros*/
+Route::get('Empresas/{filtros?}', 'SiteController@filtroEmpresas')->where('filtros', '(.*)');;
 
-Route::get('Empresas/encontre/{categoria}/{subcategoria?}', 'EmpresaController@filtroEmpresas');
 
-Route::get('Empresas/pesquisaDrEmpresa', 'EmpresaController@pesquisarEmpresa');
+//Route::get('Empresas/encontre/{categorias}/{subcategoria?}', 'EmpresaController@filtroEmpresas');
+
+Route::get('Empresas/pesquisaDeEmpresa', 'EmpresaController@pesquisarEmpresa');
 Route::get('Empresas/pesquisarEndereco', 'EmpresaController@pesquisarEndereco');
 
 Route::get('Empresas/{id}', 'EmpresaController@visualizar');
 
-Route::get('Empresas', function () {
-    return view('index');
-});
+
 
 Route::get('categorias', 'CategoriaController@listarCategorias');
 
-Route::get('categoria/{slug}', 'EmpresaController@listarPorCategoria');
+Route::get('categorias/{slug}', 'EmpresaController@listarPorCategoria');
+//Route::get('/{slug}', 'SiteController@showSlug')->where('slug', '[A-Za-z-]+');
 
 Route::get('Inicio', function () {
     return view('PesquisaEmpresa');
