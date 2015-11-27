@@ -115,12 +115,16 @@
                 alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
             },
             transformResult: function(response) {
+                console.log(response);
                 response = JSON.parse(response);
-                return {
 
+                /*if(response[0].hasOwnProperty("nomeFantasia")){
+
+                }*/
+
+                return {
                     suggestions: $.map(response, function(dataItem) {
-                        //return { value: (dataItem.nome != undefined ? dataItem.nome : dataItem.nomeFantasia), data: dataItem.id };
-                        return { value: dataItem.nomeFantasia, data: dataItem.id };
+                        return { value: (dataItem.nomeFantasia != undefined ? dataItem.nomeFantasia : dataItem.nome), data: dataItem.id };
                     })
                 };
             }
@@ -134,6 +138,7 @@
                 alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
             },
             transformResult: function(response) {
+                console.log(response);
                 response = JSON.parse(response);
                 return {
                     suggestions: $.map(response, function(dataItem) {
@@ -187,5 +192,64 @@
         if($("#inputFiltrarEstado").length != 0){
             listFilter("#inputFiltrarEstado", "#listaEstados");
         }
+
+        if($("#inputFiltrarServicos").length != 0){
+            listFilter("#inputFiltrarServicos", "#listaServicos");
+        }
+
+
+        function parseQueryString() {
+
+            var str = window.location.search;
+            var objURL = {};
+
+            str.replace(
+                new RegExp( "([^?=&]+)(=([^&]*))?", "g" ),
+                function( $0, $1, $2, $3 ){
+                    objURL[ $1 ] = $3;
+                }
+            );
+            return objURL;
+        };
+
+
+        $('input[name="servicos[]"]').on('change', function (e) {
+
+            e.preventDefault();
+
+            var params = parseQueryString();
+
+            if($('input[name="servicos[]"]:checked').length != 0){
+                var servicos = "com=";
+
+                $('input[name="servicos[]"]:checked').each(function(index, item)
+                {
+                    console.log(index,item);
+                    servicos+= $(item).val()+",";
+                });
+
+                servicos = servicos.replace(/,\s*$/, "");
+                //console.log(servicos);
+
+
+
+                console.log("tem checkado");
+
+                var url = window.location.pathname+"?"+(params["local"] != undefined ? "local="+params["local"]+"&" : null)+(params["tipo"] != undefined ? "tipo="+params["tipo"]+"&" : null)+servicos;
+
+            }else{
+
+                console.log("nem tem checkado");
+
+                var url = window.location.pathname+"?"+(params["local"] != undefined ? "local="+params["local"]+"&" : null)+(params["tipo"] != undefined ? "tipo="+params["tipo"]+"&" : null);
+            }
+
+            url = url.replace(/&\s*$/, "");
+
+            console.log(url);
+            //Todo:testar...
+            //window.location.href = url;
+        });
+
     });
 }(jQuery));

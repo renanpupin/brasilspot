@@ -21,6 +21,7 @@ use App\Vendedor;
 use App\Categoria;
 use App\Cartao;
 use App\TipoCartao;
+use App\Endereco;
 use Illuminate\Support\Facades\Session;
 use Input;
 use Redirect;
@@ -435,54 +436,6 @@ class EmpresaController extends Controller
         return view('VisualizarEmpresa')->with('empresas', $empresas);
     }
 
-    public function BuscaEmpresa($nomeFantasia)
-    {
-        return Empresa::where('nomeFantasia', 'like', '%' + $nomeFantasia + '%')->get();
-    }
-
-    public function pesquisarEmpresa()
-    {
-        //ajax and json
-        $query = Input::get("query");
-
-        $registers = Empresa::where('nomeFantasia', 'like', '%' . $query . '%')->get();
-
-//        if($registers->isEmpty()){
-//            $registers = Categoria::where('nome','like','%'.$query.'%')->get();
-//        }
-
-        return Response::json($registers);
-    }
-
-
-    public function pesquisarEndereco()
-    {
-        $query = Input::get("query");
-
-        $registers = Endereco::where('endereco', 'like', '%' . $query . '%')->orWhere('cidade', 'like', '%' . $query . '%')->orWhere('estado', 'like', '%' . $query . '%')->get();
-
-        return Response::json($registers);
-    }
-
-    public function filtroEmpresas($categoria, $subcategoria = null)
-    {
-        $servicos = Input::get("servico");  //um ou varios
-        $estado = Input::get("em");
-
-
-        //a subcategoria é opcional e os serviços e estado podem vir ou não
-        if ($subcategoria) {
-            $servicos = Input::get("servicos");
-           // dd($categoria, $subcategoria, $estado, explode(",", $servicos));
-        } else {
-            $servicos = Input::get("servicos");
-            //dd($categoria, $estado, explode(",", $servicos));
-
-        }
-        //Todo: busca de empresas pelos parâmetros informados na url
-        //EX: http://localhost:8000/Empresas/encontre/restaurantes/padaria?em=sp&servicos=wifi,delivery
-
-    }
 
     public function listarPorCategoria($slug)
     {

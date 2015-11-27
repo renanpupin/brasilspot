@@ -48,11 +48,8 @@
                     <div class="container">
                         <div class="row">
 
-                            <div class="inline-logo grid-m-6 grid-m-offset-3 grid-s-12 grid-xs-12">
-                                <img src="{!! asset('assets/img/logo.00_png_srb') !!}">
-                            </div>
-                            <div class="intro-logo-text grid-m-6 grid-m-offset-3 grid-s-12 grid-xs-12">
-                                <img class="brand-text" src="{!! asset('assets/img/logo_texto.png') !!}">
+                            <div class="logo grid-m-6 grid-m-offset-3 grid-s-12 grid-xs-12">
+                                <img src="{!! asset('assets/img/logo_final.png') !!}">
                             </div>
 
                             <div class="intro-form grid-m-4 grid-m-offset-4 grid-s-6 grid-s-offset-3 grid-xs-12">
@@ -83,7 +80,7 @@
 
                                 <div class="row">
                                     <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                                        <a href="{{ url('categorias' )}}" id="verCategorias" class="sublink">
+                                        <a href="{{ url('Categorias' )}}" id="verCategorias" class="sublink">
                                             <span class="text-content">Veja todas as categorias</span>
                                         </a>
                                     </div>

@@ -11,6 +11,9 @@ use Auth;
 use Response;
 use App\Empresa;
 use App\Categoria;
+use App\Servico;
+use App\Endereco;
+use App\Tag;
 use App\Http\Controllers\Controller;
 
 class SiteController extends Controller
@@ -28,32 +31,6 @@ class SiteController extends Controller
         return Empresa::where('nomeFantasia', 'like', '%' + $nomeFantasia + '%')->get();
     }
 
-    public function pesquisarEmpresa()
-    {
-        //ajax and json
-        $query = Input::get("query");
-
-        $registers = Empresa::where('nomeFantasia', 'like', '%' . $query . '%')->get();
-
-//        if($registers->isEmpty()){
-//            $registers = Categoria::where('nome','like','%'.$query.'%')->get();
-//        }
-
-        return Response::json($registers);
-    }
-
-
-    public function pesquisarEndereco()
-    {
-        //http://laravel.io/forum/02-25-2014-how-to-perform-a-tag-search
-        $query = Input::get("query");
-
-        $registers = Endereco::where('endereco', 'like', '%' . $query . '%')->orWhere('cidade', 'like', '%' . $query . '%')->orWhere('estado', 'like', '%' . $query . '%')->get();
-
-        return Response::json($registers);
-    }
-
-//    public function filtroEmpresas($tipo = null, $tipoEmpresa = null, $em = null, $categoria = null, $subcategoria = null)
     public function filtroEmpresas($filtros = null)
     {
         $local = Input::get("local");  //apenas um
@@ -91,11 +68,13 @@ class SiteController extends Controller
         //Todo: arrumar a busca aqui para pegar somente as subcategorias de uma categoria selecionada (a categoria vai vir no formato slug)
         $subcategorias = Categoria::orderBy('nome', 'asc')->lists('nome', 'id')->all();
 
+        $servicos = Servico::orderBy('descricao', 'asc')->lists('descricao', 'id')->all();
+
 
         //Todo: busca de empresas pelos parâmetros informados na url
         //EX: http://localhost:8000/Empresas/restaurantes/pizzarias?com=wi-fi,seguranca&local=sp&tipo=comercios
 
-        return view('index')->with('tipo',$tipo)->with('categorias',$categorias)->with('subcategorias',$subcategorias);
+        return view('index')->with('tipo',$tipo)->with('categorias',$categorias)->with('subcategorias',$subcategorias)->with('servicos',$servicos);
     }
 
     public function listarPorCategoria($slug)
@@ -105,5 +84,38 @@ class SiteController extends Controller
         //Se a categoria possuir filhas, então traz as empresas da categoria filha também
         return view('Categoria')->with('slug', $slug);
     }
+
+
+
+
+    public function pesquisarEmpresa()
+    {
+        //http://laravel.io/forum/02-25-2014-how-to-perform-a-tag-search
+
+        $query = Input::get("query");
+
+        $registers = Empresa::where('nomeFantasia', 'like', '%' . $query . '%')->get();
+
+        if($registers->isEmpty()){
+            $registers = Tag::where('nome','like','%'.$query.'%')->get();
+        }
+
+        if($registers->isEmpty()){
+            $registers = Categoria::where('nome','like','%'.$query.'%')->get();
+        }
+
+        return Response::json($registers);
+    }
+
+    public function pesquisarEndereco()
+    {
+        $query = Input::get("query");
+
+        $registers = Endereco::where('endereco', 'like', '%' . $query . '%')->orWhere('cidade', 'like', '%' . $query . '%')->orWhere('estado', 'like', '%' . $query . '%')->get();
+        //Todo: retornar apenas a cidade e estado
+
+        return Response::json($registers);
+    }
+
 }
 

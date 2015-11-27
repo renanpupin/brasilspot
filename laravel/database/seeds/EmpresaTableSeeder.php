@@ -42,6 +42,7 @@ class EmpresaTableSeeder extends Seeder
         DB::table('empresas')->delete();
         DB::table('empresasPendentes')->delete();
 
+        $this->call(EnderecoTableSeeder::class);
 
         DB::table('empresas')->insert(array(
             array(
@@ -130,19 +131,6 @@ class EmpresaTableSeeder extends Seeder
                 'id' => 5,
                 'idEmpresa' => 1,
                 'idTag' => 5
-            ),
-        ));
-
-        DB::table('enderecos')->insert(array(
-            array(
-                'id' => 1,
-                'endereco' => 'Avenida Paulista, 131',
-                'bairro' => 'Centro',
-                'cidade' => 'São Paulo Capital',
-                'estado' => 'São Paulo',
-                'cep' => '15555-555',
-                'lat' => '-51.212',
-                'lon' => '-22.215'
             ),
         ));
 

@@ -72,28 +72,13 @@
             </div>
 
             <div class="filter-list">
-                <ul>
-                    <li>
-                        <label><input type="checkbox"> Aberto 24 Horas</label>
-                    </li>
-                    <li>
-                        <label><input type="checkbox"> Delivery</label>
-                    </li>
-                    <li>
-                        <label><input type="checkbox"> Ar Condicionado</label>
-                    </li>
-                    <li>
-                        <label><input type="checkbox"> Segurança</label>
-                    </li>
-                    <li>
-                        <label><input type="checkbox"> Acesso para Deficientes</label>
-                    </li>
-                    <li>
-                        <label><input type="checkbox"> Área de Fumantes</label>
-                    </li>
-                    <li>
-                        <label><input type="checkbox"> Wi-fi</label>
-                    </li>
+                <input type="text" class="search-list" placeholder="Filtrar" id="inputFiltrarServicos">
+                <ul id="listaServicos">
+                    @foreach ($servicos as $id => $descricao)
+                        <li>
+                            <label><input type="checkbox" name="servicos[]" value="{{str_slug($descricao)}}"> {{$descricao}}</label>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

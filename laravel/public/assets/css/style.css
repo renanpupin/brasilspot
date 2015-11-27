@@ -2608,11 +2608,12 @@ footer {
     -moz-transform: scale(1) rotate(-360deg);
     -ms-transform: scale(1) rotate(-360deg);
     transform: scale(1) rotate(-360deg); } }
-#intro .intro-logo-text {
+#intro .logo {
   text-align: center;
-  margin-bottom: 15px; }
-  #intro .intro-logo-text img {
-    width: 150px;
+  margin-top: 30px;
+  margin-bottom: 30px; }
+  #intro .logo img {
+    width: 250px;
     height: auto; }
 #intro .intro-form {
   text-align: center; }
