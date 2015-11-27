@@ -24,7 +24,7 @@ class PerfilUsuarioTableSeeder extends Seeder
             ),
             array(
                 'id' => 3,
-                'tipo' => 'Comerciante',
+                'tipo' => 'Comerciante',''
             ),
         ));
     }
