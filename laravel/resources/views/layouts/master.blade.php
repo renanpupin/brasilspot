@@ -84,6 +84,6 @@
         <script type="text/javascript" src="{!! asset('assets/js/modal.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('assets/js/dropdown.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('assets/js/script.js') !!}"></script>
-        @yield('scripts')
+        @yield('script')
     </body>
 </html>

@@ -122,6 +122,11 @@
                         <i class="material-icons" style="color: #A32995;">mail</i>Mensagens
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('MapaVendas' )}}" class="{{ Request::segment(1) === 'MapaVendas' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #11939C;">place</i>Mapa de Vendas
+                    </a>
+                </li>
                 <li class="menu-options">
                     <div class="row">
                         <div class="grid-m-6 grid-s-6 grid-xs-6" style="padding-right: 0px;">

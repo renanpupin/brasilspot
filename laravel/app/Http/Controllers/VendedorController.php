@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Empresa;
+use Auth;
+use DB;
 
 class VendedorController extends Controller
 {
@@ -88,4 +91,14 @@ class VendedorController extends Controller
     {
         //
     }
+
+    public function desempenho()
+    {
+        $usuario = Auth::User();
+
+        $novos_clientes = Empresa::where( DB::raw('MONTH(dataCadastro)'), '=', date('n') )->where('idVendedor','=',$usuario)->count();
+//        dd($novos_clientes);
+        return view('Vendedor/Desempenho')->with("novos_clientes", $novos_clientes);
+    }
+
 }

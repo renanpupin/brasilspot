@@ -11,9 +11,9 @@ class TipoEmpresaTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipoEmpresas')->delete();
+        DB::table('tiposEmpresas')->delete();
 
-        DB::table('tipoEmpresas')->insert(array(
+        DB::table('tiposEmpresas')->insert(array(
             array(
                 'id' => 1,
                 'tipo' => 'Comércio',

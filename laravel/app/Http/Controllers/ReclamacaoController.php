@@ -88,6 +88,8 @@ class ReclamacaoController extends Controller
             return redirect()->back();
         }
 
-        return 'A reclamação não foi encontrada';
+        Session::flash('flash_message', 'A reclamação não foi encontrada.');
+
+        return redirect()->back();
     }
 }

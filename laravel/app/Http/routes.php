@@ -82,19 +82,16 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
     Route::get('Plano', 'PlanoController@index');
 
     //routes for "Meta"
-    Route::get('Metas/{id}', 'MetaController@show');
     Route::get('Metas', 'MetaController@index');
     Route::get('Metas/cadastrar', 'MetaController@create');
     Route::post('Metas/editar/{id}', 'MetaController@update');
     Route::get('Metas/editar/{id}', 'MetaController@edit');
     Route::get('Metas/Historico', 'MetaController@historico');
     Route::get('Metas/Mensal', 'MetaController@mensal');
-    Route::get('Metas/Ocasional', function () {
-        return view('Meta/Ocasional');
-    });
-    Route::get('Metas/Equipe', function () {
-        return view('Meta/Equipe');
-    });
+    Route::get('Metas/Ocasional', 'MetaController@ocasional');
+    Route::get('Metas/Equipe', 'MetaController@equipe');
+
+    Route::get('Metas/{id}', 'MetaController@show');
     Route::resource('Meta','MetaController');
 
     //routes for "Salario"
@@ -180,9 +177,7 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
 Route::get('Comerciantes', function () {
     return view('Comerciante/ListarComerciantes');
 });
-Route::get('Dashboard', function () {
-    return view('Admin/Dashboard');
-});
+Route::get('Dashboard', 'AdminController@dashboard');
 
 //rotas vendedores
 
@@ -194,13 +189,9 @@ Route::get('NovaEmpresa', function () {
     return Redirect::route('Empresa.cadastrar');
 });
 
-Route::get('SeuDesempenho', function () {
-    return view('Vendedor/Desempenho');
-});
+Route::get('SeuDesempenho', 'VendedorController@desempenho');
 
-Route::get('MapaVendas', function () {
-    return view('Mapa/mapa');
-});
+Route::get('MapaVendas', 'MapaVendasController@mapa');
 
 //rotas que os comerciantes vão ver no menu
 Route::get('Resumo', function () {
@@ -253,9 +244,7 @@ Route::get('SuasMensagens/responder/{id}', function () {
     return view('Mensagem/Responder');
 });
 
-Route::get('SuasMensagens', function () {
-    return view('Mensagem/index');
-});
+Route::get('SuasMensagens', 'MensagemController@index');
 
 //esse item no menu só aparece para quem assinar o plano de 39.90
 Route::get('SuasPromocoes', function () {

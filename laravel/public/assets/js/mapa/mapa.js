@@ -1,71 +1,60 @@
-alert();
 var map;
-var marker;
+var markers;
 var infoWindow;
 $(document).ready(function () {
-    function initMap(centerLat, centerLon) {
+    function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 4,
-            center: new google.maps.LatLng(centerLat, centerLon),
+            center: new google.maps.LatLng("-18", "-50"),
         });
 
-        var geocoder = new google.maps.Geocoder();
+        markers = JSON.parse($("#markers").val());
+        //console.log(markers);
 
-        document.getElementById('pesquisar').addEventListener('click', function () {
-            geocodeAddress(geocoder, map);
-        });
-
-        map.addListener('click', function (e) {
-            addMarker(map, "", e.latLng);
-        });
+        addMarkers(markers);
     }
 
-    function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('address').value;
-        geocoder.geocode({
-            'address': address
-        }, function (results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                resultsMap.setCenter(results[0].geometry.location);
-                addMarker(resultsMap, address, results[0].geometry.location);
-            } else {
-                //alert('Geocode was not successful for the following reason: ' + status);
-                if (status == "ZERO_RESULTS") {
-                    alert("Não Foram Encontrados resultados para a pesquisa!");
-                } else {
-                    alert("Ocorreu um erro inesperado, reporte para a central que resolveremos o mais rápido possível!");
-                }
-            }
-        });
-    }
+    function addMarkers(markers){
+        for (var i = 0; i < markers.length; i++) {
 
-    function addMarker(resultsMap, address, location) {
-        if (marker) {
-            infoWindow.close();
-            marker.setPosition(location);
-            marker.content = "<h4>" + address + "</h4><p>Latitude: " + location.lat() + "</p><p>Logintude: " + location.lng() + "</p>";
-            infoWindow = new google.maps.InfoWindow({
-                content: marker.content
+            var image = {
+                url: 'http://www.larchfieldestate.co.uk/wp-content/themes/larchfield/style/images/larchfield_icon_mapmarker.gif',
+                size: new google.maps.Size(65, 35),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(33, 33),
+                scaledSize: new google.maps.Size(65, 35)
+            };
+
+            var contentString = '<div id="content-wrapper">'+
+                '<div class="item-title"><h5>'+markers[i].nome+'</h5></div>'+
+                '<hr/>'+
+                '<p><label>Endereço:</label> '+markers[i].endereco+'</p>'+
+                '</div>';
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(markers[i].lat, markers[i].lon),
+                title: "#"+markers[i].id.toString(),
+                map: map,
+                animation: google.maps.Animation.DROP,
+                icon: image,
+                id: markers[i].id,
+                content: contentString
             });
 
-            infoWindow.open(resultsMap, marker);
-        } else {
-            marker = new google.maps.Marker({
-                map: resultsMap,
-                position: location,
-                content: "<h4>" + address + "</h4><p>Latitude: " + location.lat() + "</p><p>Logintude: " + location.lng() + "</p>"
-            });
-            infoWindow = new google.maps.InfoWindow({
-                content: marker.content
-            });
-
-            infoWindow.open(resultsMap, marker);
-
-            google.maps.event.addListener(marker, 'click', function () {
-                infoWindow.open(resultsMap, marker);
-            });
+            addInfoWindow(marker);
+            //markers.push(marker);
         }
-        resultsMap.setZoom(15);
     }
-    initMap(-15.1, -51.918921);
+
+    //click event window
+    function addInfoWindow(marker){
+        var infoWindow = new google.maps.InfoWindow({
+            content: marker.content
+        });
+
+        google.maps.event.addListener(marker, 'click', function () {
+            infoWindow.open(map, marker);
+        });
+    }
+    initMap();
 });
