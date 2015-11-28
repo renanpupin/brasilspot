@@ -5,8 +5,15 @@
 
 @section('sidebar')
     @parent
-    {{--se perfil for de vendedor carregar sidebarVendedor, se for comerciante sidebarComerciante--}}
+    @can('AcessoComerciante')
     @include('layouts.sidebarComerciante')
+    @endcan
+    @can('AcessoVendedor')
+    @include('layouts.sidebarVendedor')
+    @endcan
+    @can('AcessoAdministrador')
+    @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')

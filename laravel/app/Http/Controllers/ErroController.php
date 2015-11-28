@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\ErroReportado;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 //use App\Erro;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use Gate;
 
 class ErroController extends Controller
 {
     public function index()
     {
-        //$erros = Erro::all();
-
-        return view('Erros.Index');
+        if(Gate::allows('AcessoAdministrador')) {
+            $erros = ErroReportado::with('Usuario')->get();
+            return view('Erros.Index')->with('erros', $erros);
+        }
     }
 
 
@@ -31,8 +34,9 @@ class ErroController extends Controller
 
     public function show($id)
     {
-        //$erro = Erro::find($id);
-        return view('Erros.Detail');//->with('erro',$erro);
+        $erro = ErroReportado::with('Usuario')->find($id);
+
+        return view('Erros.Detail')->with('erro',$erro);
     }
 
     public function destroy($id)
