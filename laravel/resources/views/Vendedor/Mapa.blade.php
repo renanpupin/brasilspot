@@ -4,7 +4,15 @@
 
 @section('sidebar')
     @parent
-    @include('layouts.sidebarSistema')
+    @can('AcessoComerciante')
+    @include('layouts.sidebarComerciante')
+    @endcan
+    @can('AcessoVendedor')
+    @include('layouts.sidebarVendedor')
+    @endcan
+    @can('AcessoAdministrador')
+    @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')
@@ -19,7 +27,7 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('Solicitacoes/MapaVendedores') }}">Solicações</a></li>
+                    <li><a href="{{ url('Vendedor/MapaVendedores') }}">Vendedores</a></li>
                     <li>Mapa de Vendedores</li>
                 </ul>
             </div>
@@ -34,14 +42,12 @@
                     <th>Email</th>
                 </thead>
                 <tbody>
+                @foreach($vendedores as $vendedor)
                     <tr>
-                        <td>José da Silva</td>
-                        <td>jose@gmail.com</td>
+                        <td>{{ $vendedor->name }}</td>
+                        <td>{{ $vendedor->email }}</td>
                     </tr>
-                    <tr>
-                        <td>João Souza</td>
-                        <td>joao@gmail.com</td>
-                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

@@ -52,25 +52,17 @@
                 <th></th>
                 </thead>
                 <tbody>
-                @foreach($erros as $erro)
                 <tr>
-                    <td>{{ $erro->id }}</td>
-                    <td>{{ $erro->Usuario->name }}</td>
-                    @if($erro->isCorrigido)
-                        <td>SIM</td>
-                    @endif
-                    @if(!$erro->isCorrigido)
-                        <td>NÃO</td>
-                    @endif
-
+                    <td>1</td>
+                    <td>José da Silva</td>
+                    <td>SIM</td>
                     <td class="col-actions">
-                        <a href="{{ url('Erros',[$erro->id])}}" title="Detalhar"><i class="material-icons">description</i></a>
+                        <a href="{{ url('Erros/1') }}" title="Detalhar"><i class="material-icons">description</i></a>
                     </td>
                     <td class="col-actions">
                         {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
                     </td>
                 </tr>
-                @endforeach
                 </tbody>
             </table>
         </div>

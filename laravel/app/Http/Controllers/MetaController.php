@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Meta;
+use Illuminate\Support\Facades\Session;
 
 class MetaController extends Controller
 {
@@ -27,11 +28,13 @@ class MetaController extends Controller
 
     public function store(Request $request)
     {
-        \App\Meta::create([
+        Meta::create([
             'NumeroEmpresas' => $request['numeroEmpresas']
         ]);
 
-        return "Meta Registrada com sucesso!!";
+        Session::flash('flash_message', 'Meta registrada com sucesso.');
+
+        return redirect()->back();
     }
 
 
@@ -76,12 +79,39 @@ class MetaController extends Controller
 
     public function destroy($id)
     {
-        //
+        $meta = Meta::find($id);
+
+        if(!empty($meta))
+        {
+            $meta->delete();
+            Session::flash('flash_message', 'Meta removida com sucesso!');
+            return redirect()->back();
+        }
+
+        Session::flash('flash_message', 'A meta não foi encontrada.');
+
+        return redirect()->back();
     }
 
     public function mensal()
     {
-        return view('Meta.Mensal');
+        $metas = Meta::where('tipoEmpresa','Mensal')->orderBy('numeroEmpresas', 'asc');
+
+        return view('Meta.Mensal')->with('metas', $metas);
+    }
+
+    public function ocasional()
+    {
+        $metas = Meta::where('tipoEmpresa','Ocasional')->orderBy('numeroEmpresas', 'asc');
+
+        return view('Meta.Ocasional')->with('metas', $metas);
+    }
+
+    public function equipe()
+    {
+        $metas = Meta::where('tipoEmpresa','Equipe')->orderBy('numeroEmpresas', 'asc');
+
+        return view('Meta.Equipe')->with('metas', $metas);
     }
 
 

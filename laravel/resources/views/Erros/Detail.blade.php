@@ -5,13 +5,21 @@
 
 @section('sidebar')
     @parent
-    @include('layouts.sidebarSistema')
+    @can('AcessoComerciante')
+    @include('layouts.sidebarComerciante')
+    @endcan
+    @can('AcessoVendedor')
+    @include('layouts.sidebarVendedor')
+    @endcan
+    @can('AcessoAdministrador')
+    @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Erro #5</h2>
+        <h2>Erro #{{ $erro->id }}</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -54,15 +62,20 @@
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('usuario', 'Usuário',null,['for' => 'usuario']) !!}
-                <p class="field-disabled">José de Silva</p>
+                <p class="field-disabled">{{ $erro->Usuario->name }}</p>
             </div>
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('descricao', 'Descrição',null,['for' => 'descricao']) !!}
-                <p class="field-disabled">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                <p class="field-disabled">{{ $erro->descricao }}</p>
             </div>
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('is_corrigido', 'Corrigido',null,['for' => 'is_corrigido']) !!}
-                <p class="field-disabled">NÃO</p>
+                @if($erro->isCorrigido)
+                    <p class="field-disabled">SIM</p>
+                @endif
+                @if(!$erro->isCorrigido)
+                    <p class="field-disabled">NÃO</p>
+                @endif
             </div>
 
             <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 grid-xs-12 button-field">

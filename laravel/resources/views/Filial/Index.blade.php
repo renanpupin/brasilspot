@@ -21,7 +21,7 @@
         <h2>Listar Filiais</h2>
         <h5>Nome Fantasia</h5>
         @can('AcessoComerciante')
-             <p>No momento você pode ter <b>1</b> filial. Para adicionar mais filiais clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
+             <p>No momento você pode ter <b>{{$numero_assinaturas}}</b> filial. Para adicionar mais filiais clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
         @endcan
     </div>
 

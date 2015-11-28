@@ -18,7 +18,7 @@
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Lista de Erros</h2>
+        <h2>Reclamações</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
@@ -27,8 +27,8 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('Erros') }}">Erros</a></li>
-                    <li>Listar</li>
+                    <li><a href="{{ url('Vendedor/Reclamacoes') }}">Vendedor</a></li>
+                    <li>Reclamações</li>
                 </ul>
             </div>
         </div>
@@ -36,7 +36,7 @@
 
 
     <div class="grid-m-3 grid-s-3 grid-xs-12">
-        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Solicitacoes/ReportarErro') }}">
+        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Vendedor/Reclamacoes/cadastrar') }}">
             <span class="text-content">Novo</span>
         </a>
     </div>
@@ -47,29 +47,30 @@
                 <thead>
                 <th>#</th>
                 <th>Usuário</th>
-                <th>Corrigido</th>
+                <th>Visualizada</th>
                 <th></th>
                 <th></th>
                 </thead>
                 <tbody>
-                @foreach($erros as $erro)
-                <tr>
-                    <td>{{ $erro->id }}</td>
-                    <td>{{ $erro->Usuario->name }}</td>
-                    @if($erro->isCorrigido)
-                        <td>SIM</td>
-                    @endif
-                    @if(!$erro->isCorrigido)
-                        <td>NÃO</td>
-                    @endif
+                @foreach($reclamacoes as $reclamacao)
+                    <tr>
+                        <td>{{ $reclamacao->id }}</td>
+                        <td>{{ $reclamacao->Usuario->name }}</td>
+                        @if($reclamacao->isVisualizada)
+                            <td>SIM</td>
+                        @endif
 
-                    <td class="col-actions">
-                        <a href="{{ url('Erros',[$erro->id])}}" title="Detalhar"><i class="material-icons">description</i></a>
-                    </td>
-                    <td class="col-actions">
-                        {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
-                    </td>
-                </tr>
+                        @if(!$reclamacao->isVisualizada)
+                            <td>NÃO</td>
+                        @endif
+
+                        <td class="col-actions">
+                            <a href="{{ url('Vendedor/Reclamacoes',[$reclamacao->id]) }}" title="Detalhar"><i class="material-icons">description</i></a>
+                        </td>
+                        <td class="col-actions">
+                            {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
+                        </td>
+                    </tr>
                 @endforeach
                 </tbody>
             </table>

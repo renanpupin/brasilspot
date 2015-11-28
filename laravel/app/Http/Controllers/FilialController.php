@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Session;
 use Auth;
 use DB;
 use Gate;
+use App\AsssinaturaComerciante;
 use App\Http\Controllers\Controller;
 
 class FilialController extends Controller
@@ -23,10 +24,11 @@ class FilialController extends Controller
 
     public function index()
     {
+        $usuario = Auth::user();
+        $numero_assinaturas = AsssinaturaComerciante::where('idComerciante','!=', '')->where('idUsuario', '=', $usuario)->count();
         if (Gate::allows('AcessoComerciante'))
         {
-            $usuarioLogado = Auth::user();
-            $empresa = Empresa::where('idUsuario','=',$usuarioLogado->id)->first();
+            $empresa = Empresa::where('idUsuario','=',$usuario->id)->first();
             if($empresa != null)
             {
                 $filiais = Filial::where('idEmpresa','=',$empresa->id)->get();

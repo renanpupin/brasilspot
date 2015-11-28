@@ -13,7 +13,7 @@
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
         <h2>Mensagens</h2>
-        <p>Você possui <b>1</b> nova(s) mensagem(ns).</p>
+        <p>Você possui <b>{{$numero_novas_mensagens}}</b> nova(s) mensagem(ns).</p>
     </div>
 
     <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">

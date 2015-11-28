@@ -148,6 +148,8 @@ class CategoriaController extends Controller
             }
         }
 
-        return 'Categoria não foi encontrado';
+        Session::flash('flash_message', 'A categoria não foi encontrada.');
+
+        return redirect()->back();
     }
 }

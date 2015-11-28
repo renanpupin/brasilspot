@@ -5,7 +5,15 @@
 
 @section('sidebar')
     @parent
+    @can('AcessoComerciante')
+    @include('layouts.sidebarComerciante')
+    @endcan
+    @can('AcessoVendedor')
+    @include('layouts.sidebarVendedor')
+    @endcan
+    @can('AcessoAdministrador')
     @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')
@@ -70,8 +78,6 @@
                     ])!!}
             </div>
         </div>
-
-
         {!! Form::Close() !!}
 
     </div>

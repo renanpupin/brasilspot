@@ -19,7 +19,7 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('Metas/Mensal') }}">Metas</a></li>
+                    <li><a href="{{ url('Metas/Equipe') }}">Metas</a></li>
                     <li>Da Equipe</li>
                 </ul>
             </div>
