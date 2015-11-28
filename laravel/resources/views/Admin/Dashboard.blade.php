@@ -20,7 +20,7 @@
                 <div class="text-headline">Informações importantes</div>
             </div>
             <div class="grid-m-12 grid-s-12 grid-xs-12">
-                <p>Número de clientes cadastrados <b>12</b>.</p>
+                <p>Número de clientes cadastrados <b></b>10</p>
             </div>
             <div class="grid-m-12 grid-s-12 grid-xs-12">
                 <p>Número de clientes novos neste mês <b>30</b>.</p>

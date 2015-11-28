@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Meta;
+use Illuminate\Support\Facades\Session;
 
 class MetaController extends Controller
 {
@@ -27,11 +28,12 @@ class MetaController extends Controller
 
     public function store(Request $request)
     {
-        \App\Meta::create([
+        Meta::create([
             'NumeroEmpresas' => $request['numeroEmpresas']
         ]);
 
-        return "Meta Registrada com sucesso!!";
+        Session::flash('flash_message', 'Serviço adicionado com sucesso!');
+        return redirect()->back();
     }
 
 

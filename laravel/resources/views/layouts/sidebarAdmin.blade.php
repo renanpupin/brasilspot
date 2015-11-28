@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li class="submenu">
-                    <a href="{{ url('Vendedores' )}}" class="{{ Request::segment(1) === 'Vendedores' ? 'active' : null }}">
+                    <a href="{{ url('Vendedores' )}}" class="{{ Request::segment(1) === 'Vendedor' ? 'active' : null }}">
                         <i class="material-icons" style="color: #266CAD;">person</i>Vendedores
                     </a>
                     <ul>
@@ -52,12 +52,12 @@
                         {{--</a>--}}
                         {{--</li>--}}
                         <li>
-                            <a href="{{ url('Clientes/Reclamacoes' )}}" class="">
+                            <a href="{{ url('Vendedor/Reclamacoes' )}}" class="">
                                 <i class="material-icons">mood_bad</i>Reclamações (3)
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('Solicitacoes/MapaVendedores' )}}" class="">
+                            <a href="{{ url('Vendedor/MapaVendedores' )}}" class="">
                                 <i class="material-icons">recent_actors</i>Mapa de vendedores
                             </a>
                         </li>
@@ -69,7 +69,7 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="{{ url('Comerciantes' )}}" class="{{ Request::segment(1) === 'Comerciantes' ? 'active' : null }}">
+                    <a href="{{ url('Comerciantes' )}}" class="{{ Request::segment(1) === 'Cliente' ? 'active' : null }}">
                         <i class="material-icons" style="color: #DB0465;">business</i>Comerciantes
                     </a>
                     <ul>
@@ -83,13 +83,13 @@
                         {{--<i class="material-icons">sync_problem</i>Edições não aprovadas--}}
                         {{--</a>--}}
                         {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="{{ url('Clientes/Reclamacoes' )}}" class="">--}}
+                                {{--<i class="material-icons">person</i>Buscar Perfil--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
                         <li>
-                            <a href="{{ url('Clientes/Reclamacoes' )}}" class="">
-                                <i class="material-icons">person</i>Buscar Perfil
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('Solicitacoes/MapaVendedores' )}}" class="">
+                            <a href="{{ url('Cliente/Reclamacoes' )}}" class="">
                                 <i class="material-icons">mood_bad</i>Reclamações (3)
                             </a>
                         </li>

@@ -38,10 +38,6 @@ Route::get('RecuperarSenha', function () {
     //Route::resource('Endereco','EnderecoController');
     //Route::resource('Telefone','TelefoneController');
 
-    //routes for "Vendedor"
-    Route::get('Solicitacoes/MapaVendedores', 'VendedorController@mapa');
-    Route::resource('Vendedor','VendedorController');
-
     //routes for "MaterialPropaganda"
     Route::get('Solicitacoes/MaterialPropaganda/cadastrar', 'MaterialPropagandaController@create');
     Route::get('Solicitacoes/MaterialPropaganda/{id}', 'MaterialPropagandaController@show');
@@ -57,10 +53,10 @@ Route::get('RecuperarSenha', function () {
     Route::resource('Erro','ErroController');
 
     //routes for "Reclamacoes"
-    Route::get('Clientes/Reclamacoes', 'ReclamacaoController@index');
-    Route::get('Clientes/Reclamacoes/cadastrar', 'ReclamacaoController@create');
-    Route::get('Clientes/Reclamacoes/{id}', 'ReclamacaoController@show');
-    Route::get('Clientes/Reclamacoes/visualizar/{id}', 'ReclamacaoController@visualizar');
+    Route::get('Cliente/Reclamacoes', 'ReclamacaoController@indexComerciante');
+    Route::get('Cliente/Reclamacoes/cadastrar', 'ReclamacaoController@create');
+    Route::get('Cliente/Reclamacoes/{id}', 'ReclamacaoController@show');
+    Route::get('Cliente/Reclamacoes/visualizar/{id}', 'ReclamacaoController@visualizar');
     Route::resource('Reclamacao','ReclamacaoController');
 
     //routes for "Clientes"
@@ -82,13 +78,14 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
     Route::get('Plano', 'PlanoController@index');
 
     //routes for "Meta"
-    Route::get('Metas/{id}', 'MetaController@show');
     Route::get('Metas', 'MetaController@index');
     Route::get('Metas/cadastrar', 'MetaController@create');
     Route::post('Metas/editar/{id}', 'MetaController@update');
     Route::get('Metas/editar/{id}', 'MetaController@edit');
     Route::get('Metas/Historico', 'MetaController@historico');
     Route::get('Metas/Mensal', 'MetaController@mensal');
+    Route::get('Metas/{id}', 'MetaController@show');
+
     Route::get('Metas/Ocasional', function () {
         return view('Meta/Ocasional');
     });
@@ -180,11 +177,20 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
 Route::get('Comerciantes', function () {
     return view('Comerciante/ListarComerciantes');
 });
+
+
 Route::get('Dashboard', function () {
     return view('Admin/Dashboard');
 });
 
+
 //rotas vendedores
+Route::get('Vendedor/Reclamacoes/{id}', 'ReclamacaoController@show');
+Route::get('Vendedor/Reclamacoes/cadastrar', 'ReclamacaoController@create');
+Route::get('Vendedor/Reclamacoes/visualizar/{id}', 'ReclamacaoController@visualizar');
+Route::get('Vendedor/MapaVendedores', 'VendedorController@mapa');
+Route::get('Vendedor/Reclamacoes', 'ReclamacaoController@indexVendedor');
+Route::resource('Vendedor','VendedorController');
 
 Route::get('NovaMensagem', function () {    //essa rota vai ter em vendedor e comerciante
     return view('Mensagem/Create');
