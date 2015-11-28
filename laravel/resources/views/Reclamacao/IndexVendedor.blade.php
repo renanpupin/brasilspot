@@ -27,39 +27,29 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('Clientes/Reclamacoes') }}">Clientes</a></li>
+                    <li><a href="{{ url('Vendedor/Reclamacoes') }}">Vendedor</a></li>
                     <li>Reclamações</li>
                 </ul>
             </div>
         </div>
     </div>
 
-    @can('AcessoVendedor')
-        <div class="grid-m-3 grid-s-3 grid-xs-12">
-            <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Vendedor/Reclamacoes/cadastrar') }}">
-                <span class="text-content">Novo</span>
-            </a>
-        </div>
-    @endcan
 
-    @can('AcessoComerciante')
     <div class="grid-m-3 grid-s-3 grid-xs-12">
-        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Clientes/Reclamacoes/cadastrar') }}">
+        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Vendedor/Reclamacoes/cadastrar') }}">
             <span class="text-content">Novo</span>
         </a>
     </div>
-    @endcan
-
 
     <div id="listagem" class="grid-m-12 grid-s-12">
         <div class="table-responsive">
             <table id="listaClientes" class="table">
                 <thead>
-                    <th>#</th>
-                    <th>Usuário</th>
-                    <th>Visualizada</th>
-                    <th></th>
-                    <th></th>
+                <th>#</th>
+                <th>Usuário</th>
+                <th>Visualizada</th>
+                <th></th>
+                <th></th>
                 </thead>
                 <tbody>
                 @foreach($reclamacoes as $reclamacao)
@@ -75,7 +65,7 @@
                         @endif
 
                         <td class="col-actions">
-                            <a href="{{ url('Clientes/Reclamacoes',[$reclamacao->id]) }}" title="Detalhar"><i class="material-icons">description</i></a>
+                            <a href="{{ url('Vendedor/Reclamacoes',[$reclamacao->id]) }}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>
                         <td class="col-actions">
                             {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}

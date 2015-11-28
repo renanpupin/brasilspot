@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -65,7 +66,12 @@ class VendedorController extends Controller
 
     public function mapa()
     {
-        return view('Vendedor.Mapa');
+        $vendedores = User::whereHas('PerfilUsuario',function($query)
+        {
+            $query->where('tipo','=','Vendedor');
+        })->with('PerfilUsuario')->get();
+
+        return view('Vendedor.Mapa')->with('vendedores',$vendedores);
     }
 
 

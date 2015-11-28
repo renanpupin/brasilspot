@@ -5,7 +5,15 @@
 
 @section('sidebar')
     @parent
+    @can('AcessoComerciante')
+    @include('layouts.sidebarComerciante')
+    @endcan
+    @can('AcessoVendedor')
     @include('layouts.sidebarVendedor')
+    @endcan
+    @can('AcessoAdministrador')
+    @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')
@@ -20,7 +28,15 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('Clientes/Reclamacoes') }}">Reclamações</a></li>
+                    @can('AcessoComerciante')
+                        <li><a href="{{ url('Comerciante/Reclamacoes') }}">Reclamações</a></li>
+                    @endcan
+                    @can('AcessoAdministrador')
+                        <li><a href="{{ url('Administrador/Reclamacoes') }}">Reclamações</a></li>
+                    @endcan
+                    @can('AcessoVedendor')
+                        <li><a href="{{ url('Vendedor/Reclamacoes') }}">Reclamações</a></li>
+                    @endcan
                     <li>Detalhar</li>
                 </ul>
             </div>
@@ -72,26 +88,75 @@
             </div>
 
             @if($reclamacao->isVisualizada == 1)
+                @can('AcessoComerciante')
                 <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 grid-xs-12 button-field">
-                    <a href="{{ url('Clientes/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                    <a href="{{ url('Comerciante/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
                         <span class="text-content">Voltar</span>
                     </a>
                 </div>
-            @endif
-            @if($reclamacao->isVisualizada == 0)
-                <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
-                    <a href="{{ url('Clientes/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                @endcan
+                @can('AcessoAdministrador')
+                <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 grid-xs-12 button-field">
+                    <a href="{{ url('Vendedor/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
                         <span class="text-content">Voltar</span>
                     </a>
                 </div>
+                @endcan
+                {{--@can('AcessoVedendor')--}}
+                {{--<div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 grid-xs-12 button-field">--}}
+                    {{--<a href="{{ url('Vendendor/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">--}}
+                        {{--<span class="text-content">Voltar</span>--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+                {{--@endcan--}}
             @endif
 
             @if($reclamacao->isVisualizada == 0)
+                @can('AcessoComerciante')
                 <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
-                    <a href="{{ url('Clientes/Reclamacoes/visualizar',[$reclamacao->id]) }}" id="btnVisualizar" title="Visualizar" class="btn btn-primary ripple">
+                    <a href="{{ url('Comerciante/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                        <span class="text-content">Voltar</span>
+                    </a>
+                </div>
+                @endcan
+                @can('AcessoAdministrador')
+                <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
+                    <a href="{{ url('Vendedor/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                        <span class="text-content">Voltar</span>
+                    </a>
+                </div>
+                @endcan
+                {{--@can('AcessoVedendor')--}}
+                {{--<div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">--}}
+                    {{--<a href="{{ url('Vendedor/Reclamacoes') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">--}}
+                        {{--<span class="text-content">Voltar</span>--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+                {{--@endcan--}}
+            @endif
+
+            @if($reclamacao->isVisualizada == 0)
+                @can('AcessoComerciante')
+                <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
+                    <a href="{{ url('Comerciante/Reclamacoes/visualizar',[$reclamacao->id]) }}" id="btnVisualizar" title="Visualizar" class="btn btn-primary ripple">
                         <span class="text-content">Visualizar</span>
                     </a>
                 </div>
+                @endcan
+                @can('AcessoAdministrador')
+                <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
+                    <a href="{{ url('Vendedor/Reclamacoes/visualizar',[$reclamacao->id]) }}" id="btnVisualizar" title="Visualizar" class="btn btn-primary ripple">
+                        <span class="text-content">Visualizar</span>
+                    </a>
+                </div>
+                @endcan
+                {{--@can('AcessoVedendor')--}}
+                {{--<div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">--}}
+                    {{--<a href="{{ url('Vendedor/Reclamacoes/visualizar',[$reclamacao->id]) }}" id="btnVisualizar" title="Visualizar" class="btn btn-primary ripple">--}}
+                        {{--<span class="text-content">Visualizar</span>--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+                {{--@endcan--}}
             @endif
         </div>
 
