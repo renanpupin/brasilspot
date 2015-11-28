@@ -229,6 +229,10 @@ Route::get('SuaAssinatura/Upgrade/{id}', function () {
     return view('Comerciante/UpgradeAssinatura');
 });
 
+Route::get('SuaAssinatura/PagamentoTeste', function () {
+    return view('Comerciante/paginaPagamentoTeste');
+});
+
 Route::get('SuaAssinatura/Downgrade/{id}', function () {
     return view('Comerciante/DowngradeAssinatura');
 });
