@@ -235,7 +235,8 @@ class EmpresaController extends Controller
                             for ($i = 0, $max = 0; $i < count($tags) && $max < 15; $i++) {
                                 if (!empty($tags[$i])) {
                                     $tag = Tag::create([
-                                        'nome' => $tags[$i]
+                                        'nome' => $tags[$i],
+                                        'slug' => str_slug($tags[$i])
                                     ]);
 
                                     $tagEmpresa = TagEmpresa::create([
@@ -345,7 +346,8 @@ class EmpresaController extends Controller
                         for ($i = 0, $max = 0; $i < count($tags) && $max < 15; $i++) {
                             if (!empty($tags[$i])) {
                                 $tag = Tag::create([
-                                    'nome' => $tags[$i]
+                                    'nome' => $tags[$i],
+                                    'slug' => str_slug($tags[$i])
                                 ]);
 
                                 $tagEmpresa = TagEmpresa::create([

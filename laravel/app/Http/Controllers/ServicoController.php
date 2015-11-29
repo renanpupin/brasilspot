@@ -43,7 +43,8 @@ class ServicoController extends Controller
         $this->validate($request, $regras, $mensagens);
 
         Servico::Create([
-            'descricao' => $request['descricao']
+            'descricao' => $request['descricao'],
+            'slug' => str_slug($request['descricao'])
         ]);
 
         Session::flash('flash_message', 'Serviço adicionado com sucesso!');
