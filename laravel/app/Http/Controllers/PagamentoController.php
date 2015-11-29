@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\AssinaturaComerciante;
+use App\AssinaturaFilial;
 use PagarMe;
 use PagarMe_Transaction;
 use Auth;
@@ -54,38 +56,79 @@ class PagamentoController extends Controller
      */
     public function store(Request $request)
     { //Pagamento/Efetivar
-        DB::beginTransaction();
+        if(isset($request['selecionarPlano'])) {
+            dd($request);
+            dd(AssinaturaComerciante::where('idComerciante', '=', $request['id'])->count() . ' ' .
+            (Usuario::with('idUsuario', '=', $request['id'])->count()));
+            //each
+//              id é idComerciante
+//            idUsuario
+//            selecionarPlano
 
-        $transacao = null;
-        try {
-            $transacao = Transacao::create([
-                'fkEmpresa' => '1',
-                'fkCartao' => '1',
-                'fkEstadoTransacao' => '1',
-                'fkTipoTransacao' => '1',
-                'valorBruto' => '100,00', //amount em centavos
-                'cardHash' => $request['card_hash'],
-                'dataInicio' => date('d-m-y'),
-                'dataResposta' => date('d-m-y')
-            ]);
+            DB::beginTransaction();
+            $transacao = null;
+            try {
+                $transacao = Transacao::create([
+                    'fkEmpresa' => '1',
+                    'fkCartao' => '1',
+                    'fkEstadoTransacao' => '1',
+                    'fkTipoTransacao' => '1',
+                    'valorBruto' => '100,00', //amount em centavos
+                    'cardHash' => $request['card_hash'],
+                    'dataInicio' => date('d-m-y'),
+                    'dataResposta' => date('d-m-y')
+                ]);
 
-        } catch (Exception $exception) {
-            DB::rollBack();
-            return 'Problema com banco';
+            } catch (Exception $exception) {
+                DB::rollBack();
+                return 'Problema com banco';
+            }
+            DB::commit();
+
+            Pagarme::setApiKey("ak_test_1jVGAUzxWNanzfTiW6yGX0cbA8Ywq7");
+
+            $transaction = new PagarMe_Transaction(array(
+                'amount' => strtr($transacao->valorBruto, array('.' => '', ',' => '')),
+                'card_hash' => $request['card_hash']
+            ));
+
+            $transaction->charge();
+
+            $status = $transaction->status; // status da transação
+            return 'Tapago! ' . $status;
+        } else { //exemplo
+            DB::beginTransaction();
+            $transacao = null;
+            try {
+                $transacao = Transacao::create([
+                    'fkEmpresa' => '1',
+                    'fkCartao' => '1',
+                    'fkEstadoTransacao' => '1',
+                    'fkTipoTransacao' => '1',
+                    'valorBruto' => '100,00', //amount em centavos
+                    'cardHash' => $request['card_hash'],
+                    'dataInicio' => date('d-m-y'),
+                    'dataResposta' => date('d-m-y')
+                ]);
+
+            } catch (Exception $exception) {
+                DB::rollBack();
+                return 'Problema com banco';
+            }
+            DB::commit();
+
+            Pagarme::setApiKey("ak_test_1jVGAUzxWNanzfTiW6yGX0cbA8Ywq7");
+
+            $transaction = new PagarMe_Transaction(array(
+                'amount' => strtr($transacao->valorBruto, array('.' => '', ',' => '')),
+                'card_hash' => $request['card_hash']
+            ));
+
+            $transaction->charge();
+
+            $status = $transaction->status; // status da transação
+            return 'Tapago! ' . $status;
         }
-        DB::commit();
-
-        Pagarme::setApiKey("ak_test_1jVGAUzxWNanzfTiW6yGX0cbA8Ywq7");
-
-        $transaction = new PagarMe_Transaction(array(
-            'amount' =>  strtr($transacao->valorBruto, array('.' => '', ',' => '')),
-            'card_hash' => $request['card_hash']
-        ));
-
-        $transaction->charge();
-
-        $status = $transaction->status; // status da transação
-        return 'Tapago! '. $status;
     }
 
     /**
