@@ -31,21 +31,16 @@
         <div class="table-responsive">
             <table id="listaClientes" class="table">
                 <thead>
-                    <th>Mês</th>
-                    <th>Ano</th>
+                    <th>Data</th>
                     <th>Valor</th>
                 </thead>
                 <tbody>
+                @foreach($salarios as $salario)
                     <tr>
-                        <td>Setembro</td>
-                        <td>2015</td>
-                        <td>R$ 1.000,00</td>
+                        <td>{{ $salario->dataPagamento }}</td>
+                        <td>{{ $servico->valor }}</td>
                     </tr>
-                    <tr>
-                        <td>Outubro</td>
-                        <td>2015</td>
-                        <td>R$ 1.500,00</td>
-                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

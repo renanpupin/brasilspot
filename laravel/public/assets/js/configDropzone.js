@@ -29,8 +29,8 @@ var myDropzone = new Dropzone("div#dropzoneFileUpload1", {
     }
 });
 Dropzone.options.myAwesomeDropzone = {
-    uploadMultiple: false,
-    parallelUploads: 2,
+    uploadMultiple: true,
+    parallelUploads: 5,
     paramName: "file", // The name that will be used to transfer the file
     maxFilesize: 2, // MB
     maxFiles: 5,

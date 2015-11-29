@@ -21,6 +21,7 @@ use App\Vendedor;
 use App\Categoria;
 use App\Cartao;
 use App\TipoCartao;
+use App\Foto;
 use App\Endereco;
 use Illuminate\Support\Facades\Session;
 use Input;
@@ -109,6 +110,9 @@ class EmpresaController extends Controller
 
     public function store(Request $request)
     {
+
+        $usuarioLogado = Auth::user();
+
         $regras = array(
             'nomeEmpreendedor' => 'required|string',
             'razaoSocial' => 'string',
@@ -121,7 +125,8 @@ class EmpresaController extends Controller
             'linkFacebook' => 'string',
             'tiposEmpreendimentos' => 'required|not_in:-1',
             'categorias' => 'required|not_in:-1',
-            'tiposCartoes' => 'required|not_in:-1'
+            'tiposCartoes' => 'required|not_in:-1',
+            'imagemPrincipal' => 'required'
         );
 
         $mensagens = array(
@@ -137,6 +142,7 @@ class EmpresaController extends Controller
             'tiposEmpreendimentos.not_in' => 'O campo  Tipo do Empreendimento deve ser selecionado.',
             'categorias.not_in' => 'O campo Categorias deve ser selecionado.',
             'tiposCartoes.not_in' => 'O campo Tipos de cartões aceitos deve ser selecionado.',
+            'imagemPrincipal.required' => 'É necessário carregar a imagem principal.',
             'string' => 'O campo :attribute deve ser texto.'
         );
 
@@ -147,8 +153,6 @@ class EmpresaController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-
-        $usuarioLogado = Auth::user();
 
         if (Gate::allows('AcessoComerciante')) {
             $planoUsuario = $usuarioLogado->Comerciante->AssinaturaComerciante->Assinatura->Plano;
@@ -366,6 +370,60 @@ class EmpresaController extends Controller
             }
 
             DB::commit();
+
+            //imagem principal
+            if ($request->file('imagemPrincipal') != null)
+            {
+                $imagem_principal = $request->file('imagemPrincipal');
+                if($imagem_principal->isValid()){
+                    $extensao = $imagem_principal->getClientOriginalExtension();
+                    $destinationPath = 'uploads';
+                    $fileName = "imagem_principal-".$empresa->id. '.' . $extensao;
+                    $imagem_principal->move($destinationPath, $fileName);
+
+                    $foto = Foto::create([
+                        'foto' => $fileName
+                    ]);
+
+                    $fotoEmpresa = FotoEmpresa::create([
+                        'idEmpresa' => $empresa->id,
+                        'idFoto' => $foto->id,
+                        'destaque' => true
+                    ]);
+
+                }else {
+                    Session::flash('error', 'A imagem principal não parece ser válida.');
+                }
+            }
+
+            //adicionando imagens da galeria
+            $files =[];
+            if ($request->file('imagem1')) $files[] = $request->file('imagem1');
+            if ($request->file('imagem2')) $files[] = $request->file('imagem2');
+            if ($request->file('imagem3')) $files[] = $request->file('imagem3');
+            if ($request->file('imagem4')) $files[] = $request->file('imagem4');
+
+            foreach ($files as $file){
+                if($file->isValid()){
+                    $extensao = $file->getClientOriginalExtension();
+                    $destinationPath = 'uploads';
+                    $fileName = "imagem_galeria-".$empresa->id. '.' . $extensao;
+                    $file->move($destinationPath, $fileName);
+
+                    $foto = Foto::create([
+                        'foto' => $fileName
+                    ]);
+
+                    $fotoEmpresa = FotoEmpresa::create([
+                        'idEmpresa' => $empresa->id,
+                        'idFoto' => $foto->id,
+                        'destaque' => false
+                    ]);
+
+                }else {
+                    Session::flash('error', 'Uma das imagens da galeria parece não ser válida.');
+                }
+            }
 
             Session::flash('flash_message', 'Empresa adicionada com sucesso!');
 

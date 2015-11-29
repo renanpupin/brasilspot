@@ -28,6 +28,6 @@
 
 
     <div id="listagem" class="grid-m-12 grid-s-12">
-        <p>Seu salário até o momento é de <b>R$ 10.000,00</b>.</p>
+        <p>Seu salário até o momento é de <b>R$ {{$salario}}</b>.</p>
     </div>
 @stop
