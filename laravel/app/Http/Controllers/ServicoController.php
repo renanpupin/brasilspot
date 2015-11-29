@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\ServicoEmpresa;
+use App\User;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Servico;
+use App\Empresa;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
@@ -49,9 +53,25 @@ class ServicoController extends Controller
 
     public function selecionar()
     {
-        //$servicos = Servico::list($id);
-        //buscar todos os servicos já selecionados na empresa para listar nos cmombos
-        return view('Servico.ServicosOferecidos');//->with('servico',$servico);
+        //Todo:buscar todos os servicos já selecionados na empresa para listar nos combos
+
+        $servicos = Servico::orderBy('descricao','asc')->get();
+
+        $usuario = Auth::User();
+
+        $empresa = Empresa::where('idUsuario','=',$usuario->id)->first();
+
+        if($empresa != null)
+        {
+            $servicos_selecionados = ServicoEmpresa::where('idEmpresa','=',$empresa->id)->get();
+        }else{
+            Session::flash('flash_message', 'Primeiro efetue o cadastro de sua empresa!');
+            return redirect('SuaEmpresa');
+        }
+
+//        dd($servicos_selecionados);
+
+        return view('Servico.ServicosOferecidos')->with('servicos',$servicos)->with('servicos_selecionados',$servicos_selecionados);
     }
 
     public function show($id)

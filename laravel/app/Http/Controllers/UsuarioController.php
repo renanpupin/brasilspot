@@ -157,7 +157,7 @@ class UsuarioController extends Controller
                 DB::rollBack();
                 $errors = $validator->getMessageBag();
                 $errors->add('ErroException', 'Não foi possivel cadastrar o usuario.');
-                return redirect()->back();
+                return redirect()->back()->withErrors($errors);
             }
 
             DB::commit();
@@ -192,14 +192,64 @@ class UsuarioController extends Controller
     public function editarSeuPerfil()
     {
         $usuario = Auth::User();
-        $id = $usuario->id;
-//        dd($usuario);
         return view('Usuario.EditarPerfil')->with('usuario',$usuario);
     }
 
-    public function atualizarSeuPerfil()
+    public function atualizarSeuPerfil(Request $request)
     {
-        dd("TODO");
+        $name = $request['name'];
+        $email = $request['email'];
+        $password = $request['password'];
+        $passwordConfirmado = $request['passwordConfirm'];
+        $usuarioId = $request['usuarioId'];
+
+        $regras = array(
+            'email' => 'required|string',
+            'name' => 'required'
+        );
+        $mensagens = array(
+            'required' => 'O campo :attribute deve ser preenchido.',
+            'name.required' =>'O campo nome deve ser preenchido.'
+        );
+
+        $validator = Validator::make($request->all(), $regras, $mensagens);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        if(empty($password) && empty($passwordConfirmado))
+        {
+            $usuario = User::find($usuarioId);
+            $usuario->name = $name;
+            $usuario->email = $email;
+            $usuario->save();
+
+            Session::flash('flash_message', 'Perfil atualizado com sucesso!');
+            return redirect()->back();
+        }
+        else
+        {
+            if($password == $passwordConfirmado)
+            {
+                $usuario = User::find($usuarioId);
+                $usuario->name = $name;
+                $usuario->email = $email;
+                $usuario->password = bcrypt($password);
+                $usuario->save();
+
+                Session::flash('flash_message', 'Perfil atualizado com sucesso!');
+                return redirect()->back();
+            }
+            else
+            {
+                $errors = $validator->getMessageBag();
+                $errors->add('ErroException', 'As Senhas são diferentes.');
+                return redirect()->back()->withErrors($errors);
+            }
+        }
     }
 
 

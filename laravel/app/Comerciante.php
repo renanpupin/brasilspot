@@ -11,8 +11,6 @@ class Comerciante extends Model
     protected $fillable = array(
         'idUsuario',
         'idVendedor',
-        'idPlano',
-        'dataVencimentoPlano'
     );
 
     public function Vendedor()

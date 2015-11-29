@@ -16,9 +16,16 @@
     <div id="dashboard" class="grid-m-12 grid-s-12 grid-xs-12">
 
         <div class="row">
-            <div class="grid-m-12 grid-s-12 grid-xs-12">
-                <p>Você já conseguiu <b>{{$novos_clientes}}</b> novos clientes neste mês.</p>
-            </div>
+            @if($novos_clientes == 0)
+                <div class="grid-m-12 grid-s-12 grid-xs-12">
+                    <p>Você não possui novos clientes neste mês.</p>
+                </div>
+            @endif
+            @if($novos_clientes > 0)
+                <div class="grid-m-12 grid-s-12 grid-xs-12">
+                    <p>Você já conseguiu <b>{{$novos_clientes}}</b> novos clientes neste mês.</p>
+                </div>
+            @endif
             <div class="grid-m-12 grid-s-12 grid-xs-12">
                 <div class="text-headline">Acompanhe seu histórico de salários</div>
             </div>

@@ -4,7 +4,15 @@
 
 @section('sidebar')
     @parent
+    @can('AcessoComerciante')
+    @include('layouts.sidebarComerciante')
+    @endcan
+    @can('AcessoVendedor')
     @include('layouts.sidebarVendedor')
+    @endcan
+    @can('AcessoAdministrador')
+    @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')
@@ -51,8 +59,14 @@
                     <tr>
                         <td>{{ $comerciante->Usuario->id }}</td>
                         <td>{{ $comerciante->Usuario->name }}</td>
-                        <td>{{ $comerciante->AssinaturaComerciante->Assinatura->Plano->nome }}</td>
-                        <td>{{ $comerciante->AssinaturaComerciante->Assinatura->dataVencimento }} </td>
+                        @if($comerciante->AssinaturaComerciante != null)
+                            <td>{{ $comerciante->AssinaturaComerciante->Assinatura->Plano->nome }}</td>
+                            <td>{{ $comerciante->AssinaturaComerciante->Assinatura->dataVencimento }} </td>
+                        @endif
+                        @if($comerciante->AssinaturaComerciante == null)
+                            <td>Não Possui Assinatura</td>
+                            <td>Não Possui Assinatura</td>
+                        @endif
                         <td class="col-actions currency">
                             <a href="{{ url('Clientes/AtualizarVencimento',$comerciante->Usuario->id) }}" title="Atualizar Vencimento"><i class="material-icons">attach_money</i></a>
                         </td>

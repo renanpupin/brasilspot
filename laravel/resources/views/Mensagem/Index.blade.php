@@ -5,15 +5,27 @@
 
 @section('sidebar')
     @parent
-    {{--se perfil for de vendedor carregar sidebarVendedor, se for comerciante sidebarComerciante--}}
+    @can('AcessoComerciante')
     @include('layouts.sidebarComerciante')
+    @endcan
+    @can('AcessoVendedor')
+    @include('layouts.sidebarVendedor')
+    @endcan
+    @can('AcessoAdministrador')
+    @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
         <h2>Mensagens</h2>
-        <p>Você possui <b>{{$numero_novas_mensagens}}</b> nova(s) mensagem(ns).</p>
+        @if($numero_novas_mensagens == 0)
+            <p>Você não possui nova(s) mensagem(ns).</p>
+        @endif
+        @if($numero_novas_mensagens > 0)
+            <p>Você possui <b>{{$numero_novas_mensagens}}</b> nova(s) mensagem(ns).</p>
+        @endif
     </div>
 
     <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
@@ -41,31 +53,23 @@
                 <th>Remetente</th>
                 <th>Email</th>
                 <th>Data de envio</th>
-                <th>Hora de envio</th>
+                {{--<th>Hora de envio</th>--}}
                 <th>Respondida</th>
                 <th></th>
                 </thead>
                 <tbody>
+                @foreach($mensagens as $mensagem)
                     <tr>
-                        <td>José da Silva</td>
-                        <td>jose@email.com</td>
-                        <td>12/11/2015</td>
-                        <td>12:20</td>
-                        <td>NÃO</td>
+                        <td>{{ $mensagem->rementente }}</td>
+                        <td>{{ $mensagem->Usuario->email }}</td>
+                        <td>{{ $mensagem->dataEnvio }}</td>
+                        {{--<td>12:20</td>--}}
+                        <td>{{ $mensagem->dataRespondida != null ? 'SIM' : 'NÃO' }}</td>
                         <td class="col-actions">
-                            <a href="{{ url('SuasMensagens/responder/1') }}" title="Responder"><i class="material-icons">reply</i></a>
+                            <a href="{{ url('SuasMensagens/responder',$mensagem->id) }}" title="Responder"><i class="material-icons">reply</i></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>José da Silva</td>
-                        <td>jose@email.com</td>
-                        <td>12/11/2015</td>
-                        <td>12:20</td>
-                        <td>SIM</td>
-                        <td class="col-actions">
-
-                        </td>
-                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

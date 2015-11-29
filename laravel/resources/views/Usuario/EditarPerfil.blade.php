@@ -5,7 +5,15 @@
 
 @section('sidebar')
     @parent
+    @can('AcessoComerciante')
     @include('layouts.sidebarComerciante')
+    @endcan
+    @can('AcessoVendedor')
+    @include('layouts.sidebarVendedor')
+    @endcan
+    @can('AcessoAdministrador')
+    @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')
@@ -35,26 +43,27 @@
 
     <div id="editar" class="grid-m-12 grid-s-12">
 
-        {!! Form::model($usuario,['route' => ['Usuario.edit',$usuario->id], 'method' => 'PUT']) !!}
+        {!! Form::Open(['route' => 'Usuario.atualizar', 'method' => 'POST']) !!}
         <div class="row">
+            {!! Form::text('usuarioId',$usuario->id,['id' => 'idUsuario', 'hidden']) !!}
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('name', 'Nome *',null,['for' => 'name']) !!}
-                {!! Form::text('name',null,['id' => 'name']) !!}
+                {!! Form::text('name',$usuario->name,['id' => 'name']) !!}
             </div>
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('email', 'E-Mail *',null,['for' => 'email']) !!}
-                {!! Form::text('email',null,['class' => 'form-control']) !!}
+                {!! Form::text('email',$usuario->email,['class' => 'form-control', 'id' => 'email']) !!}
             </div>
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('password', 'Senha *',null,['for' => 'password']) !!}
-                {!! Form::password('password',null,['class' => 'form-control']) !!}
+                {!! Form::password('password',null,['class' => 'form-control','id' => 'password']) !!}
             </div>
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('passwordConfirm', 'Confirme sua senha *',null,['for' => 'passwordConfirm']) !!}
-                {!! Form::password('passwordConfirm',null,['class' => 'form-control']) !!}
+                {!! Form::password('passwordConfirm',null,['class' => 'form-control', 'id' => 'passwordConfirm']) !!}
             </div>
         </div>
 

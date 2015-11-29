@@ -50,6 +50,7 @@ Route::get('RecuperarSenha', function () {
 
     Route::get('Erros', 'ErroController@index');
     Route::get('Erros/{id}', 'ErroController@show');
+    Route::get('Erros/aprovar/{id}', 'ErroController@aprovar');
     Route::resource('Erro','ErroController');
 
     //routes for "Reclamacoes"
@@ -70,7 +71,7 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
     Route::get('Clientes/editar/{id}', 'ClienteController@edit');
     Route::get('Clientes/AtualizarVencimento/{id}', 'ClienteController@atualizarVencimento');
     Route::get('Clientes/Gerenciar', 'ClienteController@index');
-    Route::get('Clientes/Cadastrar', 'ClienteController@create');
+    Route::get('Clientes/cadastrar', 'ClienteController@create');
     Route::post('Clientes/AtualizarVencimentoStore', ['as' => 'Cliente.atualizarVencimentoStore', 'uses' => 'ClienteController@atualizarVencimentoStore']);
     Route::resource('Clientes','ClienteController');
 
@@ -141,9 +142,9 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
     //routes for "Usuarios"
     Route::post('Usuario/editar/{id}', 'UsuarioController@update');
     Route::get('Usuario/editar/{id}', 'UsuarioController@edit');
+    Route::post('Usuario/atualizar/',['as' => 'Usuario.atualizar','uses' => 'UsuarioController@atualizarSeuPerfil']);
     Route::get('Usuario/cadastrar', 'UsuarioController@create');
     Route::get('Perfil', 'UsuarioController@editarSeuPerfil');
-    Route::post('Perfil', 'UsuarioController@atualizarSeuPerfil');
     Route::resource('Usuario','UsuarioController');
 
     //routes for "Enderecos"
@@ -185,8 +186,8 @@ Route::get('Vendedor/MapaVendedores', 'VendedorController@mapa');
 Route::get('Vendedor/Reclamacoes', 'ReclamacaoController@indexVendedor');
 Route::resource('Vendedor','VendedorController');
 
-Route::get('NovaMensagem', function () {    //essa rota vai ter em vendedor e comerciante
-    return view('Mensagem/Create');
+Route::get('NovaMensagem', function () {
+    return view('Mensagem.Create');
 });
 
 Route::get('NovaEmpresa', function () {
@@ -214,9 +215,7 @@ Route::get('SuaEmpresa/Editar', 'EmpresaController@editar');
 
 Route::get('SuaEmpresa/Cadastrar', 'EmpresaController@create');
 
-Route::get('SuaEmpresa', function () {
-    return view('Empresa/Detail');
-});
+Route::get('SuaEmpresa', 'EmpresaController@suaEmpresa');
 
 Route::get('ServicosOferecidos', 'ServicoController@selecionar');
 
@@ -248,11 +247,9 @@ Route::get('ReportarErro', function () {
     return view('Erros/Create');
 });
 
-Route::get('SuasMensagens/responder/{id}', function () {
-    return view('Mensagem/Responder');
-});
-
 Route::get('SuasMensagens', 'MensagemController@index');
+Route::get('SuasMensagens/responder/{id}','MensagemController@responder');
+Route::post('SuasMensagens/responder','MensagemController@enviar');
 
 //esse item no menu só aparece para quem assinar o plano de 39.90
 Route::get('SuasPromocoes', function () {

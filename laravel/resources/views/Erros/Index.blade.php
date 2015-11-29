@@ -21,7 +21,7 @@
         <h2>Lista de Erros</h2>
     </div>
 
-    <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
+    <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
         <div class="breadcrumbs-content container">
             <div class="row">
                 <i class="material-icons">home</i>
@@ -35,11 +35,11 @@
     </div>
 
 
-    <div class="grid-m-3 grid-s-3 grid-xs-12">
-        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Solicitacoes/ReportarErro') }}">
-            <span class="text-content">Novo</span>
-        </a>
-    </div>
+    {{--<div class="grid-m-3 grid-s-2 grid-xs-12">--}}
+        {{--<a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Solicitacoes/ReportarErro') }}">--}}
+            {{--<span class="text-content">Novo</span>--}}
+        {{--</a>--}}
+    {{--</div>--}}
 
     <div id="listagem" class="grid-m-12 grid-s-12">
         <div class="table-responsive">
@@ -67,7 +67,12 @@
                         <a href="{{ url('Erros',[$erro->id])}}" title="Detalhar"><i class="material-icons">description</i></a>
                     </td>
                     <td class="col-actions">
+                        {!! Form::open([
+                               'method' => 'DELETE',
+                               'route' => ['Erro.destroy', $erro->id]
+                           ]) !!}
                         {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
+                        {!! Form::close() !!}
                     </td>
                 </tr>
                 @endforeach

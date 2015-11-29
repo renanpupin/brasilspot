@@ -39,9 +39,21 @@ class ErroController extends Controller
         return view('Erros.Detail')->with('erro',$erro);
     }
 
+    public function aprovar($id)
+    {
+        $erro = ErroReportado::find($id);
+
+        $erro->isCorrigido = 1;
+
+        $erro->save();
+
+        Session::flash('flash_message', 'Erro aprovado com sucesso!');
+        return redirect()->back();
+    }
+
     public function destroy($id)
     {
-        $erro = Erro::find($id);
+        $erro = ErroReportado::find($id);
 
         if(!empty($erro))
         {
