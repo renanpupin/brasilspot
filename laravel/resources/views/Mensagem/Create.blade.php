@@ -5,8 +5,15 @@
 
 @section('sidebar')
     @parent
-    {{--se perfil for de vendedor carregar sidebarVendedor, se for comerciante sidebarComerciante--}}
+    @can('AcessoComerciante')
+    @include('layouts.sidebarComerciante')
+    @endcan
+    @can('AcessoVendedor')
     @include('layouts.sidebarVendedor')
+    @endcan
+    @can('AcessoAdministrador')
+    @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')
@@ -47,7 +54,7 @@
         </div>
         <div class="row">
             <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                <a href="{{ route('Servico.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                <a href="{{ url('SuasMensagens') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
                     <span class="text-content">Voltar</span>
                 </a>
             </div>

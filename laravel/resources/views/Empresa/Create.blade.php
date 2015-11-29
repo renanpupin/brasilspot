@@ -62,14 +62,22 @@
     @endif
 
     <div id="cadastro" class="grid-m-12 grid-s-12 grid-xs-12">
-        {!! Form::Open(['route' => 'Empresa.store', 'method' => 'POST']) !!}
+        {!! Form::Open(['route' => 'Empresa.store', 'method' => 'POST', 'files' => true]) !!}
 
         <div class="row">
             <div id="galeria-empresa" class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <div class="row">
-                    <div class="galeria-feature">
-                        <div class="dropzone" id="dropzoneFileUpload1">
-                        </div>
+
+                    <div class="galeria-feature grid-m-12 grid-s-12 grid-xs-12">
+                        <label for="imagemPrincipal">Selecione a imagem principal *</label>
+                        {!! Form::file('imagemPrincipal', null) !!}
+                    </div>
+                    <div class="galeria-feature grid-m-12 grid-s-12 grid-xs-12">
+                        <label for="imagemPrincipal">Selecione as imagens da galeria</label>
+                        {!! Form::file('imagem1') !!}
+                        {!! Form::file('imagem2') !!}
+                        {!! Form::file('imagem3') !!}
+                        {!! Form::file('imagem4') !!}
                     </div>
                 </div>
             </div>
@@ -104,14 +112,14 @@
 
             @can('AcessoAdministrador')
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                <label for="email">Clientes *</label>
+                <label for="cliente">Clientes *</label>
                 {!! Form::select('usuarios',$usuarios,'Selecione a usuário.')!!}
             </div>
             @endcan
 
             @can('AcessoVendedor')
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                <label for="email">Clientes *</label>
+                <label for="cliente">Clientes *</label>
                 {!! Form::select('usuarios',$usuarios,'Selecione a usuário.')!!}
             </div>
             @endcan
@@ -208,30 +216,14 @@
 
         {!! Form::Close() !!}
     </div>
-    <script type="text/javascript" src="{{ asset('assets/js/dropzone.js') }}"></script>
 
-    <script type="text/javascript">
-        var baseUrl = "{{ url('/') }}";
-        var token = "{{ Session::getToken() }}";
-        Dropzone.autoDiscover = false;
-        var myDropzone = new Dropzone("div#dropzoneFileUpload1", {
-
-            url: baseUrl+"/Empresa/uploadFiles",
-            params: {
-                _token: token
-            }
-        });
-
-        Dropzone.options.myAwesomeDropzone = {
-            paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 2, // MB
-            addRemoveLinks: true,
-            accept: function(file, done) {
-
-            },
-        };
-    </script>
+    <input type="hidden" value="{{ Session::getToken() }}" id="hiddenToken">
+    <input type="hidden" value="{{ url('/') }}" id="hiddenBaseUrl">
 
 @stop
 
 
+@section('script')
+    <script type="text/javascript" src="{{ asset('assets/js/dropzone.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/configDropzone.js') }}"></script>
+@stop

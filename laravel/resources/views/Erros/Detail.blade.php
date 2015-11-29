@@ -83,11 +83,21 @@
                     <span class="text-content">Voltar</span>
                 </a>
             </div>
-            <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
-                <a href="{{ url('Erros/aprovar/1') }}" id="btnAprovar" title="Aprovar" class="btn btn-primary ripple">
-                    <span class="text-content">Aprovar</span>
-                </a>
-            </div>
+            @if(!$erro->isCorrigido)
+                <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
+                    <a href="{{ url('Erros/aprovar',$erro->id) }}" id="btnAprovar" title="Aprovar" class="btn btn-primary ripple">
+                        <span class="text-content">Aprovar</span>
+                    </a>
+                </div>
+            @endif
+
+            @if($erro->isCorrigido)
+                <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
+                    <a href="{{ url('Erros/aprovar',$erro->id) }}" id="btnAprovar" title="Aprovar"  class="btn btn-primary ripple" style="pointer-events: none;">
+                        <span class="text-content">Aprovar</span>
+                    </a>
+                </div>
+            @endif
         </div>
 
 

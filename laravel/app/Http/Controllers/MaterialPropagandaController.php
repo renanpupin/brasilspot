@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\MaterialPropaganda;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 //use App\Erro;
@@ -12,9 +13,8 @@ class MaterialPropagandaController extends Controller
 {
     public function index()
     {
-        //$erros = Erro::all();
-
-        return view('MaterialPropaganda.Index');
+        $materiaisPropaganda = MaterialPropaganda::with('Usuario')->get();
+        return view('MaterialPropaganda.Index')->with('materiaisPropagandas', $materiaisPropaganda);
     }
 
 

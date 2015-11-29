@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Assinatura;
+use App\AssinaturaComerciante;
 use App\Comerciante;
+use App\Empresa;
 use App\PerfilUsuario;
 use App\User;
 use App\Vendedor;
@@ -13,6 +16,10 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Auth;
+use Validator;
+use DB;
+use Hash;
+use Mail;
 
 class ClienteController extends Controller
 {
@@ -35,8 +42,23 @@ class ClienteController extends Controller
 
     public function create()
     {
-        $perfis = PerfilUsuario::where('tipo','<>','Administrador')->lists('tipo','id');
+        $usuarioLogado = Auth::User();
+        $meusUsuarios = Empresa::where('idVendedor','=',$usuarioLogado->id)->select('idUsuario');
+        $quantidadeTotalAssinaturas = 0;
+        foreach($meusUsuarios as $usuarioId)
+        {
+            $quantidadeAssinatura = Comerciante::where('idVendedor','=',$usuarioLogado->id)->with('AssinaturaComerciante')->count();
+            $quantidadeTotalAssinaturas+=$quantidadeAssinatura;
+        }
 
+        if($quantidadeTotalAssinaturas >=500)
+        {
+            $perfis = PerfilUsuario::where('tipo','<>','Administrador')->lists('tipo','id');
+        }
+        else
+        {
+            $perfis = PerfilUsuario::where('tipo','<>','Administrador')->where('tipo','<>','Vendedor')->lists('tipo','id');
+        }
         return View('Cliente.create')
             ->with('perfis',$perfis);
     }
@@ -45,7 +67,7 @@ class ClienteController extends Controller
     {
         $regras = array(
             'email' => 'required|string',
-            'name' => 'required',
+            'nome' => 'required',
             'perfis' => 'required|min:1',
         );
         $mensagens = array(
@@ -73,7 +95,7 @@ class ClienteController extends Controller
             {
                 $senha = rand(100000, 999999);
                 $usuario = User::create([
-                    'name' => $request['name'],
+                    'name' => $request['nome'],
                     'email' => $request['email'],
                     'password' => Hash::make($request['password']),
                     'idPerfilUsuario' => $request['perfis'],
@@ -128,7 +150,7 @@ class ClienteController extends Controller
 
                 $senha = rand(100000, 999999);
                 $usuario = User::create([
-                    'name' => $request['name'],
+                    'name' => $request['nome'],
                     'email' => $request['email'],
                     'password' => Hash::make($senha),
                     'idPerfilUsuario' => $request['perfis'],
@@ -163,7 +185,8 @@ class ClienteController extends Controller
 
     public function show($id)
     {
-        return view('Cliente.Detail');
+        $usuario = User::with('PerfilUsuario')->find($id);
+        return view('Cliente.Detail')->with('usuario',$usuario);
     }
 
 
@@ -198,7 +221,61 @@ class ClienteController extends Controller
     }
     public function atualizarVencimentoStore(Request $request)
     {
-        dd($request->id);
+        $regras = array(
+            'selecionarPlano' => 'required|string',
+            'dataVencimento' => 'required|date',
+        );
+        $mensagens = array(
+            'selecionarPlano.required' => 'O campo Plano deve ser preenchido.',
+            'dataVencimento.required' => 'O campo Data Vencimento deve ser preenchido.'
+        );
+
+        $validator = Validator::make($request->all(), $regras, $mensagens);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        DB::beginTransaction();
+
+        $idComerciante = $request['id'];
+        $assinaturaComercianteUpdate = AssinaturaComerciante::where('idComerciante','=',$idComerciante)->first();
+        try {
+            if($assinaturaComercianteUpdate == null)
+            {
+                $assinatura = Assinatura::create([
+                    'dataVencimento' => $request['dataVencimento'],
+                    'idPlano' => $request['selecionarPlano']
+                ]);
+
+                $assinaturaComerciante = AssinaturaComerciante::create([
+                    'idComerciante' => $request['id'],
+                    'idAssinatura' => $assinatura->id
+                ]);
+            }
+            else
+            {
+                $assinatura = $assinaturaComercianteUpdate->Assinatura()->first();
+                $assinatura->dataVencimento = $request['dataVencimento'];
+                $assinatura->idPlano = $request['id'];
+                $assinatura->save();
+            }
+
+        }
+        catch(Exception $exception)
+        {
+            DB::rollBack();
+            $errors = $validator->getMessageBag();
+            $errors->add('ErroException', 'Não foi possivel cadastrar o cliente.');
+            return redirect()->back()->withErrors($errors);
+        }
+
+        DB::commit();
+
+        Session::flash('flash_message', 'Assinatura atualizada com sucesso!');
+        return redirect()->back();
     }
 
 }

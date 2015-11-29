@@ -21,6 +21,7 @@ use App\Vendedor;
 use App\Categoria;
 use App\Cartao;
 use App\TipoCartao;
+use App\Foto;
 use App\Endereco;
 use Illuminate\Support\Facades\Session;
 use Input;
@@ -54,9 +55,25 @@ class EmpresaController extends Controller
         return view('401');
     }
 
+    public function suaEmpresa()
+    {
+        $usuario = Auth::User();
+
+        $empresa = Empresa::where('idUsuario','=',$usuario->id)->first();
+
+        if($empresa == null)
+        {
+            return redirect('SuaEmpresa/Cadastrar');
+        }else{
+            return view('SuaEmpresa/Detail');
+        }
+    }
+
     public function create()
     {
         $usuario = Auth::User();
+
+        $empresa = Empresa::where('idUsuario','=',$usuario->id)->first();
 
         $tiposEmpresas = ['-1' => 'Selecione o tipo do empreendimento'] + TipoEmpresa::orderBy('tipo', 'asc')->lists('tipo', 'id')->all();
         $categorias = ['-1' => 'Selecione a categoria'] + Categoria::orderBy('nome', 'asc')->lists('nome', 'id')->all();
@@ -93,6 +110,9 @@ class EmpresaController extends Controller
 
     public function store(Request $request)
     {
+
+        $usuarioLogado = Auth::user();
+
         $regras = array(
             'nomeEmpreendedor' => 'required|string',
             'razaoSocial' => 'string',
@@ -105,7 +125,8 @@ class EmpresaController extends Controller
             'linkFacebook' => 'string',
             'tiposEmpreendimentos' => 'required|not_in:-1',
             'categorias' => 'required|not_in:-1',
-            'tiposCartoes' => 'required|not_in:-1'
+            'tiposCartoes' => 'required|not_in:-1',
+            'imagemPrincipal' => 'required'
         );
 
         $mensagens = array(
@@ -121,6 +142,7 @@ class EmpresaController extends Controller
             'tiposEmpreendimentos.not_in' => 'O campo  Tipo do Empreendimento deve ser selecionado.',
             'categorias.not_in' => 'O campo Categorias deve ser selecionado.',
             'tiposCartoes.not_in' => 'O campo Tipos de cartões aceitos deve ser selecionado.',
+            'imagemPrincipal.required' => 'É necessário carregar a imagem principal.',
             'string' => 'O campo :attribute deve ser texto.'
         );
 
@@ -132,28 +154,29 @@ class EmpresaController extends Controller
                 ->withInput();
         }
 
-        $usuarioLogado = Auth::user();
-
         if (Gate::allows('AcessoComerciante')) {
-            $planoUsuario = $usuarioLogado->Comerciante->with('Plano')->first();
+            $planoUsuario = $usuarioLogado->Comerciante->AssinaturaComerciante->Assinatura->Plano;
             $plano = $planoUsuario->Plano->nome;
 
             if (!empty($plano)) {
-                $empresa = EmpresaPendente::create([
+                $empresa = Empresa::create([
                     'nomeEmpreendedor' => $request['nomeEmpreendedor'],
                     'razaoSocial' => $request['razaoSocial'],
-                    'nomeFantasia' => $request['nomeFantasia'],
-                    'slogan' => $request['slogan'],
                     'cpfCnpj' => $request['cpfCnpj'],
                     'email' => $request['email'],
+                    'nomeFantasia' => $request['nomeFantasia'],
+                    'slogan' => $request['slogan'],
                     'descricao' => $request['descricao'],
                     'horarioFuncionamento' => $request['horarioFuncionamento'],
                     'atendeCasa' => $request['atendeCasa'],
-                    'linkFacebook' => $request['facebook'],
-                    'idUsuario' => $request['usuarios'],
+                    'linkSite' => $request['linkSiteEmpresa'],
+                    'linkFacebook' => $request['linkFacebook'],
+                    'numeroWhatsapp' => $request['whatsapp'],
+                    'idUsuario' => $usuarioLogado->id,
                     'idTipoEmpresa' => $request['tiposEmpreendimentos'],
+                    'idVendedor' => $usuarioLogado->Comerciante->idVendedor,
                     'idTipoCartao' => $request['tiposCartoes'],
-                    'isAceito' => false
+                    'dataCadastro' => date('y-m-d')
                 ]);
 
                 $categoria = CategoriaEmpresa::create([
@@ -173,18 +196,18 @@ class EmpresaController extends Controller
                     }
                 }
 
-                $usuario = User::where('id', '=', $request['usuarios'])->first()->load('Comerciante')->load('Comerciante.Plano');
+                $usuario = User::where('id', '=', $request['usuarios'])
+                    ->first()
+                    ->load('Comerciante')
+                    ->load('Comerciante.AssinaturaComerciante')
+                    ->load('Comerciante.AssinaturaComerciante.Assinatura')
+                    ->load('Comerciante.AssinaturaComerciante.Assinatura.Plano');
 
                 if ($plano == 'Básico') {
                     $tags = explode(',', $request['tags']);
                     if (count($tags) <= 5) {
 
-
-//                $foto = FotoEmpresa::create([
-//
-//                ]);
-
-                        if ($usuario->Comerciante->Plano->nome == 'Básico') {
+                        if ($usuario->Comerciante->AssinaturaComerciante->Assinatura->Plano->nome == 'Básico') {
                             for ($i = 0, $max = 0; $i < count($tags) && $max < 5; $i++) {
                                 if (!empty($tags[$i])) {
                                     $tag = Tag::create([
@@ -212,7 +235,8 @@ class EmpresaController extends Controller
                             for ($i = 0, $max = 0; $i < count($tags) && $max < 15; $i++) {
                                 if (!empty($tags[$i])) {
                                     $tag = Tag::create([
-                                        'nome' => $tags[$i]
+                                        'nome' => $tags[$i],
+                                        'slug' => str_slug($tags[$i])
                                     ]);
 
                                     $tagEmpresa = TagEmpresa::create([
@@ -257,23 +281,24 @@ class EmpresaController extends Controller
 
             try {
 
-                $empresa = EmpresaPendente::create([
+                $empresa = Empresa::create([
                     'nomeEmpreendedor' => $request['nomeEmpreendedor'],
                     'razaoSocial' => $request['razaoSocial'],
-                    'nomeFantasia' => $request['nomeFantasia'],
-                    'slogan' => $request['slogan'],
                     'cpfCnpj' => $request['cpfCnpj'],
                     'email' => $request['email'],
+                    'nomeFantasia' => $request['nomeFantasia'],
+                    'slogan' => $request['slogan'],
                     'descricao' => $request['descricao'],
                     'horarioFuncionamento' => $request['horarioFuncionamento'],
                     'atendeCasa' => $request['atendeCasa'],
-                    'linkFacebook' => $request['facebook'],
+                    'linkSite' => $request['linkSiteEmpresa'],
+                    'linkFacebook' => $request['linkFacebook'],
                     'numeroWhatsapp' => $request['whatsapp'],
                     'idUsuario' => $request['usuarios'],
                     'idTipoEmpresa' => $request['tiposEmpreendimentos'],
                     'idVendedor' => $usuarioLogado->Vendedor->id,
-                    //'idTipoCartao' => $request['tiposCartoes'],
-                    'isAceito' => false
+                    'idTipoCartao' => $request['tiposCartoes'],
+                    'dataCadastro' => date('y-m-d')
                 ]);
 
                 $categoria = CategoriaEmpresa::create([
@@ -293,23 +318,21 @@ class EmpresaController extends Controller
                     }
                 }
 
-
-//                $foto = FotoEmpresa::create([
-//
-//                ]);
-
                 $tags = explode(',', $request['tags']);
 
                 $usuario = User::where('id', '=', $request['usuarios'])
                     ->first()
                     ->load('Comerciante')
-                    ->load('Comerciante.Plano');
+                    ->load('Comerciante.AssinaturaComerciante')
+                    ->load('Comerciante.AssinaturaComerciante.Assinatura')
+                    ->load('Comerciante.AssinaturaComerciante.Assinatura.Plano');
 
-                if ($usuario->Comerciante->Plano->nome == 'Básico') {
+                if ($usuario->Comerciante->AssinaturaComerciante->Assinatura->Plano->nome == 'Básico') {
                     for ($i = 0, $max = 0; $i < count($tags) && $max < 5; $i++) {
                         if (!empty($tags[$i])) {
                             $tag = Tag::create([
-                                'nome' => $tags[$i]
+                                'nome' => $tags[$i],
+                                'slug' => str_slug($tags[$i])
                             ]);
 
                             $tagEmpresa = TagEmpresa::create([
@@ -320,11 +343,12 @@ class EmpresaController extends Controller
                         }
                     }
                 } else
-                    if ($usuario->Comerciante->Plano->nome == 'Pro') {
+                    if ($usuario->Comerciante->AssinaturaComerciante->Assinatura->Plano->nome == 'Pro') {
                         for ($i = 0, $max = 0; $i < count($tags) && $max < 15; $i++) {
                             if (!empty($tags[$i])) {
                                 $tag = Tag::create([
-                                    'nome' => $tags[$i]
+                                    'nome' => $tags[$i],
+                                    'slug' => str_slug($tags[$i])
                                 ]);
 
                                 $tagEmpresa = TagEmpresa::create([
@@ -349,6 +373,60 @@ class EmpresaController extends Controller
             }
 
             DB::commit();
+
+            //imagem principal
+            if ($request->file('imagemPrincipal') != null)
+            {
+                $imagem_principal = $request->file('imagemPrincipal');
+                if($imagem_principal->isValid()){
+                    $extensao = $imagem_principal->getClientOriginalExtension();
+                    $destinationPath = 'uploads';
+                    $fileName = "imagem_principal-".$empresa->id. '.' . $extensao;
+                    $imagem_principal->move($destinationPath, $fileName);
+
+                    $foto = Foto::create([
+                        'foto' => $fileName
+                    ]);
+
+                    $fotoEmpresa = FotoEmpresa::create([
+                        'idEmpresa' => $empresa->id,
+                        'idFoto' => $foto->id,
+                        'destaque' => true
+                    ]);
+
+                }else {
+                    Session::flash('error', 'A imagem principal não parece ser válida.');
+                }
+            }
+
+            //adicionando imagens da galeria
+            $files =[];
+            if ($request->file('imagem1')) $files[] = $request->file('imagem1');
+            if ($request->file('imagem2')) $files[] = $request->file('imagem2');
+            if ($request->file('imagem3')) $files[] = $request->file('imagem3');
+            if ($request->file('imagem4')) $files[] = $request->file('imagem4');
+
+            foreach ($files as $file){
+                if($file->isValid()){
+                    $extensao = $file->getClientOriginalExtension();
+                    $destinationPath = 'uploads';
+                    $fileName = "imagem_galeria-".$empresa->id. '.' . $extensao;
+                    $file->move($destinationPath, $fileName);
+
+                    $foto = Foto::create([
+                        'foto' => $fileName
+                    ]);
+
+                    $fotoEmpresa = FotoEmpresa::create([
+                        'idEmpresa' => $empresa->id,
+                        'idFoto' => $foto->id,
+                        'destaque' => false
+                    ]);
+
+                }else {
+                    Session::flash('error', 'Uma das imagens da galeria parece não ser válida.');
+                }
+            }
 
             Session::flash('flash_message', 'Empresa adicionada com sucesso!');
 
@@ -412,9 +490,14 @@ class EmpresaController extends Controller
 //            return Response::make($validation->errors->first(), 400);
 //        }
 
+        //$files = glob('uploads/id_*');
+        //TODO: arrumar os uploads setando a primeira imagem carregada como a principal
+
+        $usuario = Auth::user();
+
         $destinationPath = 'uploads'; // upload path
         $extension = Input::file('file')->getClientOriginalExtension(); // getting file extension
-        $fileName = rand(11111, 99999) . '.' . $extension; // renameing image
+        $fileName = "id_".$usuario->id."_".rand(11111, 99999) . '.' . $extension; // renaming image
         $upload_success = Input::file('file')->move($destinationPath, $fileName); // uploading file to given path
 
         if ($upload_success) {
