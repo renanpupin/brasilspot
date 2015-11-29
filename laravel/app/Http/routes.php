@@ -219,6 +219,7 @@ Route::get('SuaEmpresa/Cadastrar', 'EmpresaController@create');
 Route::get('SuaEmpresa', 'EmpresaController@suaEmpresa');
 
 Route::get('ServicosOferecidos', 'ServicoController@selecionar');
+Route::post('Servico/gravarSelecionados', ['as' => 'Servico.gravarSelecionados', 'uses' => 'ServicoController@gravarSelecionados']);
 
 Route::get('SuaAssinatura/Upgrade/{id}', function () {
     return view('Comerciante/UpgradeAssinatura');
@@ -305,7 +306,7 @@ Route::get('Empresas/pesquisarEndereco', 'SiteController@pesquisarEndereco');
 Route::get('Empresas/{filtros?}', 'SiteController@filtroEmpresas')->where('filtros', '(.*)');;
 
 
-Route::get('Empresas/{id}', 'EmpresaController@visualizar');
+Route::get('Empresa/visualizar/{id}', 'SiteController@visualizar');
 
 
 

@@ -39,7 +39,8 @@
                 <ul>
                     @foreach ($categorias as $id => $nome)
                         <li>
-                            <a href="{{url((Request::segment(1) ? "/".Request::segment(1) : null).(Request::segment(2) ? "/".str_slug($nome) : null).(sizeof(Request::input()) > 0 ? "?" : null).(sizeof(Request::input("tipo")) > 0 ? "tipo=".(Request::input("tipo")) : null).(sizeof(Request::input("local")) > 0 ? (sizeof(Request::input("tipo")) > 0 ? "&" : null)."local=".(Request::input("local")) : null).(sizeof(Request::input("com")) > 0 ? (sizeof(Request::input("local")) > 0 ? "&" : null).("com=".Request::input("com")) : null))}}">-{{$nome}}</a>
+                            {{--{{dd(Request::segment(2))}}--}}
+                            <a href="{{url((Request::segment(1) ? "/".Request::segment(1) : null).(Request::segment(2) == null ? "/".str_slug($nome) : null).(sizeof(Request::input()) > 0 ? "?" : null).(sizeof(Request::input("tipo")) > 0 ? "tipo=".(Request::input("tipo")) : null).(sizeof(Request::input("local")) > 0 ? (sizeof(Request::input("tipo")) > 0 ? "&" : null)."local=".(Request::input("local")) : null).(sizeof(Request::input("com")) > 0 ? (sizeof(Request::input("local")) > 0 ? "&" : null).("com=".Request::input("com")) : null))}}">-{{$nome}}</a>
                         </li>
                     @endforeach
                 </ul>
@@ -76,7 +77,11 @@
                 <ul id="listaServicos">
                     @foreach ($servicos as $id => $descricao)
                         <li>
-                            <label><input type="checkbox" name="servicos[]" value="{{str_slug($descricao)}}"> {{$descricao}}</label>
+                            <label>
+                                {{--<input type="checkbox" name="servicos[]" value="{{str_slug($descricao)}}">--}}
+                                {!! Form::checkbox('servicos[]', str_slug($descricao), in_array($id, $servicos_selecionados_id), ['class' => '']) !!}
+                                 {{$descricao}}
+                            </label>
                         </li>
                     @endforeach
                 </ul>

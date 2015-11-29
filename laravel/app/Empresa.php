@@ -40,4 +40,29 @@ class Empresa extends Model
         return $this->hasOne('\App\User','id','idUsuario');
     }
 
+    public function CategoriaEmpresa()
+    {
+        return $this->hasOne('\App\CategoriaEmpresa','idEmpresa','id');
+    }
+
+    public function Filiais()
+    {
+        return $this->hasMany('\App\Filial','idEmpresa','id');
+    }
+
+    public function ServicoEmpresa()
+    {
+        return $this->hasMany('\App\ServicoEmpresa','idEmpresa','id');
+    }
+
+    public function TagEmpresa()
+    {
+        return $this->hasMany('\App\TagEmpresa','idEmpresa','id');
+    }
+
+    public function FotoEmpresa()
+    {
+        return $this->hasMany('\App\FotoEmpresa','idEmpresa','id');
+    }
+
 }

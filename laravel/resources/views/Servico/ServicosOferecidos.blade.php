@@ -49,7 +49,7 @@
 
     <div id="cadastro" class="grid-m-12 grid-s-12 grid-xs-12">
 
-        {!! Form::Open(['route' => 'Servico.store', 'method' => 'POST']) !!}
+        {!! Form::Open(['route' => 'Servico.gravarSelecionados', 'method' => 'POST']) !!}
         <div class="row">
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('servicos', 'Selecione os serviços',null,['for' => 'servicos']) !!}
@@ -57,7 +57,7 @@
 
             @foreach($servicos as $servico)
                 <div class="form-group grid-m-6 grid-s-6 grid-xs-12">
-                    {!! Form::checkbox('servicos[]', $servico->id, null, ['class' => 'field']) !!} {{$servico->descricao}}
+                    {!! Form::checkbox('servicos[]', $servico->id, in_array($servico->id, $servicos_selecionados), ['class' => 'field']) !!} {{$servico->descricao}}
                 </div>
             @endforeach
         </div>
