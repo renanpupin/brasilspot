@@ -31,13 +31,16 @@ class Filial extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
+        Schema::table('filiais', function(Blueprint $table) {
+            $table->dropForeign(['idEmpresa']);
+            $table->dropForeign(['idEndereco']);
+            $table->dropForeign(['idTelefone']);
+            $table->dropForeign(['idWhatsApp']);
+
+            //<table_name>_<column_name>_foreign
+        });
         Schema::drop('filiais');
     }
 }

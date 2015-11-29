@@ -25,6 +25,12 @@ class HistoricoMudancaEstado extends Migration
 
     public function down()
     {
+        Schema::table('historicomudancaestado', function(Blueprint $table) {
+            $table->dropForeign(['fkTransacao']);
+            $table->dropForeign(['fkEstadoTransacaoNovo']);
+            $table->dropForeign(['fkEstadoTransacaoVelho']);
+            //<table_name>_<column_name>_foreign
+        });
         Schema::drop('historicomudancaestado');
     }
 }

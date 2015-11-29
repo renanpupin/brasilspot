@@ -27,6 +27,11 @@ class Mensagem extends Migration
 
     public function down()
     {
+        Schema::table('mensagens', function(Blueprint $table) {
+            $table->dropForeign(['idUsuario']);
+            $table->dropForeign(['idUsuarioDestino']);
+            //<table_name>_<column_name>_foreign
+        });
         Schema::drop('mensagens');
     }
 }

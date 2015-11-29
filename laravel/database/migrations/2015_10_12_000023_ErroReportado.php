@@ -34,6 +34,10 @@ class ErroReportado extends Migration
      */
     public function down()
     {
+        Schema::table('errosReportados', function(Blueprint $table) {
+            $table->dropForeign(['idUsuario']);
+
+        });
         Schema::drop('errosReportados');
     }
 }

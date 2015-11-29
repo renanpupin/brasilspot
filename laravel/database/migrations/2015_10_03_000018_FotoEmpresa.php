@@ -24,6 +24,10 @@ class FotoEmpresa extends Migration
 
     public function down()
     {
+        Schema::table('fotosEmpresas', function(Blueprint $table) {
+            $table->dropForeign(['idFoto']);
+            $table->dropForeign(['idEmpresa']);
+        });
         Schema::drop('fotosEmpresas');
     }
 }

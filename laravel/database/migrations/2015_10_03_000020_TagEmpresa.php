@@ -25,6 +25,11 @@ class TagEmpresa extends Migration
 
     public function down()
     {
+        Schema::table('tagsEmpresas', function(Blueprint $table) {
+            $table->dropForeign(['idEmpresa']);
+            $table->dropForeign(['idTag']);
+
+        });
         Schema::drop('tagsEmpresas');
     }
 }

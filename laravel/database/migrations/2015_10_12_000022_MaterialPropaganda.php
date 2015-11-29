@@ -31,6 +31,9 @@ class MaterialPropaganda extends Migration
      */
     public function down()
     {
+        Schema::table('materiaisPropagandas', function(Blueprint $table) {
+            $table->dropForeign(['idUsuario']);
+        });
         Schema::drop('materiaisPropagandas');
     }
 }

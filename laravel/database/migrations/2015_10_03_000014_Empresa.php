@@ -44,6 +44,12 @@ class Empresa extends Migration
 
     public function down()
     {
+        Schema::table('empresas', function(Blueprint $table) {
+            $table->dropForeign(['idTipoEmpresa']);
+            $table->dropForeign(['idUsuario']);
+            $table->dropForeign(['idVendedor']);
+            $table->dropForeign(['idTipoCartao']);
+        });
         Schema::drop('empresas');
     }
 }

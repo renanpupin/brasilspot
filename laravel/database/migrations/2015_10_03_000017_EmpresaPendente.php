@@ -42,6 +42,12 @@ class EmpresaPendente extends Migration
 
     public function down()
     {
+        Schema::table('empresasPendentes', function(Blueprint $table) {
+            $table->dropForeign(['idTipoEmpresa']);
+            $table->dropForeign(['idUsuario']);
+            $table->dropForeign(['idVendedor']);
+            $table->dropForeign(['idTipoCartao']);
+        });
         Schema::drop('empresasPendentes');
     }
 }

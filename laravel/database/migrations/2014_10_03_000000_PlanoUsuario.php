@@ -14,7 +14,6 @@ class PlanoUsuario extends Migration
             $table->integer('idPlano')->unsigned();
             $table->dateTime('dataVencimento');
         });
-
         Schema::table('planosUsuarios',function($table)
         {
             $table->foreign('idPlano')->references('id')->on('planos');
@@ -24,11 +23,10 @@ class PlanoUsuario extends Migration
 
     public function down()
     {
-        Schema::table('contract', function(Blueprint $table) {
-            $table->dropForeign('contract_product_id_foreign');
-            $table->removeColumn('product_id');
+        Schema::table('planosUsuarios', function(Blueprint $table) {
+            $table->dropForeign(['idPlano']);
         });
-        
+
         Schema::drop('planosUsuarios');
     }
 }

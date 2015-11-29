@@ -25,6 +25,10 @@ class TelefoneEmpresa extends Migration
 
     public function down()
     {
+        Schema::table('telefonesEmpresas', function(Blueprint $table) {
+            $table->dropForeign(['idEmpresa']);
+            $table->dropForeign(['idTelefone']);
+        });
         Schema::drop('telefonesEmpresas');
     }
 }

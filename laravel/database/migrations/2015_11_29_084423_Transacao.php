@@ -31,6 +31,13 @@ class Transacao extends Migration
 
     public function down()
     {
+        Schema::table('transacao', function(Blueprint $table) {
+            $table->dropForeign(['fkEmpresa']);
+            $table->dropForeign(['fkCartao']);
+            $table->dropForeign(['fkTipoTransacao']);
+            $table->dropForeign(['fkEstadoTransacao']);
+            //<table_name>_<column_name>_foreign
+        });
         Schema::drop('transacao');
     }
 }

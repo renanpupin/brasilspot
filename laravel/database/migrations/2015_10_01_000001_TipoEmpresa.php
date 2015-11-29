@@ -18,6 +18,6 @@ class TipoEmpresa extends Migration
 
     public function down()
     {
-        Schema:drop('tiposEmpresas');
+        Schema::drop('tiposEmpresas');
     }
 }

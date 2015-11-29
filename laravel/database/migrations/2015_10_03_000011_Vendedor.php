@@ -31,6 +31,11 @@ class Vendedor extends Migration
 
     public function down()
     {
+        Schema::table('vendedores', function(Blueprint $table) {
+            $table->dropForeign(['idUsuario']);
+            $table->dropForeign(['idTipo']);
+            $table->dropForeign(['idMeta']);
+        });
         Schema::drop('vendedores');
     }
 }

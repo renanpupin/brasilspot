@@ -24,6 +24,10 @@ class ServicoEmpresa extends Migration
 
     public function down()
     {
+        Schema::table('servicosEmpresas', function(Blueprint $table) {
+            $table->dropForeign(['idEmpresa']);
+            $table->dropForeign(['idServico']);
+        });
         Schema::drop('servicosEmpresas');
     }
 }

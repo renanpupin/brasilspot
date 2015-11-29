@@ -26,6 +26,13 @@ class Comerciante extends Migration
 
     public function down()
     {
+        Schema::table('comerciantes', function(Blueprint $table) {
+            $table->dropForeign(['idUsuario']);
+            $table->dropForeign(['idVendedor']);
+            $table->dropForeign(['idPlano']);
+
+            //<table_name>_<column_name>_foreign
+        });
         Schema::drop('comerciantes');
     }
 }

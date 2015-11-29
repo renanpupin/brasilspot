@@ -25,6 +25,10 @@ class AssinaturaComerciante extends Migration
 
     public function down()
     {
+        Schema::table('assinaturasComerciantes', function(Blueprint $table) {
+            $table->dropForeign(['idComerciante']);
+            $table->dropForeign(['idAssinatura']);
+        });
         Schema::drop('assinaturasComerciantes');
     }
 }

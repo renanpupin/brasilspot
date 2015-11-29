@@ -23,6 +23,10 @@ class CartaoAceito extends Migration
 
     public function down()
     {
+        Schema::table('cartoesAceitos', function(Blueprint $table) {
+            $table->dropForeign(['idEmpresa']);
+            $table->dropForeign(['idCartao']);
+        });
         Schema::drop('cartoesAceitos');
     }
 }
