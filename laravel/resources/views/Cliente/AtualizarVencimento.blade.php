@@ -61,6 +61,7 @@
         <div class="row">
 
             {!! Form::text('id',$usuario->Comerciante->id,['hidden']) !!}
+            {!! Form::text('idUsuario',$usuario->id,['hidden']) !!}
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('cliente', 'Cliente',null,['for' => 'cliente']) !!}
