@@ -4,6 +4,9 @@
 
 @section('sidebar')
     @parent
+    @can('AcessoComerciante')
+    @include('layouts.sidebarComerciante')
+    @endcan
     @can('AcessoVendedor')
     @include('layouts.sidebarVendedor')
     @endcan

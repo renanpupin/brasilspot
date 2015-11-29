@@ -101,7 +101,7 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="{{ url('Solicitacoes' )}}" class="{{ Request::segment(1) === 'Solicitacoes' ? 'active' : null }}">
+                    <a href="{{ url('Solicitacoes' )}}" class="{{ Request::segment(1) === 'Erros' || Request::segment(1) === 'Solicitacoes' || Request::segment(2) === 'MaterialPropaganda' ? 'active' : null }}">
                         <i class="material-icons" style="color: #BA2879;">description</i>Solicitações
                     </a>
                     <ul>
@@ -118,7 +118,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ url('SuasMensagens' )}}" class="{{ Request::segment(1) === 'SuasMensagens' ? 'active' : null }}">
+                    <a href="{{ url('SuasMensagens' )}}" class="{{ Request::segment(1) === 'SuasMensagens' || Request::segment(1) === 'NovaMensagem'? 'active' : null }}">
                         <i class="material-icons" style="color: #A32995;">mail</i>Mensagens
                     </a>
                 </li>
@@ -130,7 +130,7 @@
                 <li class="menu-options">
                     <div class="row">
                         <div class="grid-m-6 grid-s-6 grid-xs-6" style="padding-right: 0px;">
-                            <a href="{{ url('Perfil' )}}">
+                            <a href="{{ url('Perfil' )}}" class="{{ Request::segment(1) === 'Perfil' ? 'active' : null }}">
                                 <i class="material-icons">person</i>Perfil
                             </a>
                         </div>
