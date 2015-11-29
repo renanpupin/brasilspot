@@ -20,7 +20,7 @@
         <h2>Pagamento Teste</h2>
     </div>
 
-    {!! Form::Open(['url' => 'Pagamento/Calcular', 'method' => 'POST', 'id' => 'payment_form']) !!}
+    {!! Form::Open(['url' => 'Pagamento/Efetivar', 'method' => 'POST', 'id' => 'payment_form']) !!}
 
         Número do cartão: <input type="text" id="card_number"/>
         <br/>

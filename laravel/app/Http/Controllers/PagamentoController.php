@@ -55,37 +55,37 @@ class PagamentoController extends Controller
     public function store(Request $request)
     { //Pagamento/Efetivar
         DB::beginTransaction();
+
+        $transacao = null;
         try {
             $transacao = Transacao::create([
                 'fkEmpresa' => '1',
                 'fkCartao' => '1',
                 'fkEstadoTransacao' => '1',
                 'fkTipoTransacao' => '1',
-                'valorBruto' => '1',
+                'valorBruto' => '100,00', //amount em centavos
                 'cardHash' => $request['card_hash'],
-                'dataInicio' => '1',
-                'dataResposta' => '1'
+                'dataInicio' => date('d-m-y'),
+                'dataResposta' => date('d-m-y')
             ]);
 
         } catch (Exception $exception) {
             DB::rollBack();
-            return 'whoops';
+            return 'Problema com banco';
         }
         DB::commit();
-        return "R:".$request['card_hash'];
-
 
         Pagarme::setApiKey("ak_test_1jVGAUzxWNanzfTiW6yGX0cbA8Ywq7");
 
         $transaction = new PagarMe_Transaction(array(
-            'amount' => 1000,
+            'amount' =>  strtr($transacao->valorBruto, array('.' => '', ',' => '')),
             'card_hash' => $request['card_hash']
         ));
 
         $transaction->charge();
 
         $status = $transaction->status; // status da transação
-
+        return 'Tapago! '. $status;
     }
 
     /**
