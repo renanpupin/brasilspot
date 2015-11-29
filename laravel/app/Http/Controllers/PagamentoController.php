@@ -57,9 +57,26 @@ class PagamentoController extends Controller
     public function store(Request $request)
     { //Pagamento/Efetivar
         if(isset($request['selecionarPlano'])) {
-            dd($request);
-            dd(AssinaturaComerciante::where('idComerciante', '=', $request['id'])->count() . ' ' .
-            (Usuario::with('idUsuario', '=', $request['id'])->count()));
+//            dd($request);
+            $firstVal = AssinaturaComerciante::where('idComerciante', '=', $request['id'])->count(); // . ' ' .
+            //(User::with('Empresa')->where('id', '=',  $request['id'] )->get()
+            //-> ));
+            $secondVal = (DB::select(DB::raw('SELECT count(*) as contagem FROM brasilspot2.users
+left join brasilspot2.empresas  on brasilspot2.empresas.idUsuario = brasilspot2.users.id
+left join brasilspot2.filiais on brasilspot2.filiais.idEmpresa = brasilspot2.empresas.id
+left join brasilspot2.assinaturasFiliais
+on brasilspot2.assinaturasFiliais.idAssinatura = brasilspot2.filiais.id
+where brasilspot2.users.id = ' . $request['idUsuario'] )));
+            $soma = 0;
+            if(isset($secondVal[0]->contagem)) {
+                $soma = intval($secondVal[0]->contagem);
+            }
+            $soma += intval($firstVal);
+
+            //TODO: pegar outra query porque a de cima não inclui o valor de cada um
+
+            dd($soma);
+
             //each
 //              id é idComerciante
 //            idUsuario
@@ -67,7 +84,8 @@ class PagamentoController extends Controller
 
             DB::beginTransaction();
             $transacao = null;
-            try {
+            //TODO: setar os valores pra gravar a transação
+            try { //setar coisas na transacao, teria que criar a mudança de transicao tambem talvez
                 $transacao = Transacao::create([
                     'fkEmpresa' => '1',
                     'fkCartao' => '1',
@@ -95,7 +113,7 @@ class PagamentoController extends Controller
             $transaction->charge();
 
             $status = $transaction->status; // status da transação
-            return 'Tapago! ' . $status;
+            return 'Tapago! ' . $status; //TODO: arrumar o redirect
         } else { //exemplo
             DB::beginTransaction();
             $transacao = null;
