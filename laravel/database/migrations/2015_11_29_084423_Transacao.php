@@ -23,9 +23,9 @@ class Transacao extends Migration
 
         Schema::table('transacao', function(Blueprint $table){
             $table->foreign('fkEmpresa')->references('id')->on('empresas');
-            $table->foreign('fkCartao')->references('id')->on('cartao');
+            $table->foreign('fkCartao')->references('id')->on('cartoes');
             $table->foreign('fkTipoTransacao')->references('idTipoTransacao')->on('tipotransacao');
-            $table->foreign('fkTipoEstadoTransacao')->references('idTipoEstadoTransacao')->on('tipoestadotransacao');
+            $table->foreign('fkEstadoTransacao')->references('idEstadoTransacao')->on('estadotransacao');
         });
     }
 

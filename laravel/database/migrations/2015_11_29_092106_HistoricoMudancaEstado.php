@@ -18,8 +18,8 @@ class HistoricoMudancaEstado extends Migration
 
         Schema::table('historicomudancaestado', function(Blueprint $table){
             $table->foreign('fkTransacao')->references('idTransacao')->on('transacao');
-            $table->foreign('fkEstadoTransacaoNovo')->references('idTipoEstadoTransacao')->on('tipoestadotransacao');
-            $table->foreign('fkEstadoTransacaoVelho')->references('idTipoEstadoTransacao')->on('tipoestadotransacao');
+            $table->foreign('fkEstadoTransacaoNovo')->references('idEstadoTransacao')->on('estadotransacao');
+            $table->foreign('fkEstadoTransacaoVelho')->references('idEstadoTransacao')->on('estadotransacao');
         });
     }
 

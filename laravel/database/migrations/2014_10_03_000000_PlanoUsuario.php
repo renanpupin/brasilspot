@@ -24,6 +24,11 @@ class PlanoUsuario extends Migration
 
     public function down()
     {
+        Schema::table('contract', function(Blueprint $table) {
+            $table->dropForeign('contract_product_id_foreign');
+            $table->removeColumn('product_id');
+        });
+        
         Schema::drop('planosUsuarios');
     }
 }
