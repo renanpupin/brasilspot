@@ -215,9 +215,7 @@ Route::get('SuaEmpresa/Editar', 'EmpresaController@editar');
 
 Route::get('SuaEmpresa/Cadastrar', 'EmpresaController@create');
 
-Route::get('SuaEmpresa', function () {
-    return view('Empresa/Detail');
-});
+Route::get('SuaEmpresa', 'EmpresaController@suaEmpresa');
 
 Route::get('ServicosOferecidos', 'ServicoController@selecionar');
 

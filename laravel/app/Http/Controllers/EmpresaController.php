@@ -54,9 +54,25 @@ class EmpresaController extends Controller
         return view('401');
     }
 
+    public function suaEmpresa()
+    {
+        $usuario = Auth::User();
+
+        $empresa = Empresa::where('idUsuario','=',$usuario->id)->first();
+
+        if($empresa == null)
+        {
+            return redirect('SuaEmpresa/Cadastrar');
+        }else{
+            return view('SuaEmpresa/Detail');
+        }
+    }
+
     public function create()
     {
         $usuario = Auth::User();
+
+        $empresa = Empresa::where('idUsuario','=',$usuario->id)->first();
 
         $tiposEmpresas = ['-1' => 'Selecione o tipo do empreendimento'] + TipoEmpresa::orderBy('tipo', 'asc')->lists('tipo', 'id')->all();
         $categorias = ['-1' => 'Selecione a categoria'] + Categoria::orderBy('nome', 'asc')->lists('nome', 'id')->all();
@@ -412,9 +428,14 @@ class EmpresaController extends Controller
 //            return Response::make($validation->errors->first(), 400);
 //        }
 
+        //$files = glob('uploads/id_*');
+        //TODO: arrumar os uploads setando a primeira imagem carregada como a principal
+
+        $usuario = Auth::user();
+
         $destinationPath = 'uploads'; // upload path
         $extension = Input::file('file')->getClientOriginalExtension(); // getting file extension
-        $fileName = rand(11111, 99999) . '.' . $extension; // renameing image
+        $fileName = "id_".$usuario->id."_".rand(11111, 99999) . '.' . $extension; // renaming image
         $upload_success = Input::file('file')->move($destinationPath, $fileName); // uploading file to given path
 
         if ($upload_success) {

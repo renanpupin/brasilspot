@@ -55,14 +55,14 @@
                 {!! Form::label('servicos', 'Selecione os serviços',null,['for' => 'servicos']) !!}
             </div>
 
-            <div class="form-group grid-m-3 grid-s-3 grid-xs-3">
-                {{--//foreach servico in serviços--}}
-                {!! Form::checkbox('servicos[]', 1, null, ['class' => 'field']) !!}Serviço 1
-                {!! Form::checkbox('servicos[]', 1, null, ['class' => 'field']) !!}Serviço 2
-            </div>
+            @foreach($servicos as $servico)
+                <div class="form-group grid-m-6 grid-s-6 grid-xs-12">
+                    {!! Form::checkbox('servicos[]', $servico->id, null, ['class' => 'field']) !!} {{$servico->descricao}}
+                </div>
+            @endforeach
         </div>
         <div class="row">
-            <div class="form-group grid-m-3 grid-s-3 button-field">
+            <div class="form-group grid-m-3 grid-s-3 grid-m-offset-9 grid-s-offset-9 grid-xs-12 button-field">
                 {!! Form::button('<span class="text-content">Salvar</span>',[
                     'id' => 'btnSalvar',
                     'type' => 'submit',

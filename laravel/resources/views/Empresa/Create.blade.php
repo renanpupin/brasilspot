@@ -68,8 +68,9 @@
             <div id="galeria-empresa" class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <div class="row">
                     <div class="galeria-feature">
-                        <div class="dropzone" id="dropzoneFileUpload1">
-                        </div>
+                        <div class="dropzone" id="dropzoneFileUpload1"></div>
+                        <p>No máximo 5 imagens por empresa.</p>
+                        <p>A primeira imagem será setada como principal.</p>
                     </div>
                 </div>
             </div>
@@ -208,30 +209,14 @@
 
         {!! Form::Close() !!}
     </div>
-    <script type="text/javascript" src="{{ asset('assets/js/dropzone.js') }}"></script>
 
-    <script type="text/javascript">
-        var baseUrl = "{{ url('/') }}";
-        var token = "{{ Session::getToken() }}";
-        Dropzone.autoDiscover = false;
-        var myDropzone = new Dropzone("div#dropzoneFileUpload1", {
-
-            url: baseUrl+"/Empresa/uploadFiles",
-            params: {
-                _token: token
-            }
-        });
-
-        Dropzone.options.myAwesomeDropzone = {
-            paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 2, // MB
-            addRemoveLinks: true,
-            accept: function(file, done) {
-
-            },
-        };
-    </script>
+    <input type="hidden" value="{{ Session::getToken() }}" id="hiddenToken">
+    <input type="hidden" value="{{ url('/') }}" id="hiddenBaseUrl">
 
 @stop
 
 
+@section('script')
+    <script type="text/javascript" src="{{ asset('assets/js/dropzone.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/configDropzone.js') }}"></script>
+@stop
