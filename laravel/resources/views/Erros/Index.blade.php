@@ -21,7 +21,15 @@
         <h2>Lista de Erros</h2>
     </div>
 
-    <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
+    @can('AcessoAdministrador')
+        <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
+    @endcan
+    @can('AcessoVendedor')
+    <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
+    @endcan
+    @can('AcessoComerciante')
+        <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
+    @endcan
         <div class="breadcrumbs-content container">
             <div class="row">
                 <i class="material-icons">home</i>
@@ -34,12 +42,21 @@
         </div>
     </div>
 
+    @can('AcessoVendedor')
+    <div class="grid-m-3 grid-s-3 grid-xs-12">
+        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Solicitacoes/ReportarErro/cadastrar') }}">
+            <span class="text-content">Novo</span>
+        </a>
+    </div>
+    @endcan
 
-    {{--<div class="grid-m-3 grid-s-2 grid-xs-12">--}}
-        {{--<a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Solicitacoes/ReportarErro') }}">--}}
-            {{--<span class="text-content">Novo</span>--}}
-        {{--</a>--}}
-    {{--</div>--}}
+    @can('AcessoComerciante')
+    <div class="grid-m-3 grid-s-3 grid-xs-12">
+        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('Solicitacoes/ReportarErro/cadastrar') }}">
+            <span class="text-content">Novo</span>
+        </a>
+    </div>
+    @endcan
 
     <div id="listagem" class="grid-m-12 grid-s-12">
         <div class="table-responsive">

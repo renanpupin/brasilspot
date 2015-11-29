@@ -46,6 +46,7 @@ Route::get('RecuperarSenha', function () {
 
     //routes for "ReportarErro" (somente cadastrar, detalhar e excluir)
     Route::get('Solicitacoes/ReportarErro', 'ErroController@index');
+    Route::get('Solicitacoes/ReportarErro/cadastrar', 'ErroController@create');
     //Route::resource('ReportarErro','ReclamacaoController');
 
     Route::get('Erros', 'ErroController@index');

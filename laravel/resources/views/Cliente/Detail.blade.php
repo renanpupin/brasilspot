@@ -73,6 +73,8 @@
                 <p class="field-disabled">{{ $usuario->PerfilUsuario->tipo }}</p>
             </div>
 
+
+            @can('AcessoAdministrador')
             <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 grid-xs-12 button-field">
                 <a href="{{ url('Clientes/Gerenciar') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
                     <span class="text-content">Voltar</span>
@@ -83,6 +85,19 @@
                     <span class="text-content">Editar</span>
                 </a>
             </div>
+            @endcan
+            @can('AcessoVendedor')
+            <div class="form-group grid-m-3 grid-m-offset-9 grid-s-3 grid-s-offset-9 grid-xs-12 button-field">
+                <a href="{{ url('Clientes/Gerenciar') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                    <span class="text-content">Voltar</span>
+                </a>
+            </div>
+            {{--<div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">--}}
+                {{--<a href="{{ url('Clientes/editar',$usuario->id) }}" id="btnEditar" title="Editar" class="btn btn-primary ripple">--}}
+                    {{--<span class="text-content">Editar</span>--}}
+                {{--</a>--}}
+            {{--</div>--}}
+            @endcan
         </div>
 
 

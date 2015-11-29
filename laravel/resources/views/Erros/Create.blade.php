@@ -20,7 +20,7 @@
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
         <h2>Reportar Erro</h2>
-        <p>Aqui você registrar a ocorrência de erros no site. Resolveremos o problema o mais rápido possível!</p>
+        <p>Aqui você registra a ocorrência de erros no site. Resolveremos o problema o mais rápido possível!</p>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">

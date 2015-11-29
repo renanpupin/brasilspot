@@ -5,7 +5,15 @@
 
 @section('sidebar')
     @parent
-    @include('layouts.sidebarSistema')
+    @can('AcessoComerciante')
+    @include('layouts.sidebarComerciante')
+    @endcan
+    @can('AcessoVendedor')
+    @include('layouts.sidebarVendedor')
+    @endcan
+    @can('AcessoAdministrador')
+    @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')

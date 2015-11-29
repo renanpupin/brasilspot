@@ -51,8 +51,10 @@
                 <th>Vencimento</th>
                 <th style="text-align: center;">Atualizar Vencimento</th>
                 <th></th>
+                @can('AcessoAdministrador')
                 <th></th>
                 <th></th>
+                @endcan
                 </thead>
                 <tbody>
                 @foreach($comerciantes as $comerciante)
@@ -73,12 +75,14 @@
                         <td class="col-actions">
                             <a href="{{ url('Clientes',$comerciante->Usuario->id) }}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>
+                        @can('AcessoAdministrador')
                         <td class="col-actions">
                             <a href="{{ url('Clientes/editar',$comerciante->Usuario->id) }}" title="Editar"><i class="material-icons">mode_edit</i></a>
                         </td>
                         <td class="col-actions">
                             {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
                         </td>
+                        @endcan
                     </tr>
                 @endforeach
                 </tbody>

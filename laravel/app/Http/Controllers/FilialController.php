@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AssinaturaComerciante;
 use App\Filial;
 use App\WhatsApp;
 use Illuminate\Contracts\Validation\ValidationException;
@@ -25,7 +26,7 @@ class FilialController extends Controller
     public function index()
     {
         $usuario = Auth::user();
-        $numero_assinaturas = AsssinaturaComerciante::where('idComerciante','!=', '')->where('idUsuario', '=', $usuario)->count();
+        $numero_assinaturas = AssinaturaComerciante::where('idComerciante','!=', '')->where('idUsuario', '=', $usuario)->count();
         if (Gate::allows('AcessoComerciante'))
         {
             $empresa = Empresa::where('idUsuario','=',$usuario->id)->first();
