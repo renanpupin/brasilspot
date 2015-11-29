@@ -105,14 +105,14 @@
 
             @can('AcessoAdministrador')
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                <label for="email">Clientes *</label>
+                <label for="cliente">Clientes *</label>
                 {!! Form::select('usuarios',$usuarios,'Selecione a usuário.')!!}
             </div>
             @endcan
 
             @can('AcessoVendedor')
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                <label for="email">Clientes *</label>
+                <label for="cliente">Clientes *</label>
                 {!! Form::select('usuarios',$usuarios,'Selecione a usuário.')!!}
             </div>
             @endcan

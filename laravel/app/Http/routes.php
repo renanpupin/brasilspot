@@ -71,7 +71,7 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
     Route::get('Clientes/editar/{id}', 'ClienteController@edit');
     Route::get('Clientes/AtualizarVencimento/{id}', 'ClienteController@atualizarVencimento');
     Route::get('Clientes/Gerenciar', 'ClienteController@index');
-    Route::get('Clientes/Cadastrar', 'ClienteController@create');
+    Route::get('Clientes/cadastrar', 'ClienteController@create');
     Route::post('Clientes/AtualizarVencimentoStore', ['as' => 'Cliente.atualizarVencimentoStore', 'uses' => 'ClienteController@atualizarVencimentoStore']);
     Route::resource('Clientes','ClienteController');
 

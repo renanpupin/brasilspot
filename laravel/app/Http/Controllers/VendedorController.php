@@ -104,7 +104,7 @@ class VendedorController extends Controller
 
         $novos_clientes = Empresa::where( DB::raw('MONTH(dataCadastro)'), '=', date('n') )->where('idVendedor','=',$usuario)->count();
 //        dd($novos_clientes);
-        return view('Vendedor/Desempenho')->with("novos_clientes", $novos_clientes);
+        return view('Vendedor.Desempenho')->with("novos_clientes", $novos_clientes);
     }
 
 }

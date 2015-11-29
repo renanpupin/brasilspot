@@ -5,7 +5,15 @@
 
 @section('sidebar')
     @parent
+    @can('AcessoComerciante')
+    @include('layouts.sidebarComerciante')
+    @endcan
+    @can('AcessoVendedor')
     @include('layouts.sidebarVendedor')
+    @endcan
+    @can('AcessoAdministrador')
+    @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')
@@ -56,12 +64,12 @@
 
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     {!! Form::label('email', 'E-Mail *',null,['for' => 'email']) !!}
-                    {!! Form::text('email',null,['class' => 'form-control']) !!}
+                    {!! Form::text('email',null,['class' => 'form-control', 'id' => 'email']) !!}
                 </div>
 
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     {!! Form::label('password', 'Senha *',null,['for' => 'password']) !!}
-                    {!! Form::password('password',null,['class' => 'form-control']) !!}
+                    {!! Form::password('password',null,['class' => 'form-control', 'id' => 'password']) !!}
                 </div>
 
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
