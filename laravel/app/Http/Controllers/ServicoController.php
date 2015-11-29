@@ -12,6 +12,7 @@ use App\Empresa;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
+use DB;
 
 class ServicoController extends Controller
 {
@@ -65,14 +66,54 @@ class ServicoController extends Controller
         if($empresa != null)
         {
             $servicos_selecionados = ServicoEmpresa::where('idEmpresa','=',$empresa->id)->get();
+
+
+            $todos_selecionados = array();
+
+            foreach($servicos_selecionados as $selecionado){
+                $todos_selecionados[] =  $selecionado->idServico;
+            }
+
         }else{
             Session::flash('flash_message', 'Primeiro efetue o cadastro de sua empresa!');
             return redirect('SuaEmpresa');
         }
 
-//        dd($servicos_selecionados);
 
-        return view('Servico.ServicosOferecidos')->with('servicos',$servicos)->with('servicos_selecionados',$servicos_selecionados);
+
+        return view('Servico.ServicosOferecidos')->with('servicos',$servicos)->with('servicos_selecionados',$todos_selecionados);
+    }
+
+    public function gravarSelecionados(Request $request)
+    {
+
+        $usuario = Auth::User();
+
+        $empresa = Empresa::where('idUsuario','=',$usuario->id)->first();
+
+        $servicos = $request['servicos'];
+
+        DB::beginTransaction();
+
+        try {
+
+            ServicoEmpresa::where('idEmpresa', $empresa->id)->delete();
+
+            foreach ($servicos as $servico) {
+                ServicoEmpresa::Create([
+                    'idEmpresa' => $empresa->id,
+                    'idServico' => $servico
+                ]);
+            }
+
+            Session::flash('flash_message', 'Serviços atualizados com sucesso!');
+
+        }catch (Exception $exception) {
+            DB::rollBack();
+            Session::flash('flash_message', 'Ocorreu um erro ao atualizar os serviços!');
+        }
+
+        return redirect()->back();
     }
 
     public function show($id)

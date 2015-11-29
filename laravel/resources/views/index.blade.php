@@ -21,22 +21,23 @@
     </div>
 
     <div class="content-empresas grid-m-12 grid-s-12 grid-xs-12">
-        <div class="row">
-            <div class="grid-m-12 grid-s-12 grid-xs-12">
-                <div class="empresa-item ">
-                    <div class="row">
-                        <div class="empresa-logo grid-m-3 grid-s-4 grid-xs-4">
-                            <img src="assets/img/placeholder-company.png">
-                        </div>
-                        <div class="empresa-nome grid-m-9 grid-s-8 grid-xs-8">
-                            <div class="text-title">
-                                Imobiliária Brasil
+        @foreach($empresas as $empresa)
+            <div class="row">
+                <div class="grid-m-12 grid-s-12 grid-xs-12">
+                    <div class="empresa-item ">
+                        <div class="row">
+                            <div class="empresa-logo grid-m-3 grid-s-4 grid-xs-4">
+                                <img src="assets/img/placeholder-company.png">
                             </div>
-                            <div class="text-caption">
-                                <p>Descrição da Empresa Descrição da Empresa Descrição da Empresa Descrição da Empresa Descrição</p>
-                            </div>
-                            <div class="row">
-                                <div class="empresa-feature">
+                            <div class="empresa-nome grid-m-9 grid-s-8 grid-xs-8">
+                                <div class="text-title">
+                                    {{$empresa->nomeFantasia}}
+                                </div>
+                                <div class="text-caption">
+                                    <p>{{$empresa->descricao}}</p>
+                                </div>
+                                <div class="row">
+                                    <div class="empresa-feature">
                                     <span class="empresa-feature-item grid-m-8 grid-s-12 grid-xs-12">
                                         <p>
                                             <i class="material-icons">location_on</i>
@@ -52,46 +53,47 @@
                                     <span class="empresa-feature-item grid-m-8 grid-s-12 grid-xs-12">
                                         <p>
                                             <i class="material-icons">access_time</i>
-                                            Segunda a sexta das 08:00 às 18:00
+                                            {{$empresa->horarioFuncionamento}}
                                         </p>
                                     </span>
                                     <span class="empresa-feature-item grid-m-4 grid-s-12 grid-xs-12">
                                         <p>
                                             <i class="material-icons">credit_card</i>
-                                            Débito e Crédito
+                                            {{$empresa->TipoCartao->descricao}}
                                         </p>
                                     </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
+                        <div class="row">
 
-                        <div class="grid-m-10 grid-s-10 grid-xs-10">
-                            <div class="empresa-categoria text-caption">
-                                <i class="material-icons">toys</i>
-                                <!-- <i class="material-icons">filter_vintage</i> -->
-                                Gastronomia
+                            <div class="grid-m-10 grid-s-10 grid-xs-10">
+                                <div class="empresa-categoria text-caption">
+                                    <i class="material-icons">toys</i>
+                                    <!-- <i class="material-icons">filter_vintage</i> -->
+                                    {{$empresa->CategoriaEmpresa->Categoria->nome}}
+                                </div>
                             </div>
-                        </div>
-                        {{--<div class="grid-m-4 grid-s-6 grid-xs-6" style="text-align: center;">--}}
+                            {{--<div class="grid-m-4 grid-s-6 grid-xs-6" style="text-align: center;">--}}
                             {{--<div class="empresa-categoria text-caption">--}}
-                                {{--<i class="material-icons">business</i>--}}
-                                {{--Comércio--}}
+                            {{--<i class="material-icons">business</i>--}}
+                            {{--Comércio--}}
                             {{--</div>--}}
-                        {{--</div>--}}
+                            {{--</div>--}}
 
-                        <div class="grid-m-2 grid-s-2 grid-xs-2 button-field">
-                            <a href="{{ url('Empresas/1') }}" id="btnView" class="btn round-btn ripple" title="Ver Empresa">
-                                <i class="material-icons">arrow_forward</i>
-                            </a>
+                            <div class="grid-m-2 grid-s-2 grid-xs-2 button-field">
+                                <a href="{{ url('Empresa/visualizar/'.$empresa->id) }}" id="btnView" class="btn round-btn ripple" title="Ver Empresa">
+                                    <i class="material-icons">arrow_forward</i>
+                                </a>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
     </div>
 
     <div id="carregarMaisEmpresas" class="grid-m-12 grid-s-12 grid-xs-12" title="Carregar mais empresas">

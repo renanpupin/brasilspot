@@ -381,7 +381,7 @@ class EmpresaController extends Controller
                 if($imagem_principal->isValid()){
                     $extensao = $imagem_principal->getClientOriginalExtension();
                     $destinationPath = 'uploads';
-                    $fileName = "imagem_principal-".$empresa->id. '.' . $extensao;
+                    $fileName = "imagem_principal_".$empresa->id. '.' . $extensao;
                     $imagem_principal->move($destinationPath, $fileName);
 
                     $foto = Foto::create([
@@ -406,11 +406,12 @@ class EmpresaController extends Controller
             if ($request->file('imagem3')) $files[] = $request->file('imagem3');
             if ($request->file('imagem4')) $files[] = $request->file('imagem4');
 
+            $index = 0;
             foreach ($files as $file){
                 if($file->isValid()){
                     $extensao = $file->getClientOriginalExtension();
                     $destinationPath = 'uploads';
-                    $fileName = "imagem_galeria-".$empresa->id. '.' . $extensao;
+                    $fileName = "imagem_galeria_".$empresa->id. '_'.$index.'.' . $extensao;
                     $file->move($destinationPath, $fileName);
 
                     $foto = Foto::create([
@@ -426,6 +427,7 @@ class EmpresaController extends Controller
                 }else {
                     Session::flash('error', 'Uma das imagens da galeria parece não ser válida.');
                 }
+                $index = $index + 1;
             }
 
             Session::flash('flash_message', 'Empresa adicionada com sucesso!');
@@ -512,12 +514,7 @@ class EmpresaController extends Controller
 
     }
 
-    public function visualizar()
-    {
-        $empresas = Empresa::all();
 
-        return view('VisualizarEmpresa')->with('empresas', $empresas);
-    }
 
 
     public function listarPorCategoria($slug)

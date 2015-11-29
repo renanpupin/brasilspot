@@ -16,19 +16,20 @@
                 Você está em:
                 <ul>
                     <li><a href="{{ url('/') }}">Inicio</a></li>
+                    <li><a href="{{ url('Empresas') }}">Empresas</a></li>
                     <li><a href="{{ url('/') }}">Categoria</a></li>
                     <li><a href="{{ url('/') }}">Subcategoria</a></li>
-                    <li>Imobiliaria Brasil</li>
+                    <li>{{$empresa->nomeFantasia}}</li>
                 </ul>
             </div>
         </div>
     </div>
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Imobiliária Brasil</h2>
+        <h2>{{$empresa->nomeFantasia}}</h2>
     </div>
     <div class="content-slogan grid-m-12 grid-s-12 grid-xs-12">
-        <h6>Construindo o que você precisa</h6>
+        <h6>{{$empresa->slogan}}</h6>
     </div>
     {{--<span class="separator"></span>--}}
 
@@ -37,25 +38,34 @@
 
         <div class="row">
             <div id="galeria-empresa" class="form-group grid-m-6 grid-s-6 grid-xs-12">
-                <a class="galeria-item galeria-item-feature" href="http://lorempixel.com/600/400" data-lightbox="galeria-empresas">
-                    <img class="galeria-item-image" src="http://lorempixel.com/600/400" alt="" />
-                </a>
+                @foreach($empresa->FotoEmpresa as $foto)
+                    @if($foto->destaque === 1)
+                    <a class="galeria-item galeria-item-feature" href="/uploads/{{$foto->Foto->foto}}" data-lightbox="galeria-empresas">
+                        <img class="galeria-item-image" src="/uploads/{{$foto->Foto->foto}}" alt="" />
+                    </a>
+                    @else
+                        <a class="galeria-item" href="/uploads/{{$foto->Foto->foto}}" data-lightbox="galeria-empresas">
+                            <img class="galeria-item-image" src="/uploads/{{$foto->Foto->foto}}" alt="" />
+                        </a>
+                    @endif
+                @endforeach
 
-                <a class="galeria-item" href="http://lorempixel.com/550/300" data-lightbox="galeria-empresas">
-                    <img class="galeria-item-image" src="http://lorempixel.com/550/300" alt="" />
-                </a>
 
-                <a class="galeria-item" href="http://lorempixel.com/700/350" data-lightbox="galeria-empresas">
-                    <img class="galeria-item-image" src="http://lorempixel.com/700/350" alt="" />
-                </a>
+                {{--<a class="galeria-item" href="http://lorempixel.com/550/300" data-lightbox="galeria-empresas">--}}
+                    {{--<img class="galeria-item-image" src="http://lorempixel.com/550/300" alt="" />--}}
+                {{--</a>--}}
 
-                <a class="galeria-item" href="http://lorempixel.com/450/350" data-lightbox="galeria-empresas">
-                    <img class="galeria-item-image" src="http://lorempixel.com/450/350" alt="" />
-                </a>
+                {{--<a class="galeria-item" href="http://lorempixel.com/700/350" data-lightbox="galeria-empresas">--}}
+                    {{--<img class="galeria-item-image" src="http://lorempixel.com/700/350" alt="" />--}}
+                {{--</a>--}}
 
-                <a class="galeria-item" href="http://lorempixel.com/600/350" data-lightbox="galeria-empresas">
-                    <img class="galeria-item-image" src="http://lorempixel.com/600/350" alt="" />
-                </a>
+                {{--<a class="galeria-item" href="http://lorempixel.com/450/350" data-lightbox="galeria-empresas">--}}
+                    {{--<img class="galeria-item-image" src="http://lorempixel.com/450/350" alt="" />--}}
+                {{--</a>--}}
+
+                {{--<a class="galeria-item" href="http://lorempixel.com/600/350" data-lightbox="galeria-empresas">--}}
+                    {{--<img class="galeria-item-image" src="http://lorempixel.com/600/350" alt="" />--}}
+                {{--</a>--}}
             </div>
 
             <div class="info-empresa grid-m-6 grid-s-6 grid-xs-12">
@@ -90,7 +100,7 @@
                     <i class="material-icons">access_time</i>
                 </label>
                 <span class="text-caption">
-                    Segunda à sexta das 08:00 às 18:00
+                    {{$empresa->horarioFuncionamento}}
                 </span>
             </div>
 
@@ -116,40 +126,33 @@
                 </label>
                 <span class="content-social-item">
                     <img src="http://cdn.flaticon.com/svg/59/59763.svg">
-                    <a class="content-social-site text-caption">Site</a>
+                    <a class="content-social-site text-caption" href="{{$empresa->linkSite}}">Site</a>
                 </span>
                 <span class="content-social-item">
                     <img src="http://cdn.flaticon.com/png/256/59183.png">
-                    <a class="content-social-facebook text-caption">Facebook</a>
+                    <a class="content-social-facebook text-caption" href="{{$empresa->linkFacebook}}">Facebook</a>
                 </span>
             </div>
 
             <div class="content-info grid-m-12 grid-s-12 grid-xs-12">
                 <h3>Informações</h3>
                 <p>Sobre a Imobiliária Brasil</p>
-                <p class="content-descricao text-caption">Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum</p>
+                <p class="content-descricao text-caption">
+                    {{$empresa->descricao}}
+                </p>
             </div>
 
             <div class="empresa-servicos grid-m-12 grid-s-12 grid-xs-12">
                 <label>
                     <i class="material-icons">business</i>
-                    Serviços
+                    {{$empresa->TipoEmpresa->tipo}}
                 </label>
                 <div class="row">
+                    @foreach($empresa->ServicoEmpresa as $servico)
                     <div class="grid-m-3 grid-s-3 grid-xs-12">
-                        <p>- Acesso para deficientes</p>
+                        <p>- {{$servico->Servico->descricao}}</p>
                     </div>
-                    <div class="grid-m-3 grid-s-3 grid-xs-12">
-                        <p>- Ar Condicionado</p>
-                    </div>
-                    <div class="grid-m-3 grid-s-3 grid-xs-12">
-                        <p>- Segurança</p>
-                    </div>
-                    <div class="grid-m-3 grid-s-3 grid-xs-12">
-                        <p>- Wifi</p>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -158,11 +161,14 @@
                     <i class="material-icons">bookmark</i>
                     Tags
                 </label>
-                <a href="javascript:void(0)"><span>São Paulo</span></a>
-                <a href="javascript:void(0)"><span>Imobiliária</span></a>
-                <a href="javascript:void(0)"><span>Bairro Centro</span></a>
-                <a href="javascript:void(0)"><span>Ar Condicionado</span></a>
-                <a href="javascript:void(0)"><span>Wi-fi</span></a>
+
+                <div class="row">
+                @foreach($empresa->TagEmpresa as $tag)
+                    <div class="grid-m-3 grid-s-3 grid-xs-12">
+                        <p>- {{$tag->Tag->nome}}</p>
+                    </div>
+                @endforeach
+                </div>
             </div>
 
         </div>
@@ -204,8 +210,6 @@
             </div>
         </div>
     </div>
-
-
 
 @stop
 

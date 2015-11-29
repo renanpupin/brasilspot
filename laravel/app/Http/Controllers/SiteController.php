@@ -13,18 +13,14 @@ use App\Empresa;
 use App\Categoria;
 use App\Servico;
 use App\Endereco;
+use App\CategoriaEmpresa;
+use App\ServicoEmpresa;
+use App\TagEmpresa;
 use App\Tag;
 use App\Http\Controllers\Controller;
 
 class SiteController extends Controller
 {
-
-    public function visualizar()
-    {
-        $empresas = Empresa::all();
-
-        return view('VisualizarEmpresa')->with('empresas', $empresas);
-    }
 
     public function BuscaEmpresa($nomeFantasia)
     {
@@ -33,40 +29,36 @@ class SiteController extends Controller
 
     public function filtroEmpresas($filtros = null)
     {
-        $local = Input::get("local");  //apenas um
-        $servicos = Input::get("com");  //um ou varios
-        $tipo = Input::get("tipo");     //comercios,servicos,atracoes,profissionais
+        $local_url = Input::get("local");  //apenas um
+        $servicos_url = Input::get("com");  //um ou varios
+        $tipo_url = Input::get("tipo");     //comercios,servicos,atracoes,profissionais
 
-        $categoria = null;
-        $subcategoria = null;
+        $categoria_url = null;
+        $subcategoria_url = null;
 
         if($filtros)
         {
             $filtros = explode('/', $filtros);
             if(sizeof($filtros) > 0){
-                $categoria = $filtros[0];
+                $categoria_url = $filtros[0];
             }
             if(sizeof($filtros) == 2){
-                $subcategoria = $filtros[1];
+                $subcategoria_url = $filtros[1];
             }
         }
 
 //        dd("LOCAL = ".$local,"SERVICOS = ".$servicos,"CATEGORIA = ".$categoria, "SUBCATEGORIA = ".$subcategoria,"TIPO DA EMPRESA = ".$tipo);
 
-        //$servicos_array = explode(",", $servicos);
+        $categorias = Categoria::whereNull('idCategoriaPai')->orderBy('nome', 'asc')->lists('nome', 'id')->all();
 
-        $categorias = Categoria::orderBy('nome', 'asc')->lists('nome', 'id')->all();
-
-        //if (static::whereSlug($slug)->exists())
-//        $categoria = Categoria::where('slug', '=', "comercio")->first();
-        //$empresas = Empresa::with($categoria)->get();
-//        $categoria = Categoria::where_slug("comercio")->first();
-//        dd($categoria);
+        $subcategorias = Categoria::where('idCategoriaPai', '!=', '')->orderBy('nome', 'asc')->lists('nome', 'id')->all();
 
 
-
-        //Todo: arrumar a busca aqui para pegar somente as subcategorias de uma categoria selecionada (a categoria vai vir no formato slug)
-        $subcategorias = Categoria::orderBy('nome', 'asc')->lists('nome', 'id')->all();
+        $servicos_slug = explode(",", $servicos_url);
+        $servicos_selecionados_id = array();
+        foreach($servicos_slug as $servico_slug){
+            $servicos_selecionados_id[] = Servico::where('slug', $servico_slug)->first()->id;
+        }
 
         $servicos = Servico::orderBy('descricao', 'asc')->lists('descricao', 'id')->all();
 
@@ -74,7 +66,44 @@ class SiteController extends Controller
         //Todo: busca de empresas pelos parâmetros informados na url
         //EX: http://localhost:8000/Empresas/restaurantes/pizzarias?com=wi-fi,seguranca&local=sp&tipo=comercios
 
-        return view('index')->with('tipo',$tipo)->with('categorias',$categorias)->with('subcategorias',$subcategorias)->with('servicos',$servicos);
+//        $empresas = Empresa::where();
+        //$query = DB::table('empresas');
+
+        if ($subcategoria_url != null)
+        {
+            $subcategoria_id = Categoria::where('slug', $subcategoria_url)->first()->id;
+
+        }else if ($categoria_url != null)
+        {
+            $categoria_id = Categoria::where('slug', $categoria_url)->first()->id;
+        }
+
+//        $empresas_por_categoria = CategoriaEmpresa::where('idCategoria', $categoria_id)->get();
+//        dd($empresas_por_categoria);
+
+        /*if ($state_id != '--')
+        {
+            $query->where('state_id', '=', $state_id);
+        }*/
+
+//        $empresas = $query->orderBy('nomeFantasia')->get();
+
+        $empresas = Empresa::with('CategoriaEmpresa')->with('CategoriaEmpresa.Categoria')->with('TipoCartao')->get();
+//        dd($empresas);
+
+
+
+
+
+
+        return view('index')->with('empresas',$empresas)->with('tipo',$tipo_url)->with('categorias',$categorias)->with('subcategorias',$subcategorias)->with('servicos',$servicos)->with('servicos_selecionados_id',$servicos_selecionados_id);
+    }
+
+    public function visualizar($id)
+    {
+        $empresa = Empresa::where('id', $id)->with('TipoEmpresa')->with('ServicoEmpresa')->with('ServicoEmpresa.Servico')->with('TagEmpresa')->with('TagEmpresa.Tag')->with('FotoEmpresa')->with('FotoEmpresa.Foto')->first();
+
+        return view('VisualizarEmpresa')->with('empresa', $empresa);
     }
 
     public function listarPorCategoria($slug)

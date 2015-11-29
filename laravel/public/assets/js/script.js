@@ -235,20 +235,19 @@
 
                 console.log("tem checkado");
 
-                var url = window.location.pathname+"?"+(params["local"] != undefined ? "local="+params["local"]+"&" : null)+(params["tipo"] != undefined ? "tipo="+params["tipo"]+"&" : null)+servicos;
+                var url = window.location.pathname+"?"+(params["local"] != undefined ? "local="+params["local"]+"&" : "")+(params["tipo"] != undefined ? "tipo="+params["tipo"]+"&" : "")+servicos;
 
             }else{
 
                 console.log("nem tem checkado");
 
-                var url = window.location.pathname+"?"+(params["local"] != undefined ? "local="+params["local"]+"&" : null)+(params["tipo"] != undefined ? "tipo="+params["tipo"]+"&" : null);
+                var url = window.location.pathname+"?"+(params["local"] != undefined ? "local="+params["local"]+"&" : "")+(params["tipo"] != undefined ? "tipo="+params["tipo"]+"&" : "");
             }
 
             url = url.replace(/&\s*$/, "");
 
             console.log(url);
-            //Todo:testar...
-            //window.location.href = url;
+            window.location.href = url;
         });
 
     });
