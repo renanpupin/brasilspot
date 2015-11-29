@@ -11,7 +11,8 @@ class Categoria extends Model
     protected $fillable = array(
       'nome',
       'idCategoriaPai',
-      'nomeCategoriaPai'
+      'nomeCategoriaPai',
+      'slug'
     );
 
     public function CategoriaPai()

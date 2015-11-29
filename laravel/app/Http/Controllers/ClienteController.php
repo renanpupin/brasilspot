@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Assinatura;
+use App\AssinaturaComerciante;
 use App\Comerciante;
 use App\Empresa;
 use App\PerfilUsuario;
@@ -183,7 +185,8 @@ class ClienteController extends Controller
 
     public function show($id)
     {
-        return view('Cliente.Detail');
+        $usuario = User::with('PerfilUsuario')->find($id);
+        return view('Cliente.Detail')->with('usuario',$usuario);
     }
 
 
@@ -218,7 +221,61 @@ class ClienteController extends Controller
     }
     public function atualizarVencimentoStore(Request $request)
     {
-        dd($request->id);
+        $regras = array(
+            'selecionarPlano' => 'required|string',
+            'dataVencimento' => 'required|date',
+        );
+        $mensagens = array(
+            'selecionarPlano.required' => 'O campo Plano deve ser preenchido.',
+            'dataVencimento.required' => 'O campo Data Vencimento deve ser preenchido.'
+        );
+
+        $validator = Validator::make($request->all(), $regras, $mensagens);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        DB::beginTransaction();
+
+        $idComerciante = $request['id'];
+        $assinaturaComercianteUpdate = AssinaturaComerciante::where('idComerciante','=',$idComerciante)->first();
+        try {
+            if($assinaturaComercianteUpdate == null)
+            {
+                $assinatura = Assinatura::create([
+                    'dataVencimento' => $request['dataVencimento'],
+                    'idPlano' => $request['selecionarPlano']
+                ]);
+
+                $assinaturaComerciante = AssinaturaComerciante::create([
+                    'idComerciante' => $request['id'],
+                    'idAssinatura' => $assinatura->id
+                ]);
+            }
+            else
+            {
+                $assinatura = $assinaturaComercianteUpdate->Assinatura()->first();
+                $assinatura->dataVencimento = $request['dataVencimento'];
+                $assinatura->idPlano = $request['id'];
+                $assinatura->save();
+            }
+
+        }
+        catch(Exception $exception)
+        {
+            DB::rollBack();
+            $errors = $validator->getMessageBag();
+            $errors->add('ErroException', 'Não foi possivel cadastrar o cliente.');
+            return redirect()->back()->withErrors($errors);
+        }
+
+        DB::commit();
+
+        Session::flash('flash_message', 'Assinatura atualizada com sucesso!');
+        return redirect()->back();
     }
 
 }

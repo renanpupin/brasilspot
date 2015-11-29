@@ -60,7 +60,7 @@
         {!! Form::Open(['route' => 'Cliente.atualizarVencimentoStore', 'method' => 'POST']) !!}
         <div class="row">
 
-            {!! Form::text('id',$usuario->id,['hidden']) !!}
+            {!! Form::text('id',$usuario->Comerciante->id,['hidden']) !!}
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('cliente', 'Cliente',null,['for' => 'cliente']) !!}
@@ -68,15 +68,23 @@
             </div>
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('plano', 'Plano',null,['for' => 'plano']) !!}
-                <select id="selecionarEstado" name="selecionarEstado">
+                <select id="selecionarPlano" name="selecionarPlano">
                     <option value="1">Básico</option>
                     <option value="2">Pro</option>
                 </select>
             </div>
+            @if($usuario->Comerciante->AssinaturaComerciante != null)
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('dataVencimento', 'Data de Vencimento do Plano',null,['for' => 'dataVencimento']) !!}
                 {!! Form::text('dataVencimento',$usuario->Comerciante->AssinaturaComerciante->Assinatura->dataVencimento,['class' => 'form-control']) !!}
             </div>
+            @endif
+            @if($usuario->Comerciante->AssinaturaComerciante == null)
+                <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                {!! Form::label('dataVencimento', 'Data de Vencimento do Plano',null,['for' => 'dataVencimento']) !!}
+                {!! Form::text('dataVencimento','',['class' => 'form-control']) !!}
+                </div>
+            @endif
         </div>
         <div class="row">
             <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
