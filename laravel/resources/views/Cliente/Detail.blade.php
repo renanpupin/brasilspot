@@ -62,15 +62,15 @@
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('nome', 'Nome',null,['for' => 'nome']) !!}
-                <p class="field-disabled">José de Silva</p>
+                <p class="field-disabled">{{ $usuario->name }}</p>
             </div>
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('email', 'Email',null,['for' => 'email']) !!}
-                <p class="field-disabled">josesilva@email.com</p>
+                <p class="field-disabled">{{ $usuario->email }}</p>
             </div>
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('perfis', 'Perfil',null,['for' => 'perfis']) !!}
-                <p class="field-disabled">Comerciante</p>
+                <p class="field-disabled">{{ $usuario->PerfilUsuario->tipo }}</p>
             </div>
 
             <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 grid-xs-12 button-field">
@@ -79,7 +79,7 @@
                 </a>
             </div>
             <div class="form-group grid-m-3 grid-s-3 grid-xs-12 button-field">
-                <a href="{{ url('Clientes/editar/1') }}" id="btnEditar" title="Editar" class="btn btn-primary ripple">
+                <a href="{{ url('Clientes/editar',$usuario->id) }}" id="btnEditar" title="Editar" class="btn btn-primary ripple">
                     <span class="text-content">Editar</span>
                 </a>
             </div>

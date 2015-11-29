@@ -64,7 +64,8 @@ class CategoriaController extends Controller
 
             Categoria::Create([
                 'nome' => $request['nome'],
-                'idCategoriaPai' => $request['idCategoriaPai']
+                'idCategoriaPai' => $request['idCategoriaPai'],
+                'slug' => str_slug($request['nome'])
             ]);
         }
 

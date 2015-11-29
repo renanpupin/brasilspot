@@ -13,6 +13,7 @@ class Categoria extends Migration
             $table->increments('id')->unsigned();
             $table->string('nome', 100);
             $table->integer('idCategoriaPai')->unsigned()->nullable();
+            $table->string('slug',100);
             $table->timestamps();
         });
 

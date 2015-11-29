@@ -11,6 +11,7 @@ class Tag extends Migration
         {
             $table->increments('id')->unsigned();
             $table->string('nome', 50);
+            $table->string('slug',100);
             $table->timestamps();
         });
     }
