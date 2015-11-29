@@ -328,4 +328,7 @@ Route::get('/', function () {
     return redirect('Inicio');
 });
 
+Route::get('Pagamento/Calcular', 'PagamentoController@create' );
+Route::post('Pagamento/Efetivar', 'PagamentoController@store' );
+
 

@@ -8,4 +8,7 @@ class TipoTransacao extends Model
 {
     protected $table = "tipotransacao";
 
+    protected $fillable = array(
+        'nome'
+    );
 }

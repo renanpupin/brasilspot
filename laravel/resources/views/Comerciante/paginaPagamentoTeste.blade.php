@@ -8,6 +8,11 @@
 
 @stop
 
+@section('script')
+    <script type="text/javascript" src="{!! asset('assets/js/pagarme_script_extra.js') !!}"></script>
+    <script type="text/javascript" src="{{url('https://assets.pagar.me/js/pagarme.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')}}"></script>
+@stop
 
 @section('content')
 
@@ -15,7 +20,8 @@
         <h2>Pagamento Teste</h2>
     </div>
 
-    <form id="payment_form" action="https://seusite.com.br/transactions/new" method="POST">
+    {!! Form::Open(['url' => 'Pagamento/Calcular', 'method' => 'POST', 'id' => 'payment_form']) !!}
+
         Número do cartão: <input type="text" id="card_number"/>
         <br/>
         Nome (como escrito no cartão): <input type="text" id="card_holder_name"/>
@@ -29,11 +35,6 @@
         <div id="field_errors">
         </div>
         <br/>
-        <input type="submit"></input>
-    </form>
-
-    <!-- SCRIPTS SECTION -->
-    <script type="text/javascript" src="{{url('https://assets.pagar.me/js/pagarme.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')}}"></script>
-    @yield('script')
+        <input id="card_form_submit" type="submit">
+    {!! Form::Close() !!}
 @stop

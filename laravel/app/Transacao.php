@@ -8,4 +8,15 @@ class Transacao extends Model
 {
     protected $table = "transacao";
 
+    protected $fillable = array(
+        'fkEmpresa',
+        'fkCartao',
+        'fkEstadoTransacao',
+        'fkTipoTransacao',
+        'cardHash',
+        'valorBruto',
+        'dataInicio',
+        'dataResposta'
+    );
+
 }
