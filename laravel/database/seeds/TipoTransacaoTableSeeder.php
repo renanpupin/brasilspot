@@ -1,23 +1,25 @@
 <?php
 
+use Illuminate\Database\Seeder;
+
 class TipoTransacaoTableSeeder extends Seeder
 {
     public function run()
     {
         DB::table('tipotransacao')->delete();
 
-        DB::table('tiposCartoes')->insert(array(
+        DB::table('tipotransacao')->insert(array(
             array(
-                'id' => 1,
+                'idTipoTransacao' => 1,
                 'nome' => 'Cartão',
             ),
             array(
-                'id' => 2,
-                'descricao' => 'Assinatura no Cartão',
+                'idTipoTransacao' => 2,
+                'nome' => 'Assinatura no Cartão',
             ),
             array(
-                'id' => 3,
-                'descricao' => 'Boleto',
+                'idTipoTransacao' => 3,
+                'nome' => 'Boleto',
             )
         ));
     }

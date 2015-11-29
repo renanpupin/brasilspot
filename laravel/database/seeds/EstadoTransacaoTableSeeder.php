@@ -1,37 +1,38 @@
 <?php
 
-class TipoEstadoTransacaoTableSeeder extends Seeder {
+use Illuminate\Database\Seeder;
 
+class EstadoTransacaoTableSeeder extends Seeder
+{
     public function run()
     {
-        DB::table('tipoestadotransacao')->delete();
+        DB::table('estadotransacao')->delete();
 
-        DB::table('tipoestadotransacao')->insert(array(
+        DB::table('estadotransacao')->insert(array(
             array(
-                'id' => 1,
+                'idEstadoTransacao' => 1,
                 'nome' => 'Criado',
             ),
             array(
-                'id' => 2,
+                'idEstadoTransacao' => 2,
                 'nome' => 'Pagamento Pendente',
             ),
             array(
-                'id' => 3,
+                'idEstadoTransacao' => 3,
                 'nome' => 'Pagamento Pendente Cancelado',
             ),
             array(
-                'id' => 5,
+                'idEstadoTransacao' => 5,
                 'nome' => 'Pago',
             ),
             array(
-                'id' => 6,
+                'idEstadoTransacao' => 6,
                 'nome' => 'Cancelado',
             ),
             array(
-                'id' => 7,
+                'idEstadoTransacao' => 7,
                 'nome' => 'Fechado',
             )
         ));
     }
-
 }
