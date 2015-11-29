@@ -54,10 +54,12 @@ class SiteController extends Controller
         $subcategorias = Categoria::where('idCategoriaPai', '!=', '')->orderBy('nome', 'asc')->lists('nome', 'id')->all();
 
 
-        $servicos_slug = explode(",", $servicos_url);
         $servicos_selecionados_id = array();
-        foreach($servicos_slug as $servico_slug){
-            $servicos_selecionados_id[] = Servico::where('slug', $servico_slug)->first()->id;
+        if($servicos_url != null){
+            $servicos_slug = explode(",", $servicos_url);
+            foreach($servicos_slug as $servico_slug){
+                $servicos_selecionados_id[] = Servico::where('slug', $servico_slug)->first()->id;
+            }
         }
 
         $servicos = Servico::orderBy('descricao', 'asc')->lists('descricao', 'id')->all();
