@@ -29,7 +29,6 @@ class UsuarioPerfil extends Migration
         Schema::table('usuariosPerfis', function(Blueprint $table) {
             $table->dropForeign(['idPerfilUsuario']);
             $table->dropForeign(['idUsuario']);
-
         });
         Schema::drop('usuariosPerfis');
     }

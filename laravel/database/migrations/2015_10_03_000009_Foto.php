@@ -16,7 +16,6 @@ class Foto extends Migration
         });
     }
 
-
     public function down()
     {
         Schema::drop('fotos');

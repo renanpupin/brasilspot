@@ -5,10 +5,8 @@ use Illuminate\Database\Migrations\Migration;
 
 class Empresa extends Migration
 {
-
     public function up()
     {
-
         Schema::create('empresas', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();

@@ -27,7 +27,6 @@ class AssinaturaFilial extends Migration
         Schema::table('assinaturasFiliais', function(Blueprint $table) {
             $table->dropForeign(['idAssinatura']);
             $table->dropForeign(['idFilial']);
-            //<table_name>_<column_name>_foreign
         });
         Schema::drop('assinaturasFiliais');
     }

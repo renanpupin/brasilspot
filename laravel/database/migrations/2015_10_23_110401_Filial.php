@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class Filial extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('filiais', function (Blueprint $table) {
@@ -38,8 +33,6 @@ class Filial extends Migration
             $table->dropForeign(['idEndereco']);
             $table->dropForeign(['idTelefone']);
             $table->dropForeign(['idWhatsApp']);
-
-            //<table_name>_<column_name>_foreign
         });
         Schema::drop('filiais');
     }

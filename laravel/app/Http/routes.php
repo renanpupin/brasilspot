@@ -329,5 +329,6 @@ Route::get('/', function () {
 
 Route::get('Pagamento/Calcular', 'PagamentoController@create' );
 Route::post('Pagamento/Efetivar', 'PagamentoController@store' );
+Route::resource('Pagamento','PagamentoController');
 
 

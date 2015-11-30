@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\AssinaturaComerciante;
+use App\AssinaturaFilial;
 use PagarMe;
 use PagarMe_Transaction;
 use Auth;
@@ -54,38 +56,97 @@ class PagamentoController extends Controller
      */
     public function store(Request $request)
     { //Pagamento/Efetivar
-        DB::beginTransaction();
+        if(isset($request['selecionarPlano'])) {
+//            dd($request);
+            $firstVal = AssinaturaComerciante::where('idComerciante', '=', $request['id'])->count(); // . ' ' .
+            //(User::with('Empresa')->where('id', '=',  $request['id'] )->get()
+            //-> ));
+            $secondVal = (DB::select(DB::raw('SELECT count(*) as contagem FROM brasilspot2.users
+left join brasilspot2.empresas  on brasilspot2.empresas.idUsuario = brasilspot2.users.id
+left join brasilspot2.filiais on brasilspot2.filiais.idEmpresa = brasilspot2.empresas.id
+left join brasilspot2.assinaturasFiliais
+on brasilspot2.assinaturasFiliais.idAssinatura = brasilspot2.filiais.id
+where brasilspot2.users.id = ' . $request['idUsuario'] )));
+            $soma = 0;
+            if(isset($secondVal[0]->contagem)) {
+                $soma = intval($secondVal[0]->contagem);
+            }
+            $soma += intval($firstVal);
 
-        $transacao = null;
-        try {
-            $transacao = Transacao::create([
-                'fkEmpresa' => '1',
-                'fkCartao' => '1',
-                'fkEstadoTransacao' => '1',
-                'fkTipoTransacao' => '1',
-                'valorBruto' => '100,00', //amount em centavos
-                'cardHash' => $request['card_hash'],
-                'dataInicio' => date('d-m-y'),
-                'dataResposta' => date('d-m-y')
-            ]);
+            //TODO: pegar outra query porque a de cima não inclui o valor de cada um
 
-        } catch (Exception $exception) {
-            DB::rollBack();
-            return 'Problema com banco';
+            dd($soma);
+
+            //each
+//              id é idComerciante
+//            idUsuario
+//            selecionarPlano
+
+            DB::beginTransaction();
+            $transacao = null;
+            //TODO: setar os valores pra gravar a transação
+            try { //setar coisas na transacao, teria que criar a mudança de transicao tambem talvez
+                $transacao = Transacao::create([
+                    'fkEmpresa' => '1',
+                    'fkCartao' => '1',
+                    'fkEstadoTransacao' => '1',
+                    'fkTipoTransacao' => '1',
+                    'valorBruto' => '100,00', //amount em centavos
+                    'cardHash' => $request['card_hash'],
+                    'dataInicio' => date('d-m-y'),
+                    'dataResposta' => date('d-m-y')
+                ]);
+
+            } catch (Exception $exception) {
+                DB::rollBack();
+                return 'Problema com banco';
+            }
+            DB::commit();
+
+            Pagarme::setApiKey("ak_test_1jVGAUzxWNanzfTiW6yGX0cbA8Ywq7");
+
+            $transaction = new PagarMe_Transaction(array(
+                'amount' => strtr($transacao->valorBruto, array('.' => '', ',' => '')),
+                'card_hash' => $request['card_hash']
+            ));
+
+            $transaction->charge();
+
+            $status = $transaction->status; // status da transação
+            return 'Tapago! ' . $status; //TODO: arrumar o redirect
+        } else { //exemplo
+            DB::beginTransaction();
+            $transacao = null;
+            try {
+                $transacao = Transacao::create([
+                    'fkEmpresa' => '1',
+                    'fkCartao' => '1',
+                    'fkEstadoTransacao' => '1',
+                    'fkTipoTransacao' => '1',
+                    'valorBruto' => '100,00', //amount em centavos
+                    'cardHash' => $request['card_hash'],
+                    'dataInicio' => date('d-m-y'),
+                    'dataResposta' => date('d-m-y')
+                ]);
+
+            } catch (Exception $exception) {
+                DB::rollBack();
+                return 'Problema com banco';
+            }
+            DB::commit();
+
+            Pagarme::setApiKey("ak_test_1jVGAUzxWNanzfTiW6yGX0cbA8Ywq7");
+
+            $transaction = new PagarMe_Transaction(array(
+                'amount' => strtr($transacao->valorBruto, array('.' => '', ',' => '')),
+                'card_hash' => $request['card_hash']
+            ));
+
+            $transaction->charge();
+
+            $status = $transaction->status; // status da transação
+            return 'Tapago! ' . $status;
         }
-        DB::commit();
-
-        Pagarme::setApiKey("ak_test_1jVGAUzxWNanzfTiW6yGX0cbA8Ywq7");
-
-        $transaction = new PagarMe_Transaction(array(
-            'amount' =>  strtr($transacao->valorBruto, array('.' => '', ',' => '')),
-            'card_hash' => $request['card_hash']
-        ));
-
-        $transaction->charge();
-
-        $status = $transaction->status; // status da transação
-        return 'Tapago! '. $status;
     }
 
     /**

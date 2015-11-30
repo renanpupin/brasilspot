@@ -23,7 +23,6 @@ class Categoria extends Migration
         });
     }
 
-
     public function down()
     {
         Schema::table('categorias', function(Blueprint $table) {

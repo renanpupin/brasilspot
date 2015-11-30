@@ -15,7 +15,6 @@ class PerfilUsuario extends Migration
         });
     }
 
-
     public function down()
     {
         Schema::drop('perfisUsuarios');

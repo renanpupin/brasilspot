@@ -24,6 +24,10 @@ class Pagamento extends Migration
 
     public function down()
     {
+        Schema::table('pagamentos', function(Blueprint $table) {
+            $table->dropForeign(['idUsuario']);
+        });
+ 
         Schema::drop('pagamentos');
     }
 }

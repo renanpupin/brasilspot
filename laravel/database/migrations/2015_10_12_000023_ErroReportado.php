@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class ErroReportado extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('errosReportados', function(Blueprint $table)
@@ -27,16 +22,10 @@ class ErroReportado extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::table('errosReportados', function(Blueprint $table) {
             $table->dropForeign(['idUsuario']);
-
         });
         Schema::drop('errosReportados');
     }
