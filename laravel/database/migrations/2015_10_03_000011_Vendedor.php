@@ -24,7 +24,6 @@ class Vendedor extends Migration
             $table->foreign('idUsuario')->references('id')->on('users');
             $table->foreign('idTipo')->references('id')->on('tiposVendedores');
             $table->foreign('idMeta')->references('id')->on('metas');
-
         });
     }
 

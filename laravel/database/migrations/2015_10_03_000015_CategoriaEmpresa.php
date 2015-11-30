@@ -5,7 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CategoriaEmpresa extends Migration
 {
-
     public function up()
     {
         Schema::create('categoriasEmpresas', function(Blueprint $table)
@@ -21,7 +20,6 @@ class CategoriaEmpresa extends Migration
             $table->foreign('idCategoria')->references('id')->on('categorias');
         });
     }
-
 
     public function down()
     {

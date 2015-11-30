@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class MaterialPropaganda extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('materiaisPropagandas', function(Blueprint $table){
@@ -24,11 +19,6 @@ class MaterialPropaganda extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::table('materiaisPropagandas', function(Blueprint $table) {

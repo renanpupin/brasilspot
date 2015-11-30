@@ -29,7 +29,6 @@ class HistoricoMudancaEstado extends Migration
             $table->dropForeign(['fkTransacao']);
             $table->dropForeign(['fkEstadoTransacaoNovo']);
             $table->dropForeign(['fkEstadoTransacaoVelho']);
-            //<table_name>_<column_name>_foreign
         });
         Schema::drop('historicomudancaestado');
     }

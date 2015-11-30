@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class WhatsApp extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('whatsApp', function (Blueprint $table) {
@@ -19,11 +14,6 @@ class WhatsApp extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('whatsApp');

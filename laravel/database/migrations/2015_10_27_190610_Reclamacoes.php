@@ -22,17 +22,10 @@ class Reclamacoes extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::table('reclamacoes', function(Blueprint $table) {
             $table->dropForeign(['idUsuario']);
-
-            //<table_name>_<column_name>_foreign
         });
         Schema::drop('reclamacoes');
     }

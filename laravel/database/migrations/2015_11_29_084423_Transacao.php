@@ -36,7 +36,6 @@ class Transacao extends Migration
             $table->dropForeign(['fkCartao']);
             $table->dropForeign(['fkTipoTransacao']);
             $table->dropForeign(['fkEstadoTransacao']);
-            //<table_name>_<column_name>_foreign
         });
         Schema::drop('transacao');
     }

@@ -26,7 +26,6 @@ class Assinatura extends Migration
     {
         Schema::table('assinaturas', function(Blueprint $table) {
             $table->dropForeign(['idPlano']);
-            //<table_name>_<column_name>_foreign
         });
         Schema::drop('assinaturas');
     }

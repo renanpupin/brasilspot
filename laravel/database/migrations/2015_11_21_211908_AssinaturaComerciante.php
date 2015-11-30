@@ -22,7 +22,6 @@ class AssinaturaComerciante extends Migration
         });
     }
 
-
     public function down()
     {
         Schema::table('assinaturasComerciantes', function(Blueprint $table) {
