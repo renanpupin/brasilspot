@@ -21,6 +21,7 @@ use DB;
 use Gate;
 use App\AsssinaturaComerciante;
 use App\Http\Controllers\Controller;
+use Mockery\CountValidator\Exception;
 use Validator;
 
 class FilialController extends Controller
@@ -68,10 +69,7 @@ class FilialController extends Controller
             'estado' => 'required|not_in:-1',
             'endereco' => 'required',
             'bairro' => 'required',
-            'cep' => 'required',
             'cidade' => 'required',
-            'lat' => 'required',
-            'lon' => 'required',
             'telefone' => 'required',
             'isPrincipal' => 'required'
         );
@@ -81,10 +79,8 @@ class FilialController extends Controller
             'estado.not_in' => 'O campo Estado deve ser selecionado.',
             'endereco.required' => 'O campo Endereço deve ser preenchido.',
             'bairro.required' => 'O campo Bairro deve ser preenchido.',
-            'cep.required' => 'O campo Cep deve ser preenchido.',
             'cidade.required' => 'O campo Cidade deve ser preenchido.',
-            'lat.required' => 'O campo Latitude deve ser preenchido.',
-            'lon.required' => 'O campo Longitude deve ser preenchido.'
+            'telefone.required' => 'O campo Telefone deve ser preenchido'
         );
 
         $validator = Validator::make($request->all(), $regras, $mensagens);
@@ -136,17 +132,30 @@ class FilialController extends Controller
                 'idWhatsApp' => $whatsApp->id,
                 'isPrincipal' => $request['isPrincipal']
             ]);
+
             $idComerciante = Comerciante::where('idUsuario','=',$usuario->id)->first();
             $idsAssinaturasLiberadas = DB::select(DB::raw("select a.id from assinaturas a inner join assinaturasComerciantes ac on a.id = ac.idAssinatura where ac.idComerciante = :idComerciante and a.id not in(select idAssinatura from assinaturasFiliais)"),['idComerciante' => 1]);
-            AssinaturaFilial::create([
-               'idAssinatura' => $idsAssinaturasLiberadas[0]->id,
-                'idFilial' => $filial->id
-            ]);
+
+            if(count($idsAssinaturasLiberadas) > 0) {
+                AssinaturaFilial::create([
+                    'idAssinatura' => $idsAssinaturasLiberadas[0]->id,
+                    'idFilial' => $filial->id
+                ]);
+            }
+            else
+            {
+                DB::rollBack();
+                $errors = $validator->getMessageBag();
+                $errors->add('ErroTags', 'Não existe assinatura disponivel.');
+                return redirect()->back()->withErrors($errors);
+            }
         }
         catch(ValidationException $exception)
         {
             DB::rollBack();
-            return redirect()->back();
+            $errors = $validator->getMessageBag();
+            $errors->add('ErroTags', $exception);
+            return redirect()->back()->withErrors($errors);
         }
         DB::commit();
 
@@ -175,10 +184,7 @@ class FilialController extends Controller
             'estado' => 'required|not_in:-1',
             'endereco' => 'required',
             'bairro' => 'required',
-            'cep' => 'required',
             'cidade' => 'required',
-            'lat' => 'required',
-            'lon' => 'required',
             'telefone' => 'required',
             'isPrincipal' => 'required'
         );
@@ -188,10 +194,8 @@ class FilialController extends Controller
             'estado.not_in' => 'O campo Estado deve ser selecionado.',
             'endereco.required' => 'O campo Endereço deve ser preenchido.',
             'bairro.required' => 'O campo Bairro deve ser preenchido.',
-            'cep.required' => 'O campo Cep deve ser preenchido.',
             'cidade.required' => 'O campo Cidade deve ser preenchido.',
-            'lat.required' => 'O campo Latitude deve ser preenchido.',
-            'lon.required' => 'O campo Longitude deve ser preenchido.'
+            'telefone.required' => 'O campo Telefone deve ser preenchido.'
         );
 
         $validator = Validator::make($request->all(), $regras, $mensagens);
@@ -201,10 +205,46 @@ class FilialController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        DB::beginTransaction();
+        try {
+            $filial = Filial::find($request['idFilial']);
 
-        $filial = Filial::find($request['idFilial']);
+            $endereco = Endereco::find($filial->idEndereco);
+            $telefone = Telefone::find($filial->idTelefone);
+            $whatsApp = WhatsApp::find($filial->idWhatsApp);
 
-//        dd($filial);
+            $filial->isPrincipal = $request['isPrincipal'];
+            $filial->save();
+
+            if ($endereco != null) {
+                $endereco->endereco = $request['endereco'];
+                $endereco->bairro = $request['bairro'];
+                $endereco->cidade = $request['cidade'];
+                $endereco->estado = $request['estado'];
+                $endereco->cep = $request['cep'];
+                $endereco->lon = $request['lon'];
+                $endereco->lat = $request['lat'];
+                $endereco->save();
+            }
+
+            if ($telefone != null) {
+                $telefone->numero = $request['telefone'];
+                $telefone->save();
+            }
+
+            if ($whatsApp != null) {
+                $whatsApp->numero = $request['whatsapp'];
+                $whatsApp->save();
+            }
+        }
+        catch(Exception $exception)
+        {
+            DB::rollBack();
+            $errors = $validator->getMessageBag();
+            $errors->add('ErroTags', $exception);
+            return redirect()->back()->withErrors($errors);
+        }
+        DB::commit();
 
         Session::flash('flash_message', 'Filial editada com sucesso!');
 

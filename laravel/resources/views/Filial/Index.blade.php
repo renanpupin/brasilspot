@@ -76,12 +76,12 @@
                         <td>{{ $filial->Endereco->estado }}</td>
                         <td>{{ $filial->Endereco->lat }}</td>
                         <td>{{ $filial->Endereco->lon }}</td>
-                        @if($filial->principal == true)
+                        @if($filial->isPrincipal == 1)
                             <td>
                                 <i class="material-icons">thumb_up</i>Sim
                             </td>
                         @endif
-                        @if($filial->principal == false)
+                        @if($filial->isPrincipal == 0)
                             <td>
                                 <i class="material-icons">thumb_down</i>Não
                             </td>

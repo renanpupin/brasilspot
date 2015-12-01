@@ -13,7 +13,7 @@ class Filial extends Model
         'idEndereco',
         'idTelefone',
         'idWhatsApp',
-        'principal'
+        'isPrincipal'
     );
 
     public function Empresa()

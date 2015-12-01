@@ -239,9 +239,7 @@ Route::get('SuaAssinatura/Cancelar/{id}', function () {
     return view('Comerciante/CancelarAssinatura');
 });
 
-Route::get('SuaAssinatura', function () {
-    return view('Comerciante/Assinatura');
-});
+Route::get('SuaAssinatura', 'ComercianteController@minhasAssinaturas');
 
 Route::get('Reclamar', function () {
     return view('Reclamacao/Create');
