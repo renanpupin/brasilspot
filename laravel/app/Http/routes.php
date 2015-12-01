@@ -208,6 +208,7 @@ Route::get('Resumo', function () {
     return view('401');
 });
 
+Route::get('SuasFiliais/visualizar/{id}', 'FilialController@show');
 Route::get('SuasFiliais/editar/{id}', 'FilialController@edit');
 Route::get('SuasFiliais/cadastrar', 'FilialController@create');
 Route::post('SuasFiliais/editar', ['as' => 'SuasFiliais.editar', 'uses' => 'FilialController@update']);

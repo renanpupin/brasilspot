@@ -65,7 +65,7 @@ class EmpresaController extends Controller
         {
             return redirect('SuaEmpresa/Cadastrar');
         }else{
-            return view('SuaEmpresa/Detail');
+            return view('Empresa/Detail');
         }
     }
 

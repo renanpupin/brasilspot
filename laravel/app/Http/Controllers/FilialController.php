@@ -158,9 +158,8 @@ class FilialController extends Controller
 
     public function show($id)
     {
-        $empresa = Empresa::find($id);
-
-        return view('Filial.Detail')->with('empresa',$empresa);
+        $filial = Filial::with('Empresa')->with('Endereco')->with('Telefone')->with('WhatsApp')->find($id);
+        return view('Filial.Detail')->with('filial',$filial);
     }
 
     public function edit($id)
@@ -205,7 +204,11 @@ class FilialController extends Controller
 
         $filial = Filial::find($request['idFilial']);
 
-        dd($filial);
+//        dd($filial);
+
+        Session::flash('flash_message', 'Filial editada com sucesso!');
+
+        return redirect()->back();
 
     }
 

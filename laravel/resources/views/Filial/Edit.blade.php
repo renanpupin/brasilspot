@@ -83,33 +83,33 @@
                 <label for="estado">Estado *</label>
                 <select id="estado" name="estado" required>
                     <option value="-1">Selecione o estado</option>
-                    <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas</option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espirito Santo</option>
-                    <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraíba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
-                    <option value="SP">São Paulo</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantins</option>
+                    <option value="AC" {{($filial->Endereco->estado == "AC" ? "selected" : "")}}>Acre</option>
+                    <option value="AL" {{($filial->Endereco->estado == "AL" ? "selected" : "")}}>Alagoas</option>
+                    <option value="AP" {{($filial->Endereco->estado == "AP" ? "selected" : "")}}>Amapá</option>
+                    <option value="AM" {{($filial->Endereco->estado == "AM" ? "selected" : "")}}>Amazonas</option>
+                    <option value="BA" {{($filial->Endereco->estado == "BA" ? "selected" : "")}}>Bahia</option>
+                    <option value="CE" {{($filial->Endereco->estado == "CE" ? "selected" : "")}}>Ceará</option>
+                    <option value="DF" {{($filial->Endereco->estado == "DF" ? "selected" : "")}}>Distrito Federal</option>
+                    <option value="ES" {{($filial->Endereco->estado == "ES" ? "selected" : "")}}>Espirito Santo</option>
+                    <option value="GO" {{($filial->Endereco->estado == "GO" ? "selected" : "")}}>Goiás</option>
+                    <option value="MA" {{($filial->Endereco->estado == "MA" ? "selected" : "")}}>Maranhão</option>
+                    <option value="MS" {{($filial->Endereco->estado == "MS" ? "selected" : "")}}>Mato Grosso do Sul</option>
+                    <option value="MT" {{($filial->Endereco->estado == "MT" ? "selected" : "")}}>Mato Grosso</option>
+                    <option value="MG" {{($filial->Endereco->estado == "MG" ? "selected" : "")}}>Minas Gerais</option>
+                    <option value="PA" {{($filial->Endereco->estado == "PA" ? "selected" : "")}}>Pará</option>
+                    <option value="PB" {{($filial->Endereco->estado == "PB" ? "selected" : "")}}>Paraíba</option>
+                    <option value="PR" {{($filial->Endereco->estado == "PR" ? "selected" : "")}}>Paraná</option>
+                    <option value="PE" {{($filial->Endereco->estado == "PE" ? "selected" : "")}}>Pernambuco</option>
+                    <option value="PI" {{($filial->Endereco->estado == "PI" ? "selected" : "")}}>Piauí</option>
+                    <option value="RJ" {{($filial->Endereco->estado == "RJ" ? "selected" : "")}}>Rio de Janeiro</option>
+                    <option value="RN" {{($filial->Endereco->estado == "RN" ? "selected" : "")}}>Rio Grande do Norte</option>
+                    <option value="RS" {{($filial->Endereco->estado == "RS" ? "selected" : "")}}>Rio Grande do Sul</option>
+                    <option value="RO" {{($filial->Endereco->estado == "RO" ? "selected" : "")}}>Rondônia</option>
+                    <option value="RR" {{($filial->Endereco->estado == "RR" ? "selected" : "")}}>Roraima</option>
+                    <option value="SC" {{($filial->Endereco->estado == "SC" ? "selected" : "")}}>Santa Catarina</option>
+                    <option value="SP" {{($filial->Endereco->estado == "SP" ? "selected" : "")}}>São Paulo</option>
+                    <option value="SE" {{($filial->Endereco->estado == "SE" ? "selected" : "")}}>Sergipe</option>
+                    <option value="TO" {{($filial->Endereco->estado == "TO" ? "selected" : "")}}>Tocantins</option>
                 </select>
             </div>
 
@@ -139,8 +139,8 @@
                 <label for="inputIsPrincipal">É a empresa principal? *</label>
                 <p class="input-hint">(Selecione 'SIM' para definir a filial como sendo o endereço principal)</p>
                 <select id="isPrincipal" name="isPrincipal" required>
-                    <option value="0">NÃO</option>
-                    <option value="1">SIM</option>
+                    <option value="0" {{($filial->isPrincipal == "0" ? "selected" : "")}}>NÃO</option>
+                    <option value="1" {{($filial->isPrincipal == "1" ? "selected" : "")}}>SIM</option>
                 </select>
             </div>
         </div>

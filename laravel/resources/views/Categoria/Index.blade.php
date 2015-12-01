@@ -122,6 +122,6 @@
 
 @stop
 
-@section('scripts')
+@section('script')
     <script type="text/javascript" src="{!! asset('assets/js/categoria/categoria.js') !!}"></script>
 @stop

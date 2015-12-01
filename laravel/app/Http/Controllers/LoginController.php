@@ -27,7 +27,7 @@ class LoginController extends Controller
             //return redirect()->back()->withErrors('Ocorreu um erro interno, por favor contate um administrador Spot.');
             return redirect('Empresa');
         }
-        return view('Login.Index');
+        return view('login.Index');
     }
 
     public function logar(Request $request)
