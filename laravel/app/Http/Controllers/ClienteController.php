@@ -120,6 +120,12 @@ class ClienteController extends Controller
 
                     $validator = Validator::make($request->all(), $regras, $mensagens);
 
+                    if ($validator->fails()) {
+                        return redirect('Usuario/cadastrar')
+                            ->withErrors($validator)
+                            ->withInput();
+                    }
+
                     $vendedor = Vendedor::create([
                         'idUsuario' => $usuario->id,
                         'idTipo' => $request['tiposVendedores'],

@@ -120,6 +120,7 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
     Route::post('Filial/editar/{id}', 'FilialController@update');
     Route::get('Filial/editar/{id}', 'FilialController@edit');
     Route::get('Filial/cadastrar', 'FilialController@create');
+    Route::delete('Filial/remover','FilialController@destroy');
     Route::resource('Filial','FilialController');
 
     //routes for "Servicos"
@@ -207,10 +208,10 @@ Route::get('Resumo', function () {
     return view('401');
 });
 
-Route::post('SuasFiliais/editar/{id}', 'FilialController@update');
 Route::get('SuasFiliais/editar/{id}', 'FilialController@edit');
 Route::get('SuasFiliais/cadastrar', 'FilialController@create');
-Route::resource('SuasFiliais', 'FilialController@index');
+Route::post('SuasFiliais/editar', ['as' => 'SuasFiliais.editar', 'uses' => 'FilialController@update']);
+Route::resource('SuasFiliais', 'FilialController');
 
 Route::get('SuaEmpresa/Editar', 'EmpresaController@editar');
 

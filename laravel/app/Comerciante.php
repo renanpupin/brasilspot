@@ -9,6 +9,7 @@ class Comerciante extends Model
     protected $table = "comerciantes";
 
     protected $fillable = array(
+        'id',
         'idUsuario',
         'idVendedor',
     );

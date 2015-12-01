@@ -19,13 +19,22 @@
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
         <h2>Listar Filiais</h2>
-        <h5>Nome Fantasia</h5>
         @can('AcessoComerciante')
-             <p>No momento você pode ter <b>{{$numero_assinaturas}}</b> filial. Para adicionar mais filiais clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
+        @if($numero_assinaturas > 0 )
+            <p>No momento você pode ter <b>{{$numero_assinaturas}}</b> filial(is). Para adicionar mais filiais clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
+        @endif
+        @if($numero_assinaturas == 0 )
+            <p>No momento você não pode adicionar mais filiais. Se deseja adicionar mais filiais clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
+        @endif
         @endcan
     </div>
 
+    @if($numero_assinaturas == 0)
+        <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
+    @endif
+    @if($numero_assinaturas > 0)
     <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
+    @endif
         <div class="breadcrumbs-content container">
             <div class="row">
                 <i class="material-icons">home</i>
@@ -38,13 +47,13 @@
         </div>
     </div>
 
-
-    <div class="grid-m-3 grid-s-3 grid-xs-12">
-        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('SuasFiliais/cadastrar') }}">
-            <span class="text-content">Novo</span>
-        </a>
-    </div>
-
+    @if($numero_assinaturas > 0)
+        <div class="grid-m-3 grid-s-3 grid-xs-12">
+            <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px;" href="{{ url('SuasFiliais/cadastrar') }}">
+                <span class="text-content">Novo</span>
+            </a>
+        </div>
+    @endif
     <div id="listagem" class="grid-m-12 grid-s-12 grid-xs-12">
         <div class="table-responsive">
             <table id="listaFiliais" class="table">
@@ -57,35 +66,41 @@
             <th>Principal</th>
             <th></th>
             <th></th>
-            <th></th>
         </thead>
         <tbody>
         @foreach($filiais as $filial)
             <tr>
-                <td>id</td>
+                <td>{{ $filial->id }}</td>
                 <td>{{ $filial->Endereco->cidade }}</td>
                 <td>{{ $filial->Endereco->estado }}</td>
                 <td>{{ $filial->Endereco->lat }}</td>
                 <td>{{ $filial->Endereco->lon }}</td>
-                <td>{{ $filial->principal }}</td>
-                <td>
-                    <i class="material-icons" title="Comércio">store</i>Comércio
-                    <!-- <i class="material-icons" title="Serviço">work</i>
-                         <i class="material-icons" title="Atração">mood</i> -->
-                </td>
-                <td>
-                    <i class="material-icons">thumb_up</i>Sim
-                </td>
+                @if($filial->principal == true)
+                    <td>
+                        <i class="material-icons">thumb_up</i>Sim
+                    </td>
+                @endif
+                @if($filial->principal == false)
+                    <td>
+                        <i class="material-icons">thumb_down</i>Não
+                    </td>
+                @endif
+                {{--<td>--}}
+                    {{--<i class="material-icons" title="Comércio">store</i>Comércio--}}
+                    {{--<!-- <i class="material-icons" title="Serviço">work</i>--}}
+                         {{--<i class="material-icons" title="Atração">mood</i> -->--}}
+                {{--</td>--}}
+
+                {{--<td class="col-actions">--}}
+                    {{--<a href="{{ route('SuasFiliais.show', array('id' => $filial->id))}}" title="Detalhar"><i class="material-icons">description</i></a>--}}
+                {{--</td>--}}
                 <td class="col-actions">
-                    <a href="{{ route('SuasFiliais.show', array('id' => $filial->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
-                </td>
-                <td class="col-actions">
-                    <a href="{{ url('SuasFiliais/editar', [$filial->id]) }}" title="Editar"><i class="material-icons">mode_edit</i></a>
+                    <a href="{{ url('SuasFiliais/editar', $filial->id) }}" title="Editar"><i class="material-icons">mode_edit</i></a>
                 </td>
                 <td class="col-actions">
                     {!! Form::open([
                         'method' => 'DELETE',
-                        'route' => ['Filial.destroy', $servico->id]
+                        'route' => ['Filial.destroy', $filial->id]
                     ]) !!}
                     {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
                     {!! Form::close() !!}

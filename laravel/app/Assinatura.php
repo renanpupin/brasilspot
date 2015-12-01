@@ -18,4 +18,9 @@ class Assinatura extends Model
     {
         return $this->hasOne('\App\Plano','id','idPlano');
     }
+
+    public function AssinaturaFilial()
+    {
+        return $this->hasOne('\App\AssinaturaFilial','idAssinatura','id');
+    }
 }

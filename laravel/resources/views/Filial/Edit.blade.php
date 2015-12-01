@@ -55,28 +55,29 @@
     @endif
 
     <div id="editar" class="grid-m-12 grid-s-12 grid-xs-12">
-        {!! Form::Open(['route' => 'Filial.store', 'method' => 'POST']) !!}
+        {!! Form::Open(['route' => 'SuasFiliais.editar', 'method' => 'POST']) !!}
 
         <div class="row">
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 <p class="text-caption">- Campos com (*) são obrigatórios</p>
             </div>
+            <input type="text" name="idFilial" id="idFilial" value="{{ $filial->id }}" hidden>
 
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <label for="endereco">Endereço *</label>
-                <input type="text" name="endereco" id="endereco">
+                <input type="text" name="endereco" id="endereco" value="{{ $filial->Endereco->endereco }}">
             </div>
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <label for="bairro">Bairro *</label>
-                <input type="text" name="bairro" id="bairro">
+                <input type="text" name="bairro" id="bairro" value="{{ $filial->Endereco->bairro }}">
             </div>
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <label for="cep">Cep </label>
-                <input type="text" name="cep" id="cep">
+                <input type="text" name="cep" id="cep" value="{{ $filial->Endereco->cep }}">
             </div>
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <label for="cidade">Cidade *</label>
-                <input type="text" name="cidade" id="cidade">
+                <input type="text" name="cidade" id="cidade" value="{{ $filial->Endereco->cidade }}">
             </div>
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <label for="estado">Estado *</label>
@@ -117,20 +118,22 @@
                 <p class="input-hint">(Ofereceços o serviço de localização utilizando as coordenadas de latitude e longitude)</p>
                 <div class="row">
                     <div class="grid-m-6">
-                        <label for="lat" class="input-subhead">Latitude</label><input type="text" name="lat" id="lat" placeholder="Exemplo: -55.1551">
+                        <label for="lat" class="input-subhead">Latitude</label>
+                        <input type="text" name="lat" id="lat" placeholder="Exemplo: -55.1551" value="{{ $filial->Endereco->lat }}">
                     </div>
                     <div class="grid-m-6">
-                        <label for="lon" class="input-subhead">Longitude</label><input type="text" name="lon" id="lon" placeholder="Exemplo: -21.123">
+                        <label for="lon" class="input-subhead">Longitude</label>
+                        <input type="text" name="lon" id="lon" placeholder="Exemplo: -21.123"  value="{{ $filial->Endereco->lon }}">
                     </div>
                 </div>
             </div>
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <label for="telefone">Telefone para clientes *</label>
-                <input type="text" name="telefone" id="telefone" class="input-phone">
+                <input type="text" name="telefone" id="telefone" class="input-phone" value="{{ $filial->Telefone->numero }}">
             </div>
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <label for="whatsapp">Whatsapp</label>
-                <input type="text" name="whatsapp" id="whatsapp" class="input-whatsapp">
+                <input type="text" name="whatsapp" id="whatsapp" class="input-whatsapp" value="{{ $filial->WhatsApp->numero }}">
             </div>
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 <label for="inputIsPrincipal">É a empresa principal? *</label>
