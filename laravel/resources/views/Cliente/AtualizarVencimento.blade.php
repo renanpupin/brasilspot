@@ -57,7 +57,7 @@
 
     <div id="editar" class="grid-m-12 grid-s-12 grid-xs-12">
 
-        {!! Form::Open(['url' => 'Pagamento/Efetivar', 'method' => 'POST']) !!}
+        {!! Form::Open(['url' => 'Pagamento/Calcular', 'method' => 'POST']) !!}
         <div class="row">
 
             {!! Form::text('id',$usuario->Comerciante->id,['hidden']) !!}

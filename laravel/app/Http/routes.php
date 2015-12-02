@@ -327,8 +327,11 @@ Route::get('/', function () {
     return redirect('Inicio');
 });
 
-Route::get('Pagamento/Calcular', 'PagamentoController@create' );
-Route::post('Pagamento/Efetivar', 'PagamentoController@store' );
-Route::resource('Pagamento','PagamentoController');
+//Pagamento Cartao/Assinatura
+
+Route::post('Pagamento/Calcular', 'PagamentoController@prepararPagamentoAtualizar' );
+Route::get('Pagamento/InfoCartao', 'PagamentoController@create');
+Route::post('Pagamento/Efetivar', 'PagamentoController@store');
+//Route::resource('Pagamento','PagamentoController');
 
 
