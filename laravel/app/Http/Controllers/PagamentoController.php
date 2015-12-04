@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 
 use App\Transacao;
+use App\Empresa;
 use App\TipoTransacao;
 use App\EstadoTransacao;
 use App\Comerciante;
@@ -28,18 +29,22 @@ use BaseController;
 
 class PagamentoController extends Controller
 {
-
-
-    public function prepararPagamentoAtualizar(Request $request) {
-
-
-        return $request->all();
+    public function prepararPagamentoGet() { //Calcular
+        $values = array(
+            "0" => array(
+                'valor' => "35,01",
+                'descricao' => "Filiar de sorocaba",
+            ),
+            "1" => array(
+                'valor' => "15,04",
+                'descricao' => "Filiar de mandioquinha",
+            )
+        );
+        return view('Pagamento/Calcular')->with("values", $values);
     }
 
-    public function prepararPagamento() {
-
-
-
+    public function prepararPagamentoPost(Request $request) { //Calcular post
+        return $request->all();
     }
 
     /**
@@ -48,7 +53,8 @@ class PagamentoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { //Pagamento/Confirmar
+    { //Pagamento/DadosCartao
+
 
     }
 
@@ -66,14 +72,15 @@ class PagamentoController extends Controller
             //(User::with('Empresa')->where('id', '=',  $request['id'] )->get()
             //-> ));
             $secondVal = (DB::select(DB::raw('SELECT count(*) as contagem FROM brasilspot2.users
-left join brasilspot2.empresas  on brasilspot2.empresas.idUsuario = brasilspot2.users.id
-left join brasilspot2.filiais on brasilspot2.filiais.idEmpresa = brasilspot2.empresas.id
-left join brasilspot2.assinaturasFiliais
-on brasilspot2.assinaturasFiliais.idAssinatura = brasilspot2.filiais.id
-where brasilspot2.users.id = ' . $request['idUsuario'] )));
+                        left join brasilspot2.empresas  on brasilspot2.empresas.idUsuario = brasilspot2.users.id
+                        left join brasilspot2.filiais on brasilspot2.filiais.idEmpresa = brasilspot2.empresas.id
+                        left join brasilspot2.assinaturasFiliais
+                        on brasilspot2.assinaturasFiliais.idAssinatura = brasilspot2.filiais.id
+                        where brasilspot2.users.id = ' . $request['idUsuario'] )));
             $soma = 0;
             if(isset($secondVal[0]->contagem)) {
                 $soma = intval($secondVal[0]->contagem);
+
             }
             $soma += intval($firstVal);
 
