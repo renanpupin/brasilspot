@@ -9,9 +9,7 @@ class Pagamento extends Model
     protected $table = "pagamentos";
 
     protected $fillable = array(
-        'id',
         'idUsuario',
-        'valor',
         'dataPagamento',
         'dataBaixa'
     );

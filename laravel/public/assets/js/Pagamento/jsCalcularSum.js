@@ -5,10 +5,12 @@ $(document).ready(function() {
         sum += Number(String(this.value).replace("R$ ", "").replace(",","."))
     });
 
+
     totalTotal = $("#idTotal")[0];
     totalTotal.value = "R$ " + String(sum).replace('.',',');
 
-    $("input[type='checkbox']" ).change( "click", function() {
+    $("input[type='checkbox']" ).off("click").change( "click", function() {
+        checkerbox = this;
         sum = 0;
         $('.valores1').each(function() {
             if ($($(this).parent().parent().children("td")[0]).children("input")[0].checked == true) {
@@ -18,3 +20,4 @@ $(document).ready(function() {
         totalTotal.value = "R$ " + String(sum).replace('.',',');
     })
 });
+

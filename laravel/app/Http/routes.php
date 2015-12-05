@@ -327,10 +327,13 @@ Route::get('/', function () {
     return redirect('Inicio');
 });
 
+
 //Routes for Pagamento Cartao
-Route::post('Pagamento/Calcular', 'PagamentoController@prepararPagamentoPost' );
 Route::get('Pagamento/Calcular', 'PagamentoController@prepararPagamentoGet' );
-Route::get('Pagamento/InfoCartao', 'PagamentoController@create');
+Route::post('Pagamento/InfoCartao', 'PagamentoController@create');
+Route::get('Pagamento/InfoCartao', function () {
+    return redirect('Pagamento/Calcular');
+});
 Route::post('Pagamento/Efetivar', 'PagamentoController@store');
 
 

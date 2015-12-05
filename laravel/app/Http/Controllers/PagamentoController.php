@@ -13,15 +13,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Input;
 
 use App\Transacao;
-use App\Empresa;
-use App\TipoTransacao;
-use App\EstadoTransacao;
-use App\Comerciante;
-use App\PerfilUsuario;
-use App\User;
-use App\Vendedor;
+
 
 use DB;
 use BaseController;
@@ -43,19 +38,25 @@ class PagamentoController extends Controller
         return view('Pagamento/Calcular')->with("values", $values);
     }
 
-    public function prepararPagamentoPost(Request $request) { //Calcular post
-        return $request->all();
-    }
+    public function create(Request $request)
+    { //Pagamento/InfoCartao
+        $inputArray = $request->all();
+        if (!isset($inputArray['totalTotalis'])) {
+            return Redirect::to('Pagamento/Calcular')->with('message', 'Valor a ser pago inválido');
+        }
+        $valorReal = str_replace('R$ ','', $inputArray['totalTotalis']);
+        $valorReal = str_replace(',','.',$valorReal);
+        $valorReal = floatval($valorReal);
+        if ($valorReal < 1 || $valorReal == 0 ) {
+            return Redirect::to('Pagamento/Calcular')->with('message', 'Valor a ser pago inválido');
+        }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    { //Pagamento/DadosCartao
 
-
+        //dd(Input::all());
+        //return $request->all() . $request.get("totalTotalis");
+        return view('Pagamento/InfoCartao')
+            ->with("valorPagamento", "R$ ".str_replace('.',',',$valorReal))
+            ->with("dirtyValorPagamento", $valorReal);
     }
 
     /**
@@ -66,6 +67,11 @@ class PagamentoController extends Controller
      */
     public function store(Request $request)
     { //Pagamento/Efetivar
+//        <!-- 30260641400977, CVV, 660, 07/2019 !-->
+        $userInputs = $request->all();
+        var_dump($request->all());
+        return($request->all());
+
         if(isset($request['selecionarPlano'])) {
 //            dd($request);
             $firstVal = AssinaturaComerciante::where('idComerciante', '=', $request['id'])->count(); // . ' ' .

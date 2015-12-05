@@ -17,9 +17,6 @@
 
 @section('content')
 
-    <link rel="stylesheet" href="{{ asset('assets/css/dropzone.css') }}">
-
-
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
         <h2>Pagamento</h2>
     </div>
@@ -57,7 +54,7 @@
     @endif
 
     <div id="selecao" class="grid-m-12 grid-s-12 grid-xs-12">
-        {!! Form::Open(['url' => 'Pagamento/Calcular', 'method' => 'POST']) !!}
+        {!! @Form::Open(['url' => 'Pagamento/InfoCartao', 'method' => 'POST']) !!}
             <table id="listaFiliais" class="table">
                 <thead>
                     <th></th>
@@ -68,11 +65,11 @@
                     @foreach ($values as $key => $value)
                         <tr>
                             <td>
-                                {!! Form::checkbox($key, null, ["checked" => "true" ] ) !!}
+                                {!! @Form::checkbox("checkbox".$key, null, ["checked" => "true" ] ) !!}
                             </td>
                             <td>{{ $value["descricao"] }}</td>
                             <td>
-                                {!! Form::text("value".$key, "R$ ".$value["valor"], ["checked" => "true", "disabled" => "disabled", "class" => "valores1" ] ) !!}
+                                {!! @Form::text("value".$key, "R$ ".$value["valor"], ["checked" => "true", "readonly" => "readonly", "class" => "valores1" ] ) !!}
                             </td>
                         </tr>
                     @endforeach
@@ -81,13 +78,16 @@
                     <tr>
                         <th colspan="2">Total :</th>
                         <td>
-                            {!! Form::text('totalTotalis', "R$ ".$value["valor"], ["disabled" => "disabled", "id" => "idTotal" ] ) !!}
+                            {!! @Form::text("totalTotalis", "R$ ".$value["valor"], ["readonly" => "readonly", "id" => "idTotal" ] ) !!}
                         </td>
                     </tr>
                 </tfoot>
             </table>
-            {!! Form::submit('Confirmar') !!}
-        {!! Form::Close() !!}
+            {!! @Form::button('<span class="text-content">Enviar</span>',
+                    ['id' => 'btnCadastrar','name' => 'btnprox' , 'type' => 'submit', 'class' => 'btn btn-primary ripple']
+                )
+            !!}
+        {!! @Form::Close() !!}
     </div>
 
 @stop
