@@ -54,7 +54,7 @@
     @endif
 
     <div id="selecao" class="grid-m-12 grid-s-12 grid-xs-12">
-        {!! @Form::Open(['url' => 'Pagamento/InfoCartao', 'method' => 'POST']) !!}
+        {!! Form::Open(['url' => 'Pagamento/InfoCartao', 'method' => 'POST']) !!}
             <table id="listaFiliais" class="table">
                 <thead>
                     <th></th>
@@ -65,11 +65,11 @@
                     @foreach ($values as $key => $value)
                         <tr>
                             <td>
-                                {!! @Form::checkbox("checkbox".$key, null, ["checked" => "true" ] ) !!}
+                                {!! Form::checkbox("checkbox[]", $value["id"], ["checked" => "true" ] ) !!}
                             </td>
                             <td>{{ $value["descricao"] }}</td>
                             <td>
-                                {!! @Form::text("value".$key, "R$ ".$value["valor"], ["checked" => "true", "readonly" => "readonly", "class" => "valores1" ] ) !!}
+                                {!! Form::text("value[]", "R$ ".$value["valor"], ["checked" => "true", "readonly" => "readonly", "class" => "valores1" ] ) !!}
                             </td>
                         </tr>
                     @endforeach
@@ -78,16 +78,16 @@
                     <tr>
                         <th colspan="2">Total :</th>
                         <td>
-                            {!! @Form::text("totalTotalis", "R$ ".$value["valor"], ["readonly" => "readonly", "id" => "idTotal" ] ) !!}
+                            {!! Form::text("totalTotalis", "R$ ".$value["valor"], ["readonly" => "readonly", "id" => "idTotal" ] ) !!}
                         </td>
                     </tr>
                 </tfoot>
             </table>
-            {!! @Form::button('<span class="text-content">Enviar</span>',
+            {!! Form::button('<span class="text-content">Enviar</span>',
                     ['id' => 'btnCadastrar','name' => 'btnprox' , 'type' => 'submit', 'class' => 'btn btn-primary ripple']
                 )
             !!}
-        {!! @Form::Close() !!}
+        {!! Form::Close() !!}
     </div>
 
 @stop

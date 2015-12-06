@@ -14,8 +14,7 @@ $(document).ready(function() {
             $("div.dadosCartaoShowHide :input").attr("disabled", true);
             $("div.dadosCartaoShowHide :input").attr("required", false);
             toggleValidationCard = false;
-            alert(toggleValidationCard);
-
+            $("#card_form_submit")[0].value = "Gerar boleto"
         }
     });
 
@@ -24,17 +23,14 @@ $(document).ready(function() {
             divEntraSaiCartao.show();
             $("div.dadosCartaoShowHide :input").attr("disabled", false);
             $("div.dadosCartaoShowHide :input").attr("required", true);
+            $("#card_form_submit")[0].value = "Pagar no cartão"
+
             toggleValidationCard = true;
-            alert(toggleValidationCard);
         };
     });
 
-
     button.onclick = function() { // quando o form for enviado...
-        alert(toggleValidationCard);
-
         if(toggleValidationCard) {
-
             var creditCard = new PagarMe.creditCard();
             creditCard.cardHolderName = $("#payment_form #card_holder_name").val();
             creditCard.cardExpirationMonth = $("#payment_form #card_expiration_month").val();
@@ -44,7 +40,6 @@ $(document).ready(function() {
 
             //remover name para não fazer submit dos dados do cartão
             $(".removeName").removeAttr("name");
-
 
             // pega os erros de validação nos campos do form
             var fieldErrors = creditCard.fieldErrors();
