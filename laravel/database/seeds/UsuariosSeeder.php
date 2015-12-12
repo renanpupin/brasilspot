@@ -21,7 +21,7 @@ class UsuariosSeeder extends Seeder
         DB::table('comerciantes')->delete();
         DB::table('vendedores')->delete();
         DB::table('tiposVendedores')->delete();
-        DB::table('metas')->delete();
+//        DB::table('metas')->delete();
         DB::table('reclamacoes')->delete();
         DB::table('users')->delete();
         DB::table('perfisUsuarios')->delete();

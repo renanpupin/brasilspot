@@ -1,6 +1,5 @@
 @extends('layouts.master')
 
-
 @section('title', 'Bem vindo!')
 
 @section('sidebar')

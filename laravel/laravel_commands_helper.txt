@@ -1,0 +1,11 @@
+remove sessão de usuários logados
+php artisan cache:clear
+
+força migrações
+php artisan migrate --force
+
+criar migration
+php artisan make:migration TipoMeta
+
+seeders
+php artisan db:seed --class=UsuariosSeeder

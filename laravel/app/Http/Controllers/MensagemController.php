@@ -20,7 +20,7 @@ class MensagemController extends Controller
         $usuario = Auth::User();
         $numero_novas_mensagens = Mensagem::where('dataRespondida','!=', '')->where('idUsuario', '=', $usuario)->count();
         $mensagens = Mensagem::where('idUsuario', '=', $usuario)->get();
-        return view('Mensagem/index')->with('numero_novas_mensagens',$numero_novas_mensagens)->with('mensagens',$mensagens);
+        return view('Mensagem/Index')->with('numero_novas_mensagens',$numero_novas_mensagens)->with('mensagens',$mensagens);
     }
 
     public function responder($id)

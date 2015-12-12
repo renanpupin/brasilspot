@@ -36,6 +36,11 @@
                         <i class="material-icons" style="color: #A32995;">trending_up</i>Metas
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('TipoMeta' )}}" class="{{ Request::segment(1) === 'TipoMeta' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #A32995;">trending_up</i>Tipos de Meta
+                    </a>
+                </li>
                 <li class="submenu">
                     <a href="{{ url('Vendedores' )}}" class="{{ Request::segment(1) === 'Vendedor' ? 'active' : null }}">
                         <i class="material-icons" style="color: #266CAD;">person</i>Vendedores
@@ -61,6 +66,11 @@
                                 <i class="material-icons">recent_actors</i>Mapa de vendedores
                             </a>
                         </li>
+                        {{--<li>--}}
+                            {{--<a href="{{ url('Vendedor/VincularMetas' )}}" class="">--}}
+                                {{--<i class="material-icons">playlist_add</i>Vincular Metas--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
                         {{--<li>--}}
                         {{--<a href="{{ url('Cliente/EmpresasDesativadas' )}}" class="{{ Request::segment(1) === 'EmpresasDesativadas' ? 'active' : null }}">--}}
                         {{--<i class="material-icons">location_off</i>Empresas desativadas--}}

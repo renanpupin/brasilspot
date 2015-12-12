@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Meta #{{ $meta->id }}</h2>
+        <h2>Adicionar Metas Vendedor #{{$vendedor->idUsuario}}</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -20,8 +20,9 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ route('Meta.index') }}">Metas</a></li>
-                    <li>Detalhar</li>
+                    <li><a href="{{ url('Vendedor/MapaVendedores') }}">Vendedores</a></li>
+                    <li><a href="{{ url('Vendedor/VincularMetas/'.$vendedor->idUsuario) }}">Vincular Metas</a></li>
+                    <li>Adicionar</li>
                 </ul>
             </div>
         </div>
@@ -47,43 +48,32 @@
         </div>
     @endif
 
-    <div id="detalhar" class="grid-m-12 grid-s-12">
+    <div id="cadastro" class="grid-m-12 grid-s-12 grid-xs-12">
 
-
+        {!! Form::Open(['route' => ['Vendedor.VincularMetas.Adicionar', $vendedor->idUsuario], 'method' => 'PUT']) !!}
         <div class="row">
-
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('nome', 'Nome',null,['for' => 'nome']) !!}
-                <p class="field-disabled">{{ $meta->nome }}</p>
+                {!! Form::label('metas', 'Metas',null,['for' => 'metas']) !!}
+                {!!Form::select('metas', $metas, null, ['id' => 'metas', 'class' => 'form-control']) !!}
             </div>
-
-            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('numeroAsssinaturas', 'Número de Assinaturas',null,['for' => 'numeroAsssinaturas']) !!}
-                <p class="field-disabled">{{ $meta->numeroAssinaturas }}</p>
-            </div>
-
-            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('recompensa', 'Recompensa',null,['for' => 'recompensa']) !!}
-                <p class="field-disabled">{{ $meta->recompensa }}</p>
-            </div>
-
-            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('idTipoMeta', 'Tipo da Meta',null,['for' => 'idTipoMeta']) !!}
-                <p class="field-disabled">{{ $meta->TipoMeta->descricao }}</p>
-            </div>
-
+        </div>
+        <div class="row">
             <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                <a href="{{ url('Metas') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                <a href="{{ url('Vendedor/VincularMetas/') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
                     <span class="text-content">Voltar</span>
                 </a>
             </div>
             <div class="form-group grid-m-3 grid-s-3 button-field">
-                <a href="{{ route('Meta.edit', $meta->id) }}" id="btnEditar" title="Editar" class="btn btn-primary ripple">
-                    <span class="text-content">Editar</span>
-                </a>
+                {!! Form::button('<span class="text-content">Cadastrar</span>',[
+                    'id' => 'btnCadastrar',
+                    'type' => 'submit',
+                    'class' => 'btn btn-primary ripple'
+                    ])!!}
             </div>
         </div>
 
+
+        {!! Form::Close() !!}
 
     </div>
 @stop

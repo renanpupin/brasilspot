@@ -70,6 +70,11 @@
                 <p class="field-disabled">{{ $categoria->nomeCategoriaPai }}</p>
             </div>
 
+            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
+                {!! Form::label('idTipoCategoria', 'Tipo da Categoria',null,['for' => 'idTipoCategoria']) !!}
+                <p class="field-disabled">{{ $categoria->TipoCategoria->tipo }}</p>
+            </div>
+
             <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
                 <a href="{{ route('Categoria.index') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
                     <span class="text-content">Voltar</span>

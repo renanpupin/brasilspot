@@ -4,13 +4,15 @@
 
 @section('sidebar')
     @parent
+    @can('AcessoAdministrador')
     @include('layouts.sidebarAdmin')
+    @endcan
 @stop
 
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Listar Metas</h2>
+        <h2>Metas do Vendedor "{{$vendedor->idUsuario}}"</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
@@ -19,15 +21,15 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ route('Meta.index') }}">Metas</a></li>
-                    <li>Listar</li>
+                    <li><a href="{{ url('Vendedor/MapaVendedores') }}">Vendedores</a></li>
+                    <li>Vincular Metas</li>
                 </ul>
             </div>
         </div>
     </div>
 
     <div class="grid-m-3 grid-s-3 grid-xs-12">
-        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px; margin-bottom: 25px;" href="{{ url('Metas/cadastrar') }}">
+        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px; margin-bottom: 25px;" href="{{ url('Vendedor/VincularMetas/Adicionar/'.$vendedor->idUsuario) }}">
             <span class="text-content">Novo</span>
         </a>
     </div>
@@ -52,54 +54,32 @@
         </div>
     @endif
 
-    <div id="listagem" class="grid-m-12 grid-s-12 grid-xs-12">
+    <div id="listagem" class="grid-m-12 grid-s-12">
         <div class="table-responsive">
-            <table id="listarMetas" class="table">
+            <table id="listaMetasVendedor" class="table">
                 <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Número de Assinaturas</th>
+                    <th>Nome da Meta</th>
                     <th>Tipo da Meta</th>
-                </tr>
+                    <th></th>
                 </thead>
-
                 <tbody>
-                @foreach($metas as $meta)
+{{--                {{dd($metasVendedor)}}--}}
+                @foreach($metasVendedor as $meta)
                     <tr>
-                        <td>{{ $meta->id }}</td>
-                        <td>{{ $meta->nome }}</td>
-                        <td>{{ $meta->numeroAssinaturas }}</td>
-                        <td>{{ $meta->TipoMeta->descricao }}</td>
-                        <td class="col-actions">
-                            <a href="{{ url('Metas', [$meta->id]) }}" title="Detalhar"><i class="material-icons">description</i></a>
-                        </td>
-                        <td class="col-actions">
-                            <a href="{{ url('Metas/editar', [$meta->id]) }}" title="Editar"><i class="material-icons">mode_edit</i></a>
-                        </td>
+                        <td>{{ $meta->Meta->nome }}</td>
+                        <td>{{ $meta->Meta->TipoMeta->descricao }}</td>
                         <td class="col-actions">
                             {!! Form::open([
                                 'method' => 'DELETE',
-                                'route' => ['Meta.destroy', $meta->id]
+                                'route' => ['Vendedor.VincularMetas.Remover', $meta->id]
                             ]) !!}
                             {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach
-                <div class="row">
-                    <div class="col-md-12">
-                        {!! $metas->render() !!}
-                    </div>
-                </div>
                 </tbody>
             </table>
-
         </div>
     </div>
-
-@stop
-
-@section('script')
-    <script type="text/javascript" src="{!! asset('assets/js/meta/meta.js') !!}"></script>
 @stop

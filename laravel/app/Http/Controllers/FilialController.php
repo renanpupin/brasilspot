@@ -46,13 +46,13 @@ class FilialController extends Controller
             {
                 $filiais = Filial::where('idEmpresa','=',$empresa->id)->get();
             }
-           return view('Filial.index')->with('filiais',$filiais)->with('numero_assinaturas',$qtdAssinaturasRestantes);
+           return view('Filial.Index')->with('filiais',$filiais)->with('numero_assinaturas',$qtdAssinaturasRestantes);
         }
         else
             if(Gate::allows('AcessoVendedor') || Gate::allows('AcessoComerciante') )
             {
                 $filiais = Filial::with('Endereco')->get();
-                return view('Filial.index')->with('filiais',$filiais);
+                return view('Filial.Index')->with('filiais',$filiais);
             }
 
     }

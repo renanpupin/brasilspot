@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Categoria;
+use App\TipoEmpresa;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
@@ -12,7 +13,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Auth;
-
 class CategoriaController extends Controller
 {
     public function index()
@@ -37,14 +37,16 @@ class CategoriaController extends Controller
     public function create()
     {
         $categorias = ['-1'=>'Selecione a categoria principal'] + Categoria::lists('nome', 'id')->all();
-        return view('Categoria.Create')->with('categorias', $categorias);
+        $tiposCategoria = ['-1'=>'Selecione o tipo da categoria'] + TipoEmpresa::lists('tipo', 'id')->all();
+        return view('Categoria.Create')->with('categorias', $categorias)->with('tiposCategoria', $tiposCategoria);
     }
 
 
     public function store(Request $request)
     {
         $regras = array(
-            'nome' => 'required|string'
+            'nome' => 'required|string',
+            'idTipoCategoria' => 'required|string'
         );
 
         $mensagens = array(
@@ -57,13 +59,16 @@ class CategoriaController extends Controller
         {
             Categoria::Create([
                 'nome' => $request['nome'],
-                'idCategoriaPai' => null
+                'idTipoCategoria' => $request['idTipoCategoria'],
+                'idCategoriaPai' => null,
+                'slug' => str_slug($request['nome'])
             ]);
         }
         else {
 
             Categoria::Create([
                 'nome' => $request['nome'],
+                'idTipoCategoria' => $request['idTipoCategoria'],
                 'idCategoriaPai' => $request['idCategoriaPai'],
                 'slug' => str_slug($request['nome'])
             ]);
@@ -83,6 +88,8 @@ class CategoriaController extends Controller
             $categoria->nomeCategoriaPai = $categoria->CategoriaPai->nome;
         }
 
+        $categoria->idCategoriaPai = $categoria->TipoCategoria->tipo;
+
         return view('Categoria.Detail')->with('categoria',$categoria);
     }
 
@@ -95,7 +102,9 @@ class CategoriaController extends Controller
 
         $categoria = Categoria::findOrNew($id);
 
-        return view('Categoria.Edit')->with('categorias', $categoriasDropDown)->with('categoria',$categoria);
+        $tiposCategoria = ['-1'=>'Selecione o tipo da categoria'] + TipoEmpresa::lists('tipo', 'id')->all();
+
+        return view('Categoria.Edit')->with('categorias', $categoriasDropDown)->with('categoria',$categoria)->with('tiposCategoria',$tiposCategoria);
     }
 
 
@@ -116,11 +125,13 @@ class CategoriaController extends Controller
         if($request['idCategoriaPai'] == -1)
         {
             $categoria->nome = $request['nome'];
+            $categoria->idTipoCategoria = $request['idTipoCategoria'];
             $categoria->idCategoriaPai = null;
         }
         else {
 
             $categoria->nome = $request['nome'];
+            $categoria->idTipoCategoria = $request['idTipoCategoria'];
             $categoria->idCategoriaPai = $request['idCategoriaPai'];
         }
 

@@ -59,15 +59,19 @@
 
         {!! Form::Open(['route' => 'Categoria.store', 'method' => 'POST']) !!}
         <div class="row">
-            <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
+            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('nome', 'Nome *',null,['for' => 'nome']) !!}
                 {!! Form::text('nome',null,['id' => 'nome']) !!}
             </div>
-            <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
+            <div class="form-group grid-m-6 grid-s-6 grid-xs-12">
                 {!! Form::label('idCategoriaPai', 'Categoria Principal',null,['for' => 'idCategoriaPai']) !!}
 {{--                {!! Form::select('idCategoriaPai', (['-1' => 'Selecione a categoria'] + $categorias), null, ['id' => 'idCategoriaPai', 'class' => 'form-control']) !!}--}}
                     {!!Form::select('idCategoriaPai', $categorias, null, ['id' => 'idCategoriaPai', 'class' => 'form-control']) !!}
                 <p class="input-hint">(Não selecione caso a categoria cadastrada seja a principal)</p>
+            </div>
+            <div class="form-group grid-m-6 grid-s-6 grid-xs-12">
+                {!! Form::label('idTipoCategoria', 'Tipo da Categoria',null,['for' => 'idTipoCategoria']) !!}
+                {!!Form::select('idTipoCategoria', $tiposCategoria, null, ['id' => 'idTipoCategoria', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="row">

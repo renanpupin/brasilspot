@@ -18,9 +18,28 @@ use App\ServicoEmpresa;
 use App\TagEmpresa;
 use App\Tag;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use Illuminate\Routing;
 
 class SiteController extends Controller
 {
+
+    public function buscarEmpresas()
+    {
+        $query_empresa = Input::get("pesquisaEmpresa");
+        $query_endereco = Input::get("pesquisaEndereco");
+
+        //$query_empresa = $request['pesquisaEmpresa'];
+        //$query_endereco = $request['pesquisaEndereco'];
+
+//        dd($query_empresa,$query_endereco);
+        //TODO: query de busca de empresa aqui
+        return redirect('Empresas');
+
+        //arrumar esquema do filtro
+//        return Redirect::action('SiteController@filtroEmpresas', [$query_empresa]);
+    }
 
     public function BuscaEmpresa($nomeFantasia)
     {
@@ -29,6 +48,7 @@ class SiteController extends Controller
 
     public function filtroEmpresas($filtros = null)
     {
+//        dd($filtros);
         $local_url = Input::get("local");  //apenas um
         $servicos_url = Input::get("com");  //um ou varios
         $tipo_url = Input::get("tipo");     //comercios,servicos,atracoes,profissionais

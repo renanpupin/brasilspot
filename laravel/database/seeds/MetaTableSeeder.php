@@ -13,15 +13,23 @@ class MetaTableSeeder extends Seeder
     {
         DB::table('metas')->delete();
 
+        $this->call(TipoMetaTableSeeder::class);
+
         //administradores
         DB::table('metas')->insert(array(
             array(
                 'id' => 1,
-                'numeroEmpresas' => 15
+                'nome' => 'Meta Mensal',
+                'recompensa' => 50,
+                'numeroAssinaturas' => 15,
+                'idTipoMeta' => 1
             ),
             array(
                 'id' => 2,
-                'numeroEmpresas' => 30
+                'nome' => 'Meta de Ano Novo',
+                'recompensa' => 100,
+                'numeroAssinaturas' => 30,
+                'idTipoMeta' => 2
             ),
         ));
     }

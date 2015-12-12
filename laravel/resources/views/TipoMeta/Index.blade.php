@@ -10,7 +10,7 @@
 @section('content')
 
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
-        <h2>Listar Metas</h2>
+        <h2>Listar Tipos de Meta</h2>
     </div>
 
     <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
@@ -19,7 +19,7 @@
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ route('Meta.index') }}">Metas</a></li>
+                    <li><a href="{{ route('TipoMeta.index') }}">Tipo de Meta</a></li>
                     <li>Listar</li>
                 </ul>
             </div>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="grid-m-3 grid-s-3 grid-xs-12">
-        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px; margin-bottom: 25px;" href="{{ url('Metas/cadastrar') }}">
+        <a id="btnNovo" class="btn btn-primary ripple" style="margin-top: 25px; margin-bottom: 25px;" href="{{ url('TipoMeta/cadastrar') }}">
             <span class="text-content">Novo</span>
         </a>
     </div>
@@ -54,44 +54,35 @@
 
     <div id="listagem" class="grid-m-12 grid-s-12 grid-xs-12">
         <div class="table-responsive">
-            <table id="listarMetas" class="table">
+            <table id="listarTiposMeta" class="table">
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nome</th>
-                    <th>Número de Assinaturas</th>
-                    <th>Tipo da Meta</th>
+                    <th>Descrição</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                @foreach($metas as $meta)
+                @foreach($tiposMeta as $tipoMeta)
                     <tr>
-                        <td>{{ $meta->id }}</td>
-                        <td>{{ $meta->nome }}</td>
-                        <td>{{ $meta->numeroAssinaturas }}</td>
-                        <td>{{ $meta->TipoMeta->descricao }}</td>
+                        <td>{{ $tipoMeta->id }}</td>
+                        <td>{{ $tipoMeta->descricao }}</td>
                         <td class="col-actions">
-                            <a href="{{ url('Metas', [$meta->id]) }}" title="Detalhar"><i class="material-icons">description</i></a>
+                            <a href="{{ route('TipoMeta.show', array('id' => $tipoMeta->id))}}" title="Detalhar"><i class="material-icons">description</i></a>
                         </td>
                         <td class="col-actions">
-                            <a href="{{ url('Metas/editar', [$meta->id]) }}" title="Editar"><i class="material-icons">mode_edit</i></a>
+                            <a href="{{ url('TipoMeta/editar', [$tipoMeta->id]) }}" title="Editar"><i class="material-icons">mode_edit</i></a>
                         </td>
                         <td class="col-actions">
                             {!! Form::open([
                                 'method' => 'DELETE',
-                                'route' => ['Meta.destroy', $meta->id]
+                                'route' => ['TipoMeta.destroy', $tipoMeta->id]
                             ]) !!}
                             {!! Form::button('<i class="material-icons">delete</i>', ['title' => 'Remover', 'type' => 'submit', 'class' => 'btnRemove']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach
-                <div class="row">
-                    <div class="col-md-12">
-                        {!! $metas->render() !!}
-                    </div>
-                </div>
                 </tbody>
             </table>
 
@@ -100,6 +91,6 @@
 
 @stop
 
-@section('script')
-    <script type="text/javascript" src="{!! asset('assets/js/meta/meta.js') !!}"></script>
+@section('scripts')
+    <script type="text/javascript" src="{!! asset('assets/js/tipoMeta/tipoMeta.js') !!}"></script>
 @stop

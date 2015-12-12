@@ -9,6 +9,14 @@ class Meta extends Model
     protected $table = "metas";
 
     protected $fillable = Array(
-        'numeroEmpresas'
+        'nome',
+        'numeroAssinaturas',
+        'recompensa',
+        'idTipoMeta'
     );
+
+    public function TipoMeta()
+    {
+        return $this->hasOne('\App\TipoMeta','id','idTipoMeta');
+    }
 }

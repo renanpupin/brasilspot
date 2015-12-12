@@ -79,6 +79,14 @@ Route::get('Clientes/VerAtualizacao/{id}', function () {
     //routes for "Plano"
     Route::get('Plano', 'PlanoController@index');
 
+    //routes for "TipoMeta"
+    Route::get('TipoMeta', 'TipoMetaController@index');
+    Route::get('TipoMeta/cadastrar', 'TipoMetaController@create');
+    Route::post('TipoMeta/editar/{id}', 'TipoMetaController@update');
+    Route::get('TipoMeta/editar/{id}', 'TipoMetaController@edit');
+    Route::get('TipoMeta/{id}', 'TipoMetaController@show');
+    Route::resource('TipoMeta','TipoMetaController');
+
     //routes for "Meta"
     Route::get('Metas', 'MetaController@index');
     Route::get('Metas/cadastrar', 'MetaController@create');
@@ -187,6 +195,12 @@ Route::get('Vendedor/Reclamacoes/visualizar/{id}', 'ReclamacaoController@visuali
 Route::get('Vendedor/MapaVendedores', 'VendedorController@mapa');
 Route::get('Vendedor/Reclamacoes', 'ReclamacaoController@indexVendedor');
 Route::resource('Vendedor','VendedorController');
+
+//Vincular meta
+Route::get('Vendedor/VincularMetas/Adicionar/{id}', 'VendedorController@adicionarMeta');
+Route::put('Vendedor/VincularMetas/Adicionar/{id}', ['as' => 'Vendedor.VincularMetas.Adicionar', 'uses' => 'VendedorController@gravarMetaAdicionada']);
+Route::delete('Vendedor/VincularMetas/Remover/{id}', ['as' => 'Vendedor.VincularMetas.Remover', 'uses' => 'VendedorController@removerMetaVendedor']);
+Route::get('Vendedor/VincularMetas/{id}', 'VendedorController@vincularMeta');
 
 Route::get('NovaMensagem', function () {
     return view('Mensagem.Create');
@@ -303,7 +317,8 @@ Route::get('Empresas/pesquisarEmpresa', 'SiteController@pesquisarEmpresa');
 Route::get('Empresas/pesquisarEndereco', 'SiteController@pesquisarEndereco');
 
 /*rotas dos filtros*/
-Route::get('Empresas/{filtros?}', 'SiteController@filtroEmpresas')->where('filtros', '(.*)');;
+Route::get('Empresas/Buscar', 'SiteController@buscarEmpresas');
+Route::get('Empresas/{filtros?}', 'SiteController@filtroEmpresas')->where('filtros', '(.*)');
 
 
 Route::get('Empresa/visualizar/{id}', 'SiteController@visualizar');

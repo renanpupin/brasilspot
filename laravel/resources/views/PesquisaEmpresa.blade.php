@@ -54,7 +54,8 @@
 
                             <div class="intro-form grid-m-4 grid-m-offset-4 grid-s-6 grid-s-offset-3 grid-xs-12">
                                 <div class="row">
-                                    <form id="formLocation">
+                                    {{--<form id="formLocation" method="post" action="{{ url('Empresas/Buscar' )}}">--}}
+                                    {!! Form::Open(['url' => 'Empresas/Buscar', 'method' => 'GET']) !!}
 
                                             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                                                 <label for="pesquisaEmpresa">Eu procuro</label>
@@ -71,11 +72,14 @@
                                                 </p>
                                             </div>
                                             <div class="form-group grid-m-6 grid-m-offset-3 grid-s-6 grid-s-offset-3 grid-xs-12 button-field">
-                                                <a href="{{ url('Empresas' )}}" id="btnEncontre" class="btn btn-primary ripple">
-                                                    <i class="material-icons">send</i> <span class="text-content">Encontre</span>
-                                                </a>
+                                                {!! Form::button('<i class="material-icons">send</i> <span class="text-content">Encontre</span>',[
+                                                'id' => 'btnBuscar',
+                                                'type' => 'submit',
+                                                'class' => 'btn btn-primary ripple'
+                                                ])!!}
                                             </div>
-                                    </form>
+                                    {!! Form::Close() !!}
+                                    {{--</form>--}}
                                 </div>
 
                                 <div class="row">

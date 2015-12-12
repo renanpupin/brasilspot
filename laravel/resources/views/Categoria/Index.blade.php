@@ -68,6 +68,7 @@
                     <th>Id</th>
                     <th>Descrição</th>
                     <th>Categoria principal</th>
+                    <th>Tipo Categoria</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -92,6 +93,8 @@
                         @if($categoria->CategoriaPai != null)
                             <td>{{ $categoria->CategoriaPai->nome }}</td>
                         @endif
+
+                        <td>{{ $categoria->TipoCategoria->tipo }}</td>
 
                         <td class="col-actions">
                             <a href="{{ route('Categoria.show', array('id' => $categoria->id))}}" title="Detalhar"><i class="material-icons">description</i></a>

@@ -40,12 +40,16 @@
                 <thead>
                     <th>Nome</th>
                     <th>Email</th>
+                    <th>Metas</th>
                 </thead>
                 <tbody>
                 @foreach($vendedores as $vendedor)
                     <tr>
                         <td>{{ $vendedor->name }}</td>
                         <td>{{ $vendedor->email }}</td>
+                        <td class="col-actions">
+                            <a href="{{ url('Vendedor/VincularMetas/'.$vendedor->id)}}" title="Ver metas"><i class="material-icons">trending_up</i></a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

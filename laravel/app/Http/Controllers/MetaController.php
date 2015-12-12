@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Meta;
+use App\TipoMeta;
 use Illuminate\Support\Facades\Session;
 
 class MetaController extends Controller
@@ -13,7 +14,7 @@ class MetaController extends Controller
 
     public function index()
     {
-        $metas = Meta::orderBy('numeroEmpresas', 'asc')->paginate(10);
+        $metas = Meta::orderBy('numeroAssinaturas', 'asc')->paginate(10);
 //        $metas = Meta::orderBy('nome','asc')->lists('nome', 'id');
 
         return view('Meta.Index')->with('metas', $metas);
@@ -22,14 +23,32 @@ class MetaController extends Controller
 
     public function create()
     {
-        return view('Meta.Create');
+        $tiposMeta = ['-1'=>'Selecione o tipo da meta'] + TipoMeta::lists('descricao', 'id')->all();
+        return view('Meta.Create')->with('tiposMeta', $tiposMeta);
     }
 
 
     public function store(Request $request)
     {
+        $regras = array(
+            'nome' => 'required|string',
+            'numeroAssinaturas' => 'required',
+            'recompensa' => 'required',
+            'idTipoMeta' => 'required'
+        );
+
+        $mensagens = array(
+            'required' => 'O campo :attribute deve ser preenchido.',
+            'string' => 'O campo :attribute deve ser texto.'
+        );
+
+        $this->validate($request, $regras, $mensagens);
+
         Meta::create([
-            'NumeroEmpresas' => $request['numeroEmpresas']
+            'nome' => $request['nome'],
+            'numeroAssinaturas' => $request['numeroAssinaturas'],
+            'recompensa' => $request['recompensa'],
+            'idTipoMeta' => $request['idTipoMeta'],
         ]);
 
         Session::flash('flash_message', 'Meta registrada com sucesso.');
@@ -57,7 +76,10 @@ class MetaController extends Controller
         $meta = Meta::find($id);
 
         $regras = array(
-            'numeroEmpresas' => 'required|string'
+            'nome' => 'required|string',
+            'numeroAssinaturas' => 'required',
+            'recompensa' => 'required',
+            'idTipoMeta' => 'required'
         );
 
         $mensagens = array(
@@ -67,7 +89,10 @@ class MetaController extends Controller
 
         $this->validate($request, $regras, $mensagens);
 
-        $meta->numeroEmpresas = $request['numeroEmpresas'];
+        $meta->nome = $request['nome'];
+        $meta->numeroAssinaturas = $request['numeroAssinaturas'];
+        $meta->recompensa = $request['recompensa'];
+        $meta->idTipoMeta = $request['idTipoMeta'];
 
         $meta->save();
 

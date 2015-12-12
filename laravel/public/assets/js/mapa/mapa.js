@@ -8,8 +8,10 @@ $(document).ready(function () {
             center: new google.maps.LatLng("-18", "-50"),
         });
 
-        markers = JSON.parse($("#markers").val());
-        //console.log(markers);
+        var $markers_string = $("#markers").val();
+        $markers_string = $markers_string.replace("},]", "}]");
+        markers = JSON.parse($markers_string);
+        console.log(markers);
 
         addMarkers(markers);
     }
@@ -26,7 +28,7 @@ $(document).ready(function () {
             };
 
             var contentString = '<div id="content-wrapper">'+
-                '<div class="item-title"><h5>'+markers[i].nome+'</h5></div>'+
+                '<div class="item-title"><h5>'+markers[i].nome+' #'+markers[i].id+'</h5></div>'+
                 '<hr/>'+
                 '<p><label>Endereço:</label> '+markers[i].endereco+'</p>'+
                 '</div>';

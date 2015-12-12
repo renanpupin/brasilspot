@@ -23,26 +23,30 @@
         {{--</li>--}}
         <li class="content-center">
             <div class="center-row row">
+                {!! Form::Open(['url' => 'Empresas/Buscar', 'method' => 'POST']) !!}
+                    <div class="nav-item">
+                        {{--<a href="#">--}}
+                        {{--Route::getCurrentRoute()->getParameter('busca');--}}
+                            <input type="text" name="pesquisaEmpresa" id="pesquisaEmpresa" placeholder="O que você procura?">
+                        {{--</a>--}}
+                    </div>
+                    <div class="nav-item">
+                        {{--<a href="#">--}}
+                            <input type="text" name="pesquisaEndereco" id="pesquisaEndereco" placeholder="Onde?">
+                        {{--</a>--}}
+                    </div>
+                    <div class="nav-item">
+                        {!! Form::button('<i class="material-icons">send</i> <span class="text-content">Encontre</span>',[
+                        'id' => 'btnBuscar',
+                        'type' => 'submit',
+                        'class' => 'btn btn-primary ripple'
+                        ])!!}
+                    </div>
+                {!! Form::Close() !!}
                 <div class="nav-item">
-                    {{--<a href="#">--}}
-                    {{--Route::getCurrentRoute()->getParameter('busca');--}}
-                        <input type="text" name="pesquisaEmpresa" id="pesquisaEmpresa" placeholder="O que você procura?">
-                    {{--</a>--}}
-                </div>
-                <div class="nav-item">
-                    {{--<a href="#">--}}
-                        <input type="text" name="pesquisaEndereco" id="pesquisaEndereco" placeholder="Onde?">
-                    {{--</a>--}}
-                </div>
-                <div class="nav-item">
-                    <button type="submit" id="btnEncontre" class="btn btn-primary ripple">
-                        <span class="text-content">Encontre</span>
-                    </button>
-                </div>
-                <div class="nav-item">
-                    <a href="{{url('categorias')}}" id="btnEncontre" class="btn btn-secundary ripple">
-                        <span class="text-content">Categorias</span>
-                    </a>
+                        <a href="{{url('categorias')}}" id="btnEncontre" class="btn btn-secundary ripple">
+                            <span class="text-content">Categorias</span>
+                        </a>
                 </div>
             </div>
         </li>

@@ -52,9 +52,21 @@
         {!! Form::model($meta,['route' => ['Meta.update',$meta->id], 'method' => 'PUT']) !!}
         <div class="row">
 
-            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('numeroEmpresas', 'Número de Empresas *',null,['for' => 'numeroEmpresas']) !!}
-                {!! Form::text('numeroEmpresas',$meta->numeroEmpresas,['id' => 'numeroEmpresas']) !!}
+            <div class="form-group grid-m-6 grid-s-6 grid-xs-12">
+                {!! Form::label('nome', 'Nome *',null,['for' => 'nome']) !!}
+                {!! Form::text('nome',null,['id' => 'nome']) !!}
+            </div>
+            <div class="form-group grid-m-6 grid-s-6 grid-xs-12">
+                {!! Form::label('numeroAssinaturas', 'Número de Assinaturas *',null,['for' => 'numeroAssinaturas']) !!}
+                {!! Form::text('numeroAssinaturas',null,['id' => 'numeroAssinaturas']) !!}
+            </div>
+            <div class="form-group grid-m-6 grid-s-6 grid-xs-12">
+                {!! Form::label('recompensa', 'Recompensa',null,['for' => 'recompensa']) !!}
+                {!! Form::text('recompensa',null,['id' => 'recompensa']) !!}
+            </div>
+            <div class="form-group grid-m-6 grid-s-6 grid-xs-12">
+                {!! Form::label('idTipoMeta', 'Tipo da Meta',null,['for' => 'idTipoMeta']) !!}
+                {!!Form::select('idTipoMeta', $tiposMeta, null, ['id' => 'idTipoMeta', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="row">
