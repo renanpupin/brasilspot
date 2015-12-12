@@ -59,7 +59,7 @@
         </div>
         <div class="row">
             <div class="form-group grid-m-3 grid-m-offset-6 grid-s-3 grid-s-offset-6 button-field">
-                <a href="{{ url('Vendedor/VincularMetas/') }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
+                <a href="{{ url('Vendedor/VincularMetas/'.$vendedor->idUsuario) }}" id="btnVoltar" title="Voltar" class="btn btn-secundary ripple">
                     <span class="text-content">Voltar</span>
                 </a>
             </div>

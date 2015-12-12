@@ -23,6 +23,10 @@ class TipoMetaTableSeeder extends Seeder
                 'id' => 2,
                 'descricao' => 'OCASIONAL',
             ),
+            array(
+                'id' => 3,
+                'descricao' => 'EQUIPE',
+            ),
         ));
     }
 }

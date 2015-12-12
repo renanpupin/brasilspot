@@ -67,7 +67,8 @@ class MetaController extends Controller
     public function edit($id)
     {
         $meta = Meta::findOrNew($id);
-        return view('Meta.Edit')->with('meta',$meta);
+        $tiposMeta = ['-1'=>'Selecione o tipo da meta'] + TipoMeta::lists('descricao', 'id')->all();
+        return view('Meta.Edit')->with('meta',$meta)->with('tiposMeta', $tiposMeta);
     }
 
 

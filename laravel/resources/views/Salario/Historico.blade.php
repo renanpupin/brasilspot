@@ -32,15 +32,23 @@
             <table id="listaClientes" class="table">
                 <thead>
                     <th>Data</th>
-                    <th>Valor</th>
+                    <th>Valor (R$)</th>
                 </thead>
                 <tbody>
-                @foreach($salarios as $salario)
-                    <tr>
-                        <td>{{ $salario->dataPagamento }}</td>
-                        <td>{{ $servico->valor }}</td>
-                    </tr>
-                @endforeach
+                <tr>
+                    <td>11/11/2015</td>
+                    <td>150,00</td>
+                </tr>
+                <tr>
+                    <td>10/12/2015</td>
+                    <td>350,00</td>
+                </tr>
+                {{--@foreach($salarios as $salario)--}}
+                    {{--<tr>--}}
+                        {{--<td>{{ $salario->dataPagamento }}</td>--}}
+                        {{--<td>{{ $servico->valor }}</td>--}}
+                    {{--</tr>--}}
+                {{--@endforeach--}}
                 </tbody>
             </table>
         </div>

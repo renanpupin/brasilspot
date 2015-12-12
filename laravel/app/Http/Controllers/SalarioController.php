@@ -36,7 +36,9 @@ class SalarioController extends Controller
     {
         $usuario = Auth::user();
 
-        $salarios = Salario::where('idUsuario','=',$usuario->id)->get();
+        //$salarios = Salario::where('idUsuario','=',$usuario->id)->get();
+
+        $salarios = "150,00";
 
         return view('Salario.Historico')->with("salarios", $salarios);
     }
