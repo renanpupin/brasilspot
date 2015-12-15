@@ -2,28 +2,28 @@
 <footer>
     <div class="footer-top">
         <div class="row">
-            <div class="grid-m-3 grid-s-3 grid-xs-3">
+            <div class="grid-m-3 grid-s-3 grid-xs-6">
                 <div class="footer-info">
                     <div class="footer-title">
                         <a href="{{ url('/' )}}">Início</a>
                     </div>
                 </div>
             </div>
-            <div class="grid-m-3 grid-s-3 grid-xs-3">
+            <div class="grid-m-3 grid-s-3 grid-xs-6">
                 <div class="footer-info">
                     <div class="footer-title">
                         <a href="{{ url('Sobre' )}}">Sobre</a>
                     </div>
                 </div>
             </div>
-            <div class="grid-m-3 grid-s-3 grid-xs-3">
+            <div class="grid-m-3 grid-s-3 grid-xs-6">
                 <div class="footer-info">
                     <div class="footer-title">
                         <a href="{{ url('Contato' )}}">Contato</a>
                     </div>
                 </div>
             </div>
-            <div class="grid-m-3 grid-s-3 grid-xs-3">
+            <div class="grid-m-3 grid-s-3 grid-xs-6">
                 <div class="footer-info">
                     <div class="footer-title">
                         <a href="{{ url('TrabalheConosco' )}}">Trabalhe Conosco</a>
