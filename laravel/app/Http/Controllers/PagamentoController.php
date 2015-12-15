@@ -11,6 +11,7 @@ use PagarMe_Transaction;
 use App\Cartao;
 use App\AssinaturaComerciante;
 use App\AssinaturaFilial;
+use App\Assinatura;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -43,6 +44,16 @@ class PagamentoController extends Controller
                 'id' => 15
             )
         );
+
+        $asCom = AssinaturaComerciante::all()->toArray();
+        foreach ($asCom as $single) {
+            //$single['newField'] = "data";
+            $assina = Assinatura::find(['id' => $single['idAssinatura']])->first();
+            $assina->test = $single['idComerciante'];
+            $assina->save();
+
+        }
+        dd("wedidit");
         return view('Pagamento/Calcular')->with("values", $values);
     }
 
@@ -96,27 +107,21 @@ class PagamentoController extends Controller
 
         Pagarme::setApiKey("ak_test_1jVGAUzxWNanzfTiW6yGX0cbA8Ywq7");
 
+
         //TODO: GET CORRECT VALUES, FIXED VALUES HERE
         //TODO: verificar se todos os valores estão corretos mesmo
-        DB::beginTransaction();
         $transacao = null;
-        try {
-            $transacao = Transacao::create([
-                'fkEmpresa' => '5',
-                'fkCartao' => '1',
-                'fkEstadoTransacao' => '1',
-                'fkTipoTransacao' => Transacao::getTipoTransacao($inputArray['payment']),
-                'valorBruto' => Transacao::converteCentavos($inputArray['valorPagamento']),
-                'cardHash' => Transacao::getSkipCardHash($inputArray),
-                'dataInicio' => date('d-m-y'),
-                'dataResposta' => date('d-m-y')
-            ]);
+        $transacao = Transacao::create([
+            'fkEmpresa' => '5',
+            'fkCartao' => '1',
+            'fkEstadoTransacao' => '1',
+            'fkTipoTransacao' => Transacao::getTipoTransacao($inputArray['payment']),
+            'valorBruto' => Transacao::converteCentavos($inputArray['valorPagamento']),
+            'cardHash' => Transacao::getSkipCardHash($inputArray),
+            'dataInicio' => date('d-m-y'),
+            'dataResposta' => date('d-m-y')
+        ]);
 
-        } catch (Exception $exception) {
-            DB::rollBack();
-            return 'Problema com banco';
-        }
-        DB::commit();
         switch ($transacao->fkTipoTransacao) {
             //TODO: fazer a pagina mostrando pagamento efetuado etc
             default:

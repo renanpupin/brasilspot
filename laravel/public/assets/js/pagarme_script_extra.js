@@ -2,11 +2,14 @@
  * Created by Tensai on 28/11/2015.
  */
 $(document).ready(function() {
+
     PagarMe.encryption_key = "ek_test_lGkZJusx1QV5n9lOVayKznXyjbnqhg";
     var button = $("#card_form_submit")[0];
     var form = $("#payment_form");
     var divEntraSaiCartao = $("div.dadosCartaoShowHide");
     var toggleValidationCard = true;
+
+    $("input[value='unico']")[0].checked = true;
 
     $("#boletoBoleto").each(function () {
         this.onclick =  function() {
