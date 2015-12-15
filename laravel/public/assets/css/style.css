@@ -2429,14 +2429,16 @@ footer {
   width: 100%;
   padding: 0;
   margin: 0;
-  position: relative; }
+  position: relative;
+  overflow-x: hidden; }
   footer .footer-top {
-    border-top: 1px solid #e7e7e7;
-    padding: 15px; }
+    border-top: 1px solid #e7e7e7; }
     footer .footer-top .footer-info .footer-title, footer .footer-top .footer-contact .footer-title {
       text-transform: uppercase;
       font-size: 14px;
       font-size: 1rem;
+      padding: 15px;
+      line-height: 1.5rem;
       text-align: center; }
       footer .footer-top .footer-info .footer-title a, footer .footer-top .footer-contact .footer-title a {
         text-decoration: none;
@@ -2620,6 +2622,9 @@ footer {
   #intro .intro-form form input {
     text-align: center; }
 
+@media screen and (max-width: 500px) {
+  #intro .logo {
+    text-align: left; } }
 #sidebar {
   width: 100%;
   display: inline-block; }
@@ -3104,9 +3109,10 @@ footer {
         background-color: #E6BD35;
         color: #fff; }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .floatingButton {
-    width: 100px; }
+    width: 100px;
+    top: 35px; }
     .floatingButton a.btn-login {
       margin-left: 0px;
       margin-top: 5px; } }

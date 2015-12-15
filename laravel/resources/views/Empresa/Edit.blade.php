@@ -69,9 +69,17 @@
         <div class="row">
             <div id="galeria-empresa" class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <div class="row">
-                    <div class="galeria-feature">
-                        <div class="dropzone" id="dropzoneFileUpload1">
-                        </div>
+
+                    <div class="galeria-feature grid-m-12 grid-s-12 grid-xs-12">
+                        <label for="imagemPrincipal">Selecione a imagem principal *</label>
+                        {!! Form::file('imagemPrincipal', null) !!}
+                    </div>
+                    <div class="galeria-feature grid-m-12 grid-s-12 grid-xs-12">
+                        <label for="imagemPrincipal">Selecione as imagens da galeria</label>
+                        {!! Form::file('imagem1') !!}
+                        {!! Form::file('imagem2') !!}
+                        {!! Form::file('imagem3') !!}
+                        {!! Form::file('imagem4') !!}
                     </div>
                 </div>
             </div>
