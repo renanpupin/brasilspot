@@ -17,8 +17,8 @@ class EmpresaTableSeeder extends Seeder
         DB::table('cartoesAceitos')->delete();
 
         //tags
-        DB::table('tags')->delete();
-        DB::table('tagsEmpresas')->delete();
+        $this->call(TagTableSeeder::class);
+
 
         //servicos
         $this->call(ServicoTableSeeder::class);
@@ -39,7 +39,10 @@ class EmpresaTableSeeder extends Seeder
         DB::table('whatsApp')->delete();
 
         //empresa
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('empresas')->delete();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         DB::table('empresasPendentes')->delete();
 
         $this->call(EnderecoTableSeeder::class);
@@ -60,75 +63,61 @@ class EmpresaTableSeeder extends Seeder
                 'linkFacebook' => 'www.facebook.com/pizzariajose',
                 'idTipoEmpresa' => 1,
                 'idTipoCartao' => 3,
-                'idUsuarioEmpresa' => 5,
-                'idVendedorEmpresa' => 4,
+                'idUsuario' => 3,
+                'idVendedor' => 2,
+                'dataCadastro' => '03/11/2015',
+            ),
+            array(
+                'id' => 2,
+                'nomeEmpreendedor' => 'José da Silva',
+                'razaoSocial' => 'José Pizzaria Ltda',
+                'cpfCnpj' => '29.746.381/0001-34',
+                'email' => 'pizzariajose@hotmail.com',
+                'nomeFantasia' => 'Sorveteria Sorvetao',
+                'slogan' => 'A melhor sorvete da cidade',
+                'descricao' => 'A sorvete é a melhor da região',
+                'horarioFuncionamento' => 'Segunda a sexta das 18:00 às 00:00',
+                'atendeCasa' => 1,
+                'linkSite' => 'www.sorv.com.br',
+                'linkFacebook' => 'www.facebook.com/sorv',
+                'idTipoEmpresa' => 1,
+                'idTipoCartao' => 3,
+                'idUsuario' => 3,
+                'idVendedor' => 2,
                 'dataCadastro' => '03/11/2015',
             ),
         ));
 
         DB::table('cartoesAceitos')->insert(array(
             array(
-                'id' => 1,
                 'idEmpresa' => 1,
                 'idCartao' => 1
             ),
             array(
-                'id' => 2,
                 'idEmpresa' => 1,
                 'idCartao' => 2
             ),
         ));
-        DB::table('tags')->insert(array(
-            array(
-                'id' => 1,
-                'nome' => 'pizza'
-            ),
-            array(
-                'id' => 2,
-                'nome' => 'pizzaria delivery'
-            ),
-            array(
-                'id' => 2,
-                'nome' => 'pizzaria jose'
-            ),
-            array(
-                'id' => 3,
-                'nome' => 'pizza são paulo'
-            ),
-            array(
-                'id' => 4,
-                'nome' => 'pizza avenida paulista'
-            ),
-            array(
-                'id' => 5,
-                'nome' => 'pizza barata'
-            ),
-        ));
 
-
+        DB::table('tagsEmpresas')->delete();
         DB::table('tagsEmpresas')->insert(array(
             array(
-                'id' => 1,
                 'idEmpresa' => 1,
                 'idTag' => 1
             ),
             array(
-                'id' => 2,
                 'idEmpresa' => 1,
                 'idTag' => 2
             ),
             array(
-                'id' => 3,
                 'idEmpresa' => 1,
                 'idTag' => 3
             ),
             array(
-                'id' => 4,
                 'idEmpresa' => 1,
                 'idTag' => 4
             ),
             array(
-                'id' => 5,
                 'idEmpresa' => 1,
                 'idTag' => 5
             ),
@@ -141,7 +130,7 @@ class EmpresaTableSeeder extends Seeder
             ),
         ));
 
-        DB::table('whatsapp')->insert(array(
+        DB::table('whatsApp')->insert(array(
             array(
                 'id' => 1,
                 'numero' => '(011)9999-9999'
@@ -156,6 +145,33 @@ class EmpresaTableSeeder extends Seeder
                 'idWhatsApp' => 1,
                 'isPrincipal' => 1
             ),
+            array(
+                'id' => 2,
+                'idEmpresa' => 1,
+                'idEndereco' => 1,
+                'idTelefone' => 1,
+                'idWhatsApp' => 1,
+                'isPrincipal' => 0
+            ),
+            array(
+                'id' => 3,
+                'idEmpresa' => 1,
+                'idEndereco' => 1,
+                'idTelefone' => 1,
+                'idWhatsApp' => 1,
+                'isPrincipal' => 0
+            ),
+            array(
+                'id' => 4,
+                'idEmpresa' => 2,
+                'idEndereco' => 1,
+                'idTelefone' => 1,
+                'idWhatsApp' => 1,
+                'isPrincipal' => 1
+            ),
         ));
+
+        $this->call(AssinaturasTableSeeder::class);
+
     }
 }

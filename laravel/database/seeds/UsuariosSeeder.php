@@ -13,7 +13,6 @@ class UsuariosSeeder extends Seeder
     {
 
         DB::table('assinaturasFiliais')->delete();
-        DB::table('assinaturasComerciantes')->delete();
         DB::table('assinaturas')->delete();
         DB::table('planos')->delete();
 

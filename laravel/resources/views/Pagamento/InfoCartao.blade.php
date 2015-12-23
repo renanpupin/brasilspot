@@ -56,7 +56,8 @@
     <div id="cadastro" class="grid-m-12 grid-s-12 grid-xs-12">
 
         {!! Form::Open(['url' => 'Pagamento/Efetivar', 'method' => 'POST', 'id' => 'payment_form', "class" => "form-group"]) !!}
-            {!! Form::hidden('valorPagamento', $valorPagamento, null, null) !!}
+        {!! Form::hidden('valorPagamento', $valorPagamento, null, null) !!}
+
         <div>
             <h4> Forma de cobrança</h4>
             <br/>

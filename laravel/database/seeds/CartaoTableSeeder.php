@@ -11,6 +11,7 @@ class CartaoTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         DB::table('cartoes')->delete();
 
@@ -18,15 +19,20 @@ class CartaoTableSeeder extends Seeder
             array(
                 'id' => 1,
                 'bandeira' => 'Visa',
+                'tipo' => 'Debito'
             ),
             array(
                 'id' => 2,
                 'bandeira' => 'Master',
+                'tipo' => 'Credito'
             ),
             array(
                 'id' => 3,
                 'bandeira' => 'Amex',
+                'tipo' => 'Debito'
             ),
         ));
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
     }
 }

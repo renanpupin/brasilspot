@@ -65,11 +65,11 @@
                     @foreach ($values as $key => $value)
                         <tr>
                             <td>
-                                {!! Form::checkbox("checkbox[]", $value["id"], ["checked" => "true" ] ) !!}
+                                {!! Form::checkbox("checkbox[]", $value->id, ["checked" => "true" ] ) !!}
                             </td>
-                            <td>{{ $value["descricao"] }}</td>
+                            <td>{{ $value->nomeFantasia }}</td>
                             <td>
-                                {!! Form::text("value[]", "R$ ".$value["valor"], ["checked" => "true", "readonly" => "readonly", "class" => "valores1" ] ) !!}
+                                {!! Form::text("value[]", "R$ ".$value->valor, ["checked" => "true", "readonly" => "readonly", "class" => "valores1" ] ) !!}
                             </td>
                         </tr>
                     @endforeach
@@ -78,7 +78,7 @@
                     <tr>
                         <th colspan="2">Total :</th>
                         <td>
-                            {!! Form::text("totalTotalis", "R$ ".$value["valor"], ["readonly" => "readonly", "id" => "idTotal" ] ) !!}
+                            {!! Form::text("totalTotalis", "R$ ".$value->valor, ["readonly" => "readonly", "id" => "idTotal" ] ) !!}
                         </td>
                     </tr>
                 </tfoot>

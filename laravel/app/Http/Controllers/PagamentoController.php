@@ -8,10 +8,8 @@ use Validator;
 use PagarMe;
 use PagarMe_Transaction;
 
-use App\Cartao;
-use App\AssinaturaComerciante;
-use App\AssinaturaFilial;
-use App\Assinatura;
+USE App\Transacao;
+USE App\Pagamento;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -21,9 +19,6 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 
-use App\Transacao;
-
-
 use DB;
 use BaseController;
 
@@ -31,42 +26,40 @@ use BaseController;
 class PagamentoController extends Controller
 {
     public function prepararPagamentoGet(Request $request) { //Calcular
-        //TODO: mandar o post correto para esta controller
-        $values = array(
-            "0" => array(
-                'valor' => "35,01",
-                'descricao' => "Filial de sorocaba",
-                'id' => 10
-            ),
-            "1" => array(
-                'valor' => "15,04",
-                'descricao' => "Filiar de mandioquinha",
-                'id' => 15
-            )
-        );
 
-        $asCom = AssinaturaComerciante::all()->toArray();
-        foreach ($asCom as $single) {
-            //$single['newField'] = "data";
-            $assina = Assinatura::find(['id' => $single['idAssinatura']])->first();
-            $assina->test = $single['idComerciante'];
-            $assina->save();
+        if (! Auth::check()) {
+            Redirect::to('Login');
+        }
+
+        $idUsuario = Auth::id();
+
+        $asCom = DB::table('assinaturas')
+            ->join('assinaturasFiliais', 'assinaturasFiliais.idAssinatura', '=', 'assinaturas.id')
+            ->join('filiais', 'assinaturasFiliais.idFilial', '=', 'filiais.id')
+            ->join('empresas', 'empresas.id', '=', 'filiais.idEmpresa')
+            ->join('planos', 'assinaturas.idPlano', '=', 'planos.id')
+            ->join('comerciantes', 'assinaturas.idComerciante', '=', 'comerciantes.id')
+            ->select('planos.valor', 'assinaturas.id', 'empresas.nomeFantasia', 'comerciantes.idUsuario')
+            ->where('comerciantes.idUsuario', $idUsuario)
+            ->get();
+
+        foreach($asCom as $values) {
+            $values->valor = Transacao::convertePontotoVirgula($values->valor);
 
         }
-        dd("wedidit");
-        return view('Pagamento/Calcular')->with("values", $values);
+        return view('Pagamento/Calcular', array("values" => $asCom));
     }
 
     public function create(Request $request)
     { //Pagamento/InfoCartao
         $inputArray = $request->all();
 
-        $valorReal = str_replace('R$ ','', $inputArray['totalTotalis']);
-        $valorReal = str_replace(',','.',$valorReal);
-        $valorReal = floatval($valorReal);
+        Session::flash('checkbox', $inputArray['checkbox']); // or rather $result?
+
+        $valorReal = Transacao::converteStringRStoPonto($inputArray['totalTotalis']);
 
         return view('Pagamento/InfoCartao')
-            ->with("valorPagamento", "R$ ".str_replace('.',',',$valorReal))
+            ->with("valorPagamento", "R$ ".str_replace('.',',',sprintf("%.2F",$valorReal)))
             ->with("dirtyValorPagamento", $valorReal);
     }
 
@@ -96,6 +89,7 @@ class PagamentoController extends Controller
                 }
             }
         );
+
         $validator = Validator::make($inputArray, [
             'valorPagamento' => 'required|min:1|valor_pagamento_positivo_minimo_valido',
             'payment' => 'required'
@@ -107,25 +101,58 @@ class PagamentoController extends Controller
 
         Pagarme::setApiKey("ak_test_1jVGAUzxWNanzfTiW6yGX0cbA8Ywq7");
 
+        $checkboxes = Session::get('checkbox');
 
-        //TODO: GET CORRECT VALUES, FIXED VALUES HERE
-        //TODO: verificar se todos os valores estão corretos mesmo
+        $valorRealGet = 0.0;
+        $idUsuario = Auth::id();
+        $asCom = DB::table('assinaturas')
+            ->join('assinaturasFiliais', 'assinaturasFiliais.idAssinatura', '=', 'assinaturas.id')
+            ->join('filiais', 'assinaturasFiliais.idFilial', '=', 'filiais.id')
+            ->join('empresas', 'empresas.id', '=', 'filiais.idEmpresa')
+            ->join('planos', 'assinaturas.idPlano', '=', 'planos.id')
+            ->join('comerciantes', 'assinaturas.idComerciante', '=', 'comerciantes.id')
+            ->select('planos.valor', 'assinaturas.id as idAssinatura', 'empresas.nomeFantasia', 'comerciantes.idUsuario as idUsuario',
+                'empresas.id as idEmpresa')
+            ->whereIn('assinaturas.id', array_values(array(1 => 1, 2 => 2, 3 => 3, 4 => 4)))  //$checkboxes))
+            ->get();
+
+
+
+        foreach($asCom as $single) {
+            $valorRealGet = $valorRealGet + $single->valor;
+        }
+        $idEmpresa = $asCom[0]->idEmpresa;
+
         $transacao = null;
         $transacao = Transacao::create([
-            'fkEmpresa' => '5',
-            'fkCartao' => '1',
-            'fkEstadoTransacao' => '1',
-            'fkTipoTransacao' => Transacao::getTipoTransacao($inputArray['payment']),
-            'valorBruto' => Transacao::converteCentavos($inputArray['valorPagamento']),
+            'idUsuario' => $idUsuario,
+            'idTipoTransacao' => Transacao::getTipoTransacao($inputArray['payment']),
+            'idEstadoTransacao' => '1',
+            'valorBruto' => $valorRealGet,
             'cardHash' => Transacao::getSkipCardHash($inputArray),
             'dataInicio' => date('d-m-y'),
             'dataResposta' => date('d-m-y')
         ]);
 
-        switch ($transacao->fkTipoTransacao) {
+
+        foreach($asCom as $single) {
+            $pagamento = Pagamento::create([
+                'idUsuario' => $idUsuario,
+                'valor' => $single->valor,
+                'dataPagamento' => date('d-m-y'),
+                'dataBaixa' => date('d-m-y'),
+                'idAssinatura' => $single->idAssinatura,
+                'idTransacao' => $transacao->id,
+                'validade' => null,
+                'isPaid' => false
+            ]);
+        }
+
+
+        switch ($transacao->idTipoTransacao) {
             //TODO: fazer a pagina mostrando pagamento efetuado etc
             default:
-            case 1:
+            case 1:  //pagamentocartaosimples
                 $transactionPagarMe = new PagarMe_Transaction(array(
                     'amount' => $transacao->valorBruto,
                     'card_hash' => $transacao->cardHash
@@ -133,7 +160,7 @@ class PagamentoController extends Controller
                 $transactionPagarMe->charge();
                 return $status = $transactionPagarMe->status;
 
-            case 2:
+            case 2: ///assinatura
                 $transactionPagarMe = new PagarMe_Transaction(array(
                     'amount' => $transacao->valorBruto,
                     'card_hash' => $transacao->cardHash
@@ -150,7 +177,8 @@ class PagamentoController extends Controller
 
                 return $status = $transactionPagarMe->status . ' ' . $card_id;
 
-            case 3:
+            case 3: //boleto
+                dd($transacao->valorBruto);
 
                 $transaction = new PagarMe_Transaction(array(
                     'amount' => $transacao->valorBruto,
@@ -166,4 +194,5 @@ class PagamentoController extends Controller
                 //return Redirect::to($boleto_url);
         }
     }
+
 }

@@ -6,17 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transacao extends Model
 {
-    protected $table = "transacao";
+    protected $table = "transacoes";
 
     protected $fillable = array(
-        'fkEmpresa',
-        'fkCartao',
-        'fkEstadoTransacao',
-        'fkTipoTransacao',
-        'cardHash',
+        'idUsuario',
+        'idTipoTransacao',
+        'idEstadoTransacao',
         'valorBruto',
-        'dataInicio',
-        'dataResposta'
+        'cardHash',
+        'cardHashMensal'
     );
 
     public static function getTipoTransacao($entrada) {
@@ -47,6 +45,19 @@ class Transacao extends Model
         } else {
             return null;
         }
+    }
+
+    public static function converteStringRStoPonto($valor)
+    {
+        $valorReal = str_replace('R$ ', '', $valor);
+        $valorReal = str_replace(',', '.', $valorReal);
+        $valorReal = floatval($valorReal);
+        return $valorReal;
+    }
+
+    public static function convertePontotoVirgula($valor)
+    {
+        return str_replace('.',',',$valor);
     }
 
 }

@@ -12,22 +12,19 @@ class CriarTabelaAssinaturaTransacoes extends Migration
      */
     public function up()
     {
-        Schema::create('assinaturaTransacoes', function(Blueprint $table)
+        Schema::table('pagamentos', function(Blueprint $table)
         {
-            $table->increments('id')->unsigned();
-            $table->integer('idTransacao')->unsigned();
             $table->integer('idAssinatura')->unsigned();
-            $table->double('valorAssinatura');
-            $table->dateTime('dataVencimento');
-            $table->boolean('pago')->default(false);
-
-            $table->timestamps();
+            $table->integer('idTransacao')->unsigned();
+            $table->date('validade')->nullable();
+            $table->boolean('isPaid')->default(false);
         });
 
-        Schema::table('assinaturaTransacoes', function(Blueprint $table){
+        Schema::table('pagamentos', function(Blueprint $table){
             $table->foreign('idTransacao')->references('id')->on('transacoes');
             $table->foreign('idAssinatura')->references('id')->on('assinaturas');
         });
+
     }
 
     /**
@@ -37,10 +34,18 @@ class CriarTabelaAssinaturaTransacoes extends Migration
      */
     public function down()
     {
-        Schema::table('assinaturaTransacoes', function(Blueprint $table) {
+        Schema::table('pagamentos', function(Blueprint $table) {
             $table->dropForeign(['idTransacao']);
             $table->dropForeign(['idAssinatura']);
+
         });
-        Schema::drop('assinaturaTransacoes');
+
+        Schema::table('pagamentos', function(Blueprint $table) {
+
+            $table->dropColumn('idAssinatura');
+            $table->dropColumn('idTransacao');
+            $table->dropColumn('validade');
+            $table->dropColumn('isPaid');
+        });
     }
 }

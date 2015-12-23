@@ -11,6 +11,8 @@ class EnderecoTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         DB::table('enderecos')->delete();
 
         DB::table('enderecos')->insert(array(
@@ -25,5 +27,7 @@ class EnderecoTableSeeder extends Seeder
                 'lon' => '-22.215'
             ),
         ));
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
     }
 }

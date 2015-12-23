@@ -11,6 +11,8 @@ class TipoCartaoTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         DB::table('tiposCartoes')->delete();
 
         DB::table('tiposCartoes')->insert(array(
@@ -31,5 +33,7 @@ class TipoCartaoTableSeeder extends Seeder
                 'descricao' => 'Nenhum cartão',
             ),
         ));
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
     }
 }

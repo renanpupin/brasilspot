@@ -11,7 +11,7 @@ $(document).ready(function() {
             sum += Number(String(this.value).replace("R$ ", "").replace(",","."))
         }
     });
-    totalTotal.value = "R$ " + String(sum).replace('.',',');
+    totalTotal.value = "R$ " + String(sum.toFixed(2)).replace('.',',');
 
 
     $("input[type='checkbox']" ).off("click").change( "click", function() {
@@ -22,7 +22,7 @@ $(document).ready(function() {
                 sum += Number(String(this.value).replace("R$ ", "").replace(",","."))
             }
         });
-        totalTotal.value = "R$ " + String(sum).replace('.',',');
+        totalTotal.value = "R$ " + String(sum.toFixed(2)).replace('.',',');
     })
 });
 
