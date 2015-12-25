@@ -54,40 +54,47 @@
     @endif
 
     <div id="selecao" class="grid-m-12 grid-s-12 grid-xs-12">
-        {!! Form::Open(['url' => 'Pagamento/InfoCartao', 'method' => 'POST']) !!}
-            <table id="listaFiliais" class="table">
-                <thead>
-                    <th></th>
-                    <th>Descrição</th>
-                    <th>Valor</th>
-                </thead>
-                <tbody>
-                    @foreach ($values as $key => $value)
+        @if ($values)
+            {!! Form::Open(['url' => 'Pagamento/InfoCartao', 'method' => 'POST']) !!}
+                <table id="listaFiliais" class="table">
+                    <thead>
+                        <th></th>
+                        <th>Descrição</th>
+                        <th>Validado até</th>
+                        <th>Valor</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($values as $key => $value)
+                            <tr>
+                                <td>
+                                    {!! Form::checkbox("checkbox[]", $value->id, ["checked" => "true" ] ) !!}
+                                </td>
+                                <td>{{ $value->nomeFantasia }}</td>
+                                <td>{{ $value->validade }}</td>
+                                <td>
+                                    {!! Form::text("value[]", "R$ ".$value->valor, ["checked" => "true", "readonly" => "readonly", "class" => "valores1" ] ) !!}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
                         <tr>
+                            <th colspan="3">Total :</th>
                             <td>
-                                {!! Form::checkbox("checkbox[]", $value->id, ["checked" => "true" ] ) !!}
-                            </td>
-                            <td>{{ $value->nomeFantasia }}</td>
-                            <td>
-                                {!! Form::text("value[]", "R$ ".$value->valor, ["checked" => "true", "readonly" => "readonly", "class" => "valores1" ] ) !!}
+                                {!! Form::text("totalTotalis", "R$ ".$value->valor, ["readonly" => "readonly", "id" => "idTotal" ] ) !!}
                             </td>
                         </tr>
-                    @endforeach
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="2">Total :</th>
-                        <td>
-                            {!! Form::text("totalTotalis", "R$ ".$value->valor, ["readonly" => "readonly", "id" => "idTotal" ] ) !!}
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-            {!! Form::button('<span class="text-content">Enviar</span>',
-                    ['id' => 'btnCadastrar','name' => 'btnprox' , 'type' => 'submit', 'class' => 'btn btn-primary ripple']
-                )
-            !!}
-        {!! Form::Close() !!}
+                    </tfoot>
+                </table>
+                {!! Form::button('<span class="text-content">Enviar</span>',
+                        ['id' => 'btnCadastrar','name' => 'btnprox' , 'type' => 'submit', 'class' => 'btn btn-primary ripple']
+                    )
+                !!}
+            {!! Form::Close() !!}
+        @else
+            <h4> Nenhuma assinatura disponivel para pagamento ainda, verifique 10 dias antes do vencimento.</h4>
+        @endif
+
     </div>
 
 @stop

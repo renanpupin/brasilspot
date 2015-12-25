@@ -14,7 +14,8 @@ class Transacao extends Model
         'idEstadoTransacao',
         'valorBruto',
         'cardHash',
-        'cardHashMensal'
+        'cardHashMensal',
+        'numeroBoleto'
     );
 
     public static function getTipoTransacao($entrada) {
@@ -58,6 +59,11 @@ class Transacao extends Model
     public static function convertePontotoVirgula($valor)
     {
         return str_replace('.',',',$valor);
+    }
+
+    public static function getValorCentavos($valorRealGet)
+    {
+        return intval($valorRealGet * 100);
     }
 
 }

@@ -16,8 +16,9 @@ class Pagamento extends Model
         'idAssinatura',
         'idTransacao',
         'validade',
-        'idPaid'
+        'isPaid'
     );
+
 
     public function Usuario()
     {
