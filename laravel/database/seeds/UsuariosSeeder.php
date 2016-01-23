@@ -42,6 +42,13 @@ class UsuariosSeeder extends Seeder
                 'email' => 'alisson@brasilspot.com',
                 'password' => bcrypt('spot123'),
                 'idPerfilUsuario' => 1, //admin
+            ),
+            array(
+                'id' => 7,
+                'name' => 'Valter',
+                'email' => 'valter@brasilspot.com',
+                'password' => bcrypt('spot123'),
+                'idPerfilUsuario' => 1, //admin
             )
         ));
 
