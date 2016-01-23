@@ -31,6 +31,13 @@ class MetaTableSeeder extends Seeder
                 'numeroAssinaturas' => 30,
                 'idTipoMeta' => 2
             ),
+            array(
+                'id' => 3,
+                'nome' => 'Promoção 2016',
+                'recompensa' => 200,
+                'numeroAssinaturas' => 100,
+                'idTipoMeta' => 3
+            ),
         ));
     }
 }

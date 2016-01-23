@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TagTableSeeder extends Seeder
+class MetaVendedorTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,31 +11,33 @@ class TagTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tags')->delete();
+        DB::table('metasvendedor')->delete();
 
-        DB::table('tags')->insert(array(
+        DB::table('metasvendedor')->insert(array(
             array(
                 'id' => 1,
-                'nome' => 'Pizzaria do José',
+                'idMeta' => 1,
+                'idVendedor' => 1
             ),
             array(
                 'id' => 2,
-                'nome' => 'Pizza Gostosa',
+                'idMeta' => 2,
+                'idVendedor' => 1
             ),
             array(
                 'id' => 3,
-                'nome' => 'Pizzaria Avenida Paulista',
+                'idMeta' => 3,
+                'idVendedor' => 1
             ),
-        ));
-
-        DB::table('tags')->insert(array(
             array(
                 'id' => 4,
-                'nome' => 'Canil Brasília',
+                'idMeta' => 1,
+                'idVendedor' => 2
             ),
             array(
                 'id' => 5,
-                'nome' => 'Pet Shop Rua Brasil',
+                'idMeta' => 2,
+                'idVendedor' => 2
             ),
         ));
     }

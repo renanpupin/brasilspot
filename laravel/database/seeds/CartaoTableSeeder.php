@@ -27,6 +27,10 @@ class CartaoTableSeeder extends Seeder
                 'id' => 3,
                 'bandeira' => 'Amex',
             ),
+            array(
+                'id' => 4,
+                'bandeira' => 'ELO',
+            ),
         ));
     }
 }

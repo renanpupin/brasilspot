@@ -24,6 +24,16 @@ class EnderecoTableSeeder extends Seeder
                 'lat' => '-51.212',
                 'lon' => '-22.215'
             ),
+            array(
+                'id' => 2,
+                'endereco' => 'Rua Brasil, 1999',
+                'bairro' => 'Jardim Brasil',
+                'cidade' => 'Brasília',
+                'estado' => 'Distrito Federal',
+                'cep' => '16215-555',
+                'lat' => '-51.112',
+                'lon' => '-22.311'
+            ),
         ));
     }
 }

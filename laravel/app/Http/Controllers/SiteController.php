@@ -49,9 +49,17 @@ class SiteController extends Controller
     public function filtroEmpresas($filtros = null)
     {
 //        dd($filtros);
+
         $local_url = Input::get("local");  //apenas um
         $servicos_url = Input::get("com");  //um ou varios
         $tipo_url = Input::get("tipo");     //comercios,servicos,atracoes,profissionais
+
+//        $query_empresa = Input::get("pesquisaEmpresa");
+//        $query_endereco = Input::get("pesquisaEndereco");
+
+
+        $busca_url = Input::get("pesquisaEmpresa");     //busca de empresas
+        $endereco_url = Input::get("pesquisaEndereco");     //busca de endereço
 
         $categoria_url = null;
         $subcategoria_url = null;
@@ -118,7 +126,15 @@ class SiteController extends Controller
 
 
 
-        return view('index')->with('empresas',$empresas)->with('tipo',$tipo_url)->with('categorias',$categorias)->with('subcategorias',$subcategorias)->with('servicos',$servicos)->with('servicos_selecionados_id',$servicos_selecionados_id);
+        return view('index')
+            ->with('busca_url', $busca_url)
+            ->with('endereco_url', $endereco_url)
+            ->with('empresas',$empresas)
+            ->with('tipo',$tipo_url)
+            ->with('categorias',$categorias)
+            ->with('subcategorias',$subcategorias)
+            ->with('servicos',$servicos)
+            ->with('servicos_selecionados_id',$servicos_selecionados_id);
     }
 
     public function visualizar($id)

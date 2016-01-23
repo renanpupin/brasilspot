@@ -317,7 +317,7 @@ Route::get('Empresas/pesquisarEmpresa', 'SiteController@pesquisarEmpresa');
 Route::get('Empresas/pesquisarEndereco', 'SiteController@pesquisarEndereco');
 
 /*rotas dos filtros*/
-Route::get('Empresas/Buscar', 'SiteController@buscarEmpresas');
+//Route::get('Empresas/Buscar', 'SiteController@buscarEmpresas');
 Route::get('Empresas/{filtros?}', 'SiteController@filtroEmpresas')->where('filtros', '(.*)');
 
 

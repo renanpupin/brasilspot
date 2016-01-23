@@ -23,16 +23,16 @@
         {{--</li>--}}
         <li class="content-center">
             <div class="center-row row">
-                {!! Form::Open(['url' => 'Empresas/Buscar', 'method' => 'POST']) !!}
+                {!! Form::Open(['url' => 'Empresas', 'method' => 'GET']) !!}
                     <div class="nav-item">
                         {{--<a href="#">--}}
                         {{--Route::getCurrentRoute()->getParameter('busca');--}}
-                            <input type="text" name="pesquisaEmpresa" id="pesquisaEmpresa" placeholder="O que você procura?">
+                            <input type="text" name="pesquisaEmpresa" id="pesquisaEmpresa" placeholder="O que você procura?" value="{{$busca_url}}">
                         {{--</a>--}}
                     </div>
                     <div class="nav-item">
                         {{--<a href="#">--}}
-                            <input type="text" name="pesquisaEndereco" id="pesquisaEndereco" placeholder="Onde?">
+                            <input type="text" name="pesquisaEndereco" id="pesquisaEndereco" placeholder="Onde?" value="{{$endereco_url}}">
                         {{--</a>--}}
                     </div>
                     <div class="nav-item">

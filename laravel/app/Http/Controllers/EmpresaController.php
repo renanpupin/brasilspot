@@ -327,6 +327,7 @@ class EmpresaController extends Controller
                     ->load('Comerciante.AssinaturaComerciante.Assinatura')
                     ->load('Comerciante.AssinaturaComerciante.Assinatura.Plano');
 
+                //TODO: verificar o que está ocorrendo aqui
                 if ($usuario->Comerciante->AssinaturaComerciante->Assinatura->Plano->nome == 'Básico') {
                     for ($i = 0, $max = 0; $i < count($tags) && $max < 5; $i++) {
                         if (!empty($tags[$i])) {

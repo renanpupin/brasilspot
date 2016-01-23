@@ -12,19 +12,19 @@
         <div class="side-filter">
             {{--<div class="filter-title side-filter-empreendimento active">--}}
             <div class="filter-title side-filter-empreendimento {{($tipo === null ? 'active' : null)}}">
-                <a href="{{url(Request::path().(sizeof(Request::input()) > 0 ? "?" : null).(sizeof(Request::input("local")) > 0 ? "local=".(Request::input("local")) : null).(sizeof(Request::input("com")) > 0 ? ("&com=".Request::input("com")) : null))}}"><i class="material-icons">dashboard</i>Todos</a>
+                <a href="{{url(Request::path().(sizeof(Request::input()) > 0 ? "?" : null).(sizeof(Request::input("local")) > 0 ? "local=".(Request::input("local")) : null).(sizeof(Request::input("com")) > 0 ? ("&com=".Request::input("com")) : null).(sizeof(Request::input("tipo")) > 0 ? "" : "&").(sizeof(Request::input("pesquisaEmpresa")) > 0 ? ("pesquisaEmpresa=".Request::input("pesquisaEmpresa")) : null).(sizeof(Request::input("pesquisaEndereco")) > 0 ? ("&pesquisaEndereco=".Request::input("pesquisaEndereco")) : null))}}"><i class="material-icons">dashboard</i>Todos</a>
             </div>
             <div class="filter-title side-filter-empreendimento {{($tipo === "comercios" ? 'active' : null)}}">
-                <a href="{{url(Request::path()."?tipo=comercios".(sizeof(Request::input("local")) > 0 ? "&local=".(Request::input("local")) : null).(sizeof(Request::input("com")) > 0 ? ("&com=".Request::input("com")) : null))}}"><i class="material-icons">store_mall_directory</i>Comércios</a>
+                <a href="{{url(Request::path()."?tipo=comercios".(sizeof(Request::input("local")) > 0 ? "&local=".(Request::input("local")) : null).(sizeof(Request::input("com")) > 0 ? ("&com=".Request::input("com")) : null).(sizeof(Request::input("pesquisaEmpresa")) > 0 ? ("&pesquisaEmpresa=".Request::input("pesquisaEmpresa")) : null).(sizeof(Request::input("pesquisaEndereco")) > 0 ? ("&pesquisaEndereco=".Request::input("pesquisaEndereco")) : null))}}"><i class="material-icons">store_mall_directory</i>Comércios</a>
             </div>
             <div class="filter-title side-filter-empreendimento {{($tipo === "servicos" ? 'active' : null)}}">
-                <a href="{{url(Request::path()."?tipo=servicos".(sizeof(Request::input("local")) > 0 ? "&local=".(Request::input("local")) : null).(sizeof(Request::input("com")) > 0 ? ("&com=".Request::input("com")) : null))}}"><i class="material-icons">build</i>Serviços</a>
+                <a href="{{url(Request::path()."?tipo=servicos".(sizeof(Request::input("local")) > 0 ? "&local=".(Request::input("local")) : null).(sizeof(Request::input("com")) > 0 ? ("&com=".Request::input("com")) : null).(sizeof(Request::input("pesquisaEmpresa")) > 0 ? ("&pesquisaEmpresa=".Request::input("pesquisaEmpresa")) : null).(sizeof(Request::input("pesquisaEndereco")) > 0 ? ("&pesquisaEndereco=".Request::input("pesquisaEndereco")) : null))}}"><i class="material-icons">build</i>Serviços</a>
             </div>
             <div class="filter-title side-filter-empreendimento {{($tipo === "atracoes" ? 'active' : null)}}">
-                <a href="{{url(Request::path()."?tipo=atracoes".(sizeof(Request::input("local")) > 0 ? "&local=".(Request::input("local")) : null).(sizeof(Request::input("com")) > 0 ? ("&com=".Request::input("com")) : null))}}"><i class="material-icons">mood</i>Atrações</a>
+                <a href="{{url(Request::path()."?tipo=atracoes".(sizeof(Request::input("local")) > 0 ? "&local=".(Request::input("local")) : null).(sizeof(Request::input("com")) > 0 ? ("&com=".Request::input("com")) : null).(sizeof(Request::input("pesquisaEmpresa")) > 0 ? ("&pesquisaEmpresa=".Request::input("pesquisaEmpresa")) : null).(sizeof(Request::input("pesquisaEndereco")) > 0 ? ("&pesquisaEndereco=".Request::input("pesquisaEndereco")) : null))}}"><i class="material-icons">mood</i>Atrações</a>
             </div>
             <div class="filter-title side-filter-empreendimento {{($tipo === "profissionais" ? 'active' : null)}}">
-                <a href="{{url(Request::path()."?tipo=profissionais".(sizeof(Request::input("local")) > 0 ? "&local=".(Request::input("local")) : null).(sizeof(Request::input("com")) > 0 ? ("&com=".Request::input("com")) : null))}}"><i class="material-icons">school</i>Profissionais</a>
+                <a href="{{url(Request::path()."?tipo=profissionais".(sizeof(Request::input("local")) > 0 ? "&local=".(Request::input("local")) : null).(sizeof(Request::input("com")) > 0 ? ("&com=".Request::input("com")) : null).(sizeof(Request::input("pesquisaEmpresa")) > 0 ? ("&pesquisaEmpresa=".Request::input("pesquisaEmpresa")) : null).(sizeof(Request::input("pesquisaEndereco")) > 0 ? ("&pesquisaEndereco=".Request::input("pesquisaEndereco")) : null))}}"><i class="material-icons">school</i>Profissionais</a>
             </div>
         </div>
     </div>
