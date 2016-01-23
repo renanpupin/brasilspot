@@ -11,24 +11,23 @@ class TagTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         DB::table('tags')->delete();
 
         DB::table('tags')->insert(array(
             array(
                 'id' => 1,
-                'nome' => 'Pizzaria do José',
+                'nome' => 'pizza'
             ),
             array(
                 'id' => 2,
-                'nome' => 'Pizza Gostosa',
+                'nome' => 'pizzaria delivery'
             ),
             array(
                 'id' => 3,
                 'nome' => 'Pizzaria Avenida Paulista',
             ),
-        ));
-
-        DB::table('tags')->insert(array(
             array(
                 'id' => 4,
                 'nome' => 'Canil Brasília',
@@ -36,7 +35,10 @@ class TagTableSeeder extends Seeder
             array(
                 'id' => 5,
                 'nome' => 'Pet Shop Rua Brasil',
-            ),
+            )
         ));
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
     }
 }

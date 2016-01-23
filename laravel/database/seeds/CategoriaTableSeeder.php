@@ -11,8 +11,11 @@ class CategoriaTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('categoriasEmpresas')->delete();
 
         DB::table('categorias')->delete();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         DB::table('categorias')->insert(array(
             array(

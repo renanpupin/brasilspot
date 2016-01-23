@@ -1,13 +1,18 @@
 $(document).ready(function() {
 
-    sum = 0;
-    $('.valores1').each(function() {
-        sum += Number(String(this.value).replace("R$ ", "").replace(",","."))
-    });
-
 
     totalTotal = $("#idTotal")[0];
-    totalTotal.value = "R$ " + String(sum).replace('.',',');
+    sum = 0;
+
+    firstrun = $("input[type='checkbox']" )
+    sum = 0;
+    $('.valores1').each(function() {
+        if ($($(firstrun).parent().parent().children("td")[0]).children("input")[0].checked == true) {
+            sum += Number(String(this.value).replace("R$ ", "").replace(",","."))
+        }
+    });
+    totalTotal.value = "R$ " + String(sum.toFixed(2)).replace('.',',');
+
 
     $("input[type='checkbox']" ).off("click").change( "click", function() {
         checkerbox = this;
@@ -17,7 +22,7 @@ $(document).ready(function() {
                 sum += Number(String(this.value).replace("R$ ", "").replace(",","."))
             }
         });
-        totalTotal.value = "R$ " + String(sum).replace('.',',');
+        totalTotal.value = "R$ " + String(sum.toFixed(2)).replace('.',',');
     })
 });
 

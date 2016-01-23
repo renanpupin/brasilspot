@@ -10,9 +10,15 @@ class Pagamento extends Model
 
     protected $fillable = array(
         'idUsuario',
+        'valor',
         'dataPagamento',
-        'dataBaixa'
+        'dataBaixa',
+        'idAssinatura',
+        'idTransacao',
+        'validade',
+        'isPaid'
     );
+
 
     public function Usuario()
     {

@@ -10,27 +10,35 @@ class EstadoTransacaoTableSeeder extends Seeder
 
         DB::table('estadotransacao')->insert(array(
             array(
-                'idEstadoTransacao' => 1,
+                'idEstadoTransacao' => \App\EstadoTransacao::Criado,
                 'nome' => 'Criado',
             ),
             array(
-                'idEstadoTransacao' => 2,
+                'idEstadoTransacao' =>\App\EstadoTransacao::PagamentoPendente,
                 'nome' => 'Pagamento Pendente',
             ),
             array(
-                'idEstadoTransacao' => 3,
+                'idEstadoTransacao' => \App\EstadoTransacao::PagamentoPendenteCancelado,
                 'nome' => 'Pagamento Pendente Cancelado',
             ),
             array(
-                'idEstadoTransacao' => 5,
+                'idEstadoTransacao' => \App\EstadoTransacao::Pago,
                 'nome' => 'Pago',
             ),
             array(
-                'idEstadoTransacao' => 6,
+                'idEstadoTransacao' => \App\EstadoTransacao::Recusado,
+                'nome' => 'Recusado',
+            ),
+            array(
+                'idEstadoTransacao' => \App\EstadoTransacao::Vencido,
+                'nome' => 'Vencido',
+            ),
+            array(
+                'idEstadoTransacao' => \App\EstadoTransacao::Cancelado,
                 'nome' => 'Cancelado',
             ),
             array(
-                'idEstadoTransacao' => 7,
+                'idEstadoTransacao' => \App\EstadoTransacao::Fechado,
                 'nome' => 'Fechado',
             )
         ));

@@ -5,11 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class MudarCampoCardHashNullable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::table('transacao', function (Blueprint $table) {
@@ -17,12 +13,12 @@ class MudarCampoCardHashNullable extends Migration
             DB::connection()->getPdo()->exec($sql);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
     public function down()
     {
         Schema::table('transacao', function (Blueprint $table) {
