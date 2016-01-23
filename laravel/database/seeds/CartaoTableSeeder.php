@@ -34,7 +34,8 @@ class CartaoTableSeeder extends Seeder
             array(
                 'id' => 4,
                 'bandeira' => 'ELO',
-            ),
+                'tipo' => 'Debito'
+            )
         ));
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
