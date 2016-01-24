@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Mensagem;
-use View;
+//use App\Mensagem;
+//use View;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -47,8 +47,8 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         $gate->define('AcessoAdministrador', function($user){
-            $numero_mensagens = Mensagem::where('dataRespondida','!=', '')->where('idUsuario', '=', $user->id)->count();
-            View::share('numero_mensagens', $numero_mensagens);
+//            $numero_mensagens = Mensagem::where('dataRespondida','!=', '')->where('idUsuario', '=', $user->id)->count();
+//            View::share('numero_mensagens', $numero_mensagens);
 
             $perfil = $user->PerfilUsuario()->first();
             if($perfil->tipo == 'Administrador')
@@ -57,8 +57,8 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         $gate->define('AcessoComerciante', function($user){
-            $numero_mensagens = Mensagem::where('dataRespondida','!=', '')->where('idUsuario', '=', $user->id)->count();
-            View::share('numero_mensagens', $numero_mensagens);
+//            $numero_mensagens = Mensagem::where('dataRespondida','!=', '')->where('idUsuario', '=', $user->id)->count();
+//            View::share('numero_mensagens', $numero_mensagens);
 
             $perfil = $user->PerfilUsuario()->first();
             if($perfil->tipo == 'Comerciante')

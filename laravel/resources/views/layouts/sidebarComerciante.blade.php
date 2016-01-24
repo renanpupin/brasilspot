@@ -53,7 +53,7 @@
                 {{--</li>--}}
                 <li>
                     <a href="{{ url('SuasMensagens' )}}" class="{{ Request::segment(1) === 'SuasMensagens' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #A32995;">mail</i>Mensagens ({{$numero_mensagens}})
+                        <i class="material-icons" style="color: #A32995;">mail</i>Mensagens {{--({{$numero_mensagens}})--}}
                     </a>
                 </li>
                 {{--<li>--}}
