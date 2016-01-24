@@ -52,21 +52,21 @@
                 <div class="row">
                     <div class="resumo-item grid-m-4 grid-s-4 grid-xs-4" style="color: #AECC1A;">
                         <a href="#">
-                            <i class="material-icons">visibility</i><span class="resumo-item-info">15</span>
+                            <i class="material-icons">visibility</i><span class="resumo-item-info">{{$qtd_visualizacoes}}</span>
                         </a>
                         <p>Visualizações</p>
                     </div>
                     <div class="resumo-item grid-m-4 grid-s-4 grid-xs-4" style="color: #E66D1C;">
                         <a href="#">
-                            <i class="material-icons">mail</i><span class="resumo-item-info">5</span>
+                            <i class="material-icons">mail</i><span class="resumo-item-info">{{$qtd_mensagens}}</span>
                         </a>
                         <p>Mensagens</p>
                     </div>
                     <div class="resumo-item grid-m-4 grid-s-4 grid-xs-4" style="color: #2269AB;">
                         <a href="#">
-                            <i class="material-icons">assignment</i><span class="resumo-item-info">Pro</span>
+                            <i class="material-icons">assignment</i><span class="resumo-item-info">{{$qtd_assinaturas}}</span>
                         </a>
-                        <p>Assinatura</p>
+                        <p>Assinaturas</p>
                     </div>
                 </div>
             </div>

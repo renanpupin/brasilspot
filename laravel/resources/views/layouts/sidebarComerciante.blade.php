@@ -37,23 +37,23 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('SuaAssinatura' )}}" class="{{ Request::segment(1) === 'SuaAssinatura' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #AECC1A;">assignment</i>Sua Assinatura
+                    <a href="{{ url('assinaturas' )}}" class="{{ Request::segment(1) === 'assinaturas' ? 'active' : null }}">
+                        <i class="material-icons" style="color: #AECC1A;">assignment</i>Assinaturas
                     </a>
                 </li>
-                <li>
-                    <a href="{{ url('Reclamar' )}}" class="{{ Request::segment(1) === 'Reclamar' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #11939C;">mood_bad</i>Reclamar
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('ReportarErro' )}}" class="{{ Request::segment(1) === 'ReportarErro' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #266CAD;">bug_report</i>Reportar Erro
-                    </a>
-                </li>
+                {{--<li>--}}
+                    {{--<a href="{{ url('Reclamar' )}}" class="{{ Request::segment(1) === 'Reclamar' ? 'active' : null }}">--}}
+                        {{--<i class="material-icons" style="color: #11939C;">mood_bad</i>Reclamar--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="{{ url('ReportarErro' )}}" class="{{ Request::segment(1) === 'ReportarErro' ? 'active' : null }}">--}}
+                        {{--<i class="material-icons" style="color: #266CAD;">bug_report</i>Reportar Erro--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 <li>
                     <a href="{{ url('SuasMensagens' )}}" class="{{ Request::segment(1) === 'SuasMensagens' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #A32995;">mail</i>Mensagens
+                        <i class="material-icons" style="color: #A32995;">mail</i>Mensagens ({{$numero_mensagens}})
                     </a>
                 </li>
                 {{--<li>--}}

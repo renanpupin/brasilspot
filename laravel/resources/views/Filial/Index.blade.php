@@ -21,10 +21,10 @@
         <h2>Listar Filiais</h2>
         @can('AcessoComerciante')
         @if($numero_assinaturas > 0 )
-            <p>No momento você pode ter <b>{{$numero_assinaturas}}</b> filial(is). Para adicionar mais filiais clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
+            <p>No momento você pode ter <b>{{$numero_assinaturas}}</b> filial(is). Para adicionar mais filiais é necessário adquirir novas assinaturas.</p>
         @endif
         @if($numero_assinaturas == 0 )
-            <p>No momento você não pode adicionar mais filiais. Se deseja adicionar mais filiais clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
+            <p>No momento você não pode adicionar mais filiais. Se deseja adicionar mais filiais adquira novas assinaturas.</p>
         @endif
         @endcan
     </div>

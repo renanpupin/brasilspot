@@ -54,6 +54,11 @@ Route::get('RecuperarSenha', function () {
     Route::get('Erros/aprovar/{id}', 'ErroController@aprovar');
     Route::resource('Erro','ErroController');
 
+    //route for "Comerciantes
+    Route::get('comerciantes/cadastrar', 'ComercianteController@create');
+    Route::get('comerciantes/gerenciar', 'ComercianteController@index');
+    Route::resource('Comerciante','ComercianteController');
+
     //routes for "Reclamacoes"
     Route::get('Cliente/Reclamacoes', 'ReclamacaoController@indexComerciante');
     Route::get('Cliente/Reclamacoes/cadastrar', 'ReclamacaoController@create');
@@ -61,13 +66,14 @@ Route::get('RecuperarSenha', function () {
     Route::get('Cliente/Reclamacoes/visualizar/{id}', 'ReclamacaoController@visualizar');
     Route::resource('Reclamacao','ReclamacaoController');
 
-    //routes for "Clientes"
+    //routes for "Clien
+    //tes"
     Route::get('Clientes/Atualizacoes', function () {
         return view('Cliente/Atualizacoes');
     });
-Route::get('Clientes/VerAtualizacao/{id}', function () {
-    return view('Cliente/VerAtualizacao');
-});
+    Route::get('Clientes/VerAtualizacao/{id}', function () {
+        return view('Cliente/VerAtualizacao');
+    });
     Route::post('Clientes/editar/{id}', 'ClienteController@update');
     Route::get('Clientes/editar/{id}', 'ClienteController@edit');
     Route::get('Clientes/AtualizarVencimento/{id}', 'ClienteController@atualizarVencimento');
@@ -215,12 +221,7 @@ Route::get('SeuDesempenho', 'VendedorController@desempenho');
 Route::get('MapaVendas', 'MapaVendasController@mapa');
 
 //rotas que os comerciantes vão ver no menu
-Route::get('Resumo', function () {
-    if(Gate::allows('AcessoComerciante')) {
-        return view('Comerciante/resumo');
-    }
-    return view('401');
-});
+Route::get('Resumo', 'ComercianteController@resumo');
 
 Route::get('SuasFiliais/visualizar/{id}', 'FilialController@show');
 Route::get('SuasFiliais/editar/{id}', 'FilialController@edit');
@@ -236,6 +237,9 @@ Route::get('SuaEmpresa', 'EmpresaController@suaEmpresa');
 
 Route::get('ServicosOferecidos', 'ServicoController@selecionar');
 Route::post('Servico/gravarSelecionados', ['as' => 'Servico.gravarSelecionados', 'uses' => 'ServicoController@gravarSelecionados']);
+
+//route for assinaturas
+Route::get('assinaturas', 'ComercianteController@minhasAssinaturas');
 
 Route::get('SuaAssinatura/Upgrade/{id}', function () {
     return view('Comerciante/UpgradeAssinatura');

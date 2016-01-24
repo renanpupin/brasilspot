@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Auth;
+use Validator;
 class CategoriaController extends Controller
 {
     public function index()
@@ -53,30 +54,42 @@ class CategoriaController extends Controller
             'required' => 'O campo :attribute deve ser preenchido.'
         );
 
-        $this->validate($request, $regras, $mensagens);
+        $validator = Validator::make($request->all(), $regras, $mensagens);
 
-        if($request['idCategoriaPai'] == -1)
-        {
-            Categoria::Create([
-                'nome' => $request['nome'],
-                'idTipoCategoria' => $request['idTipoCategoria'],
-                'idCategoriaPai' => null,
-                'slug' => str_slug($request['nome'])
-            ]);
-        }
-        else {
-
-            Categoria::Create([
-                'nome' => $request['nome'],
-                'idTipoCategoria' => $request['idTipoCategoria'],
-                'idCategoriaPai' => $request['idCategoriaPai'],
-                'slug' => str_slug($request['nome'])
-            ]);
+        if ($validator->fails()) {
+            return redirect('Categoria/cadastrar')
+                ->withErrors($validator)
+                ->withInput();
         }
 
-        Session::flash('flash_message', 'Categoria adicionada com sucesso!');
+        if($request['idTipoCategoria'] != -1){
+            if($request['idCategoriaPai'] == -1)
+            {
+                Categoria::Create([
+                    'nome' => $request['nome'],
+                    'idTipoCategoria' => $request['idTipoCategoria'],
+                    'idCategoriaPai' => null,
+                    'slug' => str_slug($request['nome'])
+                ]);
+            }
+            else {
+                Categoria::Create([
+                    'nome' => $request['nome'],
+                    'idTipoCategoria' => $request['idTipoCategoria'],
+                    'idCategoriaPai' => $request['idCategoriaPai'],
+                    'slug' => str_slug($request['nome'])
+                ]);
+            }
 
-        return redirect()->back();
+            Session::flash('flash_message', 'Categoria adicionada com sucesso!');
+
+            return redirect()->back();
+        }else{
+            $validator->errors()->add('idTipoCategoria', 'O campo Tipo da Categoria deve ser selecionado.');
+            return redirect('Categoria/cadastrar')
+                ->withErrors($validator)
+                ->withInput();
+        }
     }
 
 
@@ -120,26 +133,41 @@ class CategoriaController extends Controller
             'required' => 'O campo :attribute deve ser preenchido.'
         );
 
-        $this->validate($request, $regras, $mensagens);
+        $validator = Validator::make($request->all(), $regras, $mensagens);
 
-        if($request['idCategoriaPai'] == -1)
-        {
-            $categoria->nome = $request['nome'];
-            $categoria->idTipoCategoria = $request['idTipoCategoria'];
-            $categoria->idCategoriaPai = null;
-        }
-        else {
-
-            $categoria->nome = $request['nome'];
-            $categoria->idTipoCategoria = $request['idTipoCategoria'];
-            $categoria->idCategoriaPai = $request['idCategoriaPai'];
+        if ($validator->fails()) {
+            return redirect('Categoria/editar/'.$id)
+                ->withErrors($validator)
+                ->withInput();
         }
 
-        $categoria->save();
+        if($request['idTipoCategoria'] != -1){
 
-        Session::flash('flash_message', 'Categoria alterada com sucesso!');
+            if($request['idCategoriaPai'] == -1)
+            {
+                $categoria->nome = $request['nome'];
+                $categoria->idTipoCategoria = $request['idTipoCategoria'];
+                $categoria->idCategoriaPai = null;
+            }
+            else {
 
-        return redirect()->back();
+                $categoria->nome = $request['nome'];
+                $categoria->idTipoCategoria = $request['idTipoCategoria'];
+                $categoria->idCategoriaPai = $request['idCategoriaPai'];
+            }
+
+            $categoria->save();
+
+            Session::flash('flash_message', 'Categoria alterada com sucesso!');
+
+            return redirect('Categoria/editar/'.$id);
+
+        }else{
+            $validator->errors()->add('idTipoCategoria', 'O campo Tipo da Categoria deve ser selecionado.');
+            return redirect('Categoria/editar/'.$id)
+                ->withErrors($validator)
+                ->withInput();
+        }
     }
 
     public function destroy($id)

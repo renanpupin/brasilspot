@@ -36,12 +36,20 @@ class FilialController extends Controller
         {
             $comerciante = Comerciante::where('idUsuario','=',$usuario->id)->first();
             $query =  DB::select(DB::raw("select count(idComerciante) as qtdAssinaturasTotais from assinaturasComerciantes ac inner join assinaturas a on a.id = ac.idAssinatura  where idComerciante = :comercianteId  group by idComerciante"),['comercianteId' => $comerciante->id]);
-            $qtdAssinaturasTotais = $query[0]->qtdAssinaturasTotais;
+
+            if(sizeof($query) > 0) {
+                $qtdAssinaturasTotais = $query[0]->qtdAssinaturasTotais;
+            }else{
+                $qtdAssinaturasTotais = 0;
+            }
+
             $query = DB::select(DB::raw("select count(idComerciante) as qtdAssinaturasUsadas from assinaturasComerciantes ac inner join assinaturas a on a.id = ac.idAssinatura inner join assinaturasFiliais af on af.idAssinatura = ac.idAssinatura where idComerciante = :comercianteId group by idComerciante"),['comercianteId' => $comerciante->id]);
             $qtdAssinaturasUsadas = empty($query) ? 0 : $query[0]->qtdAssinaturasUsadas;
             $qtdAssinaturasRestantes = $qtdAssinaturasTotais - $qtdAssinaturasUsadas;
 
             $empresa = Empresa::where('idUsuario','=',$usuario->id)->first();
+
+            $filiais = [];
             if($empresa != null)
             {
                 $filiais = Filial::where('idEmpresa','=',$empresa->id)->get();

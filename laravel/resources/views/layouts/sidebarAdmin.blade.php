@@ -31,21 +31,21 @@
                         <i class="material-icons" style="color: #AECC1A;">work</i>Serviços
                     </a>
                 </li>
-                <li>
-                    <a href="{{ url('Metas' )}}" class="{{ Request::segment(1) === 'Metas' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #A32995;">trending_up</i>Metas
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('TipoMeta' )}}" class="{{ Request::segment(1) === 'TipoMeta' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #A32995;">trending_up</i>Tipos de Meta
-                    </a>
-                </li>
-                <li class="submenu">
-                    <a href="{{ url('Vendedores' )}}" class="{{ Request::segment(1) === 'Vendedor' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #266CAD;">person</i>Vendedores
-                    </a>
-                    <ul>
+                {{--<li>--}}
+                    {{--<a href="{{ url('Metas' )}}" class="{{ Request::segment(1) === 'Metas' ? 'active' : null }}">--}}
+                        {{--<i class="material-icons" style="color: #A32995;">trending_up</i>Metas--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="{{ url('TipoMeta' )}}" class="{{ Request::segment(1) === 'TipoMeta' ? 'active' : null }}">--}}
+                        {{--<i class="material-icons" style="color: #A32995;">trending_up</i>Tipos de Meta--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li class="submenu">--}}
+                    {{--<a href="{{ url('Vendedores' )}}" class="{{ Request::segment(1) === 'Vendedor' ? 'active' : null }}">--}}
+                        {{--<i class="material-icons" style="color: #266CAD;">person</i>Vendedores--}}
+                    {{--</a>--}}
+                    {{--<ul>--}}
                         {{--<li>--}}
                             {{--<a href="{{ url('Clientes/Gerenciar' )}}" class="">--}}
                                 {{--<i class="material-icons">person_add</i>Gerenciar seus clientes--}}
@@ -56,16 +56,16 @@
                         {{--<i class="material-icons">sync_problem</i>Edições não aprovadas--}}
                         {{--</a>--}}
                         {{--</li>--}}
-                        <li>
-                            <a href="{{ url('Vendedor/Reclamacoes' )}}" class="">
-                                <i class="material-icons">mood_bad</i>Reclamações (3)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('Vendedor/MapaVendedores' )}}" class="">
-                                <i class="material-icons">recent_actors</i>Mapa de vendedores
-                            </a>
-                        </li>
+                        {{--<li>--}}
+                            {{--<a href="{{ url('Vendedor/Reclamacoes' )}}" class="">--}}
+                                {{--<i class="material-icons">mood_bad</i>Reclamações (3)--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="{{ url('Vendedor/MapaVendedores' )}}" class="">--}}
+                                {{--<i class="material-icons">recent_actors</i>Mapa de vendedores--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
                         {{--<li>--}}
                             {{--<a href="{{ url('Vendedor/VincularMetas' )}}" class="">--}}
                                 {{--<i class="material-icons">playlist_add</i>Vincular Metas--}}
@@ -76,18 +76,18 @@
                         {{--<i class="material-icons">location_off</i>Empresas desativadas--}}
                         {{--</a>--}}
                         {{--</li>--}}
-                    </ul>
-                </li>
+                    {{--</ul>--}}
+                {{--</li>--}}
                 <li class="submenu">
                     <a href="{{ url('Comerciantes' )}}" class="{{ Request::segment(1) === 'Cliente' ? 'active' : null }}">
                         <i class="material-icons" style="color: #DB0465;">business</i>Comerciantes
                     </a>
                     <ul>
-                        {{--<li>--}}
-                        {{--<a href="{{ url('Clientes/Gerenciar' )}}" class="">--}}
-                        {{--<i class="material-icons">person_add</i>Gerenciar seus clientes--}}
-                        {{--</a>--}}
-                        {{--</li>--}}
+                        <li>
+                            <a href="{{ url('comerciantes/gerenciar' )}}" class="">
+                            <i class="material-icons">person_add</i>Gerenciar
+                            </a>
+                        </li>
                         {{--<li>--}}
                         {{--<a href="{{ url('Cliente/Edicoes' )}}" class="">--}}
                         {{--<i class="material-icons">sync_problem</i>Edições não aprovadas--}}
@@ -98,11 +98,11 @@
                                 {{--<i class="material-icons">person</i>Buscar Perfil--}}
                             {{--</a>--}}
                         {{--</li>--}}
-                        <li>
-                            <a href="{{ url('Cliente/Reclamacoes' )}}" class="">
-                                <i class="material-icons">mood_bad</i>Reclamações (3)
-                            </a>
-                        </li>
+                        {{--<li>--}}
+                            {{--<a href="{{ url('Cliente/Reclamacoes' )}}" class="">--}}
+                                {{--<i class="material-icons">mood_bad</i>Reclamações (3)--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
                         {{--<li>--}}
                         {{--<a href="{{ url('Cliente/EmpresasDesativadas' )}}" class="{{ Request::segment(1) === 'EmpresasDesativadas' ? 'active' : null }}">--}}
                         {{--<i class="material-icons">location_off</i>Empresas desativadas--}}
@@ -110,26 +110,26 @@
                         {{--</li>--}}
                     </ul>
                 </li>
-                <li class="submenu">
-                    <a href="{{ url('Solicitacoes' )}}" class="{{ Request::segment(1) === 'Erros' || Request::segment(1) === 'Solicitacoes' || Request::segment(2) === 'MaterialPropaganda' ? 'active' : null }}">
-                        <i class="material-icons" style="color: #BA2879;">description</i>Solicitações
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="{{ url('Solicitacoes/ReportarErro' )}}" class="">
-                                <i class="material-icons">bug_report</i>Erros Reportados (2)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('Solicitacoes/MaterialPropaganda' )}}" class="">
-                                <i class="material-icons">volume_up</i>Pedido de Materiais (5)
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                {{--<li class="submenu">--}}
+                    {{--<a href="{{ url('Solicitacoes' )}}" class="{{ Request::segment(1) === 'Erros' || Request::segment(1) === 'Solicitacoes' || Request::segment(2) === 'MaterialPropaganda' ? 'active' : null }}">--}}
+                        {{--<i class="material-icons" style="color: #BA2879;">description</i>Solicitações--}}
+                    {{--</a>--}}
+                    {{--<ul>--}}
+                        {{--<li>--}}
+                            {{--<a href="{{ url('Solicitacoes/ReportarErro' )}}" class="">--}}
+                                {{--<i class="material-icons">bug_report</i>Erros Reportados (2)--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="{{ url('Solicitacoes/MaterialPropaganda' )}}" class="">--}}
+                                {{--<i class="material-icons">volume_up</i>Pedido de Materiais (5)--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
                 <li>
                     <a href="{{ url('SuasMensagens' )}}" class="{{ Request::segment(1) === 'SuasMensagens' || Request::segment(1) === 'NovaMensagem'? 'active' : null }}">
-                        <i class="material-icons" style="color: #A32995;">mail</i>Mensagens
+                        <i class="material-icons" style="color: #A32995;">mail</i>Mensagens ({{$numero_mensagens}})
                     </a>
                 </li>
                 <li>
