@@ -31,7 +31,10 @@ class CategoriaController extends Controller
     {
         $categorias = Categoria::orderBy('nome','asc')->lists('nome', 'id');
 
-        return view('Categorias')->with('categorias',$categorias);
+        return view('Categorias')
+            ->with('categorias',$categorias)
+            ->with('busca_url', '')
+            ->with('endereco_url', '');
     }
 
 

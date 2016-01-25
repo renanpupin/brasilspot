@@ -235,13 +235,13 @@
 
                 console.log("tem checkado");
 
-                var url = window.location.pathname+"?"+(params["local"] != undefined ? "local="+params["local"]+"&" : "")+(params["tipo"] != undefined ? "tipo="+params["tipo"]+"&" : "")+servicos;
+                var url = window.location.pathname+"?"+(params["local"] != undefined ? "local="+params["local"]+"&" : "")+(params["tipo"] != undefined ? "tipo="+params["tipo"]+"&" : "")+(params["pesquisaEmpresa"] != undefined ? "pesquisaEmpresa="+params["pesquisaEmpresa"]+"&" : "")+(params["pesquisaEndereco"] != undefined ? "pesquisaEndereco="+params["pesquisaEndereco"]+"&" : "")+servicos;
 
             }else{
 
                 console.log("nem tem checkado");
 
-                var url = window.location.pathname+"?"+(params["local"] != undefined ? "local="+params["local"]+"&" : "")+(params["tipo"] != undefined ? "tipo="+params["tipo"]+"&" : "");
+                var url = window.location.pathname+"?"+(params["local"] != undefined ? "local="+params["local"]+"&" : "")+(params["tipo"] != undefined ? "tipo="+params["tipo"]+"&" : "")(params["pesquisaEmpresa"] != undefined ? "pesquisaEmpresa="+params["pesquisaEmpresa"]+"&" : "")+(params["pesquisaEndereco"] != undefined ? "pesquisaEndereco="+params["pesquisaEndereco"]+"&" : "");
             }
 
             url = url.replace(/&\s*$/, "");
