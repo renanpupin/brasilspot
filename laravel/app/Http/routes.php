@@ -230,6 +230,7 @@ Route::post('SuasFiliais/editar', ['as' => 'SuasFiliais.editar', 'uses' => 'Fili
 Route::resource('SuasFiliais', 'FilialController');
 
 Route::get('SuaEmpresa/Editar', 'EmpresaController@editar');
+Route::get('SuaEmpresa/Editar/{id}', 'EmpresaController@editar');
 
 Route::get('SuaEmpresa/Cadastrar', 'EmpresaController@create');
 
