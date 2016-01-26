@@ -63,7 +63,7 @@
                         <td>{{ date('d/m/Y',strtotime($assinaturaComerciante->Assinatura->created_at)) }}</td>
                         <td>{{ date('d/m/Y',strtotime($assinaturaComerciante->Assinatura->dataVencimento)) }}</td>
                         <td class="col-actions">
-                            <a href="{{ url('SuaAssinatura/Cancelar', $assinaturaComerciante->Assinatura->id)}}" title="Cancelar Assinatura" class="btn btn-cancel">Cancelar</a>
+{{--                            <a href="{{ url('SuaAssinatura/Cancelar', $assinaturaComerciante->Assinatura->id)}}" title="Cancelar Assinatura" class="btn btn-cancel">Cancelar</a>--}}
                             {{--ao clicar aqui, informar ao usuário que ele perderá a assinatura se ele continuar--}}
                             {{--pedir para ele infomar a senha novamente--}}
                         </td>
