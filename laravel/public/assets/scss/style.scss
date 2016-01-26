@@ -42,6 +42,7 @@ body{
 
 .body-content{
   margin-bottom: 20px;
+  @include calc("min-height", "100% - 220px");
 }
 
 ul li {

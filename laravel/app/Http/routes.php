@@ -332,7 +332,7 @@ Route::get('Empresa/visualizar/{id}', 'SiteController@visualizar');
 
 
 
-Route::get('Categorias', 'CategoriaController@listarCategorias');
+Route::get('categorias', 'CategoriaController@listarCategorias');
 
 Route::get('categorias/{slug}', 'EmpresaController@listarPorCategoria');
 //Route::get('/{slug}', 'SiteController@showSlug')->where('slug', '[A-Za-z-]+');
