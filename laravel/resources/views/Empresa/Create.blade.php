@@ -189,7 +189,11 @@
             </div>
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <label for="inputLinkSiteEmpresa">Link para o site da empresa *</label>
-                <input type="text" name="linkSiteEmpresa" id="linkSiteEmpresa" class="input-facebook" placeholder="Exemplo: https://www.suaempresa.com.br">
+                <input type="text" name="linkSite" id="linkSite" class="input-facebook" placeholder="Exemplo: https://www.suaempresa.com.br">
+            </div>
+            <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
+                <label for="inputLinkSiteEmpresa">Wathsapp *</label>
+                <input type="text" name="numeroWhatsapp" id="numeroWhatsapp" class="input-facebook" placeholder="(99) 99999-9999">
             </div>
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 <label for="inputSelecionarTags">Informe suas tags *</label>

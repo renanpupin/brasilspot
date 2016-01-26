@@ -63,20 +63,20 @@
                 </div>
 
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="endereco">Endereço *</label>
-                    <input type="text" name="endereco" id="endereco">
+                    {!! Form::label('endereco', 'Endereço *',null,['for' => 'endereco']) !!}
+                    {!! Form::text('endereco',null,['id' => 'endereco']) !!}
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="bairro">Bairro *</label>
-                    <input type="text" name="bairro" id="bairro">
+                    {!! Form::label('bairro', 'Bairro *',null,['for' => 'bairro']) !!}
+                    {!! Form::text('bairro',null,['id' => 'bairro']) !!}
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="cep">Cep </label>
-                    <input type="text" name="cep" id="cep">
+                    {!! Form::label('cep', 'Cep *',null,['for' => 'cep']) !!}
+                    {!! Form::text('cep',null,['id' => 'cep']) !!}
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="cidade">Cidade *</label>
-                    <input type="text" name="cidade" id="cidade">
+                    {!! Form::label('cidade', 'Cidade *',null,['for' => 'cidade']) !!}
+                    {!! Form::text('cidade',null,['id' => 'cidade']) !!}
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                     <label for="estado">Estado *</label>
@@ -117,20 +117,22 @@
                     <p class="input-hint">(Ofereceços o serviço de localização utilizando as coordenadas de latitude e longitude)</p>
                     <div class="row">
                         <div class="grid-m-6">
-                            <label for="lat" class="input-subhead">Latitude</label><input type="text" name="lat" id="lat" placeholder="Exemplo: -55.1551">
+                            {!! Form::label('lat', 'Latitude',null,['for' => 'lat']) !!}
+                            {!! Form::text('lat',null,['id' => 'lat']) !!} {{--placeholder="Exemplo: -55.1551"--}}
                         </div>
                         <div class="grid-m-6">
-                            <label for="lon" class="input-subhead">Longitude</label><input type="text" name="lon" id="lon" placeholder="Exemplo: -21.123">
+                            {!! Form::label('lon', 'Longitude',null,['for' => 'lon']) !!}
+                            {!! Form::text('lon',null,['id' => 'lon']) !!} {{--placeholder="Exemplo: -21.123"--}}
                         </div>
                     </div>
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="telefone">Telefone para clientes *</label>
-                    <input type="text" name="telefone" id="telefone" class="input-phone">
+                    {!! Form::label('telefone', 'Telefone para clientes *',null,['for' => 'telefone']) !!}
+                    {!! Form::text('telefone',null,['id' => 'telefone']) !!} {{--class="input-phone"--}}
                 </div>
                 <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                    <label for="whatsapp">Whatsapp</label>
-                    <input type="text" name="whatsapp" id="whatsapp" class="input-whatsapp">
+                    {!! Form::label('whatsapp', 'Whatsapp *',null,['for' => 'whatsapp']) !!}
+                    {!! Form::text('whatsapp',null,['id' => 'whatsapp']) !!} {{--class="input-whatsapp"--}}
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     <label for="inputIsPrincipal">É a empresa principal? *</label>

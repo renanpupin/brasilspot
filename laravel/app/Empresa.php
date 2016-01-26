@@ -21,6 +21,9 @@ class Empresa extends Model
         'idUsuario',
         'idVendedor',
         'idTipoCartao',
+        'linkSite',
+        'linkFacebook',
+        'numeroWhatsapp',
         'idTipoEmpresa',
         'dataCadastro',
         'dataVencimentoPlano');

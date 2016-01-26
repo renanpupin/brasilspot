@@ -123,10 +123,12 @@ class EmpresaController extends Controller
             'descricao' => 'required|string',
             'horarioFuncionamento' => 'required|string',
             'linkFacebook' => 'string',
+            'linkSite' => 'string',
             'tiposEmpreendimentos' => 'required|not_in:-1',
             'categorias' => 'required|not_in:-1',
             'tiposCartoes' => 'required|not_in:-1',
-            'imagemPrincipal' => 'required'
+            'imagemPrincipal' => 'required',
+            'numeroWhatsapp' => 'required|string'
         );
 
         $mensagens = array(
@@ -143,20 +145,22 @@ class EmpresaController extends Controller
             'categorias.not_in' => 'O campo Categorias deve ser selecionado.',
             'tiposCartoes.not_in' => 'O campo Tipos de cartões aceitos deve ser selecionado.',
             'imagemPrincipal.required' => 'É necessário carregar a imagem principal.',
+            'numeroWhatsapp.required' => 'O campo Número Whatsapp deve ser preenchido.',
             'string' => 'O campo :attribute deve ser texto.'
         );
 
         $validator = Validator::make($request->all(), $regras, $mensagens);
 
         if ($validator->fails()) {
-            return redirect('Empresa/cadastrar')
+            return redirect('Empresa/Cadastrar')
                 ->withErrors($validator)
                 ->withInput();
         }
 
         if (Gate::allows('AcessoComerciante')) {
-            $planoUsuario = $usuarioLogado->Comerciante->AssinaturaComerciante->Assinatura->Plano;
-            $plano = $planoUsuario->Plano->nome;
+            //$planoUsuario = $usuarioLogado->Comerciante->AssinaturaComerciante->Assinatura->Plano;
+            //$plano = $planoUsuario->Plano->nome;
+            $plano = "Basico";
 
             if (!empty($plano)) {
                 $empresa = Empresa::create([
@@ -169,12 +173,12 @@ class EmpresaController extends Controller
                     'descricao' => $request['descricao'],
                     'horarioFuncionamento' => $request['horarioFuncionamento'],
                     'atendeCasa' => $request['atendeCasa'],
-                    'linkSite' => $request['linkSiteEmpresa'],
+                    'linkSite' => $request['linkSite'],
                     'linkFacebook' => $request['linkFacebook'],
-                    'numeroWhatsapp' => $request['whatsapp'],
+                    'numeroWhatsapp' => $request['numeroWhatsapp'],
                     'idUsuario' => $usuarioLogado->id,
                     'idTipoEmpresa' => $request['tiposEmpreendimentos'],
-                    'idVendedor' => $usuarioLogado->Comerciante->idVendedor,
+                    'idVendedor' => $usuarioLogado->Comerciante->id,
                     'idTipoCartao' => $request['tiposCartoes'],
                     'dataCadastro' => date('y-m-d')
                 ]);
@@ -196,18 +200,18 @@ class EmpresaController extends Controller
                     }
                 }
 
-                $usuario = User::where('id', '=', $request['usuarios'])
-                    ->first()
-                    ->load('Comerciante')
-                    ->load('Comerciante.AssinaturaComerciante')
-                    ->load('Comerciante.AssinaturaComerciante.Assinatura')
-                    ->load('Comerciante.AssinaturaComerciante.Assinatura.Plano');
+                //$usuario = User::where('id', '=', $request['usuarios'])
+                   // ->first()
+                    //->load('Comerciante');
+                    //->load('Comerciante.AssinaturaComerciante')
+                    //->load('Comerciante.AssinaturaComerciante.Assinatura')
+                    //->load('Comerciante.AssinaturaComerciante.Assinatura.Plano');
 
                 if ($plano == 'Básico') {
                     $tags = explode(',', $request['tags']);
                     if (count($tags) <= 5) {
-
-                        if ($usuario->Comerciante->AssinaturaComerciante->Assinatura->Plano->nome == 'Básico') {
+                        //if ($usuario->Comerciante->AssinaturaComerciante->Assinatura->Plano->nome == 'Básico') {
+                        if ($plano == 'Básico') {
                             for ($i = 0, $max = 0; $i < count($tags) && $max < 5; $i++) {
                                 if (!empty($tags[$i])) {
                                     $tag = Tag::create([
@@ -231,7 +235,8 @@ class EmpresaController extends Controller
                 } else if ($plano == 'Pro') {
                     $tags = explode(',', $request['tags']);
                     if (count($tags) <= 15) {
-                        if ($usuario->Comerciante->Plano->nome == 'Pro') {
+                        //if ($usuario->Comerciante->Plano->nome == 'Pro') {
+                        if ($plano == 'Pro') {
                             for ($i = 0, $max = 0; $i < count($tags) && $max < 15; $i++) {
                                 if (!empty($tags[$i])) {
                                     $tag = Tag::create([
@@ -272,7 +277,7 @@ class EmpresaController extends Controller
             $validator = Validator::make($request->all(), $regras, $mensagens);
 
             if ($validator->fails()) {
-                return redirect('Empresa/create')
+                return redirect('Empresa/Create')
                     ->withErrors($validator)
                     ->withInput();
             }
@@ -291,10 +296,10 @@ class EmpresaController extends Controller
                     'descricao' => $request['descricao'],
                     'horarioFuncionamento' => $request['horarioFuncionamento'],
                     'atendeCasa' => $request['atendeCasa'],
-                    'linkSite' => $request['linkSiteEmpresa'],
+                    'linkSite' => $request['linkSite'],
                     'linkFacebook' => $request['linkFacebook'],
-                    'numeroWhatsapp' => $request['whatsapp'],
-                    'idUsuario' => $request['usuarios'],
+                    'numeroWhatsapp' => $request['numeroWhatsapp'],
+                    'idUsuario' => $usuarioLogado->id,
                     'idTipoEmpresa' => $request['tiposEmpreendimentos'],
                     'idVendedor' => $usuarioLogado->Vendedor->id,
                     'idTipoCartao' => $request['tiposCartoes'],
@@ -322,13 +327,14 @@ class EmpresaController extends Controller
 
                 $usuario = User::where('id', '=', $request['usuarios'])
                     ->first()
-                    ->load('Comerciante')
-                    ->load('Comerciante.AssinaturaComerciante')
-                    ->load('Comerciante.AssinaturaComerciante.Assinatura')
-                    ->load('Comerciante.AssinaturaComerciante.Assinatura.Plano');
+                    ->load('Comerciante');
+                    //->load('Comerciante.AssinaturaComerciante')
+                    //->load('Comerciante.AssinaturaComerciante.Assinatura')
+                    //->load('Comerciante.AssinaturaComerciante.Assinatura.Plano');
 
                 //TODO: verificar o que está ocorrendo aqui
-                if ($usuario->Comerciante->AssinaturaComerciante->Assinatura->Plano->nome == 'Básico') {
+                //if ($usuario->Comerciante->AssinaturaComerciante->Assinatura->Plano->nome == 'Básico') {
+                if ($plano == 'Básico') {
                     for ($i = 0, $max = 0; $i < count($tags) && $max < 5; $i++) {
                         if (!empty($tags[$i])) {
                             $tag = Tag::create([
@@ -344,7 +350,8 @@ class EmpresaController extends Controller
                         }
                     }
                 } else
-                    if ($usuario->Comerciante->AssinaturaComerciante->Assinatura->Plano->nome == 'Pro') {
+                    //if ($usuario->Comerciante->AssinaturaComerciante->Assinatura->Plano->nome == 'Pro') {
+                    if ($plano == 'Pro') {
                         for ($i = 0, $max = 0; $i < count($tags) && $max < 15; $i++) {
                             if (!empty($tags[$i])) {
                                 $tag = Tag::create([
@@ -370,7 +377,7 @@ class EmpresaController extends Controller
                 DB::rollBack();
                 $errors = $validator->getMessageBag();
                 $errors->add('ErroException', 'Não foi possivel cadastrar a empresa.');
-                return redirect()->back();
+                return redirect('SuaEmpresa/Cadastrar');
             }
 
             DB::commit();
@@ -433,7 +440,7 @@ class EmpresaController extends Controller
 
             Session::flash('flash_message', 'Empresa adicionada com sucesso!');
 
-            return redirect()->back();
+            return redirect('SuaEmpresa');
         }
     }
 
@@ -454,8 +461,8 @@ class EmpresaController extends Controller
 
     public function editar()
     {
-        $id = 1; //Session::get('id');
-        $empresa = Empresa::find($id);
+        $usuario = Auth::User();
+        $empresa = Empresa::where('idUsuario','=',$usuario->id)->first();
 
         $tiposEmpresas = ['-1' => 'Selecione o tipo do empreendimento'] + TipoEmpresa::orderBy('tipo', 'asc')->lists('tipo', 'id')->all();
         $categorias = ['-1' => 'Selecione a categoria'] + Categoria::orderBy('nome', 'asc')->lists('nome', 'id')->all();
