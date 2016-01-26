@@ -57,12 +57,16 @@ class EmpresaController extends Controller
 
     public function suaEmpresa()
     {
+        //mantendo sessão
+        if(Session::get('flash_message')){
+            Session::flash('flash_message', Session::get('flash_message'));
+        }
+
         $usuario = Auth::User();
 
         $empresa = Empresa::where('idUsuario','=',$usuario->id)->first();
 
-        if($empresa == null)
-        {
+        if($empresa == null){
             return redirect('SuaEmpresa/Cadastrar');
         }else{
             return view('Empresa/Detail');

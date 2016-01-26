@@ -191,15 +191,10 @@
                 <label for="inputLinkSiteEmpresa">Link para o site da empresa *</label>
                 <input type="text" name="linkSite" id="linkSite" class="input-facebook" placeholder="Exemplo: https://www.suaempresa.com.br">
             </div>
-            <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
-                <label for="inputLinkSiteEmpresa">Wathsapp *</label>
-                <input type="text" name="numeroWhatsapp" id="numeroWhatsapp" class="input-facebook" placeholder="(99) 99999-9999">
-            </div>
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 <label for="inputSelecionarTags">Informe suas tags *</label>
-                <p class="input-hint">(Empresas do plano básico podem ter no máximo 5 e do plano premium no máximo 15.)</p>
-                <p class="input-hint">(As tags facilitam sua empresa ser encontrada nos mecanismos de busca)</p>
-                <p class="input-hint">(Separe as tags por vírgula)</p>
+                <p class="input-hint">(As tags facilitam sua empresa ser encontrada em nossas buscas busca.</p>
+                <p class="input-hint">(Digite no máximo 5 tags, e separe-as com vírgula)</p>
                 <input type="text" name="tags" id="tags" class="input-facebook" placeholder="EX: tag1, tag2, tag3">
             </div>
         </div>

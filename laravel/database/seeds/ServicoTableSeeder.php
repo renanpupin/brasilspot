@@ -12,8 +12,6 @@ class ServicoTableSeeder extends Seeder
     public function run()
     {
 
-        DB::table('servicos')->delete();
-
         DB::table('servicos')->insert(array(
             array(
                 'id' => 1,

@@ -11,8 +11,6 @@ class TipoVendedoresTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tiposVendedores')->delete();
-
         DB::table('tiposVendedores')->insert(array(
             array(
                 'id' => 1,

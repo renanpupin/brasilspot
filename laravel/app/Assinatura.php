@@ -11,7 +11,8 @@ class Assinatura extends Model
     protected $fillable = array(
         'id',
         'dataVencimento',
-        'idPlano'
+        'idPlano',
+        'idComerciante'
     );
 
     public function Plano()

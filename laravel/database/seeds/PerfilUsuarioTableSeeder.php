@@ -11,8 +11,6 @@ class PerfilUsuarioTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('perfisUsuarios')->delete();
-
         DB::table('perfisUsuarios')->insert(array(
             array(
                 'id' => 1,

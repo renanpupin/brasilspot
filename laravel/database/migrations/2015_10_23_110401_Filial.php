@@ -13,7 +13,7 @@ class Filial extends Migration
             $table->integer('idEndereco')->unsigned();
             $table->integer('idTelefone')->unsigned();
             $table->integer('idWhatsApp')->unsigned()->nullable();
-            $table->boolean('isPrincipal')->default(false);
+            $table->boolean('isPrincipal')->default(true);
             $table->timestamps();
         });
 

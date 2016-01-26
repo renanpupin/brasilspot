@@ -11,11 +11,9 @@ class Vendedor extends Migration
         Schema::create('vendedores', function(Blueprint $table)
         {
             $table->increments('id');
-            //$table->boolean('isCoordenador')->default(false);;
             $table->integer('idUsuario')->unsigned();
             $table->integer('idTipo')->unsigned();
-            $table->integer('idMeta')->unsigned();
-            $table->integer('idVendedorPai');
+            $table->integer('idVendedorPai')->nullable();
             $table->timestamps();
         });
 
@@ -23,7 +21,6 @@ class Vendedor extends Migration
         {
             $table->foreign('idUsuario')->references('id')->on('users');
             $table->foreign('idTipo')->references('id')->on('tiposVendedores');
-            $table->foreign('idMeta')->references('id')->on('metas');
         });
     }
 
@@ -33,7 +30,6 @@ class Vendedor extends Migration
         Schema::table('vendedores', function(Blueprint $table) {
             $table->dropForeign(['idUsuario']);
             $table->dropForeign(['idTipo']);
-            $table->dropForeign(['idMeta']);
         });
         Schema::drop('vendedores');
     }

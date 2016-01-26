@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\AssinaturaComerciante;
-use App\AssinaturaFilial;
 use App\Comerciante;
 use App\Filial;
 use App\WhatsApp;
@@ -15,11 +13,12 @@ use App\User;
 use App\Endereco;
 use App\Plano;
 use App\Telefone;
+use App\AssinaturaFilial;
+use App\Assinatura;
 use Illuminate\Support\Facades\Session;
 use Auth;
 use DB;
 use Gate;
-use App\AsssinaturaComerciante;
 use App\Http\Controllers\Controller;
 use Mockery\CountValidator\Exception;
 use Validator;
@@ -35,16 +34,18 @@ class FilialController extends Controller
         if (Gate::allows('AcessoComerciante'))
         {
             $comerciante = Comerciante::where('idUsuario','=',$usuario->id)->first();
-            $query =  DB::select(DB::raw("select count(idComerciante) as qtdAssinaturasTotais from assinaturasComerciantes ac inner join assinaturas a on a.id = ac.idAssinatura  where idComerciante = :comercianteId  group by idComerciante"),['comercianteId' => $comerciante->id]);
 
-            if(sizeof($query) > 0) {
-                $qtdAssinaturasTotais = $query[0]->qtdAssinaturasTotais;
-            }else{
-                $qtdAssinaturasTotais = 0;
+            $assinaturas = Assinatura::where('idComerciante', $comerciante->id)->get();
+
+            $qtdAssinaturasTotais = $assinaturas->count();
+
+            $qtdAssinaturasUsadas = 0;
+
+            foreach($assinaturas as $assinatura){
+                if(AssinaturaFilial::where('idAssinatura', $assinatura->id)->count() > 0){
+                    $qtdAssinaturasUsadas++;
+                }
             }
-
-            $query = DB::select(DB::raw("select count(idComerciante) as qtdAssinaturasUsadas from assinaturasComerciantes ac inner join assinaturas a on a.id = ac.idAssinatura inner join assinaturasFiliais af on af.idAssinatura = ac.idAssinatura where idComerciante = :comercianteId group by idComerciante"),['comercianteId' => $comerciante->id]);
-            $qtdAssinaturasUsadas = empty($query) ? 0 : $query[0]->qtdAssinaturasUsadas;
             $qtdAssinaturasRestantes = $qtdAssinaturasTotais - $qtdAssinaturasUsadas;
 
             $empresa = Empresa::where('idUsuario','=',$usuario->id)->first();
@@ -53,16 +54,11 @@ class FilialController extends Controller
             if($empresa != null)
             {
                 $filiais = Filial::where('idEmpresa','=',$empresa->id)->get();
+            }else{
+                //TODO: informar o usuário para cadastrar primeiro empresa e depois filial
             }
            return view('Filial.Index')->with('filiais',$filiais)->with('numero_assinaturas',$qtdAssinaturasRestantes);
         }
-        else
-            if(Gate::allows('AcessoVendedor') || Gate::allows('AcessoComerciante') )
-            {
-                $filiais = Filial::with('Endereco')->get();
-                return view('Filial.Index')->with('filiais',$filiais);
-            }
-
     }
 
 

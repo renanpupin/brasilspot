@@ -11,10 +11,6 @@ class ComercianteTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('comerciantes')->delete();
-
-        $this->call(PlanoTableSeeder::class);
-
         //administradores
         DB::table('comerciantes')->insert(array(
             array(
@@ -24,9 +20,14 @@ class ComercianteTableSeeder extends Seeder
             ),
             array(
                 'id' => 2,
-                'id_vendedor' => 2,
+                'id_vendedor' => 1,
                 'id_usuario' => 6
             ),
+            array(
+                'id' => 3,
+                'id_vendedor' => 1,
+                'id_usuario' => 7
+            )
         ));
     }
 }

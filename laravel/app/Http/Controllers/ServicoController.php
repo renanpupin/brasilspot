@@ -55,7 +55,6 @@ class ServicoController extends Controller
 
     public function selecionar()
     {
-        //Todo:buscar todos os servicos já selecionados na empresa para listar nos combos
 
         $servicos = Servico::orderBy('descricao','asc')->get();
 

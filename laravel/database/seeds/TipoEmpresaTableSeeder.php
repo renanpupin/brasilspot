@@ -11,10 +11,6 @@ class TipoEmpresaTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
-        DB::table('tiposEmpresas')->delete();
-
         DB::table('tiposEmpresas')->insert(array(
             array(
                 'id' => 1,
@@ -33,7 +29,5 @@ class TipoEmpresaTableSeeder extends Seeder
                 'tipo' => 'Profissionais',
             ),
         ));
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
     }
 }

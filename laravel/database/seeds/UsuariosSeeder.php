@@ -11,22 +11,6 @@ class UsuariosSeeder extends Seeder
      */
     public function run()
     {
-
-        DB::table('assinaturasFiliais')->delete();
-        DB::table('assinaturas')->delete();
-        DB::table('planos')->delete();
-
-
-        DB::table('comerciantes')->delete();
-        DB::table('vendedores')->delete();
-        DB::table('tiposVendedores')->delete();
-        DB::table('metas')->delete();
-        DB::table('reclamacoes')->delete();
-        DB::table('users')->delete();
-        DB::table('perfisUsuarios')->delete();
-
-        $this->call(PerfilUsuarioTableSeeder::class);
-
         //administradores
         DB::table('users')->insert(array(
             array(
@@ -44,7 +28,7 @@ class UsuariosSeeder extends Seeder
                 'idPerfilUsuario' => 1, //admin
             ),
             array(
-                'id' => 7,
+                'id' => 3,
                 'name' => 'Valter',
                 'email' => 'valter@brasilspot.com',
                 'password' => bcrypt('spot123'),
@@ -55,25 +39,13 @@ class UsuariosSeeder extends Seeder
         //vendedores
         DB::table('users')->insert(array(
             array(
-                'id' => 3,
-                'name' => 'Vendedor Alfa',
-                'email' => 'alfa@brasilspot.com',
-                'password' => bcrypt('spot123'),
-                'idPerfilUsuario' => 2, //vendedor
-            ),
-            array(
                 'id' => 4,
-                'name' => 'Vendedor Beta',
-                'email' => 'beta@brasilspot.com',
+                'name' => 'Vendedor Spot',
+                'email' => 'vendedorspot@brasilspot.com',
                 'password' => bcrypt('spot123'),
                 'idPerfilUsuario' => 2, //vendedor
-            ),
+            )
         ));
-
-        $this->call(VendedorTableSeeder::class);
-
-        $this->call(MetaTableSeeder::class);
-        $this->call(MetaVendedorTableSeeder::class);
 
         //comerciantes
         DB::table('users')->insert(array(
@@ -90,9 +62,14 @@ class UsuariosSeeder extends Seeder
                 'email' => 'comerciante2@brasilspot.com',
                 'password' => bcrypt('spot123'),
                 'idPerfilUsuario' => 3, //comerciante
+            ),
+            array(
+                'id' => 7,
+                'name' => 'Comerciante 3',
+                'email' => 'comerciante3@brasilspot.com',
+                'password' => bcrypt('spot123'),
+                'idPerfilUsuario' => 3, //comerciante
             )
         ));
-
-        $this->call(ComercianteTableSeeder::class);
     }
 }
