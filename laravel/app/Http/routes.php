@@ -230,6 +230,7 @@ Route::post('SuasFiliais/editar', ['as' => 'SuasFiliais.editar', 'uses' => 'Fili
 Route::resource('SuasFiliais', 'FilialController');
 
 Route::get('SuaEmpresa/Editar', 'EmpresaController@editar');
+Route::get('SuaEmpresa/Editar/{id}', 'EmpresaController@editar');
 
 Route::get('SuaEmpresa/Cadastrar', 'EmpresaController@create');
 
@@ -331,7 +332,7 @@ Route::get('Empresa/visualizar/{id}', 'SiteController@visualizar');
 
 
 
-Route::get('categorias', 'CategoriaController@listarCategorias');
+Route::get('Categorias', 'CategoriaController@listarCategorias');
 
 Route::get('categorias/{slug}', 'EmpresaController@listarPorCategoria');
 //Route::get('/{slug}', 'SiteController@showSlug')->where('slug', '[A-Za-z-]+');

@@ -27,7 +27,6 @@
         {{--<p class="text-caption">Por favor, nos informe seus dados e da sua empresa. Os dados abaixo <strong>NÃO</strong> serão divulgados no site.</p>--}}
         <!-- <p class="text-caption">Campos com (*) são obrigatórios</p> -->
         <!-- <p class="text-caption">Suas edições serão aprovadas dentro de 72hs.</p> -->
-
     </div>
 
     <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -97,19 +96,19 @@
 
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <label for="nomeEmpreendedor">Nome do Empreendedor *</label>
-                <input type="text" name="nomeEmpreendedor" id="nomeEmpreendedor">
+                {!!Form::text('nomeEmpreendedor', null, ['id' => 'nomeEmpreendedor']) !!}
             </div>
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <label for="razaoSocial">Razão Social *</label>
-                <input type="text" name="razaoSocial" id="razaoSocial">
+                {!!Form::text('razaoSocial', null, ['id' => 'razaoSocial']) !!}
             </div>
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <label for="cpfCnpj">CPF ou CNPJ *</label>
-                <input type="text" name="cpfCnpj" id="cpfCnpj">
+                {!!Form::text('cpfCnpj', null, ['id' => 'cpfCnpj']) !!}
             </div>
             <div class="form-group grid-m-6 grid-s-12 grid-xs-12">
                 <label for="email">Email *</label>
-                <input type="email" name="email" id="email">
+                {!!Form::text('email', null, ['id' => 'email']) !!}
             </div>
 
             @can('AcessoAdministrador')

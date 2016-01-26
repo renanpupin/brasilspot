@@ -454,8 +454,8 @@ class EmpresaController extends Controller
 
     public function editar()
     {
-        //$id = deverá receber a empresa cadastrada do comerciante que está logado na sessão
-        //$empresa = Empresa::find($id);
+        $id = 1; //Session::get('id');
+        $empresa = Empresa::find($id);
 
         $tiposEmpresas = ['-1' => 'Selecione o tipo do empreendimento'] + TipoEmpresa::orderBy('tipo', 'asc')->lists('tipo', 'id')->all();
         $categorias = ['-1' => 'Selecione a categoria'] + Categoria::orderBy('nome', 'asc')->lists('nome', 'id')->all();
@@ -465,13 +465,13 @@ class EmpresaController extends Controller
 
 
         return view('Empresa.Edit')
+            ->with('empresa', $empresa)
             ->with('tiposEmpresas', $tiposEmpresas)
             ->with('cartoes', $cartoes)
             ->with('categorias', $categorias)
             ->with('vendedores', $vendedores)
             ->with('tiposCartoes', $tiposCartoes);
     }
-
 
     public function update(Request $request, $id)
     {
