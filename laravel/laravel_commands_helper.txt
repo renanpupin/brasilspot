@@ -1,3 +1,14 @@
+executar aplicação
+php artisan serve
+
+criar banco de dados
+php artisan migrate
+
+instalar dependencias do projeto
+php composer install
+ou apenas
+composer install
+
 remove sessão de usuários logados
 php artisan cache:clear
 
@@ -9,3 +20,6 @@ php artisan make:migration TipoMeta
 
 seeders
 php artisan db:seed --class=UsuariosSeeder
+
+rodar o tinker
+php artisan tinker

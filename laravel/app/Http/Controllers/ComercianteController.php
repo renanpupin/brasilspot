@@ -60,7 +60,7 @@ class ComercianteController extends Controller
             $usuario = User::create([
                 'name' => $request['nome'],
                 'email' => $request['email'],
-                'password' => Hash::make($request['password']),
+                'password' => Hash::make($senha),
                 'idPerfilUsuario' => 3
             ]);
 
@@ -88,6 +88,7 @@ class ComercianteController extends Controller
     {
         $usuario = Auth::user();
 
+        //TODO: implementar queries aqui
         $qtd_visualizacoes = 123;
         $qtd_mensagens = 5;
         $qtd_assinaturas = 3;
@@ -118,17 +119,40 @@ class ComercianteController extends Controller
     {
         $usuario = Auth::user();
         $comerciante = Comerciante::where('idUsuario','=',$usuario->id)->first();
-        $query =  DB::select(DB::raw("select count(idComerciante) as qtdAssinaturasTotais from assinaturasComerciantes ac inner join assinaturas a on a.id = ac.idAssinatura  where idComerciante = :comercianteId  group by idComerciante"),['comercianteId' => $comerciante->id]);
 
-        if(sizeof($query) > 0) {
-            $qtdAssinaturasTotais = $query[0]->qtdAssinaturasTotais;
-        }else{
-            $qtdAssinaturasTotais = 0;
-        }
+        $qtdAssinaturasTotais = Assinatura::where('idComerciante', $comerciante->id)->count();
 
-        $assinaturasComerciantes = AssinaturaComerciante::where('idComerciante','=',$comerciante->id)->with('Assinatura')->with('Assinatura.Plano')->get();
+        $assinaturasComerciantes = Assinatura::where('idComerciante', $comerciante->id)->get();
 
         return view('Comerciante.Assinatura')->with('qtdAssinaturas',$qtdAssinaturasTotais)->with('assinaturasComerciante',$assinaturasComerciantes);
 
+    }
+
+    public function adicionarAssinaturas(){
+        return View('Comerciante/AdicionarAssinaturas');
+    }
+    public function pagamentoAssinaturas(Request $request){
+        $regras = array(
+            'qtdAssinaturas' => 'required'
+        );
+
+        $mensagens = array(
+            'required' => 'Selecione pelo menos uma assinatura para realizar o pagamento.'
+        );
+
+        if($request['qtdAssinaturas'] == 0){
+            $request['qtdAssinaturas'] = null;
+        }
+
+        $validator = Validator::make($request->all(), $regras, $mensagens);
+
+        if ($validator->fails()) {
+            return redirect('assinaturas/adicionar')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        dd("Quantidade de assinaturas selecionadas = ".$request['qtdAssinaturas']."\nFalta testar a integração com o pagar.me");
+        return View('Comerciante/PagarAssinaturas');
     }
 }

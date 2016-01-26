@@ -3213,4 +3213,11 @@ footer {
   height: auto;
   padding: 15px; }
 
+.btn.btnCountChange {
+  width: 50px;
+  padding: 0px;
+  height: 34px;
+  line-height: 34px;
+  margin-top: 18px; }
+
 /*# sourceMappingURL=style.css.map */

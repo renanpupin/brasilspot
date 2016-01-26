@@ -39,14 +39,14 @@
     <div id="cadastro" class="grid-m-12 grid-s-12 grid-xs-12">
 
         <div class="row">
-            <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
-                {!! Form::label('destino', 'Destino',null,['for' => 'destino']) !!}
-                <select name="destino">
-                    <option>Selecione o destino da mensagem</option>
-                    <option>Administração</option>
-                    <option>Seus Clientes</option>
-                </select>
-            </div>
+            {{--<div class="form-group grid-m-12 grid-s-12 grid-xs-12">--}}
+                {{--{!! Form::label('destino', 'Destino',null,['for' => 'destino']) !!}--}}
+                {{--<select name="destino">--}}
+                    {{--<option>Selecione o destino da mensagem</option>--}}
+                    {{--<option>Administração</option>--}}
+                    {{--<option>Seus Clientes</option>--}}
+                {{--</select>--}}
+            {{--</div>--}}
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                 {!! Form::label('mensagem', 'Mensagem',null,['for' => 'mensagem']) !!}
                 <textarea rows="5" name="mensagem"></textarea>

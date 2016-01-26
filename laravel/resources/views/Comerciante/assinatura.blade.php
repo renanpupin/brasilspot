@@ -20,24 +20,30 @@
     <div class="content-title grid-m-12 grid-s-12 grid-xs-12">
         <h2>Assinatura</h2>
         @if($qtdAssinaturas > 0 )
-            <p>No momento você possui <b>{{$qtdAssinaturas}}</b> assinatura(s). Para adicionar mais assinaturas clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
+            <p>No momento você possui <b>{{$qtdAssinaturas}}</b> assinatura(s). Para adicionar mais clique no botão adicionar.</p>
         @endif
         @if($qtdAssinaturas == 0 )
-            <p>No momento você não tem nenhuma assinatura. Se deseja adicionar mais assinaturas clique <a href="{{url('http://pagar.me')}}" target="_blank">AQUI</a>.</p>
+            <p>No momento você não tem nenhuma assinatura. Se deseja adicionar assinaturas clique no botão adicionar.</p>
         @endif
     </div>
 
-    <div id="breadcrumbs" class="grid-m-12 grid-s-12 grid-xs-12">
+    <div id="breadcrumbs" class="grid-m-9 grid-s-9 grid-xs-12">
         <div class="breadcrumbs-content container">
             <div class="row">
                 <i class="material-icons">home</i>
                 Você está em:
                 <ul>
-                    <li><a href="{{ url('SuaAssinatura') }}">Sua Assinatura</a></li>
+                    <li><a href="{{ url('assinaturas') }}">Assinaturas</a></li>
                     <li>Listar</li>
                 </ul>
             </div>
         </div>
+    </div>
+
+    <div class="grid-m-3 grid-s-3 grid-xs-12">
+        <a id="btnAdicionar" class="btn btn-primary ripple" style="margin-top: 25px; margin-bottom: 25px;" href="{{ url('assinaturas/adicionar') }}">
+            <span class="text-content">Adicionar</span>
+        </a>
     </div>
 
     <div id="listagem" class="grid-m-12 grid-s-12 grid-xs-12">
@@ -45,10 +51,8 @@
             <table id="listarAssinaturas" class="table">
                 <thead>
                     <th>#</th>
-                    <th>Plano</th>
                     <th>Ativa desde</th>
                     <th>Vencimento</th>
-                    <th style="min-width: 175px; width: 175px;"></th>
                     <th style="min-width: 175px; width: 175px;"></th>
                 </thead>
                 <tbody>
@@ -56,12 +60,8 @@
                 @foreach($assinaturasComerciante as $assinaturaComerciante)
                     <tr>
                         <td>Assinatura {{ $numFilial++ }}</td>
-                        <td>{{ $assinaturaComerciante->Assinatura->Plano->nome }}</td>
-                        <td>{{ date('d/m/Y',strtotime($assinaturaComerciante->Assinatura->updated_at)) }}</td>
+                        <td>{{ date('d/m/Y',strtotime($assinaturaComerciante->Assinatura->created_at)) }}</td>
                         <td>{{ date('d/m/Y',strtotime($assinaturaComerciante->Assinatura->dataVencimento)) }}</td>
-                        <td class="col-actions">
-                             <a href="{{url('SuaAssinatura/Downgrade',$assinaturaComerciante->Assinatura->id)}}" class="btn">Downgrade</a>
-                        </td>
                         <td class="col-actions">
                             <a href="{{ url('SuaAssinatura/Cancelar', $assinaturaComerciante->Assinatura->id)}}" title="Cancelar Assinatura" class="btn btn-cancel">Cancelar</a>
                             {{--ao clicar aqui, informar ao usuário que ele perderá a assinatura se ele continuar--}}

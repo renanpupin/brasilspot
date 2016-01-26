@@ -240,6 +240,8 @@ Route::post('Servico/gravarSelecionados', ['as' => 'Servico.gravarSelecionados',
 
 //route for assinaturas
 Route::get('assinaturas', 'ComercianteController@minhasAssinaturas');
+Route::get('assinaturas/adicionar', 'ComercianteController@adicionarAssinaturas');
+Route::post('assinaturas/adicionar', ['as' => 'Comerciante.adicionarAssinaturas', 'uses' => 'ComercianteController@pagamentoAssinaturas']);
 
 Route::get('SuaAssinatura/Upgrade/{id}', function () {
     return view('Comerciante/UpgradeAssinatura');
