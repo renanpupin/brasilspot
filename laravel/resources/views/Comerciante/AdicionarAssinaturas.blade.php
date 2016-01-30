@@ -47,7 +47,7 @@
 
     <div id="cadastro" class="grid-m-12 grid-s-12 grid-xs-12">
 
-        {!! Form::Open(['route' => 'Comerciante.adicionarAssinaturas', 'method' => 'POST']) !!}
+        {!! Form::Open(['route' => 'Comerciante.pagarAssinaturas', 'method' => 'POST']) !!}
         <div class="row">
 
             <div class="form-group grid-m-12 grid-s-12 grid-xs-12">

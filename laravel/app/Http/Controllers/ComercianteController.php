@@ -152,7 +152,7 @@ class ComercianteController extends Controller
                 ->withInput();
         }
 
-        dd("Quantidade de assinaturas selecionadas = ".$request['qtdAssinaturas']."\nFalta testar a integração com o pagar.me");
-        return View('Comerciante/PagarAssinaturas');
+        //dd("Quantidade de assinaturas selecionadas = ".$request['qtdAssinaturas']."\nFalta testar a integração com o pagar.me");
+        return View('Comerciante/PagarAssinaturas')->with('numeroAssinaturas', $request['qtdAssinaturas']);
     }
 }
