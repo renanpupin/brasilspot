@@ -17,6 +17,13 @@ use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
+use PagarMe;
+use PagarMe_Transaction;
+use PagarMe_Subscription;
+use PagarMe_Plan;
+use PagarMe_Card;
+use App\Transacao;
+
 class ComercianteController extends Controller
 {
 
@@ -154,5 +161,59 @@ class ComercianteController extends Controller
 
         //dd("Quantidade de assinaturas selecionadas = ".$request['qtdAssinaturas']."\nFalta testar a integração com o pagar.me");
         return View('Comerciante/PagarAssinaturas')->with('numeroAssinaturas', $request['qtdAssinaturas']);
+    }
+
+    public function efetivar(Request $request){
+
+        Pagarme::setApiKey("ak_test_UvGkVG7SUAeiwCnzYarSKdxc3syszb");
+
+        //$request = $request->all();
+
+        $numero_assinaturas = $request['numeroAssinaturas'];
+
+        $card_hash = $request['card_hash'];
+
+        $valor = 2490*$numero_assinaturas;
+
+        $usuario = Auth::user();
+
+        //pagamento
+//        $transactionPagarMe = new PagarMe_Transaction(array(
+//            'amount' => $valor,
+//            'card_hash' => $card_hash,
+//            "metadata" => array(
+//                "id" => $usuario->id,
+//                "name" => $usuario->name,
+//                "email" => $usuario->email
+//            )
+//        ));
+//
+//        $transactionPagarMe->charge();
+//        $status = $transactionPagarMe->status; // status da transação
+//        dd($status);
+
+
+        //assinatura para o plano id=27440
+        $subscription = new PagarMe_Subscription(array(
+            'plan' => PagarMe_Plan::findById("27440"),
+            'card_hash' => $card_hash,
+            "metadata" => array(
+                "id" => $usuario->id,
+                "name" => $usuario->name,
+                "email" => $usuario->email
+            ),
+            'customer' => array(
+                'email' => $usuario->email
+            )
+        ));
+
+        $subscription->create();
+
+        if($subscription->status == "paid"){
+            return View('Comerciante/StatusPagamento')->with('status',$subscription->status);
+        }else{
+            return View('Comerciante/StatusPagamento')->with('status','erro');
+        }
+
     }
 }

@@ -59,28 +59,28 @@
         <p>Pagar {{$numeroAssinaturas}} assinaturas.</p>
         <p>Valor Total: <b>R$ {{number_format(($numeroAssinaturas*24.90), 2, ',', '')}}</b></p>
 
-        {!! Form::Open(['url' => 'Pagamento/Efetivar', 'method' => 'POST', 'id' => 'payment_form', "class" => "form-group"]) !!}
+        {!! Form::Open(['url' => 'pagamento/efetivar', 'method' => 'POST', 'id' => 'payment_form', "class" => "form-group"]) !!}
             {!! Form::hidden('numeroAssinaturas', $numeroAssinaturas, null, null) !!}
             <div class="row">
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     {!! Form::label('card_number', 'Número do cartão *',null,['for' => 'card_number']) !!}
-                    <input required class="removeName" type="text" id="card_number" name="card_number"/>
+                    <input required class="removeName" type="text" id="card_number" name="card_number" value="4716129133767263"/>
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     {!! Form::label('card_holder_name', 'Nome (como escrito no cartão) *',null,['for' => 'card_holder_name']) !!}
-                    <input class="removeName" type="text" id="card_holder_name" name="card_holder_name"/>
+                    <input class="removeName" type="text" id="card_holder_name" name="card_holder_name" value="Pessoa Teste"/>
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     {!! Form::label('card_expiration_month', 'Mês de expiração *',null,['for' => 'card_expiration_month']) !!}
-                    <input required class="removeName" type="text" id="card_expiration_month" name="card_expiration_month"/>
+                    <input required class="removeName" type="text" id="card_expiration_month" name="card_expiration_month" value="05"/>
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     {!! Form::label('card_expiration_year', 'Ano de expiração *',null,['for' => 'card_expiration_year']) !!}
-                    <input required class="removeName" type="text" id="card_expiration_year" name="card_expiration_year"/>
+                    <input required class="removeName" type="text" id="card_expiration_year" name="card_expiration_year" value="17"/>
                 </div>
                 <div class="form-group grid-m-12 grid-s-12 grid-xs-12">
                     {!! Form::label('card_cvv', 'Código de segurança *',null,['for' => 'card_cvv']) !!}
-                    <input required class="removeName" type="text" id="card_cvv" name="card_cvv"/>
+                    <input required class="removeName" type="text" id="card_cvv" name="card_cvv" value="360"/>
                 </div>
 
                 <div id="field_errors" class="form-group grid-m-12 grid-s-12 grid-xs-12"></div>
@@ -109,7 +109,6 @@
 
 
 @section('script')
-    <script type="text/javascript" src="{!! asset('assets/js/pagarme_script_extra.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('assets/js/assinaturas/scriptPagamento.js') !!}"></script>
     <script type="text/javascript" src="{{url('https://assets.pagar.me/js/pagarme.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')}}"></script>
 @stop

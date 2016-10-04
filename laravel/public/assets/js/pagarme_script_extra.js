@@ -3,7 +3,7 @@
  */
 $(document).ready(function() {
 
-    PagarMe.encryption_key = "ek_test_lGkZJusx1QV5n9lOVayKznXyjbnqhg";
+    PagarMe.encryption_key = "ek_test_NYt8FZ0GhouXCPz6t1WfR4wKAwdfAt";
     var button = $("#card_form_submit")[0];
     var form = $("#payment_form");
     var divEntraSaiCartao = $("div.dadosCartaoShowHide");

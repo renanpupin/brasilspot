@@ -244,6 +244,10 @@ Route::get('assinaturas', 'ComercianteController@minhasAssinaturas');
 Route::get('assinaturas/adicionar', 'ComercianteController@adicionarAssinaturas');
 Route::post('assinaturas/pagarAssinaturas', ['as' => 'Comerciante.pagarAssinaturas', 'uses' => 'ComercianteController@pagamentoAssinaturas']);
 
+//route for pagamento
+Route::post('pagamento/efetivar', 'ComercianteController@efetivar');
+
+
 Route::get('SuaAssinatura/Upgrade/{id}', function () {
     return view('Comerciante/UpgradeAssinatura');
 });
@@ -356,6 +360,6 @@ Route::post('Pagamento/InfoCartao', 'PagamentoController@create');
 Route::get('Pagamento/InfoCartao', function () {
     return redirect('Pagamento/Calcular');
 });
-Route::post('Pagamento/Efetivar', 'PagamentoController@store');
+//Route::post('Pagamento/Efetivar', 'PagamentoController@store');
 
 
